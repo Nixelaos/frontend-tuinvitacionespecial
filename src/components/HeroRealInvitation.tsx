@@ -1,82 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { INVITATION_TEMPLATES } from '../data/weddingData';
 import type { InvitationTemplate } from '../types/wedding';
 import { ParchmentLogo } from './ParchmentLogo';
 
 export const HeroRealInvitation: React.FC = () => {
-  const [selectedSlug, setSelectedSlug] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('selected_wedding_hero_template');
-      if (saved && INVITATION_TEMPLATES.some((t) => t.slug === saved)) {
-        return saved;
-      }
-    }
-    return INVITATION_TEMPLATES[0].slug;
-  });
+  // Última invitación creada en el catálogo (Papel Artesanal & Bordes Deshilachados)
+  const defaultTemplate: InvitationTemplate =
+    INVITATION_TEMPLATES.find((t) => t.slug === 'papel-artesanal-deshilachado') ||
+    INVITATION_TEMPLATES[0];
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const selectedTemplate: InvitationTemplate =
-    INVITATION_TEMPLATES.find((t) => t.slug === selectedSlug) || INVITATION_TEMPLATES[0];
-
   useEffect(() => {
-    const handleTemplateSelected = (e: Event) => {
-      const customEvent = e as CustomEvent<{ slug: string }>;
-      if (customEvent.detail?.slug) {
-        const found = INVITATION_TEMPLATES.find((t) => t.slug === customEvent.detail.slug);
-        if (found) {
-          setIsLoading(true);
-          setSelectedSlug(found.slug);
-          if (typeof window !== 'undefined') {
-            localStorage.setItem('selected_wedding_hero_template', found.slug);
-          }
-        }
-      }
-    };
-
-    window.addEventListener('select-hero-template', handleTemplateSelected);
-    return () => {
-      window.removeEventListener('select-hero-template', handleTemplateSelected);
-    };
-  }, []);
-
-  const handleSelect = (tpl: InvitationTemplate) => {
-    if (tpl.slug === selectedSlug) return;
-    setIsLoading(true);
-    setSelectedSlug(tpl.slug);
+    // Limpiar cualquier plantilla previamente guardada en localStorage
     if (typeof window !== 'undefined') {
-      localStorage.setItem('selected_wedding_hero_template', tpl.slug);
-      window.dispatchEvent(
-        new CustomEvent('hero-template-changed', { detail: { slug: tpl.slug } })
-      );
+      localStorage.removeItem('selected_wedding_hero_template');
     }
-  };
+  }, []);
 
   return (
     <div className="relative mx-auto flex flex-col items-center">
-      {/* Top Selector: Choose which template from catalog to preview in Hero */}
-      <div className="mb-4 flex flex-wrap items-center justify-center gap-1.5 p-1 bg-ivory-50/90 backdrop-blur-md border border-gold/30 shadow-sm max-w-full">
-        {INVITATION_TEMPLATES.map((tpl) => {
-          const active = selectedTemplate.slug === tpl.slug;
-          return (
-            <button
-              key={tpl.id}
-              type="button"
-              onClick={() => handleSelect(tpl)}
-              className={`px-3 py-1.5 text-[11px] uppercase tracking-wider font-medium transition flex items-center gap-1.5 ${
-                active
-                  ? 'bg-charcoal text-ivory-50 shadow-sm'
-                  : 'text-charcoal-muted hover:text-charcoal hover:bg-champagne/40'
-              }`}
-            >
-              {active && <Check className="w-3 h-3 text-gold-light" />}
-              <span>{tpl.coupleDemo.bride} &amp; {tpl.coupleDemo.groom}</span>
-            </button>
-          );
-        })}
-      </div>
-
       {/* Realistic Smartphone Mockup Frame (Default 400 x 824 proportion) */}
       <div className="relative w-full max-w-[420px] bg-[#1E2022] rounded-[52px] p-2.5 sm:p-3 shadow-editorial-lg border-4 border-[#3D3F43]">
         {/* Dynamic Island / Speaker Notch */}
@@ -88,9 +32,9 @@ export const HeroRealInvitation: React.FC = () => {
         {/* Screen Display Container (400 x 824) */}
         <div className="relative rounded-[40px] overflow-hidden bg-ivory-100 w-full max-w-[400px] h-[680px] sm:h-[824px] border border-gold/20 shadow-inner">
           <iframe
-            key={selectedTemplate.slug}
-            src={`/disenos/${selectedTemplate.slug}?hero=true`}
-            title={`Invitación Real de ${selectedTemplate.coupleDemo.bride} & ${selectedTemplate.coupleDemo.groom}`}
+            key={defaultTemplate.slug}
+            src={`/disenos/${defaultTemplate.slug}?hero=true`}
+            title={`Invitación Real de ${defaultTemplate.coupleDemo.bride} & ${defaultTemplate.coupleDemo.groom}`}
             className={`w-full h-full border-0 transition-opacity duration-300 ${
               isLoading ? 'opacity-40' : 'opacity-100'
             }`}
@@ -106,7 +50,7 @@ export const HeroRealInvitation: React.FC = () => {
       {/* Action Links Below Smartphone */}
       <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
         <a
-          href={`/disenos/${selectedTemplate.slug}`}
+          href={`/disenos/${defaultTemplate.slug}`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-charcoal hover:bg-gold-dark text-ivory-50 text-xs uppercase tracking-[0.18em] font-medium transition shadow-sm group"
