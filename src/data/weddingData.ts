@@ -12,6 +12,70 @@ export const BRAND_NAME = 'Tu Invitación Especial';
 
 export const INVITATION_TEMPLATES: InvitationTemplate[] = [
   {
+    id: 'papel-artesanal-deshilachado',
+    slug: 'papel-artesanal-deshilachado',
+    name: 'Papel Artesanal & Bordes Deshilachados',
+    collection: 'Colección Rústica & Olivo Artesanal',
+    category: 'Botánico & Salvia',
+    price: 99990,
+    originalPrice: 129990,
+    badge: 'Papel Rasgado SVG & Verde Oliva',
+    isPopular: true,
+    shortDescription:
+      'Estética rústica y artesanal con contornos de papel rasgado hecho a mano mediante filtros de turbulencia SVG y recorte poligonal irregular en marfil crudo, beige lino y verde oliva.',
+    description:
+      'Plantilla de invitación con estética rústica y artesanal. Aplica a los contenedores principales y tarjetas un contorno de papel rasgado hecho a mano utilizando filtros de turbulencia SVG y recorte poligonal irregular, eliminando cualquier línea recta artificial en marfil crudo, beige lino y verde oliva.',
+    coupleDemo: {
+      bride: 'Valentina',
+      groom: 'Mateo',
+      initials: 'V & M',
+      date: '2027-11-20T16:30:00',
+      displayDate: 'Sábado, 20 de Noviembre de 2027',
+      city: 'Hacienda Los Olivos, Valle de Colchagua',
+      ceremonyVenue: 'Capilla de Piedra Los Olivos',
+      ceremonyTime: '16:30 hrs',
+      receptionVenue: 'Explanada del Lagar Antiguo',
+      receptionTime: '18:00 hrs',
+      dressCode: 'Elegante Rústico · Lino & Tonos de la Tierra',
+      quote: '«Como las raíces del olivo antiguo, nuestro amor creció con paciencia y luz natural.»',
+      songTitle: 'Cuerdas del Olivar',
+      songArtist: 'Ensamble Acústico',
+    },
+    palette: {
+      name: 'Marfil Crudo, Beige Lino & Verde Oliva',
+      bgHex: '#E8DFCE',
+      cardHex: '#FAF6EE',
+      accentHex: '#5C6B47',
+      textHex: '#2A3022',
+      secondaryHex: '#5E6453',
+    },
+    coverImage:
+      'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85',
+    secondaryImage:
+      'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80',
+    includedFeatures: [
+      'Contornos de papel rasgado con filtros de turbulencia SVG y recorte poligonal irregular',
+      'Paleta orgánica en marfil crudo, beige lino y toques verde oliva',
+      'Portada con nombres de la pareja y cuenta regresiva artesanal en vivo',
+      'Bloque de ceremonia y recepción sin líneas rectas artificiales',
+      'Botón de confirmación y formulario RSVP adaptable a móvil y escritorio',
+    ],
+    itinerary: [
+      {
+        time: '16:30 hrs',
+        title: 'Ceremonia en Capilla de Piedra',
+        location: 'Hacienda Los Olivos',
+        iconType: 'ceremony',
+      },
+      {
+        time: '18:00 hrs',
+        title: 'Recepción en Explanada del Lagar',
+        location: 'Jardines de Olivos Centenarios',
+        iconType: 'dinner',
+      },
+    ],
+  },
+  {
     id: 'invitacion-papel-artesanal',
     slug: 'invitacion-papel-artesanal',
     name: 'Cinta de Seda & Bordes Rasgados',

@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { FrayedHandmadePaperInvitation } from '../../components/FrayedHandmadePaperInvitation';
+import { BRAND_NAME } from '../../data/weddingData';
+---
+
+<Layout
+  title={`Valentina & Mateo — Papel Artesanal con Bordes Deshilachados | ${BRAND_NAME}`}
+  description="Plantilla de invitación digital rústica y artesanal con bordes de papel rasgado hecho a mano mediante filtros de turbulencia SVG y recorte poligonal irregular en marfil crudo, beige lino y verde oliva."
+>
+  <FrayedHandmadePaperInvitation client:load />
+</Layout>

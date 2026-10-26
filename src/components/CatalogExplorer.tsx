@@ -21,6 +21,7 @@ import { ParchmentLogo } from './ParchmentLogo';
 
 const CATEGORIES: StyleCategory[] = [
   'Todos',
+  'Botánico & Salvia',
   'Minimalista Lujo',
   'Hacienda & Romántico',
 ];
@@ -44,13 +45,6 @@ export const CatalogExplorer: React.FC = () => {
     const groom = tpl.coupleDemo.groom;
     const initials = `${bride.charAt(0).toUpperCase()} & ${groom.charAt(0).toUpperCase()}`;
     return { bride, groom, initials };
-  };
-
-
-  const openModal = (tpl: InvitationTemplate) => {
-    setActiveDemo(tpl);
-    setDemoTab('invitacion');
-    setRsvpSubmitted(false);
   };
 
   const getItineraryIcon = (type: 'ceremony' | 'cocktail' | 'dinner' | 'party') => {
@@ -90,17 +84,17 @@ export const CatalogExplorer: React.FC = () => {
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredTemplates.map((tpl) => {
           const couple = getDisplayCouple(tpl);
-          const whatsappTemplateUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-            `¡Hola! Me encantó el diseño "${tpl.name}" (${tpl.collection}) de ${BRAND_NAME}. Quisiera pedirlo para la boda de ${couple.bride} & ${couple.groom}.`
-          )}`;
+          const isFrayedArtisanal = tpl.id === 'papel-artesanal-deshilachado';
 
           return (
             <article
               key={tpl.id}
-              className="group relative bg-[#FCFAF7] rounded-t-[140px] sm:rounded-t-[180px] rounded-b-3xl border border-gold/30 p-3.5 sm:p-5 shadow-editorial hover:shadow-editorial-lg transition-all duration-500 flex flex-col justify-between"
+              className={`group relative bg-[#FCFAF7] rounded-t-[140px] sm:rounded-t-[180px] rounded-b-3xl border border-gold/30 p-3.5 sm:p-5 shadow-editorial hover:shadow-editorial-lg transition-all duration-500 flex flex-col justify-between ${
+                isFrayedArtisanal ? 'ring-1 ring-[#5C6B47]/30' : ''
+              }`}
             >
               <div>
                 {/* Arch Visual Preview Header */}
@@ -116,17 +110,32 @@ export const CatalogExplorer: React.FC = () => {
                   {/* Top Category Badge */}
                   <div className="absolute top-7 left-0 right-0 flex justify-center">
                     <span className="px-3.5 py-1 bg-ivory-50/95 backdrop-blur-md rounded-full text-[10px] uppercase tracking-[0.22em] text-charcoal font-semibold border border-gold/30 shadow-xs">
-                      {tpl.category}
+                      {tpl.badge || tpl.category}
                     </span>
                   </div>
 
                   {/* Simulated Invitation Plaque on Image */}
-                  <div className="absolute bottom-4 left-4 right-4 text-center p-3.5 sm:p-4 bg-ivory-50/95 backdrop-blur-md rounded-xl border border-gold/35 shadow-editorial">
-                    <span className="text-[9px] uppercase tracking-[0.28em] text-gold-dark font-medium block">
+                  <div
+                    className={`absolute bottom-4 left-4 right-4 text-center p-3.5 sm:p-4 backdrop-blur-md shadow-editorial ${
+                      isFrayedArtisanal
+                        ? 'deckle-card bg-[#FAF6EE]/95 border border-[#CFC2AA]'
+                        : 'bg-ivory-50/95 rounded-xl border border-gold/35'
+                    }`}
+                  >
+                    <span
+                      className="text-[9px] uppercase tracking-[0.28em] font-medium block"
+                      style={{ color: isFrayedArtisanal ? '#5C6B47' : '#96763E' }}
+                    >
                       {tpl.coupleDemo.displayDate}
                     </span>
                     <p className="font-serif text-2xl sm:text-[26px] text-charcoal mt-0.5 font-normal">
-                      {couple.bride} <span className="italic text-gold-dark font-serif">&amp;</span>{' '}
+                      {couple.bride}{' '}
+                      <span
+                        className="italic font-serif"
+                        style={{ color: isFrayedArtisanal ? '#5C6B47' : '#96763E' }}
+                      >
+                        &amp;
+                      </span>{' '}
                       {couple.groom}
                     </p>
                     <p className="text-[11px] text-charcoal-muted truncate mt-0.5 font-light">
@@ -137,16 +146,32 @@ export const CatalogExplorer: React.FC = () => {
 
                 {/* Concise Card Content */}
                 <div className="pt-5 pb-2 px-1 text-center sm:text-left">
-                  <div className="mb-2">
+                  <div className="mb-2 flex items-center justify-between gap-2">
                     <span className="text-[10px] uppercase tracking-[0.22em] text-gold-dark font-medium block">
                       {tpl.collection}
                     </span>
-                    <h3 className="font-serif text-2xl sm:text-[26px] text-charcoal font-normal mt-0.5">
-                      {tpl.name}
-                    </h3>
+                    {/* Palette Swatches Preview */}
+                    <div className="flex items-center gap-1" title={tpl.palette.name}>
+                      <span
+                        className="w-3.5 h-3.5 rounded-full border border-charcoal/20"
+                        style={{ backgroundColor: tpl.palette.cardHex }}
+                      />
+                      <span
+                        className="w-3.5 h-3.5 rounded-full border border-charcoal/20"
+                        style={{ backgroundColor: tpl.palette.bgHex }}
+                      />
+                      <span
+                        className="w-3.5 h-3.5 rounded-full border border-charcoal/20"
+                        style={{ backgroundColor: tpl.palette.accentHex }}
+                      />
+                    </div>
                   </div>
 
-                  <p className="text-sm text-charcoal-muted leading-relaxed font-light">
+                  <h3 className="font-serif text-2xl sm:text-[26px] text-charcoal font-normal mt-0.5">
+                    {tpl.name}
+                  </h3>
+
+                  <p className="text-sm text-charcoal-muted leading-relaxed font-light mt-2">
                     {tpl.shortDescription}
                   </p>
                 </div>
