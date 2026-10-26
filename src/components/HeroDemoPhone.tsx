@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Sparkles,
   Music,
@@ -56,7 +56,7 @@ export const HeroDemoPhone: React.FC = () => {
       </div>
 
       {/* Smartphone Mockup Outer Frame */}
-      <div className="relative rounded-[44px] bg-charcoal p-3 shadow-editorial-lg border-4 border-charcoal-light/40">
+      <div className="relative rounded-[44px] bg-charcoal p-3 shadow-editorial-lg border-4 border-[#C29F68] ring-2 ring-[#8F7042]/50">
         {/* Top Speaker Notch */}
         <div className="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-5 bg-charcoal rounded-full z-30 flex items-center justify-center">
           <div className="w-8 h-1 rounded-full bg-charcoal-light/70" />

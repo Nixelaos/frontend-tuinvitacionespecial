@@ -264,7 +264,7 @@ export const MintHeartsWeddingInvitation: React.FC = () => {
     }
     if (deviceMode === 'mobile') {
       return windowWidth >= 480
-        ? 'w-full max-w-[400px] min-h-[824px] mx-auto border-[10px] sm:border-[12px] border-[#1E2022] rounded-[46px] sm:rounded-[52px] shadow-2xl overflow-hidden relative transition-all duration-500'
+        ? 'w-full max-w-[400px] min-h-[824px] mx-auto border-[10px] sm:border-[12px] border-[#1E2022] ring-4 ring-[#C29F68] rounded-[46px] sm:rounded-[52px] shadow-2xl overflow-hidden relative transition-all duration-500'
         : 'w-full min-h-screen relative transition-all duration-500';
     }
     if (deviceMode === 'tablet') {

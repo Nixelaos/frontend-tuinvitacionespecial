@@ -92,60 +92,63 @@ export const CatalogExplorer: React.FC = () => {
           return (
             <article
               key={tpl.id}
-              className={`group relative bg-[#FCFAF7] rounded-t-[140px] sm:rounded-t-[180px] rounded-b-3xl border border-gold/30 p-3.5 sm:p-5 shadow-editorial hover:shadow-editorial-lg transition-all duration-500 flex flex-col justify-between ${
+              className={`group relative bg-[#FCFAF7] rounded-3xl border border-gold/30 p-4 sm:p-5 shadow-editorial hover:shadow-editorial-lg transition-all duration-500 flex flex-col justify-between ${
                 isFrayedArtisanal ? 'ring-1 ring-[#5C6B47]/30' : ''
               }`}
             >
               <div>
-                {/* Arch Visual Preview Header */}
-                <div className="relative h-80 sm:h-96 rounded-t-[125px] sm:rounded-t-[160px] rounded-b-2xl overflow-hidden bg-champagne border border-gold/25 shadow-inner">
-                  <img
-                    src={tpl.coverImage}
-                    alt={`Invitación de boda digital modelo ${tpl.name}`}
-                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent" />
+                {/* Slender Portrait Preview Frame (Conserva la forma estilizada sin elementos de celular) */}
+                <div className="relative mx-auto w-full flex justify-center pt-1 pb-2">
+                  <div className="relative w-[230px] sm:w-[250px] h-[460px] sm:h-[490px] rounded-[34px] overflow-hidden shadow-editorial-lg border-[3px] border-[#C29F68] ring-2 ring-[#8F7042]/50 transition-all duration-500 group-hover:scale-[1.02] group-hover:border-[#D4AF37] group-hover:shadow-[0_12px_32px_rgba(194,159,104,0.3)]">
+                    {/* Main Invitation Cover Photo */}
+                    <img
+                      src={tpl.coverImage}
+                      alt={`Invitación de boda digital modelo ${tpl.name}`}
+                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-charcoal/10" />
 
-                  {/* Top Category Badge */}
-                  <div className="absolute top-7 left-0 right-0 flex justify-center">
-                    <span className="px-3.5 py-1 bg-ivory-50/95 backdrop-blur-md rounded-full text-[10px] uppercase tracking-[0.22em] text-charcoal font-semibold border border-gold/30 shadow-xs">
-                      {tpl.badge || tpl.category}
-                    </span>
-                  </div>
+                    {/* Top Category Badge */}
+                    <div className="absolute top-5 left-0 right-0 flex justify-center z-10">
+                      <span className="px-3 py-1 bg-ivory-50/95 backdrop-blur-md rounded-full text-[9px] uppercase tracking-[0.2em] text-charcoal font-semibold border border-gold/30 shadow-xs">
+                        {tpl.badge || tpl.category}
+                      </span>
+                    </div>
 
-                  {/* Simulated Invitation Plaque on Image */}
-                  <div
-                    className={`absolute bottom-4 left-4 right-4 text-center p-3.5 sm:p-4 backdrop-blur-md shadow-editorial ${
-                      isFrayedArtisanal
-                        ? 'deckle-card bg-[#FAF6EE]/95 border border-[#CFC2AA]'
-                        : 'bg-ivory-50/95 rounded-xl border border-gold/35'
-                    }`}
-                  >
-                    <span
-                      className="text-[9px] uppercase tracking-[0.28em] font-medium block"
-                      style={{ color: isFrayedArtisanal ? '#5C6B47' : '#96763E' }}
+                    {/* Simulated Invitation Plaque on Image */}
+                    <div
+                      className={`absolute bottom-4 left-3 right-3 text-center p-3 sm:p-3.5 backdrop-blur-md shadow-editorial z-10 ${
+                        isFrayedArtisanal
+                          ? 'deckle-card bg-[#FAF6EE]/95 border border-[#CFC2AA]'
+                          : 'bg-ivory-50/95 rounded-xl border border-gold/35'
+                      }`}
                     >
-                      {tpl.coupleDemo.displayDate}
-                    </span>
-                    <p className="font-serif text-2xl sm:text-[26px] text-charcoal mt-0.5 font-normal">
-                      {couple.bride}{' '}
                       <span
-                        className="italic font-serif"
+                        className="text-[8.5px] uppercase tracking-[0.26em] font-medium block"
                         style={{ color: isFrayedArtisanal ? '#5C6B47' : '#96763E' }}
                       >
-                        &amp;
-                      </span>{' '}
-                      {couple.groom}
-                    </p>
-                    <p className="text-[11px] text-charcoal-muted truncate mt-0.5 font-light">
-                      {tpl.coupleDemo.city}
-                    </p>
+                        {tpl.coupleDemo.displayDate}
+                      </span>
+                      <p className="font-serif text-lg sm:text-xl text-charcoal mt-0.5 font-normal leading-snug">
+                        {couple.bride}{' '}
+                        <span
+                          className="italic font-serif"
+                          style={{ color: isFrayedArtisanal ? '#5C6B47' : '#96763E' }}
+                        >
+                          &amp;
+                        </span>{' '}
+                        {couple.groom}
+                      </p>
+                      <p className="text-[10px] text-charcoal-muted truncate mt-0.5 font-light">
+                        {tpl.coupleDemo.city}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Concise Card Content */}
-                <div className="pt-5 pb-2 px-1 text-center sm:text-left">
+                <div className="pt-4 pb-2 px-1 text-center sm:text-left">
                   <div className="mb-2 flex items-center justify-between gap-2">
                     <span className="text-[10px] uppercase tracking-[0.22em] text-gold-dark font-medium block">
                       {tpl.collection}

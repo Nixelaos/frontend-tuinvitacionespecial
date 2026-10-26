@@ -21,8 +21,8 @@ export const HeroRealInvitation: React.FC = () => {
 
   return (
     <div className="relative mx-auto flex flex-col items-center">
-      {/* Realistic Smartphone Mockup Frame (Default 400 x 824 proportion) */}
-      <div className="relative w-full max-w-[420px] bg-[#1E2022] rounded-[52px] p-2.5 sm:p-3 shadow-editorial-lg border-4 border-[#3D3F43]">
+      {/* Realistic Smartphone Mockup Frame with High-Contrast Titanium Gold Rim */}
+      <div className="relative w-full max-w-[420px] bg-[#1E2022] rounded-[52px] p-2.5 sm:p-3 shadow-editorial-lg border-4 border-[#C29F68] ring-2 ring-[#8F7042]/50 transition-all duration-500 hover:border-[#D4AF37] hover:shadow-[0_16px_40px_rgba(194,159,104,0.3)]">
         {/* Dynamic Island / Speaker Notch */}
         <div className="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-30 flex items-center justify-center pointer-events-none">
           <div className="w-2.5 h-2.5 rounded-full bg-[#111] mr-3" />
