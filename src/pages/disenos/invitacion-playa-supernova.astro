@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { BeachWeddingInvitation } from '../../components/BeachWeddingInvitation';
+import { BRAND_NAME } from '../../data/weddingData';
+---
+
+<Layout
+  title={`Valentina & Sebastián — Invitación de Boda en la Playa | ${BRAND_NAME}`}
+  description="Invitación digital de boda interactiva con apertura de sobre de papel pastel, foto de pareja en la playa a pleno sol y efecto supernova."
+>
+  <BeachWeddingInvitation client:load />
+</Layout>
