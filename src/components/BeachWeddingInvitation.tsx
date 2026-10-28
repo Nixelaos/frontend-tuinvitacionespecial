@@ -1,14 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Sparkles, Heart, RotateCcw, Calendar, Clock } from 'lucide-react';
+import { Sparkles, Heart, RotateCcw, Calendar, Clock, MapPin } from 'lucide-react';
+
+// Bespoke ragged torn paper polygon mask (irregular handmade deckled edges)
+const TORN_PAPER_CLIP = `polygon(
+  0% 4px, 2.5% 1px, 5.5% 5px, 8.5% 2px, 12% 6px, 15.5% 1px, 19% 5px, 23% 2px, 27% 6px, 31% 1px, 35.5% 5px, 40% 2px, 44.5% 6px, 49% 1px, 53.5% 5px, 58% 2px, 62.5% 6px, 67% 1px, 71.5% 5px, 76% 2px, 80.5% 6px, 85% 1px, 89.5% 5px, 94% 2px, 97.5% 5px, 100% 3px,
+  99.2% 8%, 100% 15%, 98.8% 22%, 100% 30%, 99.1% 37%, 100% 45%, 98.8% 53%, 100% 61%, 99.1% 69%, 100% 77%, 98.9% 85%, 100% 93%, 99.3% 98%,
+  97.5% 99.5%, 94% 97.5%, 89.5% 100%, 85% 98%, 80.5% 100%, 76% 97.5%, 71.5% 100%, 67% 98%, 62.5% 100%, 58% 97.5%, 53.5% 100%, 49% 98%, 44.5% 100%, 40% 97.5%, 35.5% 100%, 31% 98%, 27% 100%, 23% 97.5%, 19% 100%, 15.5% 98%, 12% 100%, 8.5% 97.5%, 5.5% 100%, 2.5% 98%, 0% 99.5%,
+  0.8% 93%, 0% 85%, 1.1% 77%, 0% 69%, 0.9% 61%, 0% 53%, 1.2% 45%, 0% 37%, 0.9% 30%, 0% 22%, 1.2% 15%, 0% 8%
+)`;
 
 export const BeachWeddingInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
 
+  // Spray airbrush reveal state for hero photo
+  const [isSprayed, setIsSprayed] = useState(false);
+
   // Video & Canvas references for single-play supernova effect
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [effectEnded, setEffectEnded] = useState(false);
+
+  // Scroll reveal trigger
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const detailsRef = useRef<HTMLDivElement>(null);
 
   // Target wedding date: November 14, 2026 at 12:30
   const TARGET_DATE = new Date('2026-11-14T12:30:00').getTime();
@@ -44,14 +59,53 @@ export const BeachWeddingInvitation: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Trigger envelope opening on click anywhere
+  // Listen to first user scroll movement to trigger progressive reveal
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setHasScrolled(true);
+      }
+    };
+
+    // IntersectionObserver for elements entering viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHasScrolled(true);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    if (detailsRef.current) {
+      observer.observe(detailsRef.current);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, [isOpen]);
+
+  // Trigger envelope opening
   const handleOpenEnvelope = () => {
     if (isOpen || isOpening) return;
     setIsOpening(true);
+
     setTimeout(() => {
       setIsOpen(true);
       setIsOpening(false);
       setEffectEnded(false);
+      // Trigger spray airbrush photo reveal right upon landing
+      setTimeout(() => {
+        setIsSprayed(true);
+      }, 150);
     }, 1600);
   };
 
@@ -59,7 +113,9 @@ export const BeachWeddingInvitation: React.FC = () => {
     e.stopPropagation();
     setIsOpening(false);
     setIsOpen(false);
+    setIsSprayed(false);
     setEffectEnded(false);
+    setHasScrolled(false);
   };
 
   // Real-time Chroma Key processor: renders supernova.webm ONLY ONCE
@@ -80,7 +136,6 @@ export const BeachWeddingInvitation: React.FC = () => {
     video.play().catch(() => {});
 
     const render = () => {
-      // If video has finished its single play, clear canvas and stop
       if (video.ended) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         setEffectEnded(true);
@@ -95,7 +150,6 @@ export const BeachWeddingInvitation: React.FC = () => {
         const data32 = new Uint32Array(imgData.data.buffer);
         const len = data32.length;
 
-        // Eliminate black background by setting alpha = 0 for dark pixels
         for (let i = 0; i < len; i++) {
           const px = data32[i];
           const r = px & 0xff;
@@ -132,7 +186,7 @@ export const BeachWeddingInvitation: React.FC = () => {
       className={`min-h-screen w-full relative overflow-x-hidden font-sans transition-colors duration-1000 ${
         !isOpen
           ? 'cursor-pointer select-none bg-gradient-to-br from-[#FAF3EB] via-[#F4EAE0] to-[#E9D9CB] flex items-center justify-center p-4 sm:p-6 md:p-10'
-          : 'bg-gradient-to-b from-[#FBF6EE] via-[#F6ECE0] to-[#EFE1D0] text-stone-800'
+          : 'bg-gradient-to-b from-[#FAF4EC] via-[#F5ECE0] to-[#EBDDCE] text-stone-800'
       }`}
     >
       {/* ========================================================================= */}
@@ -163,7 +217,6 @@ export const BeachWeddingInvitation: React.FC = () => {
 
             {/* Back Plate / Base Paper Layer */}
             <div className="absolute inset-0 bg-[#F5ECE1] rounded-2xl border border-[#DFCDBC] overflow-hidden shadow-2xl">
-              {/* Paper Grain Gradient */}
               <div
                 className="absolute inset-0 opacity-35 mix-blend-multiply pointer-events-none"
                 style={{
@@ -172,12 +225,11 @@ export const BeachWeddingInvitation: React.FC = () => {
                   backgroundPosition: '0 0, 7px 7px',
                 }}
               />
-              {/* Gold foil interior border */}
               <div className="absolute inset-3 border border-[#D4AF37]/40 rounded-xl pointer-events-none" />
             </div>
 
             {/* ===================================================================== */}
-            {/* INVITACIÓN DENTRO DEL SOBRE (DECORADA CON DETALLES DE ORO & BOTÁNICA) */}
+            {/* INVITACIÓN DENTRO DEL SOBRE                                           */}
             {/* ===================================================================== */}
             <div
               className={`absolute inset-x-4 sm:inset-x-6 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 sm:p-6 flex flex-col items-center justify-between text-center transition-all duration-1000 ease-out ${
@@ -189,11 +241,10 @@ export const BeachWeddingInvitation: React.FC = () => {
                 zIndex: isOpening ? 15 : 5,
               }}
             >
-              {/* Double Gold Editorial Border */}
               <div className="absolute inset-2 border border-[#D4AF37]/50 rounded-lg pointer-events-none" />
               <div className="absolute inset-3 border border-[#D4AF37]/25 rounded-md pointer-events-none" />
 
-              {/* Top Monogram Crest - Aligned Horizontally */}
+              {/* Top Monogram Crest */}
               <div className="relative pt-1 flex flex-col items-center">
                 <div className="px-4 py-1 rounded-full border border-[#D4AF37]/60 flex items-center justify-center bg-[#FDF9F3] text-[#B8864E] shadow-sm mb-1 whitespace-nowrap">
                   <span className="font-serif text-xs sm:text-sm font-semibold tracking-[0.25em] whitespace-nowrap">
@@ -219,7 +270,6 @@ export const BeachWeddingInvitation: React.FC = () => {
                   «Celebrando nuestro amor frente al mar»
                 </p>
 
-                {/* Visible Date & Venue badge */}
                 <div className="mt-1 px-3 py-1 rounded-md bg-[#FAF4EC] border border-[#E8D5C2] shadow-sm flex flex-col items-center gap-0.5">
                   <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#916E49] font-medium">
                     Sábado, 14 de Noviembre · 12:30 hrs
@@ -230,76 +280,42 @@ export const BeachWeddingInvitation: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bottom Decorative Gold Flourish */}
               <div className="relative pb-1 text-center">
                 <div className="w-12 h-[1px] bg-[#D4AF37]/50 mx-auto" />
               </div>
             </div>
 
             {/* ===================================================================== */}
-            {/* FRONT POCKET & SIDE FLAPS (DECORADOS, CUBREN TOTALMENTE EL SOBRE)     */}
+            {/* FRONT POCKET & SIDE FLAPS                                             */}
             {/* ===================================================================== */}
             <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden rounded-2xl">
-              {/* Left Flap */}
               <div
                 className="absolute top-0 bottom-0 left-0 w-[53%] bg-gradient-to-r from-[#F4E8DB] via-[#ECE0D0] to-[#E3D3C1] border-r border-[#DFCDBB]/80 shadow-[2px_0_8px_rgba(90,65,45,0.06)]"
-                style={{
-                  clipPath: 'polygon(0% 0%, 100% 50%, 0% 100%)',
-                }}
+                style={{ clipPath: 'polygon(0% 0%, 100% 50%, 0% 100%)' }}
               >
                 <div className="absolute top-3 left-3 w-16 h-16 border-t border-l border-[#D4AF37]/35 pointer-events-none" />
               </div>
 
-              {/* Right Flap */}
               <div
                 className="absolute top-0 bottom-0 right-0 w-[53%] bg-gradient-to-l from-[#F4E8DB] via-[#ECE0D0] to-[#E3D3C1] border-l border-[#DFCDBB]/80 shadow-[-2px_0_8px_rgba(90,65,45,0.06)]"
-                style={{
-                  clipPath: 'polygon(100% 0%, 0% 50%, 100% 100%)',
-                }}
+                style={{ clipPath: 'polygon(100% 0%, 0% 50%, 100% 100%)' }}
               >
                 <div className="absolute top-3 right-3 w-16 h-16 border-t border-r border-[#D4AF37]/35 pointer-events-none" />
               </div>
 
-              {/* Bottom Pocket Flap */}
               <div
                 className="absolute bottom-0 left-0 right-0 h-[68%] bg-gradient-to-t from-[#E8D8C7] via-[#EFE2D3] to-[#F7ECE0] border-t border-[#DBC7B4] shadow-[0_-6px_16px_rgba(90,65,45,0.08)]"
-                style={{
-                  clipPath: 'polygon(0% 100%, 50% 18%, 100% 100%)',
-                }}
+                style={{ clipPath: 'polygon(0% 100%, 50% 18%, 100% 100%)' }}
               >
-                {/* Gold Foil Border along bottom flap diagonal */}
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <line
-                    x1="0"
-                    y1="100"
-                    x2="50"
-                    y2="18"
-                    stroke="#D4AF37"
-                    strokeWidth="0.75"
-                    strokeOpacity="0.45"
-                  />
-                  <line
-                    x1="100"
-                    y1="100"
-                    x2="50"
-                    y2="18"
-                    stroke="#D4AF37"
-                    strokeWidth="0.75"
-                    strokeOpacity="0.45"
-                  />
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <line x1="0" y1="100" x2="50" y2="18" stroke="#D4AF37" strokeWidth="0.75" strokeOpacity="0.45" />
+                  <line x1="100" y1="100" x2="50" y2="18" stroke="#D4AF37" strokeWidth="0.75" strokeOpacity="0.45" />
                 </svg>
 
-                {/* Postal Stamp & Postmark Ornament */}
                 <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 flex items-center gap-2 opacity-70">
                   <div className="w-10 h-12 sm:w-12 sm:h-14 border border-dashed border-[#B88E62] bg-[#FAF3EC]/80 rounded p-1 flex flex-col items-center justify-between text-center shadow-sm">
                     <Heart className="w-3 h-3 text-[#B88E62]" />
-                    <span className="text-[7px] sm:text-[8px] uppercase tracking-tighter font-serif text-[#785938]">
-                      Amor
-                    </span>
+                    <span className="text-[7px] sm:text-[8px] uppercase tracking-tighter font-serif text-[#785938]">Amor</span>
                     <span className="text-[6px] tracking-widest text-[#967451]">2026</span>
                   </div>
                   <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-[#B88E62]/60 flex flex-col items-center justify-center text-[6px] sm:text-[7px] text-[#825F3C] font-mono rotate-12">
@@ -308,7 +324,6 @@ export const BeachWeddingInvitation: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Decorative Botanical Branch Emblem */}
                 <div className="absolute bottom-3 left-4 sm:bottom-4 sm:left-6 opacity-60">
                   <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-serif italic text-[#8B6B4A]">
                     <Sparkles className="w-3 h-3 text-[#C59B6D]" />
@@ -318,9 +333,7 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
             </div>
 
-            {/* ===================================================================== */}
-            {/* TOP TRIANGULAR FLAP (DOBLADA CERRANDO COMPLETAMENTE EL SOBRE)         */}
-            {/* ===================================================================== */}
+            {/* TOP TRIANGULAR FLAP */}
             <div
               className="absolute top-0 left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-800 ease-in-out"
               style={{
@@ -332,33 +345,11 @@ export const BeachWeddingInvitation: React.FC = () => {
             >
               <div
                 className="w-full h-full bg-gradient-to-b from-[#F5EADB] via-[#EEDECF] to-[#E3D1BF] shadow-[0_8px_18px_rgba(80,55,35,0.14)] border-b border-[#D8C4B0]"
-                style={{
-                  clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)',
-                }}
+                style={{ clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)' }}
               >
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <line
-                    x1="0"
-                    y1="0"
-                    x2="50"
-                    y2="100"
-                    stroke="#D4AF37"
-                    strokeWidth="0.8"
-                    strokeOpacity="0.55"
-                  />
-                  <line
-                    x1="100"
-                    y1="0"
-                    x2="50"
-                    y2="100"
-                    stroke="#D4AF37"
-                    strokeWidth="0.8"
-                    strokeOpacity="0.55"
-                  />
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <line x1="0" y1="0" x2="50" y2="100" stroke="#D4AF37" strokeWidth="0.8" strokeOpacity="0.55" />
+                  <line x1="100" y1="0" x2="50" y2="100" stroke="#D4AF37" strokeWidth="0.8" strokeOpacity="0.55" />
                 </svg>
 
                 <div className="absolute top-2 left-1/2 -translate-x-1/2 opacity-50 flex items-center gap-1">
@@ -369,9 +360,7 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
             </div>
 
-            {/* ===================================================================== */}
-            {/* SELLO DE LACRE EN RELIEVE 3D                                          */}
-            {/* ===================================================================== */}
+            {/* SELLO DE LACRE */}
             <div
               className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none ${
                 isOpening ? 'scale-135 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
@@ -399,7 +388,7 @@ export const BeachWeddingInvitation: React.FC = () => {
       )}
 
       {/* ========================================================================= */}
-      {/* 2. LANDING PAGE INVITACIÓN PRINCIPAL (FONDO PASTEL ARMONIZADO)             */}
+      {/* 2. LANDING PAGE INVITACIÓN PRINCIPAL                                      */}
       {/* ========================================================================= */}
       {isOpen && (
         <div className="w-full animate-fadeIn transition-opacity duration-1000 pb-28">
@@ -416,16 +405,24 @@ export const BeachWeddingInvitation: React.FC = () => {
           </div>
 
           {/* ===================================================================== */}
-          {/* SECCIÓN HERO: FOTO 1264x848 CENTRADA + EFECTO SUPERNOVA (1 SOLA VEZ) */}
+          {/* SECCIÓN HERO: FOTO 1264x848 CON EFECTO SPRAY + SUPERNOVA (1 SOLA VEZ) */}
           {/* ===================================================================== */}
-          <section className="relative w-full pt-8 sm:pt-12 pb-10 sm:pb-16 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8">
+          <section className="relative w-full pt-6 sm:pt-10 pb-8 sm:pb-12 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8">
             {/* Framed Photo & Supernova Container (Exact 1264x848 on PC, Centered) */}
-            <div className="relative w-full max-w-[1264px] aspect-[1264/848] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_-10px_rgba(110,80,60,0.22)] border-2 border-white/80 my-auto">
-              {/* Couple Photo (Casual Formal Resort Attire at Midday Beach) */}
+            <div className="relative w-full max-w-[1264px] aspect-[1264/848] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_-10px_rgba(110,80,60,0.25)] border-2 border-white/80 my-auto bg-[#F4E9DC]">
+              {/* Couple Photo (Revealed with Spray / Airbrush Effect) */}
               <img
                 src="/images/pareja-playa.jpg"
                 alt="Pareja de novios en la playa a plena luz del sol de mediodía con ropa casual formal"
-                className="w-full h-full object-cover object-center"
+                className={`w-full h-full object-cover object-center transition-all duration-[1400ms] ease-out ${
+                  isSprayed
+                    ? 'opacity-100 scale-100 blur-0 contrast-100'
+                    : 'opacity-0 scale-95 blur-md contrast-150'
+                }`}
+                style={{
+                  clipPath: isSprayed ? 'circle(100% at 50% 50%)' : 'circle(8% at 50% 50%)',
+                  transition: 'clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.4s ease-out, opacity 1s ease-out, transform 1.4s ease-out',
+                }}
               />
 
               {/* Real-time Chroma-Key Canvas: Exactly 1264x848 (Plays Only Once) */}
@@ -453,7 +450,11 @@ export const BeachWeddingInvitation: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 pointer-events-none z-15" />
 
               {/* Names Overlay over Photo */}
-              <div className="absolute inset-0 z-20 flex flex-col items-center justify-end p-6 sm:p-10 md:p-14 text-center text-white">
+              <div
+                className={`absolute inset-0 z-20 flex flex-col items-center justify-end p-6 sm:p-10 md:p-14 text-center text-white transition-all duration-1000 delay-300 ${
+                  isSprayed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+              >
                 <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-[10px] sm:text-xs font-medium uppercase tracking-[0.25em] shadow-sm mb-2 sm:mb-3">
                   <Sparkles className="w-3 h-3 text-amber-200" />
                   <span>Nuestra Boda</span>
@@ -467,130 +468,151 @@ export const BeachWeddingInvitation: React.FC = () => {
                 <p className="font-serif italic text-sm sm:text-lg md:text-xl text-amber-50 drop-shadow max-w-lg">
                   «Junto al mar y bajo el sol radiante de mediodía»
                 </p>
+
+                {/* Subtle Scroll Hint */}
+                <div className="mt-4 flex items-center gap-2 text-white/70 text-[11px] uppercase tracking-widest font-light animate-bounce">
+                  <span>Desliza hacia abajo</span>
+                </div>
               </div>
             </div>
           </section>
 
           {/* ===================================================================== */}
-          {/* SECCIÓN 1: FECHA & MENSAJE DE INVITACIÓN (DIRECTO DEBAJO DE LA FOTO)   */}
+          {/* SECCIÓN ARTÍSTICA DE PAPEL ROTO: FECHA, CITA + COUNTDOWN INMEDIATO    */}
+          {/* (APARICIÓN PROGRESIVA AL PRIMER MOVIMIENTO DE SCROLL)                  */}
           {/* ===================================================================== */}
-          <section className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 my-4 sm:my-8 text-center">
-            {/* Elegant Luxury Stationery Card */}
-            <div className="relative bg-[#FFFDF9]/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-[#E8DACB] shadow-[0_15px_40px_-15px_rgba(140,105,75,0.12)] p-7 sm:p-12 md:p-16">
-              {/* Subtle Corner Accents in Warm Gold */}
-              <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[#D4AF37]/40 rounded-tl-sm pointer-events-none" />
-              <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[#D4AF37]/40 rounded-tr-sm pointer-events-none" />
-              <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-[#D4AF37]/40 rounded-bl-sm pointer-events-none" />
-              <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-[#D4AF37]/40 rounded-br-sm pointer-events-none" />
+          <div ref={detailsRef} className="relative w-full max-w-3xl mx-auto px-4 sm:px-6 my-6 sm:my-10">
+            {/* Outer Drop Shadow Wrapper for Torn Paper */}
+            <div className="relative filter drop-shadow-[0_20px_45px_rgba(110,80,55,0.18)]">
+              {/* Torn Paper Container with Ragged Deckle Edge */}
+              <div
+                className="bg-[#FCF9F3] relative p-8 sm:p-12 md:p-14 text-center border-t border-b border-[#E8DACB]"
+                style={{
+                  clipPath: TORN_PAPER_CLIP,
+                }}
+              >
+                {/* Subtle Paper Fiber Grain Texture */}
+                <div
+                  className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none"
+                  style={{
+                    backgroundImage: `radial-gradient(#D2BAA2 0.75px, transparent 0.75px), radial-gradient(#D2BAA2 0.75px, #FCF9F3 0.75px)`,
+                    backgroundSize: '16px 16px',
+                    backgroundPosition: '0 0, 8px 8px',
+                  }}
+                />
 
-              {/* Header Icon & Small Tag */}
-              <div className="flex flex-col items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#FAF3EC] border border-[#E5D2C0] flex items-center justify-center text-[#B8864E] shadow-sm mb-3">
-                  <Calendar className="w-5 h-5 text-[#B8864E]" />
+                {/* Content Container */}
+                <div className="relative z-10 flex flex-col items-center">
+                  {/* Element 1: "Estás cordialmente invitado" (Appears on scroll) */}
+                  <div
+                    className={`transition-all duration-700 ease-out transform ${
+                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
+                  >
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] text-[#9A6F45] text-xs uppercase tracking-[0.28em] font-semibold mb-4 shadow-sm">
+                      <Sparkles className="w-3.5 h-3.5 text-[#C59B6D]" />
+                      <span>Estás cordialmente invitado</span>
+                    </div>
+                  </div>
+
+                  {/* Element 2: Wedding Date, Time & Venue (Appears with delay) */}
+                  <div
+                    className={`transition-all duration-700 delay-150 ease-out transform ${
+                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
+                  >
+                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2F2420] font-normal tracking-tight mb-3">
+                      Sábado, 14 de Noviembre de 2026
+                    </h2>
+
+                    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-[#8C6947] tracking-wider uppercase font-medium mb-6">
+                      <span className="flex items-center gap-1.5 font-semibold text-[#664627]">
+                        <Clock className="w-4 h-4 text-[#B8864E]" />
+                        12:30 hrs
+                      </span>
+                      <span>·</span>
+                      <span className="flex items-center gap-1.5 text-[#664627]">
+                        <MapPin className="w-4 h-4 text-[#B8864E]" />
+                        Playa Blanca, Bahía Serena
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Element 3: Romantic Quote Phrase (Appears with delay) */}
+                  <div
+                    className={`transition-all duration-700 delay-300 ease-out transform max-w-xl mx-auto mb-8 pb-6 border-b border-[#E8DACB]/80 ${
+                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
+                  >
+                    <p className="font-serif italic text-lg sm:text-xl text-[#3E312C] leading-relaxed">
+                      «Hay momentos en la vida que son inolvidables, y compartirlos con las personas que más amamos los hace eternos.»
+                    </p>
+                  </div>
+
+                  {/* Element 4: Immediate Countdown Timer (Appears with delay) */}
+                  <div
+                    className={`w-full transition-all duration-700 delay-450 ease-out transform ${
+                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    }`}
+                  >
+                    <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#A67C52] font-semibold block mb-4">
+                      Cuenta Regresiva
+                    </span>
+
+                    {/* Countdown 4-Card Grid on Torn Paper Sheet */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-xl mx-auto">
+                      {/* Días */}
+                      <div className="bg-[#FFFDF9] rounded-xl border border-[#E8DACB] p-3 sm:p-5 shadow-sm flex flex-col items-center justify-center">
+                        <span className="font-serif text-3xl sm:text-4xl text-[#3A2E2B] font-normal leading-none mb-1.5">
+                          {timeLeft.days}
+                        </span>
+                        <span className="text-[9px] sm:text-[10px] tracking-[0.24em] text-[#916E49] uppercase font-medium">
+                          Días
+                        </span>
+                      </div>
+
+                      {/* Horas */}
+                      <div className="bg-[#FFFDF9] rounded-xl border border-[#E8DACB] p-3 sm:p-5 shadow-sm flex flex-col items-center justify-center">
+                        <span className="font-serif text-3xl sm:text-4xl text-[#3A2E2B] font-normal leading-none mb-1.5">
+                          {String(timeLeft.hours).padStart(2, '0')}
+                        </span>
+                        <span className="text-[9px] sm:text-[10px] tracking-[0.24em] text-[#916E49] uppercase font-medium">
+                          Horas
+                        </span>
+                      </div>
+
+                      {/* Minutos */}
+                      <div className="bg-[#FFFDF9] rounded-xl border border-[#E8DACB] p-3 sm:p-5 shadow-sm flex flex-col items-center justify-center">
+                        <span className="font-serif text-3xl sm:text-4xl text-[#3A2E2B] font-normal leading-none mb-1.5">
+                          {String(timeLeft.minutes).padStart(2, '0')}
+                        </span>
+                        <span className="text-[9px] sm:text-[10px] tracking-[0.24em] text-[#916E49] uppercase font-medium">
+                          Minutos
+                        </span>
+                      </div>
+
+                      {/* Segundos */}
+                      <div className="bg-[#FFFDF9] rounded-xl border border-[#E8DACB] p-3 sm:p-5 shadow-sm flex flex-col items-center justify-center">
+                        <span className="font-serif text-3xl sm:text-4xl text-[#B8864E] font-normal leading-none mb-1.5 animate-pulse">
+                          {String(timeLeft.seconds).padStart(2, '0')}
+                        </span>
+                        <span className="text-[9px] sm:text-[10px] tracking-[0.24em] text-[#916E49] uppercase font-medium">
+                          Segundos
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Subtle heart footer divider */}
+                    <div className="flex items-center justify-center gap-2.5 mt-7">
+                      <span className="w-10 h-[1px] bg-[#D4AF37]/45" />
+                      <Heart className="w-3 h-3 text-[#D4AF37] fill-[#D4AF37]" />
+                      <span className="w-10 h-[1px] bg-[#D4AF37]/45" />
+                    </div>
+                  </div>
                 </div>
-                <span className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#A67C52] font-semibold">
-                  Estás Cordialmente Invitado
-                </span>
-              </div>
-
-              {/* Prominent Wedding Date */}
-              <div className="mb-6 pb-6 border-b border-[#EEDFCE] max-w-xl mx-auto">
-                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2F2420] font-normal tracking-tight mb-2">
-                  Sábado, 14 de Noviembre de 2026
-                </h2>
-                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-[#8C6947] tracking-wider uppercase font-medium">
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-[#B8864E]" />
-                    12:30 hrs
-                  </span>
-                  <span>·</span>
-                  <span>Al mediodía</span>
-                  <span>·</span>
-                  <span>Playa Blanca, Bahía Serena</span>
-                </div>
-              </div>
-
-              {/* Heartfelt Invitation Message */}
-              <div className="space-y-4 max-w-2xl mx-auto text-stone-700 leading-relaxed font-light text-base sm:text-lg">
-                <p className="font-serif italic text-lg sm:text-xl text-[#3E312C]">
-                  «Hay momentos en la vida que son inolvidables, y compartirlos con las personas que más amamos los hace eternos.»
-                </p>
-                <p className="text-sm sm:text-base text-stone-600 font-light">
-                  Bajo la calidez del sol de mediodía y el murmullo de las olas, hemos decidido unir nuestras vidas y comenzar esta nueva etapa. Tu compañía y bendición harán que este día sea verdaderamente inolvidable.
-                </p>
-                <div className="pt-3">
-                  <p className="font-serif text-base sm:text-lg text-[#996F43] font-medium tracking-wide">
-                    ¡Esperamos celebrar juntos nuestro gran día!
-                  </p>
-                </div>
-              </div>
-
-              {/* Signature Divider */}
-              <div className="flex items-center justify-center gap-3 mt-8">
-                <span className="w-12 h-[1px] bg-[#D4AF37]/50" />
-                <Heart className="w-3.5 h-3.5 text-[#D4AF37] fill-[#D4AF37]" />
-                <span className="w-12 h-[1px] bg-[#D4AF37]/50" />
               </div>
             </div>
-          </section>
-
-          {/* ===================================================================== */}
-          {/* SECCIÓN 2: CUENTA REGRESIVA / COUNTDOWN                               */}
-          {/* ===================================================================== */}
-          <section className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 my-8 sm:my-12 text-center">
-            {/* Header */}
-            <div className="mb-6 sm:mb-8">
-              <span className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-[#A67C52] font-semibold block mb-1">
-                Cuenta Regresiva
-              </span>
-              <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#2F2420] italic">
-                Cada segundo nos acerca a nuestro día
-              </h3>
-            </div>
-
-            {/* Countdown Grid Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-5 max-w-2xl mx-auto">
-              {/* Días */}
-              <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8DACB] p-4 sm:p-6 shadow-[0_10px_25px_-10px_rgba(130,95,65,0.1)] flex flex-col items-center justify-center group hover:border-[#D4AF37]/60 transition-all hover:-translate-y-1">
-                <span className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#3A2E2B] font-normal leading-none mb-2">
-                  {timeLeft.days}
-                </span>
-                <span className="text-[10px] sm:text-xs tracking-[0.24em] text-[#916E49] uppercase font-medium">
-                  Días
-                </span>
-              </div>
-
-              {/* Horas */}
-              <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8DACB] p-4 sm:p-6 shadow-[0_10px_25px_-10px_rgba(130,95,65,0.1)] flex flex-col items-center justify-center group hover:border-[#D4AF37]/60 transition-all hover:-translate-y-1">
-                <span className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#3A2E2B] font-normal leading-none mb-2">
-                  {String(timeLeft.hours).padStart(2, '0')}
-                </span>
-                <span className="text-[10px] sm:text-xs tracking-[0.24em] text-[#916E49] uppercase font-medium">
-                  Horas
-                </span>
-              </div>
-
-              {/* Minutos */}
-              <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8DACB] p-4 sm:p-6 shadow-[0_10px_25px_-10px_rgba(130,95,65,0.1)] flex flex-col items-center justify-center group hover:border-[#D4AF37]/60 transition-all hover:-translate-y-1">
-                <span className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#3A2E2B] font-normal leading-none mb-2">
-                  {String(timeLeft.minutes).padStart(2, '0')}
-                </span>
-                <span className="text-[10px] sm:text-xs tracking-[0.24em] text-[#916E49] uppercase font-medium">
-                  Minutos
-                </span>
-              </div>
-
-              {/* Segundos */}
-              <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8DACB] p-4 sm:p-6 shadow-[0_10px_25px_-10px_rgba(130,95,65,0.1)] flex flex-col items-center justify-center group hover:border-[#D4AF37]/60 transition-all hover:-translate-y-1">
-                <span className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#B8864E] font-normal leading-none mb-2 animate-pulse">
-                  {String(timeLeft.seconds).padStart(2, '0')}
-                </span>
-                <span className="text-[10px] sm:text-xs tracking-[0.24em] text-[#916E49] uppercase font-medium">
-                  Segundos
-                </span>
-              </div>
-            </div>
-          </section>
+          </div>
         </div>
       )}
     </div>
