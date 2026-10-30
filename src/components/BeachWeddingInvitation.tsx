@@ -129,29 +129,30 @@ export const BeachWeddingInvitation: React.FC = () => {
   return (
     <div
       onClick={!isOpen ? handleOpenEnvelope : undefined}
-      className={`min-h-screen w-full relative overflow-x-hidden font-sans transition-colors duration-1000 ${
+      className={`w-full relative overflow-x-hidden font-sans transition-colors duration-1000 ${
         !isOpen
-          ? 'cursor-pointer select-none bg-gradient-to-br from-[#FAF3EB] via-[#F4EAE0] to-[#E9D9CB] flex items-center justify-center p-4 sm:p-6 md:p-10'
-          : 'bg-gradient-to-b from-[#FBF6EE] via-[#F6ECE0] to-[#EFE1D0] text-stone-800'
+          ? 'cursor-pointer select-none bg-gradient-to-br from-[#FAF3EB] via-[#F4EAE0] to-[#E9D9CB] flex items-center justify-center min-h-[100dvh] h-[100dvh] p-4 sm:p-6 md:p-10 overflow-hidden'
+          : 'min-h-screen bg-gradient-to-b from-[#FAF4EC] via-[#F5ECE0] to-[#EBDDCE] text-stone-800'
       }`}
     >
       {/* ========================================================================= */}
       {/* 1. SOBRE CERRADO DECORADO (PAPEL PASTEL + SELLO DE LACRE EN RELIEVE)      */}
       {/* ========================================================================= */}
       {!isOpen && (
-        <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl flex flex-col items-center">
-          {/* Subtle Instruction Badge */}
+        <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl flex items-center justify-center my-auto">
+          {/* Subtle Instruction Badge - Positioned cleanly above the envelope without shifting its vertical center */}
           <div
-            className={`mb-6 sm:mb-8 flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/85 backdrop-blur-md border border-[#E4D1BF] shadow-sm text-xs sm:text-sm font-serif italic text-stone-700 transition-all duration-300 ${
+            className={`absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5 px-5 py-2 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#CDB59E] shadow-md text-xs sm:text-sm font-sans font-semibold text-[#2B190E] transition-all duration-300 max-w-[92vw] sm:max-w-none text-center ${
               isOpening ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 animate-pulse'
             }`}
           >
-            <Sparkles className="w-4 h-4 text-[#C59B6D]" />
-            <span>Haz clic en cualquier parte para abrir el sobre</span>
-            <Sparkles className="w-4 h-4 text-[#C59B6D]" />
+            <Sparkles className="w-4 h-4 text-[#A86F32] shrink-0" />
+            <span className="hidden sm:inline whitespace-nowrap">Haz clic en cualquier parte para abrir el sobre</span>
+            <span className="sm:hidden whitespace-nowrap">Toca el sobre para abrir</span>
+            <Sparkles className="w-4 h-4 text-[#A86F32] shrink-0" />
           </div>
 
-          {/* Envelope Body Container */}
+          {/* Envelope Body Container - Dead Center */}
           <div
             className={`relative w-full aspect-[16/10.5] sm:aspect-[16/10] rounded-2xl transition-all duration-700 ${
               isOpening ? 'scale-105' : 'hover:scale-[1.015]'
@@ -159,11 +160,10 @@ export const BeachWeddingInvitation: React.FC = () => {
             style={{ perspective: '1600px' }}
           >
             {/* Ambient luxury drop shadow */}
-            <div className="absolute inset-0 -bottom-6 bg-[#684832]/20 blur-2xl rounded-2xl transform scale-95" />
+            <div className="absolute inset-0 -bottom-6 bg-[#684832]/25 blur-2xl rounded-2xl transform scale-95" />
 
             {/* Back Plate / Base Paper Layer */}
             <div className="absolute inset-0 bg-[#F5ECE1] rounded-2xl border border-[#DFCDBC] overflow-hidden shadow-2xl">
-              {/* Paper Grain Gradient */}
               <div
                 className="absolute inset-0 opacity-35 mix-blend-multiply pointer-events-none"
                 style={{
@@ -172,12 +172,11 @@ export const BeachWeddingInvitation: React.FC = () => {
                   backgroundPosition: '0 0, 7px 7px',
                 }}
               />
-              {/* Gold foil interior border */}
-              <div className="absolute inset-3 border border-[#D4AF37]/40 rounded-xl pointer-events-none" />
+              <div className="absolute inset-3 border border-[#D4AF37]/50 rounded-xl pointer-events-none" />
             </div>
 
             {/* ===================================================================== */}
-            {/* INVITACIÓN DENTRO DEL SOBRE (DECORADA CON DETALLES DE ORO & BOTÁNICA) */}
+            {/* INVITACIÓN DENTRO DEL SOBRE                                           */}
             {/* ===================================================================== */}
             <div
               className={`absolute inset-x-4 sm:inset-x-6 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 sm:p-6 flex flex-col items-center justify-between text-center transition-all duration-1000 ease-out ${
@@ -189,138 +188,97 @@ export const BeachWeddingInvitation: React.FC = () => {
                 zIndex: isOpening ? 15 : 5,
               }}
             >
-              {/* Double Gold Editorial Border */}
-              <div className="absolute inset-2 border border-[#D4AF37]/50 rounded-lg pointer-events-none" />
-              <div className="absolute inset-3 border border-[#D4AF37]/25 rounded-md pointer-events-none" />
+              <div className="absolute inset-2 border border-[#D4AF37]/60 rounded-lg pointer-events-none" />
+              <div className="absolute inset-3 border border-[#D4AF37]/35 rounded-md pointer-events-none" />
 
-              {/* Top Monogram Crest - Aligned Horizontally */}
+              {/* Top Monogram Crest */}
               <div className="relative pt-1 flex flex-col items-center">
-                <div className="px-4 py-1 rounded-full border border-[#D4AF37]/60 flex items-center justify-center bg-[#FDF9F3] text-[#B8864E] shadow-sm mb-1 whitespace-nowrap">
-                  <span className="font-serif text-xs sm:text-sm font-semibold tracking-[0.25em] whitespace-nowrap">
+                <div className="px-4 py-1 rounded-full border border-[#B8864E] flex items-center justify-center bg-[#FBF4EC] text-[#5A3414] shadow-sm mb-1 whitespace-nowrap">
+                  <span className="font-serif text-xs sm:text-sm font-bold tracking-[0.25em] whitespace-nowrap">
                     V &amp; S
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-[#B8864E] font-medium">
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#6E421A] font-bold">
                   <span>Nuestra Boda</span>
                 </div>
               </div>
 
               {/* Couple Names & Title */}
               <div className="my-auto py-1 flex flex-col items-center">
-                <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#3A2E2B] italic leading-tight">
+                <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#1E130D] font-medium italic leading-tight">
                   Valentina &amp; Sebastián
                 </h3>
                 <div className="flex items-center justify-center gap-2 my-1.5">
-                  <span className="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]" />
-                  <Heart className="w-3 h-3 text-[#D4AF37] fill-[#D4AF37]" />
-                  <span className="w-8 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]" />
+                  <span className="w-8 h-[1.5px] bg-gradient-to-r from-transparent to-[#B8864E]" />
+                  <Heart className="w-3.5 h-3.5 text-[#B8864E] fill-[#B8864E]" />
+                  <span className="w-8 h-[1.5px] bg-gradient-to-l from-transparent to-[#B8864E]" />
                 </div>
-                <p className="font-serif text-xs sm:text-sm text-stone-600 italic mb-2">
+                <p className="font-serif text-xs sm:text-sm text-[#382315] font-medium italic mb-2">
                   «Celebrando nuestro amor frente al mar»
                 </p>
 
-                {/* Visible Date & Venue badge */}
-                <div className="mt-1 px-3 py-1 rounded-md bg-[#FAF4EC] border border-[#E8D5C2] shadow-sm flex flex-col items-center gap-0.5">
-                  <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#916E49] font-medium">
+                <div className="mt-1 px-3 py-1.5 rounded-md bg-[#F7EFE4] border border-[#D9C1A9] shadow-sm flex flex-col items-center gap-0.5">
+                  <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#4A2C12] font-bold">
                     Sábado, 14 de Noviembre · 12:30 hrs
                   </span>
-                  <span className="text-[9px] sm:text-[10px] tracking-wider text-stone-500 font-light">
+                  <span className="text-[9px] sm:text-[10px] tracking-wider text-[#351E0C] font-semibold">
                     Playa Blanca · Al Mediodía
                   </span>
                 </div>
               </div>
 
-              {/* Bottom Decorative Gold Flourish */}
               <div className="relative pb-1 text-center">
-                <div className="w-12 h-[1px] bg-[#D4AF37]/50 mx-auto" />
+                <div className="w-12 h-[1px] bg-[#D4AF37]/60 mx-auto" />
               </div>
             </div>
 
             {/* ===================================================================== */}
-            {/* FRONT POCKET & SIDE FLAPS (DECORADOS, CUBREN TOTALMENTE EL SOBRE)     */}
+            {/* FRONT POCKET & SIDE FLAPS                                             */}
             {/* ===================================================================== */}
             <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden rounded-2xl">
-              {/* Left Flap */}
               <div
                 className="absolute top-0 bottom-0 left-0 w-[53%] bg-gradient-to-r from-[#F4E8DB] via-[#ECE0D0] to-[#E3D3C1] border-r border-[#DFCDBB]/80 shadow-[2px_0_8px_rgba(90,65,45,0.06)]"
-                style={{
-                  clipPath: 'polygon(0% 0%, 100% 50%, 0% 100%)',
-                }}
+                style={{ clipPath: 'polygon(0% 0%, 100% 50%, 0% 100%)' }}
               >
                 <div className="absolute top-3 left-3 w-16 h-16 border-t border-l border-[#D4AF37]/35 pointer-events-none" />
               </div>
 
-              {/* Right Flap */}
               <div
                 className="absolute top-0 bottom-0 right-0 w-[53%] bg-gradient-to-l from-[#F4E8DB] via-[#ECE0D0] to-[#E3D3C1] border-l border-[#DFCDBB]/80 shadow-[-2px_0_8px_rgba(90,65,45,0.06)]"
-                style={{
-                  clipPath: 'polygon(100% 0%, 0% 50%, 100% 100%)',
-                }}
+                style={{ clipPath: 'polygon(100% 0%, 0% 50%, 100% 100%)' }}
               >
                 <div className="absolute top-3 right-3 w-16 h-16 border-t border-r border-[#D4AF37]/35 pointer-events-none" />
               </div>
 
-              {/* Bottom Pocket Flap */}
               <div
-                className="absolute bottom-0 left-0 right-0 h-[68%] bg-gradient-to-t from-[#E8D8C7] via-[#EFE2D3] to-[#F7ECE0] border-t border-[#DBC7B4] shadow-[0_-6px_16px_rgba(90,65,45,0.08)]"
-                style={{
-                  clipPath: 'polygon(0% 100%, 50% 18%, 100% 100%)',
-                }}
+                className="absolute bottom-0 left-0 right-0 h-[68%] bg-gradient-to-t from-[#E8D8C7] via-[#EFE2D3] to-[#F7ECE0] border-t border-[#DBC7B4] shadow-[0_-6px_16px_rgba(90,65,45,0.08)] pointer-events-none"
+                style={{ clipPath: 'polygon(0% 100%, 50% 18%, 100% 100%)' }}
               >
-                {/* Gold Foil Border along bottom flap diagonal */}
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <line
-                    x1="0"
-                    y1="100"
-                    x2="50"
-                    y2="18"
-                    stroke="#D4AF37"
-                    strokeWidth="0.75"
-                    strokeOpacity="0.45"
-                  />
-                  <line
-                    x1="100"
-                    y1="100"
-                    x2="50"
-                    y2="18"
-                    stroke="#D4AF37"
-                    strokeWidth="0.75"
-                    strokeOpacity="0.45"
-                  />
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <line x1="0" y1="100" x2="50" y2="18" stroke="#D4AF37" strokeWidth="0.75" strokeOpacity="0.55" />
+                  <line x1="100" y1="100" x2="50" y2="18" stroke="#D4AF37" strokeWidth="0.75" strokeOpacity="0.55" />
                 </svg>
-
-                {/* Postal Stamp & Postmark Ornament */}
-                <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 flex items-center gap-2 opacity-70">
-                  <div className="w-10 h-12 sm:w-12 sm:h-14 border border-dashed border-[#B88E62] bg-[#FAF3EC]/80 rounded p-1 flex flex-col items-center justify-between text-center shadow-sm">
-                    <Heart className="w-3 h-3 text-[#B88E62]" />
-                    <span className="text-[7px] sm:text-[8px] uppercase tracking-tighter font-serif text-[#785938]">
-                      Amor
-                    </span>
-                    <span className="text-[6px] tracking-widest text-[#967451]">2026</span>
-                  </div>
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-[#B88E62]/60 flex flex-col items-center justify-center text-[6px] sm:text-[7px] text-[#825F3C] font-mono rotate-12">
-                    <span>PLAYA</span>
-                    <span>14.NOV</span>
-                  </div>
-                </div>
-
-                {/* Decorative Botanical Branch Emblem */}
-                <div className="absolute bottom-3 left-4 sm:bottom-4 sm:left-6 opacity-60">
-                  <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-serif italic text-[#8B6B4A]">
-                    <Sparkles className="w-3 h-3 text-[#C59B6D]" />
-                    <span>Invitación Especial</span>
-                  </div>
-                </div>
               </div>
             </div>
 
-            {/* ===================================================================== */}
-            {/* TOP TRIANGULAR FLAP (DOBLADA CERRANDO COMPLETAMENTE EL SOBRE)         */}
-            {/* ===================================================================== */}
+            {/* STICKER / SELLO POSTAL INFERIOR DERECHO (VISIBLE 100% POR ENCIMA DEL SOBRE) */}
+            <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-5 pointer-events-none z-30 flex items-center gap-2">
+              <div className="w-11 h-13 sm:w-12 sm:h-14 border-2 border-dashed border-[#8E5A2B] bg-[#FFFBF7] rounded p-1 flex flex-col items-center justify-between text-center shadow-md">
+                <Heart className="w-3.5 h-3.5 text-[#8E5A2B] fill-[#8E5A2B]" />
+                <span className="text-[8px] sm:text-[9px] uppercase tracking-wider font-serif font-extrabold text-[#321B0B]">
+                  Amor
+                </span>
+                <span className="text-[7px] sm:text-[8px] tracking-widest font-mono font-bold text-[#4E2E16]">
+                  2026
+                </span>
+              </div>
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-[#8E5A2B] bg-[#FFFBF7]/95 flex flex-col items-center justify-center text-[7px] sm:text-[8px] text-[#321B0B] font-mono font-bold rotate-12 shadow-md leading-tight">
+                <span>PLAYA</span>
+                <span>14.NOV</span>
+              </div>
+            </div>
+
+            {/* TOP TRIANGULAR FLAP */}
             <div
               className="absolute top-0 left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-800 ease-in-out"
               style={{
@@ -328,70 +286,58 @@ export const BeachWeddingInvitation: React.FC = () => {
                 transformOrigin: 'top center',
                 transform: isOpening ? 'rotateX(180deg) translateZ(-8px)' : 'rotateX(0deg) translateZ(0px)',
                 zIndex: isOpening ? 2 : 40,
+                filter: isOpening ? 'none' : 'drop-shadow(0 12px 18px rgba(65, 38, 20, 0.22))',
               }}
             >
               <div
-                className="w-full h-full bg-gradient-to-b from-[#F5EADB] via-[#EEDECF] to-[#E3D1BF] shadow-[0_8px_18px_rgba(80,55,35,0.14)] border-b border-[#D8C4B0]"
-                style={{
-                  clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)',
-                }}
+                className="w-full h-full bg-gradient-to-b from-[#F5EADB] via-[#EEDECF] to-[#E3D1BF] shadow-[0_8px_18px_rgba(80,55,35,0.14)] border-b border-[#D8C4B0] relative"
+                style={{ clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)' }}
               >
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <line
-                    x1="0"
-                    y1="0"
-                    x2="50"
-                    y2="100"
-                    stroke="#D4AF37"
-                    strokeWidth="0.8"
-                    strokeOpacity="0.55"
-                  />
-                  <line
-                    x1="100"
-                    y1="0"
-                    x2="50"
-                    y2="100"
-                    stroke="#D4AF37"
-                    strokeWidth="0.8"
-                    strokeOpacity="0.55"
-                  />
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <line x1="0" y1="0" x2="50" y2="100" stroke="#D4AF37" strokeWidth="0.8" strokeOpacity="0.6" />
+                  <line x1="100" y1="0" x2="50" y2="100" stroke="#D4AF37" strokeWidth="0.8" strokeOpacity="0.6" />
                 </svg>
 
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 opacity-50 flex items-center gap-1">
-                  <span className="w-6 h-[1px] bg-[#C59B6D]" />
-                  <Heart className="w-2.5 h-2.5 text-[#C59B6D]" />
-                  <span className="w-6 h-[1px] bg-[#C59B6D]" />
+                {/* V & S y "Para siempre" en letra manuscrita escrito directamente en el sobre con alto contraste */}
+                <div className="absolute top-3 sm:top-5 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-2">
+                  <span
+                    className="text-2xl sm:text-3xl md:text-4xl text-[#1E0D03] leading-none font-bold tracking-wider drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]"
+                    style={{
+                      fontFamily: "'Great Vibes', 'Dancing Script', 'Alex Brush', cursive",
+                    }}
+                  >
+                    V &amp; S
+                  </span>
+                  <span
+                    className="text-2xl sm:text-3xl md:text-4xl text-[#2A1204] leading-none mt-1 sm:mt-1.5 font-normal drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]"
+                    style={{
+                      fontFamily: "'Great Vibes', 'Dancing Script', 'Alex Brush', cursive",
+                    }}
+                  >
+                    Para siempre
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* ===================================================================== */}
-            {/* SELLO DE LACRE EN RELIEVE 3D                                          */}
-            {/* ===================================================================== */}
+            {/* SELLO DE CERA REALISTA (FOTO DE LACRE REAL CON SOMBRAS PROFUNDAS) */}
             <div
-              className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none ${
-                isOpening ? 'scale-135 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
+              className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${
+                isOpening ? 'scale-125 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
               }`}
             >
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 rounded-full flex items-center justify-center shadow-[0_12px_28px_rgba(140,85,45,0.45)] bg-gradient-to-br from-[#E2A676] via-[#C9804D] to-[#925026] border-2 border-[#FBD6B5]/60">
-                <div className="absolute inset-[-4px] rounded-full border-2 border-dashed border-[#D5915E]/60 animate-[spin_50s_linear_infinite]" />
-                <div className="absolute -top-1 right-2 w-3 h-3 rounded-full bg-[#D88D56] shadow-sm" />
-                <div className="absolute -bottom-1 left-2 w-3.5 h-3 rounded-full bg-[#B66E3A] shadow-sm" />
-
-                <div className="w-[82%] h-[82%] rounded-full bg-gradient-to-tl from-[#B36934] via-[#D08B55] to-[#EAA879] border border-[#FFE3CA]/50 flex flex-col items-center justify-center shadow-[inset_0_3px_6px_rgba(0,0,0,0.3)] text-white">
-                  <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FFF3E5] fill-[#FFF3E5]/95 drop-shadow mb-0.5" />
-                  <span className="font-serif text-xs sm:text-sm md:text-base font-bold tracking-widest text-[#FFF7EF] whitespace-nowrap drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
-                    V &amp; S
-                  </span>
-                  <span className="text-[7px] uppercase tracking-widest text-[#FFE9D4] font-medium drop-shadow">
-                    Para Siempre
-                  </span>
-                </div>
-                <div className="absolute top-1.5 left-2.5 w-4 h-2 rounded-full bg-white/45 blur-[1px] transform -rotate-45" />
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center">
+                <img
+                  src="/images/sello-cera.webp"
+                  alt="Sello de cera V & S"
+                  className="w-full h-full object-contain"
+                  style={{
+                    filter:
+                      'drop-shadow(0px 3px 5px rgba(40, 16, 6, 0.45)) drop-shadow(0px 12px 20px rgba(45, 18, 8, 0.42)) drop-shadow(0px 22px 28px rgba(55, 22, 10, 0.2))',
+                  }}
+                  loading="eager"
+                  fetchPriority="high"
+                />
               </div>
             </div>
           </div>
