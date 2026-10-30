@@ -283,26 +283,35 @@ export const BeachWeddingInvitation: React.FC = () => {
             </div>
 
             {/* ===================================================================== */}
-            {/* FRONT POCKET & SIDE FLAPS                                             */}
+            {/* FRONT POCKET & SIDE FLAPS (CON SOMBRAS FOTORREALISTAS)                */}
             {/* ===================================================================== */}
             <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden rounded-2xl">
               <div
-                className="absolute top-0 bottom-0 left-0 w-[53%] bg-gradient-to-r from-[#F4E8DB] via-[#ECE0D0] to-[#E3D3C1] border-r border-[#DFCDBB]/80 shadow-[2px_0_8px_rgba(90,65,45,0.06)]"
-                style={{ clipPath: 'polygon(0% 0%, 100% 50%, 0% 100%)' }}
+                className="absolute top-0 bottom-0 left-0 w-[53%] bg-gradient-to-r from-[#F4E6D7] via-[#ECDCD0] to-[#DFCCC0] border-r border-[#D5C1AF]/60"
+                style={{
+                  clipPath: 'polygon(0% 0%, 100% 50%, 0% 100%)',
+                  filter: 'drop-shadow(4px 0 10px rgba(60, 32, 16, 0.16))',
+                }}
               >
                 <div className="absolute top-3 left-3 w-16 h-16 border-t border-l border-[#D4AF37]/35 pointer-events-none" />
               </div>
 
               <div
-                className="absolute top-0 bottom-0 right-0 w-[53%] bg-gradient-to-l from-[#F4E8DB] via-[#ECE0D0] to-[#E3D3C1] border-l border-[#DFCDBB]/80 shadow-[-2px_0_8px_rgba(90,65,45,0.06)]"
-                style={{ clipPath: 'polygon(100% 0%, 0% 50%, 100% 100%)' }}
+                className="absolute top-0 bottom-0 right-0 w-[53%] bg-gradient-to-l from-[#F4E6D7] via-[#ECDCD0] to-[#DFCCC0] border-l border-[#D5C1AF]/60"
+                style={{
+                  clipPath: 'polygon(100% 0%, 0% 50%, 100% 100%)',
+                  filter: 'drop-shadow(-4px 0 10px rgba(60, 32, 16, 0.16))',
+                }}
               >
                 <div className="absolute top-3 right-3 w-16 h-16 border-t border-r border-[#D4AF37]/35 pointer-events-none" />
               </div>
 
               <div
-                className="absolute bottom-0 left-0 right-0 h-[68%] bg-gradient-to-t from-[#E8D8C7] via-[#EFE2D3] to-[#F7ECE0] border-t border-[#DBC7B4] shadow-[0_-6px_16px_rgba(90,65,45,0.08)] pointer-events-none"
-                style={{ clipPath: 'polygon(0% 100%, 50% 18%, 100% 100%)' }}
+                className="absolute bottom-0 left-0 right-0 h-[68%] bg-gradient-to-t from-[#E2D0BE] via-[#EFE2D3] to-[#F8EEE3] border-t border-[#D9C4B0] pointer-events-none"
+                style={{
+                  clipPath: 'polygon(0% 100%, 50% 18%, 100% 100%)',
+                  filter: 'drop-shadow(0 -10px 18px rgba(55, 28, 14, 0.22))',
+                }}
               >
                 <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
                   <line x1="0" y1="100" x2="50" y2="18" stroke="#D4AF37" strokeWidth="0.75" strokeOpacity="0.55" />
@@ -313,6 +322,14 @@ export const BeachWeddingInvitation: React.FC = () => {
 
             {/* DECORACIONES FRONTALES INFERIORES - FUERA DE CUALQUIER CLIP-PATH PARA VISIBILIDAD TOTAL */}
             <div className="absolute inset-x-0 bottom-0 pointer-events-none z-30 p-3 sm:p-5 flex items-end justify-between">
+              {/* Texto inferior izquierdo */}
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FAF4EC]/95 backdrop-blur-sm border border-[#D5BEA8] shadow-md">
+                <Sparkles className="w-3.5 h-3.5 text-[#9E652E]" />
+                <span className="text-[11px] sm:text-xs font-serif font-bold italic tracking-wide text-[#3E2210]">
+                  Invitación Especial
+                </span>
+              </div>
+
               {/* Sello postal y matasellos inferior derecho */}
               <div className="flex items-center gap-2">
                 <div className="w-11 h-13 sm:w-12 sm:h-14 border-2 border-dashed border-[#8E5A2B] bg-[#FFFBF7] rounded p-1 flex flex-col items-center justify-between text-center shadow-md">
@@ -331,18 +348,18 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
             </div>
 
-            {/* TOP TRIANGULAR FLAP */}
+            {/* TOP TRIANGULAR FLAP (CON SOMBRA PROYECTADA REALISTA) */}
             <div
               className="absolute top-0 left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-800 ease-in-out"
               style={{
                 transformStyle: 'preserve-3d',
                 transformOrigin: 'top center',
                 transform: isOpening ? 'rotateX(180deg) translateZ(-8px)' : 'rotateX(0deg) translateZ(0px)',
-                zIndex: isOpening ? 2 : 40,
+                zIndex: isOpening ? 2 : 40
               }}
             >
               <div
-                className="w-full h-full bg-gradient-to-b from-[#F5EADB] via-[#EEDECF] to-[#E3D1BF] shadow-[0_8px_18px_rgba(80,55,35,0.14)] border-b border-[#D8C4B0] relative"
+                className="w-full h-full bg-gradient-to-b from-[#F6ECE0] via-[#EEDECF] to-[#E2CFC0] border-b border-[#D4C0AD] relative"
                 style={{ clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)' }}
               >
                 <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -367,126 +384,19 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
             </div>
 
-            {/* SELLO DE CERA REALISTA (FORMA ORGÁNICA E IMPERFECTA CON V & S) */}
+            {/* SELLO DE CERA REALISTA (FOTO DE LACRE REAL CON SOMBRAS PROFUNDAS) */}
             <div
-              className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${
-                isOpening ? 'scale-125 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
-              }`}
+              className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${isOpening ? 'scale-125 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
+                }`}
             >
-              <div className="relative w-22 h-22 sm:w-26 sm:h-26 md:w-28 md:h-28 flex items-center justify-center">
-                <svg
-                  viewBox="0 0 100 100"
-                  className="w-full h-full drop-shadow-[0_12px_26px_rgba(65,18,6,0.6)]"
-                  style={{ overflow: 'visible' }}
-                >
-                  <defs>
-                    {/* Gradiente de cera de lacre artesanal */}
-                    <linearGradient id="waxGrad" x1="15%" y1="10%" x2="85%" y2="90%">
-                      <stop offset="0%" stopColor="#C44A24" />
-                      <stop offset="35%" stopColor="#A33516" />
-                      <stop offset="70%" stopColor="#7E240B" />
-                      <stop offset="100%" stopColor="#521303" />
-                    </linearGradient>
-
-                    {/* Cama interior grabada (sello de bronce hundido) */}
-                    <radialGradient id="dieBedGrad" cx="45%" cy="40%" r="55%">
-                      <stop offset="0%" stopColor="#8C2C10" />
-                      <stop offset="65%" stopColor="#6E1F09" />
-                      <stop offset="100%" stopColor="#451002" />
-                    </radialGradient>
-
-                    {/* Filtro de relieve 3D para V & S grabado en cera */}
-                    <filter id="debossFilter" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="0" dy="1.5" stdDeviation="0.75" floodColor="#220702" floodOpacity="0.95" />
-                      <feDropShadow dx="0" dy="-0.75" stdDeviation="0.5" floodColor="#FFAF8A" floodOpacity="0.4" />
-                    </filter>
-                  </defs>
-
-                  {/* 1. Lóbulo base de cera derretida con bordes orgánicos e imperfectos */}
-                  <path
-                    d="M 50,4
-                       C 64,3 77,8 85,17
-                       C 93,25 99,35 99,47
-                       C 99,57 95,68 93,76
-                       C 89,86 81,94 70,97
-                       C 60,100 48,98 38,96
-                       C 27,93 17,88 12,79
-                       C 6,70 5,58 6,47
-                       C 7,35 13,24 22,16
-                       C 31,8 41,5 50,4 Z"
-                    fill="url(#waxGrad)"
-                  />
-
-                  {/* 2. Capa secundaria de desborde de cera para máxima imperfección realista */}
-                  <path
-                    d="M 48,6
-                       C 62,5 74,9 82,19
-                       C 89,28 96,39 96,50
-                       C 96,60 92,71 86,79
-                       C 78,87 68,93 57,94
-                       C 46,95 35,91 26,84
-                       C 17,76 11,65 10,53
-                       C 9,42 15,30 23,21
-                       C 31,12 40,7 48,6 Z"
-                    fill="url(#waxGrad)"
-                    opacity="0.85"
-                  />
-
-                  {/* 3. Bisel superior con brillo de cera caliente */}
-                  <path
-                    d="M 50,8
-                       C 61,7 72,11 78,20
-                       C 84,28 90,38 91,48
-                       C 91,56 87,65 83,72
-                       C 77,80 67,86 56,87
-                       C 46,88 36,84 28,78
-                       C 21,72 16,62 15,52
-                       C 14,42 19,32 26,24
-                       C 33,16 42,9 50,8 Z"
-                    fill="none"
-                    stroke="#FFAC87"
-                    strokeWidth="1.2"
-                    strokeOpacity="0.4"
-                  />
-
-                  {/* 4. Depresión circular central (impresión del cuño de metal en la cera) */}
-                  <circle
-                    cx="50"
-                    cy="51"
-                    r="27"
-                    fill="url(#dieBedGrad)"
-                    stroke="#2B0902"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.8"
-                  />
-
-                  {/* Ranura concéntrica de precisión artesanal */}
-                  <circle
-                    cx="50"
-                    cy="51"
-                    r="24"
-                    fill="none"
-                    stroke="#E27E50"
-                    strokeWidth="0.75"
-                    strokeOpacity="0.35"
-                    strokeDasharray="90 2"
-                  />
-
-                  {/* 5. Monograma "V & S" grabado en la cera */}
-                  <text
-                    x="50"
-                    y="59"
-                    textAnchor="middle"
-                    fontFamily="'Cormorant Garamond', Georgia, serif"
-                    fontSize="22"
-                    fontWeight="bold"
-                    letterSpacing="2.5"
-                    fill="#FFF4E8"
-                    filter="url(#debossFilter)"
-                  >
-                    V &amp; S
-                  </text>
-                </svg>
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center">
+                <img
+                  src="/images/sello-cera.webp"
+                  alt="Sello de cera V & S"
+                  className="w-full h-full object-contain filter drop-shadow-[0_12px_22px_rgba(40,12,5,0.65)] drop-shadow-[0_4px_8px_rgba(0,0,0,0.35)]"
+                  loading="eager"
+                  fetchPriority="high"
+                />
               </div>
             </div>
           </div>
