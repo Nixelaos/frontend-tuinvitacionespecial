@@ -342,7 +342,7 @@ export const BeachWeddingInvitation: React.FC = () => {
               }}
             >
               <div
-                className="w-full h-full bg-gradient-to-b from-[#F5EADB] via-[#EEDECF] to-[#E3D1BF] shadow-[0_8px_18px_rgba(80,55,35,0.14)] border-b border-[#D8C4B0]"
+                className="w-full h-full bg-gradient-to-b from-[#F5EADB] via-[#EEDECF] to-[#E3D1BF] shadow-[0_8px_18px_rgba(80,55,35,0.14)] border-b border-[#D8C4B0] relative"
                 style={{ clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)' }}
               >
                 <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -350,46 +350,143 @@ export const BeachWeddingInvitation: React.FC = () => {
                   <line x1="100" y1="0" x2="50" y2="100" stroke="#D4AF37" strokeWidth="0.8" strokeOpacity="0.6" />
                 </svg>
 
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 opacity-75 flex items-center gap-1">
-                  <span className="w-6 h-[1px] bg-[#B8864E]" />
-                  <Heart className="w-2.5 h-2.5 text-[#B8864E]" />
-                  <span className="w-6 h-[1px] bg-[#B8864E]" />
+                {/* V & S y "Para siempre" en letra manuscrita escrito directamente en el sobre */}
+                <div className="absolute top-3 sm:top-5 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-2">
+                  <span className="font-serif text-lg sm:text-2xl font-bold tracking-[0.25em] text-[#3D2210] drop-shadow-sm">
+                    V &amp; S
+                  </span>
+                  <span
+                    className="text-2xl sm:text-3xl md:text-4xl text-[#5A3316] leading-none mt-1 drop-shadow-sm font-normal"
+                    style={{
+                      fontFamily: "'Great Vibes', 'Dancing Script', 'Alex Brush', 'Segoe Script', 'Brush Script MT', cursive",
+                    }}
+                  >
+                    Para siempre
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* SELLO DE CERA REALISTA (LACRE ARTESANAL EN RELIEVE 3D) */}
+            {/* SELLO DE CERA REALISTA (FORMA ORGÁNICA E IMPERFECTA CON V & S) */}
             <div
-              className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${isOpening ? 'scale-125 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
-                }`}
+              className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${
+                isOpening ? 'scale-125 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
+              }`}
             >
-              {/* Outer Organic Molten Wax Rim */}
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-26 md:h-26 flex items-center justify-center">
-                {/* Organic wax drip background lobes (imitates melted wax spilling from under the brass stamp) */}
-                <div className="absolute inset-0 rounded-[46%_54%_50%_50%/52%_47%_53%_48%] bg-gradient-to-br from-[#B5401C] via-[#8F2B0E] to-[#5C1605] shadow-[0_14px_30px_rgba(65,18,6,0.55),0_4px_10px_rgba(0,0,0,0.35)] transform rotate-6" />
-                <div className="absolute -inset-1 rounded-[53%_47%_52%_48%/48%_53%_47%_52%] bg-gradient-to-tr from-[#9B3213] via-[#7D230A] to-[#611905] opacity-75 transform -rotate-12" />
+              <div className="relative w-22 h-22 sm:w-26 sm:h-26 md:w-28 md:h-28 flex items-center justify-center">
+                <svg
+                  viewBox="0 0 100 100"
+                  className="w-full h-full drop-shadow-[0_12px_26px_rgba(65,18,6,0.6)]"
+                  style={{ overflow: 'visible' }}
+                >
+                  <defs>
+                    {/* Gradiente de cera de lacre artesanal */}
+                    <linearGradient id="waxGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+                      <stop offset="0%" stopColor="#C44A24" />
+                      <stop offset="35%" stopColor="#A33516" />
+                      <stop offset="70%" stopColor="#7E240B" />
+                      <stop offset="100%" stopColor="#521303" />
+                    </linearGradient>
 
-                {/* Raised Wax Puddle Edge with 3D bevel and bevel highlights */}
-                <div className="relative w-[92%] h-[92%] rounded-[48%_52%_49%_51%/51%_49%_52%_48%] bg-gradient-to-br from-[#BD4622] via-[#942E11] to-[#5C1805] shadow-[inset_0_3px_5px_rgba(255,185,145,0.4),inset_0_-4px_7px_rgba(35,8,3,0.7)] flex items-center justify-center">
+                    {/* Cama interior grabada (sello de bronce hundido) */}
+                    <radialGradient id="dieBedGrad" cx="45%" cy="40%" r="55%">
+                      <stop offset="0%" stopColor="#8C2C10" />
+                      <stop offset="65%" stopColor="#6E1F09" />
+                      <stop offset="100%" stopColor="#451002" />
+                    </radialGradient>
 
-                  {/* Inner Stamped Bed (Debossed circular impression from the brass stamp die) */}
-                  <div className="w-[78%] h-[78%] rounded-full bg-gradient-to-tl from-[#6E1F09] via-[#8A2B10] to-[#A83D1B] border border-[#DE784A]/30 shadow-[inset_0_4px_8px_rgba(20,4,2,0.75),inset_0_-2px_4px_rgba(255,170,130,0.25)] flex flex-col items-center justify-center text-center px-1">
+                    {/* Filtro de relieve 3D para V & S grabado en cera */}
+                    <filter id="debossFilter" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="1.5" stdDeviation="0.75" floodColor="#220702" floodOpacity="0.95" />
+                      <feDropShadow dx="0" dy="-0.75" stdDeviation="0.5" floodColor="#FFAF8A" floodOpacity="0.4" />
+                    </filter>
+                  </defs>
 
-                    {/* Concentric engraved die groove */}
-                    <div className="absolute inset-[15%] rounded-full border border-[#EAA27A]/25 pointer-events-none" />
+                  {/* 1. Lóbulo base de cera derretida con bordes orgánicos e imperfectos */}
+                  <path
+                    d="M 50,4
+                       C 64,3 77,8 85,17
+                       C 93,25 99,35 99,47
+                       C 99,57 95,68 93,76
+                       C 89,86 81,94 70,97
+                       C 60,100 48,98 38,96
+                       C 27,93 17,88 12,79
+                       C 6,70 5,58 6,47
+                       C 7,35 13,24 22,16
+                       C 31,8 41,5 50,4 Z"
+                    fill="url(#waxGrad)"
+                  />
 
-                    {/* Monogram Initials V & S (Centered, no white element above) */}
-                    <span className="font-serif text-base sm:text-lg md:text-xl font-bold tracking-[0.22em] text-[#FFF4E8] whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] leading-tight">
-                      V &amp; S
-                    </span>
+                  {/* 2. Capa secundaria de desborde de cera para máxima imperfección realista */}
+                  <path
+                    d="M 48,6
+                       C 62,5 74,9 82,19
+                       C 89,28 96,39 96,50
+                       C 96,60 92,71 86,79
+                       C 78,87 68,93 57,94
+                       C 46,95 35,91 26,84
+                       C 17,76 11,65 10,53
+                       C 9,42 15,30 23,21
+                       C 31,12 40,7 48,6 Z"
+                    fill="url(#waxGrad)"
+                    opacity="0.85"
+                  />
 
-                    {/* "Para siempre" in elegant handwritten cursive script */}
-                    <span className="font-script text-base sm:text-lg md:text-xl text-[#FFE5CC] drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)] leading-none mt-1">
-                      Para siempre
-                    </span>
+                  {/* 3. Bisel superior con brillo de cera caliente */}
+                  <path
+                    d="M 50,8
+                       C 61,7 72,11 78,20
+                       C 84,28 90,38 91,48
+                       C 91,56 87,65 83,72
+                       C 77,80 67,86 56,87
+                       C 46,88 36,84 28,78
+                       C 21,72 16,62 15,52
+                       C 14,42 19,32 26,24
+                       C 33,16 42,9 50,8 Z"
+                    fill="none"
+                    stroke="#FFAC87"
+                    strokeWidth="1.2"
+                    strokeOpacity="0.4"
+                  />
 
-                  </div>
-                </div>
+                  {/* 4. Depresión circular central (impresión del cuño de metal en la cera) */}
+                  <circle
+                    cx="50"
+                    cy="51"
+                    r="27"
+                    fill="url(#dieBedGrad)"
+                    stroke="#2B0902"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.8"
+                  />
+
+                  {/* Ranura concéntrica de precisión artesanal */}
+                  <circle
+                    cx="50"
+                    cy="51"
+                    r="24"
+                    fill="none"
+                    stroke="#E27E50"
+                    strokeWidth="0.75"
+                    strokeOpacity="0.35"
+                    strokeDasharray="90 2"
+                  />
+
+                  {/* 5. Monograma "V & S" grabado en la cera */}
+                  <text
+                    x="50"
+                    y="59"
+                    textAnchor="middle"
+                    fontFamily="'Cormorant Garamond', Georgia, serif"
+                    fontSize="22"
+                    fontWeight="bold"
+                    letterSpacing="2.5"
+                    fill="#FFF4E8"
+                    filter="url(#debossFilter)"
+                  >
+                    V &amp; S
+                  </text>
+                </svg>
               </div>
             </div>
           </div>
