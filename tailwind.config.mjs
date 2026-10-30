@@ -35,6 +35,7 @@ export default {
         },
       },
       fontFamily: {
+        script: ['"Great Vibes"', 'cursive'],
         serif: ['"Cormorant Garamond"', 'Georgia', ' Cambria', 'serif'],
         sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
@@ -61,3 +62,5 @@ export default {
   },
   plugins: [],
 };
+
+

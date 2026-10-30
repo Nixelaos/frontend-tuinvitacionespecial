@@ -133,7 +133,7 @@ export const BeachWeddingInvitation: React.FC = () => {
 
     // Reset video to start for 1-time playback
     video.currentTime = 0;
-    video.play().catch(() => {});
+    video.play().catch(() => { });
 
     const render = () => {
       if (video.ended) {
@@ -183,11 +183,10 @@ export const BeachWeddingInvitation: React.FC = () => {
   return (
     <div
       onClick={!isOpen ? handleOpenEnvelope : undefined}
-      className={`w-full relative overflow-x-hidden font-sans transition-colors duration-1000 ${
-        !isOpen
-          ? 'cursor-pointer select-none bg-gradient-to-br from-[#FAF3EB] via-[#F4EAE0] to-[#E9D9CB] flex items-center justify-center min-h-[100dvh] h-[100dvh] p-4 sm:p-6 md:p-10 overflow-hidden'
-          : 'min-h-screen bg-gradient-to-b from-[#FAF4EC] via-[#F5ECE0] to-[#EBDDCE] text-stone-800'
-      }`}
+      className={`w-full relative overflow-x-hidden font-sans transition-colors duration-1000 ${!isOpen
+        ? 'cursor-pointer select-none bg-gradient-to-br from-[#FAF3EB] via-[#F4EAE0] to-[#E9D9CB] flex items-center justify-center min-h-[100dvh] h-[100dvh] p-4 sm:p-6 md:p-10 overflow-hidden'
+        : 'min-h-screen bg-gradient-to-b from-[#FAF4EC] via-[#F5ECE0] to-[#EBDDCE] text-stone-800'
+        }`}
     >
       {/* ========================================================================= */}
       {/* 1. SOBRE CERRADO DECORADO (PAPEL PASTEL + SELLO DE LACRE EN RELIEVE)      */}
@@ -196,9 +195,8 @@ export const BeachWeddingInvitation: React.FC = () => {
         <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl flex items-center justify-center my-auto">
           {/* Subtle Instruction Badge - Positioned cleanly above the envelope without shifting its vertical center */}
           <div
-            className={`absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5 px-5 py-2 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#CDB59E] shadow-md text-xs sm:text-sm font-sans font-semibold text-[#2B190E] transition-all duration-300 max-w-[92vw] sm:max-w-none text-center ${
-              isOpening ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 animate-pulse'
-            }`}
+            className={`absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5 px-5 py-2 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#CDB59E] shadow-md text-xs sm:text-sm font-sans font-semibold text-[#2B190E] transition-all duration-300 max-w-[92vw] sm:max-w-none text-center ${isOpening ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 animate-pulse'
+              }`}
           >
             <Sparkles className="w-4 h-4 text-[#A86F32] shrink-0" />
             <span className="hidden sm:inline whitespace-nowrap">Haz clic en cualquier parte para abrir el sobre</span>
@@ -208,9 +206,8 @@ export const BeachWeddingInvitation: React.FC = () => {
 
           {/* Envelope Body Container - Dead Center */}
           <div
-            className={`relative w-full aspect-[16/10.5] sm:aspect-[16/10] rounded-2xl transition-all duration-700 ${
-              isOpening ? 'scale-105' : 'hover:scale-[1.015]'
-            }`}
+            className={`relative w-full aspect-[16/10.5] sm:aspect-[16/10] rounded-2xl transition-all duration-700 ${isOpening ? 'scale-105' : 'hover:scale-[1.015]'
+              }`}
             style={{ perspective: '1600px' }}
           >
             {/* Ambient luxury drop shadow */}
@@ -233,11 +230,10 @@ export const BeachWeddingInvitation: React.FC = () => {
             {/* INVITACIÓN DENTRO DEL SOBRE                                           */}
             {/* ===================================================================== */}
             <div
-              className={`absolute inset-x-4 sm:inset-x-6 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 sm:p-6 flex flex-col items-center justify-between text-center transition-all duration-1000 ease-out ${
-                isOpening
-                  ? '-translate-y-[64%] sm:-translate-y-[70%] opacity-100 scale-100 shadow-2xl'
-                  : 'translate-y-0 opacity-0 pointer-events-none'
-              }`}
+              className={`absolute inset-x-4 sm:inset-x-6 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 sm:p-6 flex flex-col items-center justify-between text-center transition-all duration-1000 ease-out ${isOpening
+                ? '-translate-y-[64%] sm:-translate-y-[70%] opacity-100 scale-100 shadow-2xl'
+                : 'translate-y-0 opacity-0 pointer-events-none'
+                }`}
               style={{
                 zIndex: isOpening ? 15 : 5,
               }}
@@ -305,33 +301,32 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
 
               <div
-                className="absolute bottom-0 left-0 right-0 h-[68%] bg-gradient-to-t from-[#E8D8C7] via-[#EFE2D3] to-[#F7ECE0] border-t border-[#DBC7B4] shadow-[0_-6px_16px_rgba(90,65,45,0.08)]"
+                className="absolute bottom-0 left-0 right-0 h-[68%] bg-gradient-to-t from-[#E8D8C7] via-[#EFE2D3] to-[#F7ECE0] border-t border-[#DBC7B4] shadow-[0_-6px_16px_rgba(90,65,45,0.08)] pointer-events-none"
                 style={{ clipPath: 'polygon(0% 100%, 50% 18%, 100% 100%)' }}
               >
                 <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
                   <line x1="0" y1="100" x2="50" y2="18" stroke="#D4AF37" strokeWidth="0.75" strokeOpacity="0.55" />
                   <line x1="100" y1="100" x2="50" y2="18" stroke="#D4AF37" strokeWidth="0.75" strokeOpacity="0.55" />
                 </svg>
+              </div>
+            </div>
 
-                {/* Sello postal / Matasellos - Alta nitidez y contraste */}
-                <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 flex items-center gap-2">
-                  <div className="w-10 h-12 sm:w-12 sm:h-14 border-2 border-dashed border-[#8E5A2B] bg-[#FFFBF7] rounded p-1 flex flex-col items-center justify-between text-center shadow-md">
-                    <Heart className="w-3 h-3 text-[#8E5A2B] fill-[#8E5A2B]" />
-                    <span className="text-[8px] sm:text-[9px] uppercase tracking-wider font-serif font-extrabold text-[#321B0B]">Amor</span>
-                    <span className="text-[7px] sm:text-[8px] tracking-widest font-mono font-bold text-[#4E2E16]">2026</span>
-                  </div>
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 border-[#8E5A2B] bg-[#FFFBF7]/95 flex flex-col items-center justify-center text-[7px] sm:text-[8px] text-[#321B0B] font-mono font-bold rotate-12 shadow-sm leading-tight">
-                    <span>PLAYA</span>
-                    <span>14.NOV</span>
-                  </div>
+            {/* DECORACIONES FRONTALES INFERIORES - FUERA DE CUALQUIER CLIP-PATH PARA VISIBILIDAD TOTAL */}
+            <div className="absolute inset-x-0 bottom-0 pointer-events-none z-30 p-3 sm:p-5 flex items-end justify-between">
+              {/* Sello postal y matasellos inferior derecho */}
+              <div className="flex items-center gap-2">
+                <div className="w-11 h-13 sm:w-12 sm:h-14 border-2 border-dashed border-[#8E5A2B] bg-[#FFFBF7] rounded p-1 flex flex-col items-center justify-between text-center shadow-md">
+                  <Heart className="w-3.5 h-3.5 text-[#8E5A2B] fill-[#8E5A2B]" />
+                  <span className="text-[8px] sm:text-[9px] uppercase tracking-wider font-serif font-extrabold text-[#321B0B]">
+                    Amor
+                  </span>
+                  <span className="text-[7px] sm:text-[8px] tracking-widest font-mono font-bold text-[#4E2E16]">
+                    2026
+                  </span>
                 </div>
-
-                {/* Texto inferior izquierdo - Alto contraste */}
-                <div className="absolute bottom-3 left-4 sm:bottom-4 sm:left-6">
-                  <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-serif font-bold italic tracking-wide text-[#3E2210]">
-                    <Sparkles className="w-3.5 h-3.5 text-[#9E652E]" />
-                    <span>Invitación Especial</span>
-                  </div>
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-[#8E5A2B] bg-[#FFFBF7]/95 flex flex-col items-center justify-center text-[7px] sm:text-[8px] text-[#321B0B] font-mono font-bold rotate-12 shadow-md leading-tight">
+                  <span>PLAYA</span>
+                  <span>14.NOV</span>
                 </div>
               </div>
             </div>
@@ -363,27 +358,38 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
             </div>
 
-            {/* SELLO DE LACRE - Tonos terracota profundos con letras de máximo contraste */}
+            {/* SELLO DE CERA REALISTA (LACRE ARTESANAL EN RELIEVE 3D) */}
             <div
-              className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none ${
-                isOpening ? 'scale-135 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
-              }`}
+              className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${isOpening ? 'scale-125 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
+                }`}
             >
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 rounded-full flex items-center justify-center shadow-[0_12px_28px_rgba(110,50,20,0.55)] bg-gradient-to-br from-[#D98750] via-[#B85724] to-[#7D320F] border-2 border-[#FDD0A8]/80">
-                <div className="absolute inset-[-4px] rounded-full border-2 border-dashed border-[#D5915E]/60 animate-[spin_50s_linear_infinite]" />
-                <div className="absolute -top-1 right-2 w-3 h-3 rounded-full bg-[#D88D56] shadow-sm" />
-                <div className="absolute -bottom-1 left-2 w-3.5 h-3 rounded-full bg-[#9E4D1E] shadow-sm" />
+              {/* Outer Organic Molten Wax Rim */}
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-26 md:h-26 flex items-center justify-center">
+                {/* Organic wax drip background lobes (imitates melted wax spilling from under the brass stamp) */}
+                <div className="absolute inset-0 rounded-[46%_54%_50%_50%/52%_47%_53%_48%] bg-gradient-to-br from-[#B5401C] via-[#8F2B0E] to-[#5C1605] shadow-[0_14px_30px_rgba(65,18,6,0.55),0_4px_10px_rgba(0,0,0,0.35)] transform rotate-6" />
+                <div className="absolute -inset-1 rounded-[53%_47%_52%_48%/48%_53%_47%_52%] bg-gradient-to-tr from-[#9B3213] via-[#7D230A] to-[#611905] opacity-75 transform -rotate-12" />
 
-                <div className="w-[82%] h-[82%] rounded-full bg-gradient-to-tl from-[#7D3414] via-[#A84B1F] to-[#C9662E] border border-[#FFD9BC]/60 flex flex-col items-center justify-center shadow-[inset_0_4px_8px_rgba(0,0,0,0.45)] text-white">
-                  <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white fill-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] mb-0.5" />
-                  <span className="font-serif text-sm sm:text-base md:text-lg font-black tracking-widest text-white whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
-                    V &amp; S
-                  </span>
-                  <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.22em] text-[#FFF4EA] font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                    Para Siempre
-                  </span>
+                {/* Raised Wax Puddle Edge with 3D bevel and bevel highlights */}
+                <div className="relative w-[92%] h-[92%] rounded-[48%_52%_49%_51%/51%_49%_52%_48%] bg-gradient-to-br from-[#BD4622] via-[#942E11] to-[#5C1805] shadow-[inset_0_3px_5px_rgba(255,185,145,0.4),inset_0_-4px_7px_rgba(35,8,3,0.7)] flex items-center justify-center">
+
+                  {/* Inner Stamped Bed (Debossed circular impression from the brass stamp die) */}
+                  <div className="w-[78%] h-[78%] rounded-full bg-gradient-to-tl from-[#6E1F09] via-[#8A2B10] to-[#A83D1B] border border-[#DE784A]/30 shadow-[inset_0_4px_8px_rgba(20,4,2,0.75),inset_0_-2px_4px_rgba(255,170,130,0.25)] flex flex-col items-center justify-center text-center px-1">
+
+                    {/* Concentric engraved die groove */}
+                    <div className="absolute inset-[15%] rounded-full border border-[#EAA27A]/25 pointer-events-none" />
+
+                    {/* Monogram Initials V & S (Centered, no white element above) */}
+                    <span className="font-serif text-base sm:text-lg md:text-xl font-bold tracking-[0.22em] text-[#FFF4E8] whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] leading-tight">
+                      V &amp; S
+                    </span>
+
+                    {/* "Para siempre" in elegant handwritten cursive script */}
+                    <span className="font-script text-base sm:text-lg md:text-xl text-[#FFE5CC] drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)] leading-none mt-1">
+                      Para siempre
+                    </span>
+
+                  </div>
                 </div>
-                <div className="absolute top-1.5 left-2.5 w-4 h-2 rounded-full bg-white/45 blur-[1px] transform -rotate-45" />
               </div>
             </div>
           </div>
@@ -417,11 +423,10 @@ export const BeachWeddingInvitation: React.FC = () => {
               <img
                 src="/images/pareja-playa.jpg"
                 alt="Pareja de novios en la playa a plena luz del sol de mediodía con ropa casual formal"
-                className={`w-full h-full object-cover object-center transition-all duration-[1400ms] ease-out ${
-                  isSprayed
-                    ? 'opacity-100 scale-100 blur-0 contrast-100'
-                    : 'opacity-0 scale-95 blur-md contrast-150'
-                }`}
+                className={`w-full h-full object-cover object-center transition-all duration-[1400ms] ease-out ${isSprayed
+                  ? 'opacity-100 scale-100 blur-0 contrast-100'
+                  : 'opacity-0 scale-95 blur-md contrast-150'
+                  }`}
                 style={{
                   clipPath: isSprayed ? 'circle(100% at 50% 50%)' : 'circle(8% at 50% 50%)',
                   transition: 'clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.4s ease-out, opacity 1s ease-out, transform 1.4s ease-out',
@@ -433,9 +438,8 @@ export const BeachWeddingInvitation: React.FC = () => {
                 ref={canvasRef}
                 width={1264}
                 height={848}
-                className={`absolute inset-0 w-full h-full object-cover pointer-events-none z-10 transition-opacity duration-1000 ${
-                  effectEnded ? 'opacity-0' : 'opacity-100'
-                }`}
+                className={`absolute inset-0 w-full h-full object-cover pointer-events-none z-10 transition-opacity duration-1000 ${effectEnded ? 'opacity-0' : 'opacity-100'
+                  }`}
                 style={{ mixBlendMode: 'screen' }}
               />
 
@@ -454,9 +458,8 @@ export const BeachWeddingInvitation: React.FC = () => {
 
               {/* Names Overlay over Photo */}
               <div
-                className={`absolute inset-0 z-20 flex flex-col items-center justify-end p-6 sm:p-10 md:p-14 text-center text-white transition-all duration-1000 delay-300 ${
-                  isSprayed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
+                className={`absolute inset-0 z-20 flex flex-col items-center justify-end p-6 sm:p-10 md:p-14 text-center text-white transition-all duration-1000 delay-300 ${isSprayed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}
               >
                 <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-[10px] sm:text-xs font-medium uppercase tracking-[0.25em] shadow-sm mb-2 sm:mb-3">
                   <Sparkles className="w-3 h-3 text-amber-200" />
@@ -508,9 +511,8 @@ export const BeachWeddingInvitation: React.FC = () => {
                 <div className="relative z-10 flex flex-col items-center">
                   {/* Element 1: "Estás cordialmente invitado" (Appears on scroll) */}
                   <div
-                    className={`transition-all duration-700 ease-out transform ${
-                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                    }`}
+                    className={`transition-all duration-700 ease-out transform ${hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                      }`}
                   >
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF0E4] border border-[#D8BEA3] text-[#5A3312] text-xs uppercase tracking-[0.28em] font-bold mb-4 shadow-sm">
                       <Sparkles className="w-3.5 h-3.5 text-[#A06930]" />
@@ -520,9 +522,8 @@ export const BeachWeddingInvitation: React.FC = () => {
 
                   {/* Element 2: Wedding Date, Time & Venue (Appears with delay) */}
                   <div
-                    className={`transition-all duration-700 delay-150 ease-out transform ${
-                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                    }`}
+                    className={`transition-all duration-700 delay-150 ease-out transform ${hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                      }`}
                   >
                     <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#1E130D] font-medium tracking-tight mb-3">
                       Sábado, 14 de Noviembre de 2026
@@ -543,9 +544,8 @@ export const BeachWeddingInvitation: React.FC = () => {
 
                   {/* Element 3: Romantic Quote Phrase (Appears with delay) */}
                   <div
-                    className={`transition-all duration-700 delay-300 ease-out transform max-w-xl mx-auto mb-8 pb-6 border-b border-[#E8DACB]/80 ${
-                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                    }`}
+                    className={`transition-all duration-700 delay-300 ease-out transform max-w-xl mx-auto mb-8 pb-6 border-b border-[#E8DACB]/80 ${hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                      }`}
                   >
                     <p className="font-serif italic text-lg sm:text-xl text-[#261810] font-medium leading-relaxed">
                       «Hay momentos en la vida que son inolvidables, y compartirlos con las personas que más amamos los hace eternos.»
@@ -554,9 +554,8 @@ export const BeachWeddingInvitation: React.FC = () => {
 
                   {/* Element 4: Immediate Countdown Timer (Appears with delay) */}
                   <div
-                    className={`w-full transition-all duration-700 delay-450 ease-out transform ${
-                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                    }`}
+                    className={`w-full transition-all duration-700 delay-450 ease-out transform ${hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                      }`}
                   >
                     <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#5A3312] font-bold block mb-4">
                       Cuenta Regresiva
