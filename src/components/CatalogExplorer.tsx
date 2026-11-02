@@ -21,6 +21,7 @@ import { ParchmentLogo } from './ParchmentLogo';
 
 const CATEGORIES: StyleCategory[] = [
   'Todos',
+  'Editorial Clásico',
   'Botánico & Salvia',
   'Minimalista Lujo',
   'Hacienda & Romántico',
@@ -63,7 +64,7 @@ export const CatalogExplorer: React.FC = () => {
   return (
     <div>
       {/* Category Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-12">
         {CATEGORIES.map((category) => {
           const active = selectedCategory === category;
           return (
@@ -71,7 +72,7 @@ export const CatalogExplorer: React.FC = () => {
               key={category}
               type="button"
               onClick={() => setSelectedCategory(category)}
-              className={`px-5 py-2.5 text-xs uppercase tracking-[0.16em] transition-all duration-300 ${
+              className={`px-4 sm:px-5 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-300 ${
                 active
                   ? 'bg-charcoal text-ivory-50 shadow-sm'
                   : 'bg-ivory-50 text-charcoal-light border border-ivory-300 hover:border-gold/60'
@@ -83,115 +84,63 @@ export const CatalogExplorer: React.FC = () => {
         })}
       </div>
 
-      {/* Templates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Templates Grid - Sin contenedor crema, flotando directamente en la página */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center max-w-5xl mx-auto">
         {filteredTemplates.map((tpl) => {
           const couple = getDisplayCouple(tpl);
-          const isFrayedArtisanal = tpl.id === 'papel-artesanal-deshilachado';
 
           return (
-            <article
+            <a
               key={tpl.id}
-              className={`group relative bg-[#FCFAF7] rounded-3xl border border-gold/30 p-4 sm:p-5 shadow-editorial hover:shadow-editorial-lg transition-all duration-500 flex flex-col justify-between ${
-                isFrayedArtisanal ? 'ring-1 ring-[#5C6B47]/30' : ''
-              }`}
+              href={`/disenos/${tpl.slug}`}
+              className="group flex flex-col items-center w-full max-w-[215px] sm:max-w-[225px] transition-all duration-300 cursor-pointer block no-underline text-inherit"
+              aria-label={`Ver invitación de ${tpl.name}`}
             >
-              <div>
-                {/* Slender Portrait Preview Frame (Conserva la forma estilizada sin elementos de celular) */}
-                <div className="relative mx-auto w-full flex justify-center pt-1 pb-2">
-                  <div className="relative w-[230px] sm:w-[250px] h-[460px] sm:h-[490px] rounded-[34px] overflow-hidden shadow-editorial-lg border-[3px] border-[#C29F68] ring-2 ring-[#8F7042]/50 transition-all duration-500 group-hover:scale-[1.02] group-hover:border-[#D4AF37] group-hover:shadow-[0_12px_32px_rgba(194,159,104,0.3)]">
-                    {/* Main Invitation Cover Photo */}
-                    <img
-                      src={tpl.coverImage}
-                      alt={`Invitación de boda digital modelo ${tpl.name}`}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-charcoal/10" />
+              {/* Marco de Previsualización de la Invitación (La Invi) */}
+              <div className="relative w-full h-[370px] sm:h-[390px] rounded-[26px] overflow-hidden shadow-editorial border-[2.5px] border-[#C29F68] ring-1 ring-[#8F7042]/40 transition-all duration-500 group-hover:scale-[1.02] group-hover:border-[#D4AF37] group-hover:shadow-[0_14px_34px_rgba(194,159,104,0.35)]">
+                {/* Foto Principal de Portada */}
+                <img
+                  src={tpl.coverImage}
+                  alt={`Invitación de boda digital modelo ${tpl.name}`}
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-charcoal/10" />
 
-                    {/* Top Category Badge */}
-                    <div className="absolute top-5 left-0 right-0 flex justify-center z-10">
-                      <span className="px-3 py-1 bg-ivory-50/95 backdrop-blur-md rounded-full text-[9px] uppercase tracking-[0.2em] text-charcoal font-semibold border border-gold/30 shadow-xs">
-                        {tpl.badge || tpl.category}
-                      </span>
-                    </div>
-
-                    {/* Simulated Invitation Plaque on Image */}
-                    <div
-                      className={`absolute bottom-4 left-3 right-3 text-center p-3 sm:p-3.5 backdrop-blur-md shadow-editorial z-10 ${
-                        isFrayedArtisanal
-                          ? 'deckle-card bg-[#FAF6EE]/95 border border-[#CFC2AA]'
-                          : 'bg-ivory-50/95 rounded-xl border border-gold/35'
-                      }`}
-                    >
-                      <span
-                        className="text-[8.5px] uppercase tracking-[0.26em] font-medium block"
-                        style={{ color: isFrayedArtisanal ? '#5C6B47' : '#96763E' }}
-                      >
-                        {tpl.coupleDemo.displayDate}
-                      </span>
-                      <p className="font-serif text-lg sm:text-xl text-charcoal mt-0.5 font-normal leading-snug">
-                        {couple.bride}{' '}
-                        <span
-                          className="italic font-serif"
-                          style={{ color: isFrayedArtisanal ? '#5C6B47' : '#96763E' }}
-                        >
-                          &amp;
-                        </span>{' '}
-                        {couple.groom}
-                      </p>
-                      <p className="text-[10px] text-charcoal-muted truncate mt-0.5 font-light">
-                        {tpl.coupleDemo.city}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Concise Card Content */}
-                <div className="pt-4 pb-2 px-1 text-center sm:text-left">
-                  <div className="mb-2 flex items-center justify-between gap-2">
-                    <span className="text-[10px] uppercase tracking-[0.22em] text-gold-dark font-medium block">
-                      {tpl.collection}
-                    </span>
-                    {/* Palette Swatches Preview */}
-                    <div className="flex items-center gap-1" title={tpl.palette.name}>
-                      <span
-                        className="w-3.5 h-3.5 rounded-full border border-charcoal/20"
-                        style={{ backgroundColor: tpl.palette.cardHex }}
-                      />
-                      <span
-                        className="w-3.5 h-3.5 rounded-full border border-charcoal/20"
-                        style={{ backgroundColor: tpl.palette.bgHex }}
-                      />
-                      <span
-                        className="w-3.5 h-3.5 rounded-full border border-charcoal/20"
-                        style={{ backgroundColor: tpl.palette.accentHex }}
-                      />
-                    </div>
-                  </div>
-
-                  <h3 className="font-serif text-2xl sm:text-[26px] text-charcoal font-normal mt-0.5">
-                    {tpl.name}
-                  </h3>
-
-                  <p className="text-sm text-charcoal-muted leading-relaxed font-light mt-2">
-                    {tpl.shortDescription}
+                {/* Plaqueta Inferior Simulada sobre la Foto */}
+                <div className="absolute bottom-3 left-2.5 right-2.5 text-center p-2.5 backdrop-blur-md shadow-editorial z-10 bg-ivory-50/95 rounded-lg border border-gold/35">
+                  <span className="text-[8px] uppercase tracking-[0.22em] font-medium block text-gold-dark">
+                    {tpl.coupleDemo.displayDate}
+                  </span>
+                  <p className="font-serif text-base sm:text-lg text-charcoal mt-0.5 font-normal leading-snug">
+                    {couple.bride}{' '}
+                    <span className="italic font-serif text-gold-dark">
+                      &amp;
+                    </span>{' '}
+                    {couple.groom}
+                  </p>
+                  <p className="text-[9px] text-charcoal-muted truncate mt-0.5 font-light">
+                    {tpl.coupleDemo.city}
                   </p>
                 </div>
               </div>
 
-              {/* Card Footer Actions: Conciso y Directo */}
-              <div className="pt-4 pb-1">
-                <a
-                  href={`/disenos/${tpl.slug}`}
-                  className="w-full py-3.5 bg-charcoal hover:bg-gold-dark text-ivory-50 text-xs uppercase tracking-[0.18em] font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-sm rounded-lg"
-                >
-                  <ParchmentLogo className="w-4 h-4 text-gold-light" />
-                  <span>Abrir Invitación Completa</span>
-                  <ArrowUpRight className="w-4 h-4 opacity-75" />
-                </a>
+              {/* Título: Del mismo ancho que la invitación, altura fija para alineación perfecta */}
+              <div className="w-full h-[52px] sm:h-[56px] mt-3.5 mb-2.5 flex items-center justify-center text-center px-0.5">
+                <h3 className="font-serif text-lg sm:text-[19px] text-charcoal group-hover:text-gold-dark transition-colors font-normal leading-tight line-clamp-2">
+                  {tpl.name}
+                </h3>
               </div>
-            </article>
+
+              {/* Botón Ver Invitación: Exactamente del mismo ancho que la invitación */}
+              <div
+                className="w-full py-2.5 bg-charcoal group-hover:bg-gold-dark text-ivory-50 text-[11px] uppercase tracking-[0.16em] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm rounded-lg group-hover:shadow-md"
+              >
+                <ParchmentLogo className="w-3.5 h-3.5 text-gold-light" />
+                <span>Ver Invitación</span>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </div>
+            </a>
           );
         })}
       </div>

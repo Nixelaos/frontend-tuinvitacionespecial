@@ -172,3 +172,20 @@
 .animate-heart-rain {
   animation: heartRainFall linear infinite;
 }
+
+
+/* Hide scrollbar utility for clean iframe device mockups */
+.no-scrollbar::-webkit-scrollbar,
+html.hero-preview::-webkit-scrollbar,
+body.hero-preview::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.no-scrollbar,
+html.hero-preview,
+body.hero-preview {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

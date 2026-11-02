@@ -196,14 +196,14 @@ export const BeachWeddingInvitation: React.FC = () => {
         <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl flex items-center justify-center my-auto">
           {/* Subtle Instruction Badge - Positioned cleanly above the envelope without shifting its vertical center */}
           <div
-            className={`absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5 px-5 py-2 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#CDB59E] shadow-md text-xs sm:text-sm font-sans font-semibold text-[#2B190E] transition-all duration-300 max-w-[92vw] sm:max-w-none text-center ${
+            className={`absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center px-5 py-2 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#CDB59E] shadow-md text-xs sm:text-sm font-sans font-semibold text-[#2B190E] transition-all duration-300 max-w-[92vw] sm:max-w-none text-center ${
               isOpening ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 animate-pulse'
             }`}
           >
-            <Sparkles className="w-4 h-4 text-[#A86F32] shrink-0" />
+
             <span className="hidden sm:inline whitespace-nowrap">Haz clic en cualquier parte para abrir el sobre</span>
             <span className="sm:hidden whitespace-nowrap">Toca el sobre para abrir</span>
-            <Sparkles className="w-4 h-4 text-[#A86F32] shrink-0" />
+
           </div>
 
           {/* Envelope Body Container - Dead Center */}
