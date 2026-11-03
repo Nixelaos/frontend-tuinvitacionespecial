@@ -16,10 +16,8 @@ export const BeachWeddingInvitation: React.FC = () => {
   // Spray airbrush reveal state for hero photo
   const [isSprayed, setIsSprayed] = useState(false);
 
-  // Video & Canvas references for single-play supernova effect
+  // Video reference for continuous ambient particles & light effect
   const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [effectEnded, setEffectEnded] = useState(false);
 
   // Scroll reveal trigger
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -100,7 +98,6 @@ export const BeachWeddingInvitation: React.FC = () => {
     setTimeout(() => {
       setIsOpen(true);
       setIsOpening(false);
-      setEffectEnded(false);
       // Trigger spray airbrush photo reveal right upon landing
       setTimeout(() => {
         setIsSprayed(true);
@@ -113,70 +110,21 @@ export const BeachWeddingInvitation: React.FC = () => {
     setIsOpening(false);
     setIsOpen(false);
     setIsSprayed(false);
-    setEffectEnded(false);
     setHasScrolled(false);
   };
 
-  // Real-time Chroma Key processor: renders supernova.webm ONLY ONCE
+  // Video playback control: plays and loops particles & light effect on photo
   useEffect(() => {
-    if (!isOpen) return;
-
     const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if (!video || !canvas) return;
+    if (!video) return;
 
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
-
-    let animId: number;
-
-    // Reset video to start for 1-time playback
-    video.currentTime = 0;
-    video.play().catch(() => {});
-
-    const render = () => {
-      if (video.ended) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        setEffectEnded(true);
-        return;
-      }
-
-      if (video.readyState >= 2 && !video.paused) {
-        const w = canvas.width;
-        const h = canvas.height;
-        ctx.drawImage(video, 0, 0, w, h);
-        const imgData = ctx.getImageData(0, 0, w, h);
-        const data32 = new Uint32Array(imgData.data.buffer);
-        const len = data32.length;
-
-        for (let i = 0; i < len; i++) {
-          const px = data32[i];
-          const r = px & 0xff;
-          const g = (px >> 8) & 0xff;
-          const b = (px >> 16) & 0xff;
-          if (r < 40 && g < 40 && b < 40) {
-            data32[i] = 0;
-          }
-        }
-        ctx.putImageData(imgData, 0, 0);
-      }
-      animId = requestAnimationFrame(render);
-    };
-
-    animId = requestAnimationFrame(render);
-
-    const onEnded = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      setEffectEnded(true);
-      cancelAnimationFrame(animId);
-    };
-
-    video.addEventListener('ended', onEnded);
-
-    return () => {
-      cancelAnimationFrame(animId);
-      video.removeEventListener('ended', onEnded);
-    };
+    if (isOpen) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
   }, [isOpen]);
 
   return (
@@ -413,11 +361,13 @@ export const BeachWeddingInvitation: React.FC = () => {
 
               {/* SELLO DE CERA REALISTA */}
               <div
-                className={`absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${
+                className={`absolute left-1/2 top-[58%] w-[22%] max-w-[96px] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${
                   isOpening ? 'scale-125 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
                 }`}
               >
-                <div className="relative w-22 h-22 sm:w-24 sm:h-24 flex items-center justify-center">
+                <div
+                  className="relative w-full aspect-square flex items-center justify-center"
+                >
                   <img
                     src="/images/sello-cera.webp"
                     alt="Sello de cera V & S"
@@ -472,26 +422,26 @@ export const BeachWeddingInvitation: React.FC = () => {
                   }}
                 />
 
-                {/* Real-time Chroma-Key Canvas: Vertical Mobile (Plays Only Once) */}
-                <canvas
-                  ref={canvasRef}
-                  width={540}
-                  height={810}
-                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none z-10 transition-opacity duration-1000 ${
-                    effectEnded ? 'opacity-0' : 'opacity-100'
-                  }`}
-                  style={{ mixBlendMode: 'screen' }}
-                />
-
-                {/* Hidden Source Video for Frame Extraction (No loop) */}
+                {/* Video Overlay: Miles de Partículas Doradas (Efecto Cinemagraph) */}
                 <video
                   ref={videoRef}
-                  src="/effects/supernova.webm"
+                  src="/effects/miles_de_particulas_doradas.webm"
                   autoPlay
                   muted
+                  loop
                   playsInline
-                  className="hidden"
-                />
+                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none z-10 transition-opacity duration-1000 ${
+                    isSprayed ? 'opacity-90' : 'opacity-0'
+                  }`}
+                  style={{
+                    mixBlendMode: 'screen',
+                    filter: 'contrast(125%) brightness(105%)',
+                  }}
+                >
+                  <source src="/effects/miles_de_particulas_doradas.webm" type="video/webm" />
+                  <source src="/effects/particulas_y_luz.webm" type="video/webm" />
+                  <source src="/effects/supernova.webm" type="video/webm" />
+                </video>
 
                 {/* Gentle Vignette Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/20 pointer-events-none z-15" />
