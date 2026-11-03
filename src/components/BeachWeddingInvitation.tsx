@@ -69,17 +69,6 @@ const TORN_PAPER_CLIP = `polygon(
   96.89% 7.9px,
   98.44% 10.3px,
   100.0% 10.3px,
-  99.3% 10%,
-  100% 18%,
-  98.8% 26%,
-  99.8% 35%,
-  99.1% 44%,
-  100% 53%,
-  98.9% 62%,
-  99.7% 71%,
-  99.0% 80%,
-  99.8% 89%,
-  99.2% 96%,
   100.0% calc(100% - 23.7px),
   98.44% calc(100% - 23.9px),
   96.89% calc(100% - 22.6px),
@@ -145,18 +134,7 @@ const TORN_PAPER_CLIP = `polygon(
   4.56% calc(100% - 7.3px),
   3.11% calc(100% - 7.4px),
   1.56% calc(100% - 9.6px),
-  0.0% calc(100% - 9.6px),
-  0.8% 95%,
-  0.1% 87%,
-  1.1% 79%,
-  0.2% 70%,
-  1.2% 61%,
-  0.3% 52%,
-  1.0% 43%,
-  0.1% 34%,
-  1.1% 25%,
-  0.2% 16%,
-  0.9% 8%
+  0.0% calc(100% - 9.6px)
 )`;
 
 export const BeachWeddingInvitation: React.FC = () => {
@@ -624,37 +602,16 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
             </section>
 
-            {/* SECCIÓN ARTÍSTICA DE PAPEL ROTO: FECHA, CITA + COUNTDOWN EN PROPORCIÓN CELULAR */}
-            <div ref={detailsRef} className="relative w-full px-3.5 my-3.5">
-              <div className="relative filter drop-shadow-[0_16px_36px_rgba(110,80,55,0.22)]">
-                {/* Fibrous raw deckle pulp underlay for realistic 3D torn paper depth */}
-                <div
-                  className="absolute -inset-0.5 bg-[#EADECE] pointer-events-none opacity-60"
-                  style={{
-                    clipPath: TORN_PAPER_CLIP,
-                    transform: 'scale(1.012)',
-                  }}
-                  aria-hidden="true"
-                />
-
-                {/* Main handmade torn paper sheet with authentic deep ragged edge */}
-                <div
-                  className="bg-[#FCF9F3] relative px-4 pt-10 pb-9 text-center"
-                  style={{
-                    clipPath: TORN_PAPER_CLIP,
-                  }}
-                >
-                  {/* Subtle Paper Fiber Grain Texture */}
-                  <div
-                    className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none"
-                    style={{
-                      backgroundImage: `radial-gradient(#D2BAA2 0.75px, transparent 0.75px), radial-gradient(#D2BAA2 0.75px, #FCF9F3 0.75px)`,
-                      backgroundSize: '16px 16px',
-                      backgroundPosition: '0 0, 8px 8px',
-                    }}
-                  />
-
-                  {/* Content Container */}
+            {/* SECCIÓN ARTÍSTICA DE PAPEL ROTO: FECHA, CITA + COUNTDOWN (PEGADA A LOS BORDES LATERALES) */}
+            <div ref={detailsRef} className="relative w-full my-4">
+              {/* Main handmade torn paper sheet with authentic deep ragged edge (Edge-to-Edge) */}
+              <div
+                className="bg-[#FCF9F3] relative w-full px-6 pt-10 pb-9 text-center"
+                style={{
+                  clipPath: TORN_PAPER_CLIP,
+                }}
+              >
+                {/* Content Container */}
                   <div className="relative z-10 flex flex-col items-center">
                     {/* Element 1: "Estás cordialmente invitado" */}
                     <div
@@ -765,7 +722,6 @@ export const BeachWeddingInvitation: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         )}
       </div>
