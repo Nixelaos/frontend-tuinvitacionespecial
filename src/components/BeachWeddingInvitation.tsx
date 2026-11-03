@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Heart, RotateCcw } from 'lucide-react';
+import { Heart, RotateCcw, Sparkles, Sun, Mail } from 'lucide-react';
 
 // Bespoke ragged torn paper polygon mask (irregular handmade deckled edges)
 const TORN_PAPER_CLIP = `polygon(
@@ -137,6 +137,49 @@ const TORN_PAPER_CLIP = `polygon(
   0.0% calc(100% - 9.6px)
 )`;
 
+// Reusable scroll-reveal container: stays hidden until scrolled into view
+const ScrollReveal: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+  threshold?: number;
+}> = ({ children, className = '', threshold = 0.12 }) => {
+  const domRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = domRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold,
+        rootMargin: '0px 0px -30px 0px',
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return (
+    <div
+      ref={domRef}
+      className={`transition-all duration-1000 ease-out transform ${
+        isVisible
+          ? 'opacity-100 translate-y-0 scale-100'
+          : 'opacity-0 translate-y-12 scale-[0.98] pointer-events-none'
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
 export const BeachWeddingInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
@@ -162,10 +205,6 @@ export const BeachWeddingInvitation: React.FC = () => {
     setIsEffectFading(true);
     setIsEffectEnded(true);
   };
-
-  // Scroll reveal trigger
-  const [hasScrolled, setHasScrolled] = useState(false);
-  const detailsRef = useRef<HTMLDivElement>(null);
 
   // Target wedding date: November 14, 2026 at 12:30
   const TARGET_DATE = new Date('2026-11-14T12:30:00').getTime();
@@ -201,39 +240,6 @@ export const BeachWeddingInvitation: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Listen to first user scroll movement to trigger progressive reveal
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setHasScrolled(true);
-      }
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setHasScrolled(true);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    if (detailsRef.current) {
-      observer.observe(detailsRef.current);
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-    };
-  }, [isOpen]);
-
   // Trigger envelope opening
   const handleOpenEnvelope = () => {
     if (isOpen || isOpening) return;
@@ -258,7 +264,6 @@ export const BeachWeddingInvitation: React.FC = () => {
     setIsSprayed(false);
     setIsEffectFading(false);
     setIsEffectEnded(false);
-    setHasScrolled(false);
   };
 
   // Video playback control: single play upon opening, resetting on close
@@ -489,23 +494,15 @@ export const BeachWeddingInvitation: React.FC = () => {
                     />
                   </svg>
 
-                  {/* V & S y "Para siempre" escrito directamente en el sobre */}
-                  <div className="absolute top-3 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-2">
+                  {/* Valentina & Sebastián escrito directamente en el sobre */}
+                  <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-3">
                     <span
-                      className="text-2xl text-[#1E0D03] leading-none font-bold tracking-wider drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]"
+                      className="font-script text-2xl sm:text-3xl text-[#2A1204] leading-tight font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)]"
                       style={{
-                        fontFamily: "'Great Vibes', 'Dancing Script', 'Alex Brush', cursive",
+                        fontFamily: "'Great Vibes', cursive",
                       }}
                     >
-                      V &amp; S
-                    </span>
-                    <span
-                      className="text-2xl text-[#2A1204] leading-none mt-1 font-normal drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]"
-                      style={{
-                        fontFamily: "'Great Vibes', 'Dancing Script', 'Alex Brush', cursive",
-                      }}
-                    >
-                      Para siempre
+                      Valentina <span className="text-[#8E5A2B]">&amp;</span> Sebastián
                     </span>
                   </div>
                 </div>
@@ -615,75 +612,95 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
             </section>
 
-            {/* SECCIÓN ARTÍSTICA DE PAPEL ROTO: FECHA MANUSCRITA + CUENTA REGRESIVA */}
-            <div ref={detailsRef} className="relative z-20 w-full -mt-12 sm:-mt-14 mb-4">
+            {/* SECCIÓN 1: PAPEL ROTO CON FLOR DE CONTRASTE — ¡NOS CASAMOS!, FECHA Y COUNTDOWN MANUSCRITO */}
+            <ScrollReveal className="relative z-20 w-full -mt-12 sm:-mt-14 mb-8">
               {/* Main handmade torn paper sheet with authentic deep ragged edge (Edge-to-Edge) */}
               <div
-                className="bg-[#FCF9F3] relative w-full px-4 pt-12 pb-10 text-center"
+                className="bg-[#FCF9F3] relative w-full px-4 pt-12 pb-10 text-center shadow-xs"
                 style={{
                   clipPath: TORN_PAPER_CLIP,
                 }}
               >
+                {/* Flor botánica de contraste en el borde de papel rasgado */}
+                <div className="absolute -top-8 sm:-top-11 right-2 sm:right-4 w-20 sm:w-24 md:w-28 z-30 pointer-events-none transform rotate-12 drop-shadow-[0_6px_12px_rgba(60,25,12,0.25)]">
+                  <img
+                    src="/images/flor-contraste.webp"
+                    alt="Flor de contraste"
+                    className="w-full h-auto object-contain select-none"
+                    loading="eager"
+                  />
+                </div>
+
                 {/* Content Container */}
                 <div className="relative z-10 flex flex-col items-center">
-                  {/* Fecha en Letras Manuscritas (Great Vibes) */}
-                  <div
-                    className={`transition-all duration-700 ease-out transform ${
-                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                    }`}
+                  {/* ¡Nos casamos! en letra manuscrita */}
+                  <span
+                    className="font-script text-3xl sm:text-4xl text-[#B87A4A] font-normal tracking-wide leading-none mb-2"
+                    style={{ fontFamily: "'Great Vibes', cursive" }}
                   >
-                    <h2
-                      className="font-script text-3xl sm:text-4xl text-[#2F2420] font-normal tracking-wide mb-6"
-                      style={{ fontFamily: "'Great Vibes', cursive" }}
-                    >
-                      Sábado, 14 de Noviembre de 2026
-                    </h2>
-                  </div>
+                    ¡Nos casamos!
+                  </span>
 
-                  {/* Cuenta Regresiva Inmediata */}
-                  <div
-                    className={`w-full transition-all duration-700 delay-200 ease-out transform ${
-                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                    }`}
+                  {/* Fecha en Letras Manuscritas (Great Vibes) */}
+                  <h2
+                    className="font-script text-2xl sm:text-3xl md:text-4xl text-[#2F2420] font-normal tracking-wide mb-6 leading-tight"
+                    style={{ fontFamily: "'Great Vibes', cursive" }}
                   >
+                    Sábado, 14 de Noviembre de 2026
+                  </h2>
+
+                  {/* Cuenta Regresiva con números manuscritos */}
+                  <div className="w-full">
                     {/* Countdown 4-Card Grid on Torn Paper Sheet */}
                     <div className="grid grid-cols-4 gap-2 max-w-xs mx-auto">
                       {/* Días */}
-                      <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
-                        <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
+                      <div className="bg-[#FFFDF9]/95 backdrop-blur-xs rounded-xl border border-[#E8DACB] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
+                        <span
+                          className="font-script text-3xl sm:text-4xl text-[#2F2420] font-normal leading-none mb-0.5"
+                          style={{ fontFamily: "'Great Vibes', cursive" }}
+                        >
                           {timeLeft.days}
                         </span>
-                        <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
+                        <span className="text-[8px] sm:text-[9px] tracking-[0.2em] text-[#916E49] uppercase font-semibold">
                           Días
                         </span>
                       </div>
 
                       {/* Horas */}
-                      <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
-                        <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
+                      <div className="bg-[#FFFDF9]/95 backdrop-blur-xs rounded-xl border border-[#E8DACB] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
+                        <span
+                          className="font-script text-3xl sm:text-4xl text-[#2F2420] font-normal leading-none mb-0.5"
+                          style={{ fontFamily: "'Great Vibes', cursive" }}
+                        >
                           {String(timeLeft.hours).padStart(2, '0')}
                         </span>
-                        <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
+                        <span className="text-[8px] sm:text-[9px] tracking-[0.2em] text-[#916E49] uppercase font-semibold">
                           Horas
                         </span>
                       </div>
 
                       {/* Minutos */}
-                      <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
-                        <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
+                      <div className="bg-[#FFFDF9]/95 backdrop-blur-xs rounded-xl border border-[#E8DACB] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
+                        <span
+                          className="font-script text-3xl sm:text-4xl text-[#2F2420] font-normal leading-none mb-0.5"
+                          style={{ fontFamily: "'Great Vibes', cursive" }}
+                        >
                           {String(timeLeft.minutes).padStart(2, '0')}
                         </span>
-                        <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
+                        <span className="text-[8px] sm:text-[9px] tracking-[0.2em] text-[#916E49] uppercase font-semibold">
                           Min
                         </span>
                       </div>
 
                       {/* Segundos */}
-                      <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
-                        <span className="font-serif text-2xl text-[#B8864E] font-normal leading-none mb-1 animate-pulse">
+                      <div className="bg-[#FFFDF9]/95 backdrop-blur-xs rounded-xl border border-[#E8DACB] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
+                        <span
+                          className="font-script text-3xl sm:text-4xl text-[#B87A4A] font-normal leading-none mb-0.5 animate-pulse"
+                          style={{ fontFamily: "'Great Vibes', cursive" }}
+                        >
                           {String(timeLeft.seconds).padStart(2, '0')}
                         </span>
-                        <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
+                        <span className="text-[8px] sm:text-[9px] tracking-[0.2em] text-[#916E49] uppercase font-semibold">
                           Seg
                         </span>
                       </div>
@@ -691,7 +708,106 @@ export const BeachWeddingInvitation: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
+
+            {/* SECCIÓN 2: PRIMER MENSAJE ESPECIAL — PALABRAS DEL CORAZÓN */}
+            <ScrollReveal className="w-full px-4 mb-6">
+              <div className="bg-[#FCF9F3] rounded-2xl border border-[#E9DDD0] shadow-sm p-6 sm:p-7 relative overflow-hidden text-center">
+                {/* Subtle top badge */}
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] text-[#9A6F45] text-[10px] uppercase tracking-[0.24em] font-semibold mb-3 shadow-xs">
+                  <Sparkles className="w-3 h-3 text-[#C59B6D]" />
+                  <span>Un Mensaje Especial</span>
+                </div>
+
+                <h3
+                  className="font-script text-3xl sm:text-4xl text-[#2F2420] mb-4 font-normal"
+                  style={{ fontFamily: "'Great Vibes', cursive" }}
+                >
+                  Palabras del Corazón
+                </h3>
+
+                <p className="font-serif italic text-base sm:text-lg text-[#3E3029] leading-relaxed mb-4 max-w-sm mx-auto">
+                  «A orillas del mar, donde cada ola nos recuerda la inmensidad del camino que elegimos recorrer juntos, decidimos dar el paso más importante de nuestras vidas.»
+                </p>
+
+                <p className="font-serif text-xs sm:text-sm text-[#5B473E] leading-relaxed mb-6 max-w-xs mx-auto">
+                  Queremos agradecerte de corazón por ser parte de nuestra historia, por cada abrazo y por acompañarnos en este hermoso comienzo. Nuestro día no sería lo mismo sin ti.
+                </p>
+
+                {/* Couple signature */}
+                <div className="flex flex-col items-center">
+                  <span
+                    className="font-script text-2xl sm:text-3xl text-[#9A6F45]"
+                    style={{ fontFamily: "'Great Vibes', cursive" }}
+                  >
+                    Valentina &amp; Sebastián
+                  </span>
+                  <div className="flex items-center justify-center gap-2 mt-2">
+                    <span className="w-10 h-[1px] bg-[#D4AF37]/45" />
+                    <Heart className="w-3 h-3 text-[#B8864E] fill-[#B8864E]" />
+                    <span className="w-10 h-[1px] bg-[#D4AF37]/45" />
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* SECCIÓN 3: SEGUNDO MENSAJE ESPECIAL — DETALLES DE LA CELEBRACIÓN */}
+            <ScrollReveal className="w-full px-4 mb-8">
+              <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8DACB] shadow-sm p-6 sm:p-7 relative overflow-hidden text-center">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] text-[#9A6F45] text-[10px] uppercase tracking-[0.24em] font-semibold mb-3 shadow-xs">
+                  <Heart className="w-3 h-3 text-[#C59B6D] fill-[#C59B6D]" />
+                  <span>Pensado para ti</span>
+                </div>
+
+                <h3
+                  className="font-script text-3xl sm:text-4xl text-[#2F2420] mb-5 font-normal"
+                  style={{ fontFamily: "'Great Vibes', cursive" }}
+                >
+                  Momentos Inolvidables
+                </h3>
+
+                <div className="grid grid-cols-1 gap-3.5 max-w-sm mx-auto text-left">
+                  {/* Card 1: Dress Code */}
+                  <div className="bg-[#FCF9F3] rounded-xl border border-[#ECE0D3] p-4 flex items-start gap-3.5 shadow-xs">
+                    <div className="w-9 h-9 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] flex items-center justify-center shrink-0 mt-0.5">
+                      <Sun className="w-4 h-4 text-[#B8864E]" />
+                    </div>
+                    <div>
+                      <h4 className="font-serif text-sm font-semibold text-[#2F2420] tracking-wide mb-1">
+                        Código de Vestimenta: Playa Elegante
+                      </h4>
+                      <p className="text-xs text-[#6B5548] leading-relaxed">
+                        Lino, guayaberas y vestidos frescos en tonos arena, cálidos o pasteles. Sugerimos calzado cómodo para disfrutar libremente de la brisa y la arena.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card 2: Lluvia de Sobres */}
+                  <div className="bg-[#FCF9F3] rounded-xl border border-[#ECE0D3] p-4 flex items-start gap-3.5 shadow-xs">
+                    <div className="w-9 h-9 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] flex items-center justify-center shrink-0 mt-0.5">
+                      <Mail className="w-4 h-4 text-[#B8864E]" />
+                    </div>
+                    <div>
+                      <h4 className="font-serif text-sm font-semibold text-[#2F2420] tracking-wide mb-1">
+                        Lluvia de Sobres
+                      </h4>
+                      <p className="text-xs text-[#6B5548] leading-relaxed">
+                        Tu compañía es nuestro mejor regalo. Si deseas hacernos un presente para nuestro nuevo hogar, dispondremos de un buzón de sobres durante la velada.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-[#E8DACB]/60">
+                  <p
+                    className="font-script text-2xl text-[#8E5A2B]"
+                    style={{ fontFamily: "'Great Vibes', cursive" }}
+                  >
+                    ¡Nos vemos junto al mar para celebrar!
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         )}
       </div>
