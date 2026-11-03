@@ -519,7 +519,7 @@ export const BeachWeddingInvitation: React.FC = () => {
         {isOpen && (
           <div className="w-full animate-fadeIn transition-opacity duration-1000 pb-20 flex flex-col">
             {/* Top Floating Control Bar (permanece dentro de la vista de celular) */}
-            <div className="sticky top-3 self-end z-50 mr-3 pointer-events-auto">
+            <div className="absolute top-3 right-3 z-30 pointer-events-auto">
               <button
                 onClick={handleReset}
                 className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 hover:bg-white backdrop-blur-md border border-[#E2D2C2] shadow-sm text-stone-700 text-xs font-medium transition-all hover:scale-105 active:scale-95"
@@ -530,10 +530,10 @@ export const BeachWeddingInvitation: React.FC = () => {
               </button>
             </div>
 
-            {/* SECCIÓN HERO: FOTO VERTICAL (COMPROMETIDOS) CON EFECTO SPRAY + SUPERNOVA */}
-            <section className="relative w-full pt-2 pb-5 flex flex-col items-center justify-center px-3.5">
-              {/* Framed Photo & Supernova Container - Vertical Mobile Proportion (Aspect 9:13.5) */}
-              <div className="relative w-full aspect-[9/13.5] rounded-2xl overflow-hidden shadow-[0_16px_40px_rgba(110,80,60,0.22)] border-2 border-white/85 bg-[#F4E9DC]">
+            {/* SECCIÓN HERO: FOTO VERTICAL (COMPROMETIDOS) CALZADA A BORDES DE ARRIBA Y LADOS */}
+            <section className="relative w-full overflow-hidden">
+              {/* Photo & Video Container - Full Bleed to Top and Lateral Edges */}
+              <div className="relative w-full aspect-[9/13.5] overflow-hidden bg-[#F4E9DC]">
                 {/* Foto de Pareja de Novios Comprometidos */}
                 <img
                   src="/images/comprometidos.webp"
@@ -574,39 +574,24 @@ export const BeachWeddingInvitation: React.FC = () => {
                 {/* Gentle Vignette Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/20 pointer-events-none z-15" />
 
-                {/* Names Overlay over Photo */}
+                {/* Names Overlay over Photo: ONLY 'Valentina & Sebastián' */}
                 <div
-                  className={`absolute inset-0 z-20 flex flex-col items-center justify-end p-5 text-center text-white transition-all duration-1000 delay-300 ${
+                  className={`absolute inset-0 z-20 flex flex-col items-center justify-end px-5 pb-16 sm:pb-20 text-center text-white transition-all duration-1000 delay-300 pointer-events-none ${
                     isSprayed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                 >
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-[10px] font-medium uppercase tracking-[0.25em] shadow-sm mb-2">
-                    <Sparkles className="w-3 h-3 text-amber-200" />
-                    <span>Nuestra Boda</span>
-                    <Sparkles className="w-3 h-3 text-amber-200" />
-                  </div>
-
-                  <h1 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] font-normal mb-1">
+                  <h1 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] font-normal">
                     Valentina <span className="italic font-light text-amber-100">&amp;</span> Sebastián
                   </h1>
-
-                  <p className="font-serif italic text-sm text-amber-50 drop-shadow max-w-xs">
-                    «Junto al mar y bajo el sol radiante de mediodía»
-                  </p>
-
-                  {/* Subtle Scroll Hint */}
-                  <div className="mt-3 flex items-center gap-1.5 text-white/75 text-[10px] uppercase tracking-widest font-light animate-bounce">
-                    <span>Desliza hacia abajo</span>
-                  </div>
                 </div>
               </div>
             </section>
 
-            {/* SECCIÓN ARTÍSTICA DE PAPEL ROTO: FECHA, CITA + COUNTDOWN (PEGADA A LOS BORDES LATERALES) */}
-            <div ref={detailsRef} className="relative w-full my-4">
+            {/* SECCIÓN ARTÍSTICA DE PAPEL ROTO: FECHA, CITA + COUNTDOWN (SOBRE LA PARTE INFERIOR DE LA FOTO) */}
+            <div ref={detailsRef} className="relative z-20 w-full -mt-12 sm:-mt-14 mb-4">
               {/* Main handmade torn paper sheet with authentic deep ragged edge (Edge-to-Edge) */}
               <div
-                className="bg-[#FCF9F3] relative w-full px-6 pt-10 pb-9 text-center"
+                className="bg-[#FCF9F3] relative w-full px-6 pt-12 pb-9 text-center"
                 style={{
                   clipPath: TORN_PAPER_CLIP,
                 }}
