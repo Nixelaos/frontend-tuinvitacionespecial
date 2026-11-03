@@ -35,8 +35,9 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', ' Cambria', 'serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'Cambria', 'serif'],
         sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        script: ['"Great Vibes"', 'cursive'],
       },
       boxShadow: {
         editorial: '0 20px 50px -12px rgba(34, 31, 29, 0.08)',

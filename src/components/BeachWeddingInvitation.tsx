@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Sparkles, Heart, RotateCcw, Clock, MapPin } from 'lucide-react';
+import { Heart, RotateCcw } from 'lucide-react';
 
 // Bespoke ragged torn paper polygon mask (irregular handmade deckled edges)
 const TORN_PAPER_CLIP = `polygon(
@@ -144,8 +144,24 @@ export const BeachWeddingInvitation: React.FC = () => {
   // Spray airbrush reveal state for hero photo
   const [isSprayed, setIsSprayed] = useState(false);
 
-  // Video reference for continuous ambient particles & light effect
+  // Video reference for ambient particles & light effect (single-play with slow fade-out)
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isEffectFading, setIsEffectFading] = useState(false);
+  const [isEffectEnded, setIsEffectEnded] = useState(false);
+
+  // Trigger slow fade-out near the end of video duration (duration ~5.16s)
+  const handleVideoTimeUpdate = () => {
+    const video = videoRef.current;
+    if (!video || !video.duration) return;
+    if (video.duration - video.currentTime <= 1.8) {
+      setIsEffectFading(true);
+    }
+  };
+
+  const handleVideoEnded = () => {
+    setIsEffectFading(true);
+    setIsEffectEnded(true);
+  };
 
   // Scroll reveal trigger
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -226,6 +242,8 @@ export const BeachWeddingInvitation: React.FC = () => {
     setTimeout(() => {
       setIsOpen(true);
       setIsOpening(false);
+      setIsEffectFading(false);
+      setIsEffectEnded(false);
       // Trigger spray airbrush photo reveal right upon landing
       setTimeout(() => {
         setIsSprayed(true);
@@ -238,20 +256,26 @@ export const BeachWeddingInvitation: React.FC = () => {
     setIsOpening(false);
     setIsOpen(false);
     setIsSprayed(false);
+    setIsEffectFading(false);
+    setIsEffectEnded(false);
     setHasScrolled(false);
   };
 
-  // Video playback control: plays and loops particles & light effect on photo
+  // Video playback control: single play upon opening, resetting on close
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     if (isOpen) {
+      setIsEffectFading(false);
+      setIsEffectEnded(false);
       video.currentTime = 0;
       video.play().catch(() => {});
     } else {
       video.pause();
       video.currentTime = 0;
+      setIsEffectFading(false);
+      setIsEffectEnded(false);
     }
   }, [isOpen]);
 
@@ -550,16 +574,17 @@ export const BeachWeddingInvitation: React.FC = () => {
                   }}
                 />
 
-                {/* Video Overlay: Miles de Partículas Doradas (Efecto Cinemagraph) */}
+                {/* Video Overlay: Miles de Partículas Doradas (Reproducción única con desvanecimiento lento) */}
                 <video
                   ref={videoRef}
                   src="/effects/miles_de_particulas_doradas.webm"
                   autoPlay
                   muted
-                  loop
                   playsInline
-                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none z-10 transition-opacity duration-1000 ${
-                    isSprayed ? 'opacity-90' : 'opacity-0'
+                  onTimeUpdate={handleVideoTimeUpdate}
+                  onEnded={handleVideoEnded}
+                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none z-10 transition-opacity duration-[2000ms] ease-out ${
+                    isSprayed && !isEffectFading && !isEffectEnded ? 'opacity-90' : 'opacity-0'
                   }`}
                   style={{
                     mixBlendMode: 'screen',
@@ -574,139 +599,99 @@ export const BeachWeddingInvitation: React.FC = () => {
                 {/* Gentle Vignette Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/20 pointer-events-none z-15" />
 
-                {/* Names Overlay over Photo: ONLY 'Valentina & Sebastián' */}
+                {/* Names Overlay over Photo: ONLY 'Valentina & Sebastián' in cursive */}
                 <div
                   className={`absolute inset-0 z-20 flex flex-col items-center justify-end px-5 pb-16 sm:pb-20 text-center text-white transition-all duration-1000 delay-300 pointer-events-none ${
                     isSprayed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                 >
-                  <h1 className="font-serif text-3xl sm:text-4xl tracking-tight leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] font-normal">
-                    Valentina <span className="italic font-light text-amber-100">&amp;</span> Sebastián
+                  <h1
+                    className="font-script text-4xl sm:text-5xl md:text-6xl tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)] font-normal py-1"
+                    style={{ fontFamily: "'Great Vibes', cursive" }}
+                  >
+                    Valentina <span className="font-light text-amber-100">&amp;</span> Sebastián
                   </h1>
                 </div>
               </div>
             </section>
 
-            {/* SECCIÓN ARTÍSTICA DE PAPEL ROTO: FECHA, CITA + COUNTDOWN (SOBRE LA PARTE INFERIOR DE LA FOTO) */}
+            {/* SECCIÓN ARTÍSTICA DE PAPEL ROTO: FECHA MANUSCRITA + CUENTA REGRESIVA */}
             <div ref={detailsRef} className="relative z-20 w-full -mt-12 sm:-mt-14 mb-4">
               {/* Main handmade torn paper sheet with authentic deep ragged edge (Edge-to-Edge) */}
               <div
-                className="bg-[#FCF9F3] relative w-full px-6 pt-12 pb-9 text-center"
+                className="bg-[#FCF9F3] relative w-full px-4 pt-12 pb-10 text-center"
                 style={{
                   clipPath: TORN_PAPER_CLIP,
                 }}
               >
                 {/* Content Container */}
-                  <div className="relative z-10 flex flex-col items-center">
-                    {/* Element 1: "Estás cordialmente invitado" */}
-                    <div
-                      className={`transition-all duration-700 ease-out transform ${
-                        hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                      }`}
+                <div className="relative z-10 flex flex-col items-center">
+                  {/* Fecha en Letras Manuscritas (Great Vibes) */}
+                  <div
+                    className={`transition-all duration-700 ease-out transform ${
+                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
+                  >
+                    <h2
+                      className="font-script text-3xl sm:text-4xl text-[#2F2420] font-normal tracking-wide mb-6"
+                      style={{ fontFamily: "'Great Vibes', cursive" }}
                     >
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] text-[#9A6F45] text-[10px] uppercase tracking-[0.24em] font-semibold mb-3 shadow-xs">
-                        <Sparkles className="w-3 h-3 text-[#C59B6D]" />
-                        <span>Estás cordialmente invitado</span>
-                      </div>
-                    </div>
+                      Sábado, 14 de Noviembre de 2026
+                    </h2>
+                  </div>
 
-                    {/* Element 2: Wedding Date, Time & Venue */}
-                    <div
-                      className={`transition-all duration-700 delay-150 ease-out transform ${
-                        hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                      }`}
-                    >
-                      <h2 className="font-serif text-2xl text-[#2F2420] font-normal tracking-tight mb-2">
-                        Sábado, 14 de Noviembre de 2026
-                      </h2>
-
-                      <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-[#8C6947] tracking-wider uppercase font-medium mb-5">
-                        <span className="flex items-center gap-1 font-semibold text-[#664627]">
-                          <Clock className="w-3.5 h-3.5 text-[#B8864E]" />
-                          12:30 hrs
+                  {/* Cuenta Regresiva Inmediata */}
+                  <div
+                    className={`w-full transition-all duration-700 delay-200 ease-out transform ${
+                      hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
+                  >
+                    {/* Countdown 4-Card Grid on Torn Paper Sheet */}
+                    <div className="grid grid-cols-4 gap-2 max-w-xs mx-auto">
+                      {/* Días */}
+                      <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
+                        <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
+                          {timeLeft.days}
                         </span>
-                        <span>·</span>
-                        <span className="flex items-center gap-1 text-[#664627]">
-                          <MapPin className="w-3.5 h-3.5 text-[#B8864E]" />
-                          Playa Blanca, Bahía Serena
+                        <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
+                          Días
                         </span>
                       </div>
-                    </div>
 
-                    {/* Element 3: Romantic Quote Phrase */}
-                    <div
-                      className={`transition-all duration-700 delay-300 ease-out transform max-w-xs mx-auto mb-6 pb-4 border-b border-[#E8DACB]/80 ${
-                        hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                      }`}
-                    >
-                      <p className="font-serif italic text-base text-[#3E312C] leading-relaxed">
-                        «Hay momentos en la vida que son inolvidables, y compartirlos con las personas que más amamos los hace eternos.»
-                      </p>
-                    </div>
-
-                    {/* Element 4: Immediate Countdown Timer */}
-                    <div
-                      className={`w-full transition-all duration-700 delay-450 ease-out transform ${
-                        hasScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                      }`}
-                    >
-                      <span className="text-[10px] uppercase tracking-[0.25em] text-[#A67C52] font-semibold block mb-3">
-                        Cuenta Regresiva
-                      </span>
-
-                      {/* Countdown 4-Card Grid on Torn Paper Sheet */}
-                      <div className="grid grid-cols-4 gap-1.5 max-w-xs mx-auto">
-                        {/* Días */}
-                        <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
-                          <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
-                            {timeLeft.days}
-                          </span>
-                          <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
-                            Días
-                          </span>
-                        </div>
-
-                        {/* Horas */}
-                        <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
-                          <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
-                            {String(timeLeft.hours).padStart(2, '0')}
-                          </span>
-                          <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
-                            Horas
-                          </span>
-                        </div>
-
-                        {/* Minutos */}
-                        <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
-                          <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
-                            {String(timeLeft.minutes).padStart(2, '0')}
-                          </span>
-                          <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
-                            Min
-                          </span>
-                        </div>
-
-                        {/* Segundos */}
-                        <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
-                          <span className="font-serif text-2xl text-[#B8864E] font-normal leading-none mb-1 animate-pulse">
-                            {String(timeLeft.seconds).padStart(2, '0')}
-                          </span>
-                          <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
-                            Seg
-                          </span>
-                        </div>
+                      {/* Horas */}
+                      <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
+                        <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
+                          {String(timeLeft.hours).padStart(2, '0')}
+                        </span>
+                        <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
+                          Horas
+                        </span>
                       </div>
 
-                      {/* Subtle heart footer divider */}
-                      <div className="flex items-center justify-center gap-2 mt-5">
-                        <span className="w-8 h-[1px] bg-[#D4AF37]/45" />
-                        <Heart className="w-3 h-3 text-[#D4AF37] fill-[#D4AF37]" />
-                        <span className="w-8 h-[1px] bg-[#D4AF37]/45" />
+                      {/* Minutos */}
+                      <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
+                        <span className="font-serif text-2xl text-[#3A2E2B] font-normal leading-none mb-1">
+                          {String(timeLeft.minutes).padStart(2, '0')}
+                        </span>
+                        <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
+                          Min
+                        </span>
+                      </div>
+
+                      {/* Segundos */}
+                      <div className="bg-[#FFFDF9] rounded-lg border border-[#E8DACB] p-2 shadow-xs flex flex-col items-center justify-center">
+                        <span className="font-serif text-2xl text-[#B8864E] font-normal leading-none mb-1 animate-pulse">
+                          {String(timeLeft.seconds).padStart(2, '0')}
+                        </span>
+                        <span className="text-[8px] tracking-[0.2em] text-[#916E49] uppercase font-medium">
+                          Seg
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         )}
       </div>
