@@ -747,7 +747,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                 className="w-full h-12 sm:h-16 block"
               >
                 <path d={TORN_TOP_UPPER_PATH} fill="#F5ECE0" />
-                <path d={TORN_TOP_LOWER_PATH} fill="transparent" />
+                <path d={TORN_TOP_LOWER_PATH} fill="none" />
                 <path
                   d={TORN_TOP_FIBER_PATH}
                   fill="#FFFDF9"
@@ -756,7 +756,7 @@ export const BeachWeddingInvitation: React.FC = () => {
               </svg>
             </div>
 
-            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN (FONDO TRANSPARENTE CON FLOR SUAVE) */}
+            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN (FONDO TRANSPARENTE) */}
             <ScrollReveal className="w-full bg-transparent pl-12 pr-6 sm:px-10 py-8 sm:py-10 text-center relative z-10 overflow-hidden">
               {/* Flor botánica de contraste que emerge desde el borde izquierdo centro con sutil transparencia */}
               <div className="absolute top-1/2 -translate-y-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-26 z-10 pointer-events-none opacity-60 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)] animate-flower-sway-left">
@@ -799,7 +799,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                 preserveAspectRatio="none"
                 className="w-full h-12 sm:h-16 block"
               >
-                <path d={TORN_BOT_UPPER_PATH} fill="transparent" />
+                <path d={TORN_BOT_UPPER_PATH} fill="none" />
                 <path d={TORN_BOT_LOWER_PATH} fill="#EBDDCE" />
                 <path
                   d={TORN_BOT_FIBER_PATH}
