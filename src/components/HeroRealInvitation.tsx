@@ -7,7 +7,7 @@ import { ParchmentLogo } from './ParchmentLogo';
 export const HeroRealInvitation: React.FC = () => {
   // Invitación destacada del hero (Playa & Efecto Supernova)
   const defaultTemplate: InvitationTemplate =
-    INVITATION_TEMPLATES.find((t) => t.slug === 'invitacion-playa-supernova') ||
+    INVITATION_TEMPLATES.find((t) => t.slug === 'invi-playa' || t.slug === 'invitacion-playa-supernova') ||
     INVITATION_TEMPLATES[0];
 
   const [isLoading, setIsLoading] = useState(false);

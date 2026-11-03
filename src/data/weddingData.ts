@@ -12,8 +12,8 @@ export const BRAND_NAME = 'Tu Invitación Especial';
 
 export const INVITATION_TEMPLATES: InvitationTemplate[] = [
   {
-    id: 'invitacion-playa-supernova',
-    slug: 'invitacion-playa-supernova',
+    id: 'invi-playa',
+    slug: 'invi-playa',
     name: 'Playa & Efecto Supernova',
     collection: 'Colección Costa & Luz de Mediodía',
     category: 'Editorial Clásico',
