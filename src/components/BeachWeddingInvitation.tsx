@@ -13,12 +13,12 @@ const TORN_BOT_LOWER_PATH = 'M0,220 L10,216 L20,213 L30,207 L40,211 L50,210 L60,
 // Two framed photos for the beach wedding gallery slider (ready for the 2 user photos)
 const GALLERY_PHOTOS = [
   {
-    src: '/images/pareja-playa.jpg',
-    alt: 'Valentina & Sebastián — Recuerdo 1',
+    src: '/images/recuerdo-1.webp',
+    alt: 'Valentina & Sebastián — Pic-nic al atardecer',
   },
   {
-    src: '/images/pareja-playa-casual.jpg',
-    alt: 'Valentina & Sebastián — Recuerdo 2',
+    src: '/images/recuerdo-2.webp',
+    alt: 'Valentina & Sebastián — Paseo en el bosque',
   },
 ];
 
@@ -747,7 +747,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                 className="w-full h-12 sm:h-16 block"
               >
                 <path d={TORN_TOP_UPPER_PATH} fill="#F5ECE0" />
-                <path d={TORN_TOP_LOWER_PATH} fill="#FFFFFF" />
+                <path d={TORN_TOP_LOWER_PATH} fill="transparent" />
                 <path
                   d={TORN_TOP_FIBER_PATH}
                   fill="#FFFDF9"
@@ -756,38 +756,38 @@ export const BeachWeddingInvitation: React.FC = () => {
               </svg>
             </div>
 
-            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN (FONDO BLANCO CON FLOR DE CONTRASTE ANIMADA) */}
-            <ScrollReveal className="w-full bg-white px-6 py-8 sm:py-10 text-center relative z-10 overflow-hidden">
-              {/* Flor botánica de contraste en fondo blanco con suave animación de brisa */}
-              <div className="absolute -bottom-6 -right-2 sm:right-2 w-20 sm:w-24 md:w-26 z-20 pointer-events-none drop-shadow-[0_8px_18px_rgba(60,25,12,0.22)] animate-flower-sway">
+            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN (FONDO TRANSPARENTE CON FLOR SUAVE) */}
+            <ScrollReveal className="w-full bg-transparent pl-12 pr-6 sm:px-10 py-8 sm:py-10 text-center relative z-10 overflow-hidden">
+              {/* Flor botánica de contraste que emerge desde el borde izquierdo centro con sutil transparencia */}
+              <div className="absolute top-1/2 -translate-y-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-26 z-10 pointer-events-none opacity-60 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)] animate-flower-sway-left">
                 <img
                   src="/images/flor-contraste.webp"
                   alt="Flor de contraste"
-                  className="w-full h-auto object-contain select-none"
+                  className="w-full h-auto object-contain select-none transform rotate-45"
                   loading="lazy"
                 />
               </div>
 
               <p
-                className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal relative z-10"
+                className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal relative z-20"
                 style={{ fontFamily: "'Great Vibes', cursive" }}
               >
                 «A orillas del mar, donde cada ola nos recuerda la inmensidad del camino que elegimos recorrer juntos, decidimos dar el paso más importante de nuestras vidas.»
               </p>
 
-              {/* Animación CSS integrada para movimiento suave de la flor */}
+              {/* Animación CSS integrada para movimiento suave de la flor desde la izquierda centro */}
               <style dangerouslySetInnerHTML={{ __html: `
-                @keyframes flowerSwayKeyframes {
+                @keyframes flowerSwayLeftKeyframes {
                   0%, 100% {
-                    transform: rotate(6deg) translateY(0px) scale(1);
+                    transform: translateY(-50%) rotate(38deg) scale(1);
                   }
                   50% {
-                    transform: rotate(14deg) translateY(-6px) scale(1.04);
+                    transform: translateY(calc(-50% - 4px)) rotate(46deg) scale(1.04);
                   }
                 }
-                .animate-flower-sway {
-                  animation: flowerSwayKeyframes 4.5s ease-in-out infinite;
-                  transform-origin: bottom center;
+                .animate-flower-sway-left {
+                  animation: flowerSwayLeftKeyframes 4.5s ease-in-out infinite;
+                  transform-origin: center left;
                 }
               ` }} />
             </ScrollReveal>
@@ -799,7 +799,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                 preserveAspectRatio="none"
                 className="w-full h-12 sm:h-16 block"
               >
-                <path d={TORN_BOT_UPPER_PATH} fill="#FFFFFF" />
+                <path d={TORN_BOT_UPPER_PATH} fill="transparent" />
                 <path d={TORN_BOT_LOWER_PATH} fill="#EBDDCE" />
                 <path
                   d={TORN_BOT_FIBER_PATH}
@@ -822,47 +822,53 @@ export const BeachWeddingInvitation: React.FC = () => {
                   <ChevronLeft className="w-5 h-5" />
                 </button>
 
-                {/* Ventana Deslizable de Marcos Artesanales */}
-                <div className="w-full overflow-hidden px-3 py-3">
-                  <div
-                    className="flex transition-transform duration-700 ease-out"
-                    style={{ transform: `translateX(-${activePhoto * 100}%)` }}
-                  >
-                    {GALLERY_PHOTOS.map((photo, index) => (
-                      <div
-                        key={index}
-                        className="w-full shrink-0 px-2 flex justify-center"
-                      >
-                        {/* Marco de Foto Artesanal Acorde a Boda en la Playa */}
+                {/* Ventana de Marco Artesanal Único (Solo 1 marco visible sin fracciones del otro) */}
+                <div className="w-full px-4 py-2 flex justify-center">
+                  <div className="relative w-full max-w-[285px] aspect-[4/5.3]">
+                    {GALLERY_PHOTOS.map((photo, index) => {
+                      const isActive = index === activePhoto;
+                      return (
                         <div
-                          className={`relative w-full bg-[#F7EFE4] p-3.5 pb-6 rounded-sm shadow-[0_10px_28px_rgba(65,42,24,0.18)] border border-[#DFCBB5] transition-transform duration-500 ${
-                            index % 2 === 0 ? 'rotate-[-1deg]' : 'rotate-[1deg]'
+                          key={index}
+                          className={`absolute inset-0 transition-all duration-600 ease-out ${
+                            isActive
+                              ? 'opacity-100 scale-100 translate-x-0 pointer-events-auto z-10'
+                              : index < activePhoto
+                              ? 'opacity-0 scale-95 -translate-x-10 pointer-events-none z-0'
+                              : 'opacity-0 scale-95 translate-x-10 pointer-events-none z-0'
                           }`}
                         >
-                          {/* Cinta adhesiva artesanal tipo washi-tape en la parte superior */}
-                          <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#EEDCC9]/85 border border-[#D9C3AC]/60 shadow-2xs rotate-[-2deg] pointer-events-none z-20" />
+                          {/* Marco de Foto Artesanal Acorde a Boda en la Playa */}
+                          <div
+                            className={`relative w-full h-full bg-[#F7EFE4] p-3.5 pb-5 rounded-sm shadow-[0_10px_28px_rgba(65,42,24,0.18)] border border-[#DFCBB5] flex flex-col justify-between ${
+                              index % 2 === 0 ? 'rotate-[-1deg]' : 'rotate-[1deg]'
+                            }`}
+                          >
+                            {/* Cinta adhesiva artesanal tipo washi-tape en la parte superior */}
+                            <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#EEDCC9]/85 border border-[#D9C3AC]/60 shadow-2xs rotate-[-2deg] pointer-events-none z-20" />
 
-                          {/* Borde interior dorado fino */}
-                          <div className="relative w-full aspect-[4/5] overflow-hidden border border-[#C8A97E]/60 bg-[#EADBC8]">
-                            <img
-                              src={photo.src}
-                              alt={photo.alt}
-                              className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                              loading="lazy"
-                            />
-                            {/* Sutil marco interno en filigrana */}
-                            <div className="absolute inset-2 border border-[#FAF3E8]/45 pointer-events-none" />
-                          </div>
+                            {/* Borde interior dorado fino con foto */}
+                            <div className="relative w-full flex-1 overflow-hidden border border-[#C8A97E]/60 bg-[#EADBC8] rounded-2xs">
+                              <img
+                                src={photo.src}
+                                alt={photo.alt}
+                                className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                                loading="lazy"
+                              />
+                              {/* Sutil marco interno en filigrana */}
+                              <div className="absolute inset-2 border border-[#FAF3E8]/45 pointer-events-none" />
+                            </div>
 
-                          {/* Detalle inferior del marco */}
-                          <div className="mt-3 flex items-center justify-center gap-2">
-                            <span className="w-6 h-[1px] bg-[#C8A97E]/60" />
-                            <Heart className="w-2.5 h-2.5 text-[#B8864E] fill-[#B8864E]/80" />
-                            <span className="w-6 h-[1px] bg-[#C8A97E]/60" />
+                            {/* Detalle inferior del marco */}
+                            <div className="mt-2.5 flex items-center justify-center gap-2">
+                              <span className="w-6 h-[1px] bg-[#C8A97E]/60" />
+                              <Heart className="w-2.5 h-2.5 text-[#B8864E] fill-[#B8864E]/80" />
+                              <span className="w-6 h-[1px] bg-[#C8A97E]/60" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
