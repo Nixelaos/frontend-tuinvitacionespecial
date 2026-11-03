@@ -1,5 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Heart, RotateCcw, Sparkles, Sun, Mail } from 'lucide-react';
+import { Heart, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
+
+// Torn paper double dividers extracted from user reference image (media_1793737101081_57c9fc1a.jpg)
+const TORN_TOP_UPPER_PATH = 'M0,0 L1000,0 L1000,20 L990,23 L980,27 L970,33 L960,28 L950,40 L940,40 L930,44 L920,44 L910,51 L900,53 L890,55 L880,55 L870,57 L860,56 L850,56 L840,55 L830,54 L820,60 L810,64 L800,67 L790,67 L780,66 L770,68 L760,69 L750,64 L740,62 L730,65 L720,64 L710,61 L700,62 L690,65 L680,66 L670,72 L660,75 L650,75 L640,84 L630,85 L620,88 L610,92 L600,97 L590,101 L580,107 L570,110 L560,116 L550,121 L540,126 L530,129 L520,133 L510,131 L500,135 L490,139 L480,139 L470,143 L460,144 L450,146 L440,145 L430,147 L420,146 L410,151 L400,152 L390,153 L380,150 L370,148 L360,147 L350,148 L340,149 L330,148 L320,150 L310,152 L300,160 L290,161 L280,161 L270,162 L260,163 L250,163 L240,168 L230,171 L220,168 L210,169 L200,171 L190,173 L180,173 L170,176 L160,177 L150,177 L140,179 L130,181 L120,180 L110,178 L100,183 L90,193 L80,201 L70,207 L60,208 L50,208 L40,210 L30,213 L20,214 L10,217 L0,219 Z';
+const TORN_TOP_FIBER_PATH = 'M0,219 L10,217 L20,214 L30,213 L40,210 L50,208 L60,208 L70,207 L80,201 L90,193 L100,183 L110,178 L120,180 L130,181 L140,179 L150,177 L160,177 L170,176 L180,173 L190,173 L200,171 L210,169 L220,168 L230,171 L240,168 L250,163 L260,163 L270,162 L280,161 L290,161 L300,160 L310,152 L320,150 L330,148 L340,149 L350,148 L360,147 L370,148 L380,150 L390,153 L400,152 L410,151 L420,146 L430,147 L440,145 L450,146 L460,144 L470,143 L480,139 L490,139 L500,135 L510,131 L520,133 L530,129 L540,126 L550,121 L560,116 L570,110 L580,107 L590,101 L600,97 L610,92 L620,88 L630,85 L640,84 L650,75 L660,75 L670,72 L680,66 L690,65 L700,62 L710,61 L720,64 L730,65 L740,62 L750,64 L760,69 L770,68 L780,66 L790,67 L800,67 L810,64 L820,60 L830,54 L840,55 L850,56 L860,56 L870,57 L880,55 L890,55 L900,53 L910,51 L920,44 L930,44 L940,40 L950,40 L960,28 L970,33 L980,27 L990,23 L1000,20 L1000,256 L990,256 L980,256 L970,256 L960,256 L950,256 L940,256 L930,256 L920,256 L910,256 L900,256 L890,256 L880,256 L870,256 L860,256 L850,256 L840,256 L830,256 L820,256 L810,256 L800,256 L790,256 L780,256 L770,256 L760,256 L750,256 L740,256 L730,256 L720,256 L710,256 L700,256 L690,256 L680,256 L670,256 L660,256 L650,256 L640,256 L630,256 L620,256 L610,256 L600,256 L590,256 L580,256 L570,256 L560,256 L550,256 L540,256 L530,256 L520,256 L510,256 L500,256 L490,256 L480,256 L470,256 L460,256 L450,256 L440,256 L430,256 L420,256 L410,256 L400,256 L390,256 L380,256 L370,256 L360,256 L350,256 L340,256 L330,256 L320,256 L310,256 L300,256 L290,256 L280,256 L270,256 L260,256 L250,256 L240,256 L230,256 L220,256 L210,256 L200,256 L190,256 L180,256 L170,256 L160,256 L150,256 L140,256 L130,256 L120,256 L110,256 L100,256 L90,256 L80,256 L70,256 L60,256 L50,256 L40,256 L30,256 L20,256 L10,256 L0,256 Z';
+const TORN_TOP_LOWER_PATH = 'M0,256 L10,256 L20,256 L30,256 L40,256 L50,256 L60,256 L70,256 L80,256 L90,256 L100,256 L110,256 L120,256 L130,256 L140,256 L150,256 L160,256 L170,256 L180,256 L190,256 L200,256 L210,256 L220,256 L230,256 L240,256 L250,256 L260,256 L270,256 L280,256 L290,256 L300,256 L310,256 L320,256 L330,256 L340,256 L350,256 L360,256 L370,256 L380,256 L390,256 L400,256 L410,256 L420,256 L430,256 L440,256 L450,256 L460,256 L470,256 L480,256 L490,256 L500,256 L510,256 L520,256 L530,256 L540,256 L550,256 L560,256 L570,256 L580,256 L590,256 L600,256 L610,256 L620,256 L630,256 L640,256 L650,256 L660,256 L670,256 L680,256 L690,256 L700,256 L710,256 L720,256 L730,256 L740,256 L750,256 L760,256 L770,256 L780,256 L790,256 L800,256 L810,256 L820,256 L830,256 L840,256 L850,256 L860,256 L870,256 L880,256 L890,256 L900,256 L910,256 L920,256 L930,256 L940,256 L950,256 L960,256 L970,256 L980,256 L990,256 L1000,256 L1000,230 L0,230 Z';
+
+const TORN_BOT_UPPER_PATH = 'M0,0 L1000,0 L1000,-126 L990,-126 L980,-126 L970,-126 L960,-126 L950,-126 L940,-126 L930,-126 L920,-126 L910,-126 L900,-126 L890,-126 L880,-126 L870,-126 L860,-126 L850,-126 L840,-126 L830,-126 L820,-126 L810,-126 L800,-126 L790,-126 L780,-126 L770,-126 L760,-126 L750,-126 L740,-126 L730,-126 L720,-126 L710,-126 L700,-126 L690,-126 L680,-126 L670,-126 L660,-126 L650,-126 L640,-126 L630,-126 L620,-126 L610,-126 L600,-126 L590,-126 L580,-126 L570,-126 L560,-126 L550,-126 L540,-126 L530,-126 L520,-126 L510,-126 L500,-126 L490,-126 L480,-126 L470,-126 L460,-126 L450,-126 L440,-126 L430,-126 L420,-126 L410,-126 L400,-126 L390,-126 L380,-126 L370,-126 L360,-126 L350,-126 L340,-126 L330,-126 L320,-126 L310,-125 L300,-120 L290,-119 L280,-119 L270,-118 L260,-117 L250,-117 L240,-111 L230,-109 L220,-111 L210,-111 L200,-109 L190,-107 L180,-107 L170,-104 L160,-103 L150,-102 L140,-101 L130,-99 L120,-100 L110,-102 L100,-97 L90,-87 L80,-79 L70,-73 L60,-72 L50,-72 L40,-71 L30,-67 L20,-65 L10,-63 L0,-60 Z';
+const TORN_BOT_FIBER_PATH = 'M0,-60 L10,-63 L20,-65 L30,-67 L40,-71 L50,-72 L60,-72 L70,-73 L80,-79 L90,-87 L100,-97 L110,-102 L120,-100 L130,-99 L140,-101 L150,-102 L160,-103 L170,-104 L180,-107 L190,-107 L200,-109 L210,-111 L220,-111 L230,-109 L240,-111 L250,-117 L260,-117 L270,-118 L280,-119 L290,-119 L300,-120 L310,-125 L320,-126 L330,-126 L340,-126 L350,-126 L360,-126 L370,-126 L380,-126 L390,-126 L400,-126 L410,-126 L420,-126 L430,-126 L440,-126 L450,-126 L460,-126 L470,-126 L480,-126 L490,-126 L500,-126 L510,-126 L520,-126 L530,-126 L540,-126 L550,-126 L560,-126 L570,-126 L580,-126 L590,-126 L600,-126 L610,-126 L620,-126 L630,-126 L640,-126 L650,-126 L660,-126 L670,-126 L680,-126 L690,-126 L700,-126 L710,-126 L720,-126 L730,-126 L740,-126 L750,-126 L760,-126 L770,-126 L780,-126 L790,-126 L800,-126 L810,-126 L820,-126 L830,-126 L840,-126 L850,-126 L860,-126 L870,-126 L880,-126 L890,-126 L900,-126 L910,-126 L920,-126 L930,-126 L940,-126 L950,-126 L960,-126 L970,-126 L980,-126 L990,-126 L1000,-126 L1000,20 L990,23 L980,26 L970,27 L960,30 L950,31 L940,31 L930,32 L920,38 L910,46 L900,57 L890,60 L880,59 L870,59 L860,60 L850,63 L840,62 L830,66 L820,66 L810,65 L800,67 L790,70 L780,69 L770,68 L760,70 L750,76 L740,76 L730,77 L720,78 L710,78 L700,79 L690,87 L680,89 L670,90 L660,90 L650,90 L640,92 L630,91 L620,89 L610,86 L600,87 L590,88 L580,93 L570,92 L560,94 L550,94 L540,96 L530,96 L520,101 L510,101 L500,105 L490,108 L480,106 L470,111 L460,113 L450,119 L440,124 L430,129 L420,132 L410,139 L400,144 L390,148 L380,151 L370,154 L360,155 L350,165 L340,164 L330,168 L320,172 L310,175 L300,179 L290,177 L280,175 L270,174 L260,176 L250,174 L240,170 L230,172 L220,173 L210,170 L200,173 L190,176 L180,180 L170,185 L160,183 L150,183 L140,183 L130,182 L120,184 L110,184 L100,187 L90,189 L80,194 L70,194 L60,199 L50,210 L40,211 L30,207 L20,213 L10,216 L0,220 Z';
+const TORN_BOT_LOWER_PATH = 'M0,220 L10,216 L20,213 L30,207 L40,211 L50,210 L60,199 L70,194 L80,194 L90,189 L100,187 L110,184 L120,184 L130,182 L140,183 L150,183 L160,183 L170,185 L180,180 L190,176 L200,173 L210,170 L220,173 L230,172 L240,170 L250,174 L260,176 L270,174 L280,175 L290,177 L300,179 L310,175 L320,172 L330,168 L340,164 L350,165 L360,155 L370,154 L380,151 L390,148 L400,144 L410,139 L420,132 L430,129 L440,124 L450,119 L460,113 L470,111 L480,106 L490,108 L500,105 L510,101 L520,101 L530,96 L540,96 L550,94 L560,94 L570,92 L580,93 L590,88 L600,87 L610,86 L620,89 L630,91 L640,92 L650,90 L660,90 L670,90 L680,89 L690,87 L700,79 L710,78 L720,78 L730,77 L740,76 L750,76 L760,70 L770,68 L780,69 L790,70 L800,67 L810,65 L820,66 L830,66 L840,62 L850,63 L860,60 L870,59 L880,59 L890,60 L900,57 L910,46 L920,38 L930,32 L940,31 L950,31 L960,30 L970,27 L980,26 L990,23 L1000,20 L1000,230 L0,230 Z';
+
+// Two framed photos for the beach wedding gallery slider (ready for the 2 user photos)
+const GALLERY_PHOTOS = [
+  {
+    src: '/images/pareja-playa.jpg',
+    alt: 'Valentina & Sebastián — Recuerdo 1',
+  },
+  {
+    src: '/images/pareja-playa-casual.jpg',
+    alt: 'Valentina & Sebastián — Recuerdo 2',
+  },
+];
 
 // Bespoke ragged torn paper polygon mask (irregular handmade deckled edges)
 const TORN_PAPER_CLIP = `polygon(
@@ -183,6 +204,15 @@ const ScrollReveal: React.FC<{
 export const BeachWeddingInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
+  const [activePhoto, setActivePhoto] = useState(0);
+
+  const handlePrevPhoto = () => {
+    setActivePhoto((prev) => (prev === 0 ? GALLERY_PHOTOS.length - 1 : prev - 1));
+  };
+
+  const handleNextPhoto = () => {
+    setActivePhoto((prev) => (prev === GALLERY_PHOTOS.length - 1 ? 0 : prev + 1));
+  };
 
   // Spray airbrush reveal state for hero photo
   const [isSprayed, setIsSprayed] = useState(false);
@@ -613,10 +643,10 @@ export const BeachWeddingInvitation: React.FC = () => {
             </section>
 
             {/* SECCIÓN 1: PAPEL ROTO CON FLOR DE CONTRASTE — ¡NOS CASAMOS!, FECHA Y COUNTDOWN MANUSCRITO */}
-            <ScrollReveal className="relative z-20 w-full -mt-12 sm:-mt-14 mb-8">
-              {/* Main handmade torn paper sheet with authentic deep ragged edge (Edge-to-Edge) */}
+            <ScrollReveal className="relative z-20 w-full -mt-12 sm:-mt-14">
+              {/* Main handmade torn paper sheet in warm cream (Edge-to-Edge) */}
               <div
-                className="bg-[#FCF9F3] relative w-full px-4 pt-12 pb-10 text-center shadow-xs"
+                className="bg-[#F5ECE0] relative w-full px-4 pt-12 pb-11 text-center"
                 style={{
                   clipPath: TORN_PAPER_CLIP,
                 }}
@@ -649,12 +679,11 @@ export const BeachWeddingInvitation: React.FC = () => {
                     Sábado, 14 de Noviembre de 2026
                   </h2>
 
-                  {/* Cuenta Regresiva con números manuscritos */}
+                  {/* Cuenta Regresiva con números manuscritos en tono crema */}
                   <div className="w-full">
-                    {/* Countdown 4-Card Grid on Torn Paper Sheet */}
                     <div className="grid grid-cols-4 gap-2 max-w-xs mx-auto">
                       {/* Días */}
-                      <div className="bg-[#FFFDF9]/95 backdrop-blur-xs rounded-xl border border-[#E8DACB] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
+                      <div className="bg-[#FAF3E8] rounded-xl border border-[#DFCBB5] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
                         <span
                           className="font-script text-3xl sm:text-4xl text-[#2F2420] font-normal leading-none mb-0.5"
                           style={{ fontFamily: "'Great Vibes', cursive" }}
@@ -667,7 +696,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                       </div>
 
                       {/* Horas */}
-                      <div className="bg-[#FFFDF9]/95 backdrop-blur-xs rounded-xl border border-[#E8DACB] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
+                      <div className="bg-[#FAF3E8] rounded-xl border border-[#DFCBB5] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
                         <span
                           className="font-script text-3xl sm:text-4xl text-[#2F2420] font-normal leading-none mb-0.5"
                           style={{ fontFamily: "'Great Vibes', cursive" }}
@@ -680,7 +709,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                       </div>
 
                       {/* Minutos */}
-                      <div className="bg-[#FFFDF9]/95 backdrop-blur-xs rounded-xl border border-[#E8DACB] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
+                      <div className="bg-[#FAF3E8] rounded-xl border border-[#DFCBB5] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
                         <span
                           className="font-script text-3xl sm:text-4xl text-[#2F2420] font-normal leading-none mb-0.5"
                           style={{ fontFamily: "'Great Vibes', cursive" }}
@@ -693,7 +722,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                       </div>
 
                       {/* Segundos */}
-                      <div className="bg-[#FFFDF9]/95 backdrop-blur-xs rounded-xl border border-[#E8DACB] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
+                      <div className="bg-[#FAF3E8] rounded-xl border border-[#DFCBB5] p-2 sm:p-2.5 shadow-xs flex flex-col items-center justify-center">
                         <span
                           className="font-script text-3xl sm:text-4xl text-[#B87A4A] font-normal leading-none mb-0.5 animate-pulse"
                           style={{ fontFamily: "'Great Vibes', cursive" }}
@@ -710,102 +739,148 @@ export const BeachWeddingInvitation: React.FC = () => {
               </div>
             </ScrollReveal>
 
-            {/* SECCIÓN 2: PRIMER MENSAJE ESPECIAL — PALABRAS DEL CORAZÓN */}
-            <ScrollReveal className="w-full px-4 mb-6">
-              <div className="bg-[#FCF9F3] rounded-2xl border border-[#E9DDD0] shadow-sm p-6 sm:p-7 relative overflow-hidden text-center">
-                {/* Subtle top badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] text-[#9A6F45] text-[10px] uppercase tracking-[0.24em] font-semibold mb-3 shadow-xs">
-                  <Sparkles className="w-3 h-3 text-[#C59B6D]" />
-                  <span>Un Mensaje Especial</span>
-                </div>
+            {/* DIVISOR SUPERIOR DE PAPEL RASGADO (DIVIDE COUNTDOWN DE LA FRASE) */}
+            <div className="w-full overflow-hidden leading-none select-none pointer-events-none -my-1 relative z-10">
+              <svg
+                viewBox="0 0 1000 230"
+                preserveAspectRatio="none"
+                className="w-full h-12 sm:h-16 block"
+              >
+                <path d={TORN_TOP_UPPER_PATH} fill="#F5ECE0" />
+                <path d={TORN_TOP_LOWER_PATH} fill="#FAF3E8" />
+                <path
+                  d={TORN_TOP_FIBER_PATH}
+                  fill="#FFFDF9"
+                  style={{ filter: 'drop-shadow(0px 2px 4px rgba(60, 35, 18, 0.18))' }}
+                />
+              </svg>
+            </div>
 
-                <h3
-                  className="font-script text-3xl sm:text-4xl text-[#2F2420] mb-4 font-normal"
-                  style={{ fontFamily: "'Great Vibes', cursive" }}
+            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN */}
+            <ScrollReveal className="w-full bg-[#FAF3E8] px-6 py-6 sm:py-8 text-center relative z-10">
+              <p
+                className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal"
+                style={{ fontFamily: "'Great Vibes', cursive" }}
+              >
+                «A orillas del mar, donde cada ola nos recuerda la inmensidad del camino que elegimos recorrer juntos, decidimos dar el paso más importante de nuestras vidas.»
+              </p>
+            </ScrollReveal>
+
+            {/* DIVISOR INFERIOR DE PAPEL RASGADO (DIVIDE LA FRASE DE LAS FOTOS) */}
+            <div className="w-full overflow-hidden leading-none select-none pointer-events-none -my-1 relative z-10">
+              <svg
+                viewBox="0 0 1000 230"
+                preserveAspectRatio="none"
+                className="w-full h-12 sm:h-16 block"
+              >
+                <path d={TORN_BOT_UPPER_PATH} fill="#FAF3E8" />
+                <path d={TORN_BOT_LOWER_PATH} fill="#EBDDCE" />
+                <path
+                  d={TORN_BOT_FIBER_PATH}
+                  fill="#FFFDF9"
+                  style={{ filter: 'drop-shadow(0px 2px 4px rgba(60, 35, 18, 0.18))' }}
+                />
+              </svg>
+            </div>
+
+            {/* SECCIÓN 3: GALERÍA DE MARCOS DE FOTOS DESLIZABLES CON FLECHA (SIN RECUADRO EXTERIOR, EN CREMA) */}
+            <ScrollReveal className="w-full bg-[#EBDDCE] px-4 pt-6 pb-8 flex flex-col items-center">
+              <div className="relative w-full max-w-[350px] flex items-center justify-center">
+                {/* Botón Flecha Izquierda */}
+                <button
+                  type="button"
+                  onClick={handlePrevPhoto}
+                  aria-label="Foto anterior"
+                  className="absolute -left-2 sm:-left-3 z-30 w-10 h-10 rounded-full bg-[#F5ECE0]/95 hover:bg-[#FAF3E8] border border-[#C8AD90] shadow-md flex items-center justify-center text-[#5A3E28] transition-all hover:scale-110 active:scale-95 cursor-pointer"
                 >
-                  Palabras del Corazón
-                </h3>
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
 
-                <p className="font-serif italic text-base sm:text-lg text-[#3E3029] leading-relaxed mb-4 max-w-sm mx-auto">
-                  «A orillas del mar, donde cada ola nos recuerda la inmensidad del camino que elegimos recorrer juntos, decidimos dar el paso más importante de nuestras vidas.»
-                </p>
-
-                <p className="font-serif text-xs sm:text-sm text-[#5B473E] leading-relaxed mb-6 max-w-xs mx-auto">
-                  Queremos agradecerte de corazón por ser parte de nuestra historia, por cada abrazo y por acompañarnos en este hermoso comienzo. Nuestro día no sería lo mismo sin ti.
-                </p>
-
-                {/* Couple signature */}
-                <div className="flex flex-col items-center">
-                  <span
-                    className="font-script text-2xl sm:text-3xl text-[#9A6F45]"
-                    style={{ fontFamily: "'Great Vibes', cursive" }}
+                {/* Ventana Deslizable de Marcos Artesanales */}
+                <div className="w-full overflow-hidden px-3 py-3">
+                  <div
+                    className="flex transition-transform duration-700 ease-out"
+                    style={{ transform: `translateX(-${activePhoto * 100}%)` }}
                   >
-                    Valentina &amp; Sebastián
-                  </span>
-                  <div className="flex items-center justify-center gap-2 mt-2">
-                    <span className="w-10 h-[1px] bg-[#D4AF37]/45" />
-                    <Heart className="w-3 h-3 text-[#B8864E] fill-[#B8864E]" />
-                    <span className="w-10 h-[1px] bg-[#D4AF37]/45" />
+                    {GALLERY_PHOTOS.map((photo, index) => (
+                      <div
+                        key={index}
+                        className="w-full shrink-0 px-2 flex justify-center"
+                      >
+                        {/* Marco de Foto Artesanal Acorde a Boda en la Playa */}
+                        <div
+                          className={`relative w-full bg-[#F7EFE4] p-3.5 pb-6 rounded-sm shadow-[0_10px_28px_rgba(65,42,24,0.18)] border border-[#DFCBB5] transition-transform duration-500 ${
+                            index % 2 === 0 ? 'rotate-[-1deg]' : 'rotate-[1deg]'
+                          }`}
+                        >
+                          {/* Cinta adhesiva artesanal tipo washi-tape en la parte superior */}
+                          <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#EEDCC9]/85 border border-[#D9C3AC]/60 shadow-2xs rotate-[-2deg] pointer-events-none z-20" />
+
+                          {/* Borde interior dorado fino */}
+                          <div className="relative w-full aspect-[4/5] overflow-hidden border border-[#C8A97E]/60 bg-[#EADBC8]">
+                            <img
+                              src={photo.src}
+                              alt={photo.alt}
+                              className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                              loading="lazy"
+                            />
+                            {/* Sutil marco interno en filigrana */}
+                            <div className="absolute inset-2 border border-[#FAF3E8]/45 pointer-events-none" />
+                          </div>
+
+                          {/* Detalle inferior del marco */}
+                          <div className="mt-3 flex items-center justify-center gap-2">
+                            <span className="w-6 h-[1px] bg-[#C8A97E]/60" />
+                            <Heart className="w-2.5 h-2.5 text-[#B8864E] fill-[#B8864E]/80" />
+                            <span className="w-6 h-[1px] bg-[#C8A97E]/60" />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
+
+                {/* Botón Flecha Derecha */}
+                <button
+                  type="button"
+                  onClick={handleNextPhoto}
+                  aria-label="Foto siguiente"
+                  className="absolute -right-2 sm:-right-3 z-30 w-10 h-10 rounded-full bg-[#F5ECE0]/95 hover:bg-[#FAF3E8] border border-[#C8AD90] shadow-md flex items-center justify-center text-[#5A3E28] transition-all hover:scale-110 active:scale-95 cursor-pointer"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Indicadores de posición del carrusel */}
+              <div className="flex items-center justify-center gap-2 mt-2">
+                {GALLERY_PHOTOS.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActivePhoto(idx)}
+                    aria-label={`Ir a la foto ${idx + 1}`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      activePhoto === idx
+                        ? 'w-6 bg-[#B8864E]'
+                        : 'w-2 bg-[#C8B098] hover:bg-[#B89B7E]'
+                    }`}
+                  />
+                ))}
               </div>
             </ScrollReveal>
 
-            {/* SECCIÓN 3: SEGUNDO MENSAJE ESPECIAL — DETALLES DE LA CELEBRACIÓN */}
-            <ScrollReveal className="w-full px-4 mb-8">
-              <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8DACB] shadow-sm p-6 sm:p-7 relative overflow-hidden text-center">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] text-[#9A6F45] text-[10px] uppercase tracking-[0.24em] font-semibold mb-3 shadow-xs">
-                  <Heart className="w-3 h-3 text-[#C59B6D] fill-[#C59B6D]" />
-                  <span>Pensado para ti</span>
-                </div>
-
-                <h3
-                  className="font-script text-3xl sm:text-4xl text-[#2F2420] mb-5 font-normal"
-                  style={{ fontFamily: "'Great Vibes', cursive" }}
-                >
-                  Momentos Inolvidables
-                </h3>
-
-                <div className="grid grid-cols-1 gap-3.5 max-w-sm mx-auto text-left">
-                  {/* Card 1: Dress Code */}
-                  <div className="bg-[#FCF9F3] rounded-xl border border-[#ECE0D3] p-4 flex items-start gap-3.5 shadow-xs">
-                    <div className="w-9 h-9 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] flex items-center justify-center shrink-0 mt-0.5">
-                      <Sun className="w-4 h-4 text-[#B8864E]" />
-                    </div>
-                    <div>
-                      <h4 className="font-serif text-sm font-semibold text-[#2F2420] tracking-wide mb-1">
-                        Código de Vestimenta: Playa Elegante
-                      </h4>
-                      <p className="text-xs text-[#6B5548] leading-relaxed">
-                        Lino, guayaberas y vestidos frescos en tonos arena, cálidos o pasteles. Sugerimos calzado cómodo para disfrutar libremente de la brisa y la arena.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card 2: Lluvia de Sobres */}
-                  <div className="bg-[#FCF9F3] rounded-xl border border-[#ECE0D3] p-4 flex items-start gap-3.5 shadow-xs">
-                    <div className="w-9 h-9 rounded-full bg-[#FAF0E4] border border-[#E5D2BE] flex items-center justify-center shrink-0 mt-0.5">
-                      <Mail className="w-4 h-4 text-[#B8864E]" />
-                    </div>
-                    <div>
-                      <h4 className="font-serif text-sm font-semibold text-[#2F2420] tracking-wide mb-1">
-                        Lluvia de Sobres
-                      </h4>
-                      <p className="text-xs text-[#6B5548] leading-relaxed">
-                        Tu compañía es nuestro mejor regalo. Si deseas hacernos un presente para nuestro nuevo hogar, dispondremos de un buzón de sobres durante la velada.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-[#E8DACB]/60">
-                  <p
-                    className="font-script text-2xl text-[#8E5A2B]"
-                    style={{ fontFamily: "'Great Vibes', cursive" }}
-                  >
-                    ¡Nos vemos junto al mar para celebrar!
-                  </p>
-                </div>
+            {/* FIRMA FINAL DE LA INVITACIÓN: VALENTINA & SEBASTIÁN CON CORAZÓN */}
+            <ScrollReveal className="w-full bg-[#EBDDCE] pt-4 pb-12 text-center flex flex-col items-center">
+              <span
+                className="font-script text-3xl sm:text-4xl text-[#9A6F45]"
+                style={{ fontFamily: "'Great Vibes', cursive" }}
+              >
+                Valentina &amp; Sebastián
+              </span>
+              <div className="flex items-center justify-center gap-2 mt-2">
+                <span className="w-10 h-[1px] bg-[#D4AF37]/45" />
+                <Heart className="w-3 h-3 text-[#B8864E] fill-[#B8864E]" />
+                <span className="w-10 h-[1px] bg-[#D4AF37]/45" />
               </div>
             </ScrollReveal>
           </div>
