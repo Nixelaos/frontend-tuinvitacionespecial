@@ -57,6 +57,7 @@ export default {
       animation: {
         'float-slow': 'floatSlow 5s ease-in-out infinite',
         'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
+        'flower-sway': 'flowerSway 4.5s ease-in-out infinite',
       },
     },
   },

@@ -747,7 +747,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                 className="w-full h-12 sm:h-16 block"
               >
                 <path d={TORN_TOP_UPPER_PATH} fill="#F5ECE0" />
-                <path d={TORN_TOP_LOWER_PATH} fill="#FAF3E8" />
+                <path d={TORN_TOP_LOWER_PATH} fill="#FFFFFF" />
                 <path
                   d={TORN_TOP_FIBER_PATH}
                   fill="#FFFDF9"
@@ -756,14 +756,40 @@ export const BeachWeddingInvitation: React.FC = () => {
               </svg>
             </div>
 
-            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN */}
-            <ScrollReveal className="w-full bg-[#FAF3E8] px-6 py-6 sm:py-8 text-center relative z-10">
+            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN (FONDO BLANCO CON FLOR DE CONTRASTE ANIMADA) */}
+            <ScrollReveal className="w-full bg-white px-6 py-8 sm:py-10 text-center relative z-10 overflow-hidden">
+              {/* Flor botánica de contraste en fondo blanco con suave animación de brisa */}
+              <div className="absolute -bottom-6 -right-2 sm:right-2 w-20 sm:w-24 md:w-26 z-20 pointer-events-none drop-shadow-[0_8px_18px_rgba(60,25,12,0.22)] animate-flower-sway">
+                <img
+                  src="/images/flor-contraste.webp"
+                  alt="Flor de contraste"
+                  className="w-full h-auto object-contain select-none"
+                  loading="lazy"
+                />
+              </div>
+
               <p
-                className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal"
+                className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal relative z-10"
                 style={{ fontFamily: "'Great Vibes', cursive" }}
               >
                 «A orillas del mar, donde cada ola nos recuerda la inmensidad del camino que elegimos recorrer juntos, decidimos dar el paso más importante de nuestras vidas.»
               </p>
+
+              {/* Animación CSS integrada para movimiento suave de la flor */}
+              <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes flowerSwayKeyframes {
+                  0%, 100% {
+                    transform: rotate(6deg) translateY(0px) scale(1);
+                  }
+                  50% {
+                    transform: rotate(14deg) translateY(-6px) scale(1.04);
+                  }
+                }
+                .animate-flower-sway {
+                  animation: flowerSwayKeyframes 4.5s ease-in-out infinite;
+                  transform-origin: bottom center;
+                }
+              ` }} />
             </ScrollReveal>
 
             {/* DIVISOR INFERIOR DE PAPEL RASGADO (DIVIDE LA FRASE DE LAS FOTOS) */}
@@ -773,7 +799,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                 preserveAspectRatio="none"
                 className="w-full h-12 sm:h-16 block"
               >
-                <path d={TORN_BOT_UPPER_PATH} fill="#FAF3E8" />
+                <path d={TORN_BOT_UPPER_PATH} fill="#FFFFFF" />
                 <path d={TORN_BOT_LOWER_PATH} fill="#EBDDCE" />
                 <path
                   d={TORN_BOT_FIBER_PATH}
