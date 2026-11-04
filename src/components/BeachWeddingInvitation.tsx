@@ -746,51 +746,55 @@ export const BeachWeddingInvitation: React.FC = () => {
                 preserveAspectRatio="none"
                 className="w-full h-12 sm:h-16 block"
               >
-                <path d={TORN_TOP_UPPER_PATH} fill="#F5ECE0" />
-                <path d={TORN_TOP_LOWER_PATH} fill="none" />
+                <path d={TORN_TOP_FIBER_PATH} fill="#FFFFFF" />
                 <path
-                  d={TORN_TOP_FIBER_PATH}
-                  fill="#FFFDF9"
-                  style={{ filter: 'drop-shadow(0px 2px 4px rgba(60, 35, 18, 0.18))' }}
+                  d={TORN_TOP_UPPER_PATH}
+                  fill="#F5ECE0"
+                  style={{ filter: 'drop-shadow(0px 3px 4px rgba(60, 35, 18, 0.18))' }}
                 />
               </svg>
             </div>
 
-            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN (FONDO TRANSPARENTE) */}
-            <ScrollReveal className="w-full bg-transparent pl-12 pr-6 sm:px-10 py-8 sm:py-10 text-center relative z-10 overflow-hidden">
-              {/* Flor botánica de contraste que emerge desde el borde izquierdo centro con sutil transparencia */}
-              <div className="absolute top-1/2 -translate-y-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-26 z-10 pointer-events-none opacity-60 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)] animate-flower-sway-left">
-                <img
-                  src="/images/flor-contraste.webp"
-                  alt="Flor de contraste"
-                  className="w-full h-auto object-contain select-none transform rotate-45"
-                  loading="lazy"
-                />
-              </div>
+            {/* SECCIÓN 2: FRASE ROMÁNTICA SOLA EN SU PROPIA SECCIÓN (COLOR BLANCO PURO #FFFFFF DE BANDA-PAPEL-BLANCO.WEBP) */}
+            <div
+              className="w-full pl-12 pr-6 sm:px-10 py-8 sm:py-10 text-center relative z-10 overflow-hidden"
+              style={{ backgroundColor: '#FFFFFF' }}
+            >
+              <ScrollReveal className="relative z-10 w-full flex flex-col items-center">
+                {/* Flor botánica de contraste que emerge desde el borde izquierdo centro con sutil transparencia */}
+                <div className="absolute top-1/2 -translate-y-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-26 z-10 pointer-events-none opacity-60 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)] animate-flower-sway-left">
+                  <img
+                    src="/images/flor-contraste.webp"
+                    alt="Flor de contraste"
+                    className="w-full h-auto object-contain select-none transform rotate-45"
+                    loading="lazy"
+                  />
+                </div>
 
-              <p
-                className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal relative z-20"
-                style={{ fontFamily: "'Great Vibes', cursive" }}
-              >
-                «A orillas del mar, donde cada ola nos recuerda la inmensidad del camino que elegimos recorrer juntos, decidimos dar el paso más importante de nuestras vidas.»
-              </p>
+                <p
+                  className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal relative z-20"
+                  style={{ fontFamily: "'Great Vibes', cursive" }}
+                >
+                  «A orillas del mar, donde cada ola nos recuerda la inmensidad del camino que elegimos recorrer juntos, decidimos dar el paso más importante de nuestras vidas.»
+                </p>
 
-              {/* Animación CSS integrada para movimiento suave de la flor desde la izquierda centro */}
-              <style dangerouslySetInnerHTML={{ __html: `
-                @keyframes flowerSwayLeftKeyframes {
-                  0%, 100% {
-                    transform: translateY(-50%) rotate(38deg) scale(1);
+                {/* Animación CSS integrada para movimiento suave de la flor desde la izquierda centro */}
+                <style dangerouslySetInnerHTML={{ __html: `
+                  @keyframes flowerSwayLeftKeyframes {
+                    0%, 100% {
+                      transform: translateY(-50%) rotate(38deg) scale(1);
+                    }
+                    50% {
+                      transform: translateY(calc(-50% - 4px)) rotate(46deg) scale(1.04);
+                    }
                   }
-                  50% {
-                    transform: translateY(calc(-50% - 4px)) rotate(46deg) scale(1.04);
+                  .animate-flower-sway-left {
+                    animation: flowerSwayLeftKeyframes 4.5s ease-in-out infinite;
+                    transform-origin: center left;
                   }
-                }
-                .animate-flower-sway-left {
-                  animation: flowerSwayLeftKeyframes 4.5s ease-in-out infinite;
-                  transform-origin: center left;
-                }
-              ` }} />
-            </ScrollReveal>
+                ` }} />
+              </ScrollReveal>
+            </div>
 
             {/* DIVISOR INFERIOR DE PAPEL RASGADO (DIVIDE LA FRASE DE LAS FOTOS) */}
             <div className="w-full overflow-hidden leading-none select-none pointer-events-none -my-1 relative z-10">
@@ -799,12 +803,11 @@ export const BeachWeddingInvitation: React.FC = () => {
                 preserveAspectRatio="none"
                 className="w-full h-12 sm:h-16 block"
               >
-                <path d={TORN_BOT_UPPER_PATH} fill="none" />
                 <path d={TORN_BOT_LOWER_PATH} fill="#EBDDCE" />
                 <path
                   d={TORN_BOT_FIBER_PATH}
-                  fill="#FFFDF9"
-                  style={{ filter: 'drop-shadow(0px 2px 4px rgba(60, 35, 18, 0.18))' }}
+                  fill="#FFFFFF"
+                  style={{ filter: 'drop-shadow(0px 3px 4px rgba(60, 35, 18, 0.18))' }}
                 />
               </svg>
             </div>
