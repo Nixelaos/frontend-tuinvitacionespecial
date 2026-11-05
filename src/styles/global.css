@@ -26,12 +26,12 @@
     background-color: #FAF7F2;
     color: #221F1D;
     font-family: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, .font-editorial {
     font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
@@ -192,18 +192,17 @@
 }
 
 /* =========================================================
-   Delicate Entrance & Scroll-Reveal System (Specially Love style)
+   Delicate Entrance & Scroll-Reveal System (Crisp, High-DPI Fonts)
+   Clean opacity + translateY with zero blur to preserve razor-sharp text
    ========================================================= */
 @keyframes delicateFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(16px);
-    filter: blur(7px);
+    transform: translateY(12px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
+    transform: none;
   }
 }
 
@@ -214,7 +213,7 @@
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -229,33 +228,30 @@
 
 .reveal-navbar {
   opacity: 0;
-  animation: delicateNavbarIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: delicateNavbarIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .reveal-delicate {
   opacity: 0;
-  animation: delicateFadeIn 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) forwards;
-  will-change: opacity, transform, filter;
+  animation: delicateFadeIn 0.95s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) forwards;
 }
 
 html.js-ready .scroll-reveal {
   opacity: 0;
-  transform: translateY(16px);
-  filter: blur(7px);
-  will-change: opacity, transform, filter;
+  transform: translateY(12px);
 }
 
 html.js-ready .scroll-reveal.reveal-delicate {
-  animation: delicateFadeIn 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) forwards;
+  animation: delicateFadeIn 0.95s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) forwards;
 }
 
 /* Staggered cascade delays */
-.delay-1 { --reveal-delay: 0.10s; animation-delay: 0.10s; }
-.delay-2 { --reveal-delay: 0.26s; animation-delay: 0.26s; }
-.delay-3 { --reveal-delay: 0.42s; animation-delay: 0.42s; }
-.delay-4 { --reveal-delay: 0.58s; animation-delay: 0.58s; }
-.delay-5 { --reveal-delay: 0.74s; animation-delay: 0.74s; }
-.delay-6 { --reveal-delay: 0.90s; animation-delay: 0.90s; }
+.delay-1 { --reveal-delay: 0.08s; animation-delay: 0.08s; }
+.delay-2 { --reveal-delay: 0.20s; animation-delay: 0.20s; }
+.delay-3 { --reveal-delay: 0.34s; animation-delay: 0.34s; }
+.delay-4 { --reveal-delay: 0.48s; animation-delay: 0.48s; }
+.delay-5 { --reveal-delay: 0.62s; animation-delay: 0.62s; }
+.delay-6 { --reveal-delay: 0.76s; animation-delay: 0.76s; }
 
 .animate-lightbounce {
   animation: lightBounce 4.2s ease-in-out infinite;
