@@ -643,7 +643,7 @@ export const BeachWeddingInvitation: React.FC = () => {
             </section>
 
             {/* SECCIÓN 1: PAPEL ROTO CON FLOR DE CONTRASTE — ¡NOS CASAMOS!, FECHA Y COUNTDOWN MANUSCRITO */}
-            <ScrollReveal className="relative z-20 w-full -mt-12 sm:-mt-14">
+            <div className="relative z-20 w-full -mt-12 sm:-mt-14">
               {/* Main handmade torn paper sheet in warm cream (Edge-to-Edge) */}
               <div
                 className="bg-[#F5ECE0] relative w-full px-4 pt-12 pb-11 text-center"
@@ -737,7 +737,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
+            </div>
 
             {/* DIVISOR SUPERIOR DE PAPEL RASGADO (DIVIDE COUNTDOWN DE LA FRASE) */}
             <div className="w-full overflow-hidden leading-none select-none pointer-events-none -my-1 relative z-10">
