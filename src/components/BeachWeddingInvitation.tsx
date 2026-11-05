@@ -214,6 +214,12 @@ export const BeachWeddingInvitation: React.FC = () => {
     setActivePhoto((prev) => (prev === GALLERY_PHOTOS.length - 1 ? 0 : prev + 1));
   };
 
+  // Gallery video reveal state for the first photo
+  const galleryVideoRef = useRef<HTMLVideoElement>(null);
+  const galleryContainerRef = useRef<HTMLDivElement>(null);
+  const [isGalleryInView, setIsGalleryInView] = useState(false);
+  const [isGalleryEffectEnded, setIsGalleryEffectEnded] = useState(false);
+
   // Spray airbrush reveal state for hero photo
   const [isSprayed, setIsSprayed] = useState(false);
 
@@ -294,6 +300,12 @@ export const BeachWeddingInvitation: React.FC = () => {
     setIsSprayed(false);
     setIsEffectFading(false);
     setIsEffectEnded(false);
+    setIsGalleryInView(false);
+    setIsGalleryEffectEnded(false);
+    if (galleryVideoRef.current) {
+      galleryVideoRef.current.currentTime = 0;
+      galleryVideoRef.current.pause();
+    }
   };
 
   // Video playback control: single play upon opening, resetting on close
@@ -313,6 +325,49 @@ export const BeachWeddingInvitation: React.FC = () => {
       setIsEffectEnded(false);
     }
   }, [isOpen]);
+
+  // Observer for Section 3 (Gallery): triggers ink/liquid reveal on the first photo
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const el = galleryContainerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsGalleryInView(true);
+        }
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -30px 0px',
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isOpen]);
+
+  // Trigger smooth fade-out near end of gallery video
+  const handleGalleryVideoTimeUpdate = () => {
+    const video = galleryVideoRef.current;
+    if (!video || !video.duration) return;
+    if (video.duration - video.currentTime <= 1.8) {
+      setIsGalleryEffectEnded(true);
+    }
+  };
+
+  // Play gallery video when scrolled into view and photo 0 is active
+  useEffect(() => {
+    const video = galleryVideoRef.current;
+    if (!video) return;
+
+    if (isOpen && isGalleryInView && activePhoto === 0 && !isGalleryEffectEnded) {
+      video.playbackRate = 1.8;
+      video.play().catch(() => {});
+    }
+  }, [isOpen, isGalleryInView, activePhoto, isGalleryEffectEnded]);
 
   return (
     // Outer Desktop/Tablet Backdrop with Side Bands ("Franjas a ambos lados")
@@ -814,7 +869,7 @@ export const BeachWeddingInvitation: React.FC = () => {
 
             {/* SECCIÓN 3: GALERÍA DE MARCOS DE FOTOS DESLIZABLES CON FLECHA (SIN RECUADRO EXTERIOR, EN CREMA) */}
             <div className="w-full bg-[#EBDDCE] px-4 pt-6 pb-8 flex flex-col items-center">
-              <div className="relative w-full max-w-[350px] flex items-center justify-center">
+              <div ref={galleryContainerRef} className="relative w-full max-w-[350px] flex items-center justify-center">
                 {/* Botón Flecha Izquierda */}
                 <button
                   type="button"
@@ -851,13 +906,31 @@ export const BeachWeddingInvitation: React.FC = () => {
                             <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#EEDCC9]/85 border border-[#D9C3AC]/60 shadow-2xs rotate-[-2deg] pointer-events-none z-20" />
 
                             {/* Borde interior dorado fino con foto */}
-                            <div className="relative w-full flex-1 overflow-hidden border border-[#C8A97E]/60 bg-[#EADBC8] rounded-2xs">
+                            <div className="relative w-full flex-1 overflow-hidden border border-[#C8A97E]/60 bg-white rounded-2xs isolate">
                               <img
                                 src={photo.src}
                                 alt={photo.alt}
                                 className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
                                 loading="lazy"
                               />
+                              {index === 0 && (
+                                <video
+                                  ref={galleryVideoRef}
+                                  src="/effects/black-liquid-reveal.webm"
+                                  autoPlay
+                                  playsInline
+                                  muted
+                                  onTimeUpdate={handleGalleryVideoTimeUpdate}
+                                  onEnded={() => setIsGalleryEffectEnded(true)}
+                                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-1000 ease-out ${
+                                    isGalleryEffectEnded ? 'opacity-0' : 'opacity-100'
+                                  }`}
+                                  style={{
+                                    mixBlendMode: 'screen',
+                                    filter: 'contrast(220%) brightness(115%)',
+                                  }}
+                                />
+                              )}
                               {/* Sutil marco interno en filigrana */}
                               <div className="absolute inset-2 border border-[#FAF3E8]/45 pointer-events-none" />
                             </div>
