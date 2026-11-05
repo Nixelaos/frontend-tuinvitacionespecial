@@ -14,6 +14,13 @@ const CATEGORIES: StyleCategory[] = [
 
 export const CatalogExplorer: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<StyleCategory>('Todos');
+  const [hasSwitchedCategory, setHasSwitchedCategory] = useState(false);
+
+  const handleSelectCategory = (category: StyleCategory) => {
+    if (category === selectedCategory) return;
+    setHasSwitchedCategory(true);
+    setSelectedCategory(category);
+  };
 
   const filteredTemplates =
     selectedCategory === 'Todos'
@@ -30,14 +37,17 @@ export const CatalogExplorer: React.FC = () => {
   return (
     <div>
       {/* Category Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-12">
+      <div
+        className="scroll-reveal flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-12"
+        style={{ '--reveal-delay': '0.12s' } as React.CSSProperties}
+      >
         {CATEGORIES.map((category) => {
           const active = selectedCategory === category;
           return (
             <button
               key={category}
               type="button"
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleSelectCategory(category)}
               className={`px-4 sm:px-5 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-300 ${
                 active
                   ? 'bg-charcoal text-ivory-50 shadow-sm'
@@ -52,14 +62,18 @@ export const CatalogExplorer: React.FC = () => {
 
       {/* Templates Grid - Sin contenedor crema, flotando directamente en la página */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center max-w-5xl mx-auto">
-        {filteredTemplates.map((tpl) => {
+        {filteredTemplates.map((tpl, idx) => {
           const couple = getDisplayCouple(tpl);
+          const staggerDelay = `${(idx * 0.1).toFixed(2)}s`;
 
           return (
             <a
-              key={tpl.id}
+              key={hasSwitchedCategory ? `${selectedCategory}-${tpl.id}` : tpl.id}
               href={`/disenos/${tpl.slug}`}
-              className="group flex flex-col items-center w-full max-w-[215px] sm:max-w-[225px] transition-all duration-300 cursor-pointer block no-underline text-inherit"
+              style={{ '--reveal-delay': staggerDelay } as React.CSSProperties}
+              className={`${
+                hasSwitchedCategory ? 'reveal-delicate' : 'scroll-reveal'
+              } group flex flex-col items-center w-full max-w-[215px] sm:max-w-[225px] cursor-pointer block no-underline text-inherit`}
               aria-label={`Ver invitación de ${tpl.name}`}
             >
               {/* Marco de Previsualización de la Invitación (La Invi) */}

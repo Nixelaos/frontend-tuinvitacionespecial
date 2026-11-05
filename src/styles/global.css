@@ -2,18 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Cormorant Garamond Fallback';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 88.5%;
+  ascent-override: 108%;
+  descent-override: 31%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  src: local('Arial'), local('Segoe UI');
+  size-adjust: 103.5%;
+  ascent-override: 98%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
     background-color: #FAF7F2;
     color: #221F1D;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, .font-editorial {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif;
   }
 
   ::selection {
@@ -173,6 +191,92 @@
   animation: heartRainFall linear infinite;
 }
 
+/* =========================================================
+   Delicate Entrance & Scroll-Reveal System (Specially Love style)
+   ========================================================= */
+@keyframes delicateFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(7px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes delicateNavbarIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lightBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.reveal-navbar {
+  opacity: 0;
+  animation: delicateNavbarIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal-delicate {
+  opacity: 0;
+  animation: delicateFadeIn 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) forwards;
+  will-change: opacity, transform, filter;
+}
+
+html.js-ready .scroll-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(7px);
+  will-change: opacity, transform, filter;
+}
+
+html.js-ready .scroll-reveal.reveal-delicate {
+  animation: delicateFadeIn 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s) forwards;
+}
+
+/* Staggered cascade delays */
+.delay-1 { --reveal-delay: 0.10s; animation-delay: 0.10s; }
+.delay-2 { --reveal-delay: 0.26s; animation-delay: 0.26s; }
+.delay-3 { --reveal-delay: 0.42s; animation-delay: 0.42s; }
+.delay-4 { --reveal-delay: 0.58s; animation-delay: 0.58s; }
+.delay-5 { --reveal-delay: 0.74s; animation-delay: 0.74s; }
+.delay-6 { --reveal-delay: 0.90s; animation-delay: 0.90s; }
+
+.animate-lightbounce {
+  animation: lightBounce 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-navbar,
+  .reveal-delicate,
+  html.js-ready .scroll-reveal,
+  html.js-ready .scroll-reveal.reveal-delicate {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  .animate-lightbounce {
+    animation: none !important;
+  }
+}
 
 /* Hide scrollbar utility for clean iframe device mockups */
 .no-scrollbar::-webkit-scrollbar,

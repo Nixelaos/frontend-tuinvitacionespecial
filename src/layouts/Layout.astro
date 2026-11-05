@@ -5,12 +5,17 @@ import { BRAND_NAME } from '../data/weddingData';
 interface Props {
   title?: string;
   description?: string;
+  preloadHeroImage?: string;
 }
 
 const {
   title = `${BRAND_NAME} — Invitaciones Digitales de Boda de Alta Costura`,
   description = 'Diseño de invitaciones digitales interactivas para bodas con apertura de sobre animado, música, cuenta regresiva, mapas GPS y confirmación de asistencia directa a WhatsApp.',
+  preloadHeroImage,
 } = Astro.props;
+
+const googleFontsHref =
+  'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap';
 ---
 
 <!doctype html>
@@ -23,15 +28,78 @@ const {
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <script is:inline>
+      document.documentElement.classList.add('js-ready');
+    </script>
+
+    {
+      preloadHeroImage && (
+        <link
+          rel="preload"
+          as="image"
+          href={preloadHeroImage}
+          type="image/webp"
+          fetchpriority="high"
+        />
+      )
+    }
+
     <!-- Google Fonts: Cormorant Garamond, Great Vibes, Dancing Script & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="style" href={googleFontsHref} />
+    <link href={googleFontsHref} rel="stylesheet" />
   </head>
   <body class="bg-ivory text-charcoal antialiased selection:bg-champagne-dark selection:text-charcoal">
     <slot />
+
+    <script>
+      const initDelicateScrollReveal = () => {
+        if (!('IntersectionObserver' in window)) {
+          document.querySelectorAll('.scroll-reveal').forEach((el) => {
+            el.classList.add('reveal-delicate');
+          });
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-delicate');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.12,
+            rootMargin: '0px 0px -30px 0px',
+          }
+        );
+
+        const observePending = (root: ParentNode = document) => {
+          root.querySelectorAll('.scroll-reveal:not(.reveal-delicate)').forEach((el) => {
+            observer.observe(el);
+          });
+        };
+
+        observePending();
+
+        const mutationObserver = new MutationObserver(() => {
+          observePending();
+        });
+
+        mutationObserver.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDelicateScrollReveal);
+      } else {
+        initDelicateScrollReveal();
+      }
+    </script>
   </body>
 </html>

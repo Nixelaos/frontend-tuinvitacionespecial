@@ -35,8 +35,8 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'Cambria', 'serif'],
-        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', '"Cormorant Garamond Fallback"', 'Georgia', 'Cambria', 'serif'],
+        sans: ['"Plus Jakarta Sans"', '"Plus Jakarta Sans Fallback"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         script: ['"Great Vibes"', 'cursive'],
       },
       boxShadow: {
