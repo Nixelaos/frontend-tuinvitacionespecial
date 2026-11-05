@@ -813,7 +813,7 @@ export const BeachWeddingInvitation: React.FC = () => {
             </div>
 
             {/* SECCIÓN 3: GALERÍA DE MARCOS DE FOTOS DESLIZABLES CON FLECHA (SIN RECUADRO EXTERIOR, EN CREMA) */}
-            <ScrollReveal className="w-full bg-[#EBDDCE] px-4 pt-6 pb-8 flex flex-col items-center">
+            <div className="w-full bg-[#EBDDCE] px-4 pt-6 pb-8 flex flex-col items-center">
               <div className="relative w-full max-w-[350px] flex items-center justify-center">
                 {/* Botón Flecha Izquierda */}
                 <button
@@ -902,7 +902,7 @@ export const BeachWeddingInvitation: React.FC = () => {
                   />
                 ))}
               </div>
-            </ScrollReveal>
+            </div>
 
             {/* FIRMA FINAL DE LA INVITACIÓN: VALENTINA & SEBASTIÁN CON CORAZÓN */}
             <ScrollReveal className="w-full bg-[#EBDDCE] pt-4 pb-12 text-center flex flex-col items-center">
