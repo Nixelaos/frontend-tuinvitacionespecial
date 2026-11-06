@@ -177,7 +177,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
           </div>
         </div>
 
-        {/* TOP TRIANGULAR FLAP (Conectada estructuralmente al sobre con pliegue continuo) */}
+        {/* TOP TRIANGULAR FLAP (Conectada estructuralmente al sobre, manteniendo el color original) */}
         <div
           className="absolute -top-[1px] left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-[900ms]"
           style={{
@@ -192,127 +192,82 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
           }}
         >
           <div
-            className={`w-full h-full relative transition-colors duration-200 ${
-              isFlapOpen
-                ? 'bg-[#F5ECE1] border-b border-[#DFCDBB]'
-                : 'bg-gradient-to-b from-[#F5EADB] via-[#EEDECF] to-[#E3D1BF] shadow-[0_8px_18px_rgba(80,55,35,0.14)] border-b border-[#D8C4B0]'
-            }`}
+            className="w-full h-full relative bg-gradient-to-b from-[#F5EADB] via-[#EEDECF] to-[#E3D1BF] border-b border-[#D8C4B0]"
             style={{ clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)' }}
           >
-            {/* Si está abierto, muestra la textura punteada del forro interior */}
-            {isFlapOpen && (
-              <>
-                <div
-                  className="absolute inset-0 opacity-35 mix-blend-multiply pointer-events-none"
-                  style={{
-                    backgroundImage: `radial-gradient(#C9B098 0.75px, transparent 0.75px), radial-gradient(#C9B098 0.75px, #F5ECE1 0.75px)`,
-                    backgroundSize: '14px 14px',
-                    backgroundPosition: '0 0, 7px 7px',
-                  }}
-                />
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <line
-                    x1="2"
-                    y1="1"
-                    x2="50"
-                    y2="97"
-                    stroke="#D4AF37"
-                    strokeWidth="0.75"
-                    strokeOpacity="0.5"
-                  />
-                  <line
-                    x1="98"
-                    y1="1"
-                    x2="50"
-                    y2="97"
-                    stroke="#D4AF37"
-                    strokeWidth="0.75"
-                    strokeOpacity="0.5"
-                  />
-                </svg>
-              </>
-            )}
+            {/* Filetes dorados de la solapa */}
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <line
+                x1="0"
+                y1="0"
+                x2="50"
+                y2="100"
+                stroke="#D4AF37"
+                strokeWidth="0.8"
+                strokeOpacity="0.6"
+              />
+              <line
+                x1="100"
+                y1="0"
+                x2="50"
+                y2="100"
+                stroke="#D4AF37"
+                strokeWidth="0.8"
+                strokeOpacity="0.6"
+              />
+            </svg>
 
-            {/* Si está cerrado, muestra los filetes dorados frontales y los nombres */}
-            {!isFlapOpen && (
-              <>
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
+            {/* Valentina & Sebastián escrito directamente en el sobre: Se desvanece suavemente al abrir */}
+            <div className={`absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-3 transition-opacity duration-300 ${isOpening ? 'opacity-0' : 'opacity-100'}`}>
+              <h2
+                className="font-script text-2xl sm:text-3xl text-[#2A1204] leading-tight font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)] flex items-center justify-center gap-1.5 flex-wrap"
+                style={{
+                  fontFamily: "'Great Vibes', cursive",
+                }}
+              >
+                <span
+                  className="inline-block animate-watercolor-text"
+                  style={
+                    {
+                      '--watercolor-duration': '2.2s',
+                      '--watercolor-delay': '0.35s',
+                      '--rot-start': '-2deg',
+                    } as React.CSSProperties
+                  }
                 >
-                  <line
-                    x1="0"
-                    y1="0"
-                    x2="50"
-                    y2="100"
-                    stroke="#D4AF37"
-                    strokeWidth="0.8"
-                    strokeOpacity="0.6"
-                  />
-                  <line
-                    x1="100"
-                    y1="0"
-                    x2="50"
-                    y2="100"
-                    stroke="#D4AF37"
-                    strokeWidth="0.8"
-                    strokeOpacity="0.6"
-                  />
-                </svg>
-
-                <div className={`absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-3 transition-opacity duration-300 ${isOpening ? 'opacity-0' : 'opacity-100'}`}>
-                  <h2
-                    className="font-script text-2xl sm:text-3xl text-[#2A1204] leading-tight font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)] flex items-center justify-center gap-1.5 flex-wrap"
-                    style={{
-                      fontFamily: "'Great Vibes', cursive",
-                    }}
-                  >
-                    <span
-                      className="inline-block animate-watercolor-text"
-                      style={
-                        {
-                          '--watercolor-duration': '2.2s',
-                          '--watercolor-delay': '0.35s',
-                          '--rot-start': '-2deg',
-                        } as React.CSSProperties
-                      }
-                    >
-                      Valentina
-                    </span>
-                    <span
-                      className="inline-block text-[#8E5A2B] animate-watercolor-text"
-                      style={
-                        {
-                          '--watercolor-duration': '2.0s',
-                          '--watercolor-delay': '0.52s',
-                          '--rot-start': '0deg',
-                          '--scale-start': '0.85',
-                        } as React.CSSProperties
-                      }
-                    >
-                      &amp;
-                    </span>
-                    <span
-                      className="inline-block animate-watercolor-text"
-                      style={
-                        {
-                          '--watercolor-duration': '2.2s',
-                          '--watercolor-delay': '0.70s',
-                          '--rot-start': '1.8deg',
-                        } as React.CSSProperties
-                      }
-                    >
-                      Sebastián
-                    </span>
-                  </h2>
-                </div>
-              </>
-            )}
+                  Valentina
+                </span>
+                <span
+                  className="inline-block text-[#8E5A2B] animate-watercolor-text"
+                  style={
+                    {
+                      '--watercolor-duration': '2.0s',
+                      '--watercolor-delay': '0.52s',
+                      '--rot-start': '0deg',
+                      '--scale-start': '0.85',
+                    } as React.CSSProperties
+                  }
+                >
+                  &amp;
+                </span>
+                <span
+                  className="inline-block animate-watercolor-text"
+                  style={
+                    {
+                      '--watercolor-duration': '2.2s',
+                      '--watercolor-delay': '0.70s',
+                      '--rot-start': '1.8deg',
+                    } as React.CSSProperties
+                  }
+                >
+                  Sebastián
+                </span>
+              </h2>
+            </div>
           </div>
         </div>
 
