@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Heart, Mail, MapPin, Clock, ArrowUpRight } from 'lucide-react';
+import { Heart, Mail, MapPin, Clock, ArrowUpRight } from 'lucide-react';
 import { FaWhatsapp, FaInstagram, FaPinterestP, FaTiktok } from 'react-icons/fa6';
 import { BRAND_NAME, WHATSAPP_NUMBER, INVITATION_TEMPLATES } from '../data/weddingData';
 import { ParchmentLogo } from './ParchmentLogo';
@@ -16,8 +16,8 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand Identity */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border border-gold/50 bg-ivory-50/5 flex items-center justify-center text-gold-light">
-                <ParchmentLogo className="w-6 h-6 text-gold-light" />
+              <div className="w-10 h-10 rounded-full border border-gold/50 bg-ivory-50/10 flex items-center justify-center overflow-hidden">
+                <ParchmentLogo className="w-7 h-7" />
               </div>
               <div className="flex flex-col justify-center">
                 <span className="font-serif text-2xl tracking-normal text-ivory-50 block leading-snug font-medium whitespace-nowrap">

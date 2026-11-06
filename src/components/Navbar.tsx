@@ -42,8 +42,8 @@ export const Navbar: React.FC = () => {
             className="group flex items-center gap-3 shrink-0 focus:outline-none"
             aria-label={BRAND_NAME}
           >
-            <div className="w-10 h-10 rounded-full border border-gold/40 bg-champagne/60 flex items-center justify-center text-gold-dark group-hover:border-gold group-hover:bg-champagne/80 transition-colors duration-300 shrink-0">
-              <ParchmentLogo className="w-6 h-6 text-gold-dark group-hover:scale-105 transition-transform" />
+            <div className="w-10 h-10 rounded-full border border-gold/40 bg-champagne/60 flex items-center justify-center group-hover:border-gold group-hover:bg-champagne/80 transition-colors duration-300 shrink-0 overflow-hidden">
+              <ParchmentLogo className="w-7 h-7 group-hover:scale-105 transition-transform" />
             </div>
             <div className="flex flex-col justify-center">
               <span className="font-serif text-xl sm:text-[23px] tracking-normal text-charcoal leading-snug font-medium whitespace-nowrap">
@@ -71,7 +71,7 @@ export const Navbar: React.FC = () => {
               href="/#catalogo"
               className="hidden 2xl:flex text-xs uppercase tracking-[0.16em] text-charcoal px-3.5 py-2.5 border border-charcoal/20 hover:border-gold hover:bg-champagne/40 transition-all items-center gap-1.5 whitespace-nowrap"
             >
-              <ParchmentLogo className="w-3.5 h-3.5 text-gold-dark" />
+              <ParchmentLogo className="w-3.5 h-3.5" />
               <span>Ver Diseños</span>
             </a>
             <a
@@ -119,7 +119,7 @@ export const Navbar: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="w-full justify-center py-3 border border-charcoal/25 text-center text-xs uppercase tracking-[0.18em] text-charcoal flex items-center gap-2"
             >
-              <ParchmentLogo className="w-3.5 h-3.5 text-gold-dark" />
+              <ParchmentLogo className="w-4 h-4" />
               <span>Explorar Catálogo</span>
             </a>
             <a
