@@ -116,7 +116,7 @@ export const CatalogExplorer: React.FC = () => {
               <div
                 className="w-full py-2.5 bg-charcoal group-hover:bg-gold-dark text-ivory-50 text-[11px] uppercase tracking-[0.16em] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm rounded-lg group-hover:shadow-md"
               >
-                <ParchmentLogo className="w-3.5 h-3.5 text-gold-light" />
+                <ParchmentLogo className="w-3.5 h-3.5" />
                 <span>Ver Invitación</span>
                 <ArrowUpRight className="w-3.5 h-3.5 opacity-75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
