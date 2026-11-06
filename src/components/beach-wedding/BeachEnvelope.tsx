@@ -3,6 +3,7 @@ import { Heart } from 'lucide-react';
 
 interface BeachEnvelopeProps {
   isOpening: boolean;
+  isFlapOpen?: boolean;
   isPaperRising?: boolean;
   onOpen: () => void;
   isFadingOut?: boolean;
@@ -10,6 +11,7 @@ interface BeachEnvelopeProps {
 
 export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
   isOpening,
+  isFlapOpen = false,
   isPaperRising = false,
   onOpen,
   isFadingOut = false,
@@ -56,11 +58,11 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
           <div className="absolute inset-3 border border-[#D4AF37]/50 rounded-xl pointer-events-none" />
         </div>
 
-        {/* INVITACIÓN DENTRO DEL SOBRE: Desliza hacia arriba RECIÉN cuando el sobre ya está abierto (isPaperRising) */}
+        {/* INVITACIÓN DENTRO DEL SOBRE: Siempre presente (overlap), se ve apenas abre el sobre y sube al terminar de abrir */}
         <div
-          className={`absolute inset-x-4 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 flex flex-col items-center justify-between text-center transition-all duration-[1200ms] ${isPaperRising
-            ? '-translate-y-[66%] opacity-100 scale-100 shadow-2xl rotate-[-0.8deg]'
-            : 'translate-y-0 opacity-0 pointer-events-none rotate-0'
+          className={`absolute inset-x-4 top-4 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 flex flex-col items-center justify-between text-center pointer-events-none transition-all duration-[1200ms] ${isPaperRising
+            ? '-translate-y-[66%] scale-100 shadow-2xl rotate-[-0.8deg]'
+            : 'translate-y-0 scale-[0.98] rotate-0 shadow-md'
             }`}
           style={{
             zIndex: 15,
@@ -185,7 +187,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
             transform: isOpening
               ? 'rotateX(180deg) translateZ(-8px)'
               : 'rotateX(0deg) translateZ(0px)',
-            zIndex: isPaperRising ? 2 : 40,
+            zIndex: isFlapOpen ? 2 : 40,
             filter: isOpening ? 'none' : 'drop-shadow(0 10px 16px rgba(65, 38, 20, 0.2))',
           }}
         >

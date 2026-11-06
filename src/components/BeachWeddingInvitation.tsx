@@ -16,6 +16,7 @@ const TARGET_WEDDING_DATE = '2026-11-14T12:30:00';
 export const BeachWeddingInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
+  const [isFlapOpen, setIsFlapOpen] = useState(false);
   const [isPaperRising, setIsPaperRising] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isSprayed, setIsSprayed] = useState(false);
@@ -32,46 +33,54 @@ export const BeachWeddingInvitation: React.FC = () => {
     return () => clearAllTimeouts();
   }, []);
 
-  // Secuencia de apertura del sobre:
-  // 1. Abre el sobre completo en 3D (0 - 950ms)
-  // 2. Recién allí empieza a subir el papel interior y a mostrarse (950ms - 2150ms)
-  // 3. Pausa para apreciar la invitación dentro del sobre (2150ms - 3600ms)
-  // 4. Disolución suave y transición a la invitación completa (3600ms - 4300ms)
+  // Secuencia de apertura del sobre con overlap natural:
+  // 1. Abre la solapa (0 - 950ms): el papel interior ya está dentro y se ve apenas abre
+  // 2. A los 450ms: la solapa pasa los 90° y se pliega detrás (z-index: 2)
+  // 3. A los 950ms: el sobre termina de abrirse completamente -> el papel sube (950ms - 2150ms)
+  // 4. Pausa para apreciar la tarjeta abierta (2150ms - 3700ms)
+  // 5. Disolución suave y transición a la invitación completa (3700ms - 4400ms)
   const handleOpenEnvelope = () => {
     if (isOpen || isOpening || isPaperRising) return;
     clearAllTimeouts();
     setIsOpening(true);
 
-    // Momento 1: A los 950ms el sobre terminó de abrirse -> El papel interior empieza a subir y mostrarse
+    // Momento 1 (450ms): La solapa supera los 90° y pasa detrás del bolsillo y tarjeta
     const t1 = setTimeout(() => {
+      setIsFlapOpen(true);
+    }, 450);
+
+    // Momento 2 (950ms): El sobre terminó de abrirse completamente -> El papel interior sube
+    const t2 = setTimeout(() => {
       setIsPaperRising(true);
     }, 950);
 
-    // Momento 2: A los 3600ms -> El sobre empieza a disolverse suavemente
-    const t2 = setTimeout(() => {
-      setIsFadingOut(true);
-    }, 3600);
-
-    // Momento 3: A los 4300ms -> Transición a la página completa
+    // Momento 3 (3700ms): Tras apreciarse la tarjeta abierta, comienza el desvanecimiento del sobre
     const t3 = setTimeout(() => {
+      setIsFadingOut(true);
+    }, 3700);
+
+    // Momento 4 (4400ms): Transición continua hacia la invitación completa
+    const t4 = setTimeout(() => {
       setIsOpen(true);
       setIsOpening(false);
+      setIsFlapOpen(false);
       setIsPaperRising(false);
       setIsFadingOut(false);
       // Spray airbrush reveal right upon landing
-      const t4 = setTimeout(() => {
+      const t5 = setTimeout(() => {
         setIsSprayed(true);
       }, 250);
-      timeoutsRef.current.push(t4);
-    }, 4300);
+      timeoutsRef.current.push(t5);
+    }, 4400);
 
-    timeoutsRef.current.push(t1, t2, t3);
+    timeoutsRef.current.push(t1, t2, t3, t4);
   };
 
   const handleReset = (e: React.MouseEvent) => {
     e.stopPropagation();
     clearAllTimeouts();
     setIsOpening(false);
+    setIsFlapOpen(false);
     setIsPaperRising(false);
     setIsFadingOut(false);
     setIsOpen(false);
@@ -97,6 +106,7 @@ export const BeachWeddingInvitation: React.FC = () => {
 
             <BeachEnvelope
               isOpening={isOpening}
+              isFlapOpen={isFlapOpen}
               isPaperRising={isPaperRising}
               isFadingOut={isFadingOut}
               onOpen={handleOpenEnvelope}
