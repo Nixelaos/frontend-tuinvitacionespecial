@@ -4,6 +4,7 @@ export { BeachCountdown } from './BeachCountdown';
 export { TornPaperDivider } from './TornPaperDivider';
 export { BeachQuote } from './BeachQuote';
 export { BeachGallery } from './BeachGallery';
+export { BeachRsvp } from './BeachRsvp';
 export { BeachSignature } from './BeachSignature';
 export { ScrollReveal } from './ScrollReveal';
 export { useCountdown } from './hooks/useCountdown';

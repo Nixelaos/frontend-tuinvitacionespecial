@@ -7,6 +7,7 @@ import {
   TornPaperDivider,
   BeachQuote,
   BeachGallery,
+  BeachRsvp,
   BeachSignature,
   useCountdown,
 } from './beach-wedding';
@@ -92,10 +93,11 @@ export const BeachWeddingInvitation: React.FC = () => {
     <div className="w-full min-h-screen bg-[#E5DDD2] flex justify-center items-start">
       {/* Mobile-Proportion Viewport Container */}
       <div
-        className={`w-full max-w-[430px] min-h-screen relative overflow-x-hidden font-sans transition-colors duration-1000 shadow-[0_0_50px_rgba(70,50,30,0.18)] sm:border-x sm:border-[#D5C6B5] flex flex-col ${!isOpen
+        className={`w-full max-w-[430px] min-h-screen relative overflow-x-hidden font-sans transition-colors duration-1000 shadow-[0_0_50px_rgba(70,50,30,0.18)] sm:border-x sm:border-[#D5C6B5] flex flex-col ${
+          !isOpen
             ? 'bg-gradient-to-br from-[#FAF3EB] via-[#F4EAE0] to-[#E9D9CB] justify-center items-center h-[100dvh] p-4 overflow-hidden'
             : 'bg-gradient-to-b from-[#FAF4EC] via-[#F5ECE0] to-[#EBDDCE] text-stone-800'
-          }`}
+        }`}
       >
         {/* 1. SOBRE CERRADO INTERACTIVO (PAPEL PASTEL + SELLO DE LACRE EN RELIEVE + EFECTO ACUARELA BLUR-TO-FOCUS) */}
         {!isOpen && (
@@ -145,6 +147,15 @@ export const BeachWeddingInvitation: React.FC = () => {
 
             {/* SECCIÓN 3: GALERÍA DE FOTOS EN MARCO ARTESANAL CON TINTA LÍQUIDA */}
             <BeachGallery />
+
+            {/* DIVISOR SUPERIOR DE PAPEL RASGADO PARA SECCIÓN RSVP */}
+            <TornPaperDivider type="top" upperColor="#EBDDCE" fiberColor="#FCF9F3" />
+
+            {/* SECCIÓN 4: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) */}
+            <BeachRsvp />
+
+            {/* DIVISOR INFERIOR DE PAPEL RASGADO PARA SECCIÓN RSVP */}
+            <TornPaperDivider type="bottom" lowerColor="#EBDDCE" fiberColor="#FCF9F3" />
 
             {/* FIRMA FINAL DE LOS NOVIOS */}
             <BeachSignature />
