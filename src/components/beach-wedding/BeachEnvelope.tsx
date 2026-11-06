@@ -98,14 +98,6 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
               «Celebrando nuestro amor frente al mar»
             </p>
 
-            <div className="mt-0.5 px-2.5 py-1 rounded-md bg-[#F7EFE4] border border-[#D9C1A9] shadow-xs flex flex-col items-center gap-0.5">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#4A2C12] font-bold">
-                Sábado, 14 de Noviembre · 12:30 hrs
-              </span>
-              <span className="text-[9px] tracking-wider text-[#351E0C] font-semibold">
-                Playa Blanca · Al Mediodía
-              </span>
-            </div>
           </div>
 
           <div className="relative pb-0.5 text-center">
