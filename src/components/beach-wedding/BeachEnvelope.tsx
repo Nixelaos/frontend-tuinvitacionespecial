@@ -4,32 +4,46 @@ import { Heart } from 'lucide-react';
 interface BeachEnvelopeProps {
   isOpening: boolean;
   onOpen: () => void;
+  isFadingOut?: boolean;
 }
 
-export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({ isOpening, onOpen }) => {
+export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
+  isOpening,
+  onOpen,
+  isFadingOut = false,
+}) => {
   return (
     <div
       onClick={onOpen}
-      className="relative w-full max-w-[390px] flex items-center justify-center my-auto px-1 cursor-pointer select-none"
+      className={`relative w-full max-w-[390px] flex items-center justify-center my-auto px-1 cursor-pointer select-none transition-all duration-[1600ms] ease-out ${
+        isFadingOut
+          ? 'opacity-0 -translate-y-10 blur-md pointer-events-none'
+          : 'opacity-100'
+      }`}
     >
-      {/* Subtle Instruction Badge */}
+      {/* Subtle Instruction Badge: Blur-to-Focus on load, gentle ceremony breathe, soft dissolve on click */}
       <div
-        className={`absolute -top-12 sm:-top-14 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#CDB59E] shadow-md text-xs font-sans font-semibold text-[#2B190E] transition-all duration-300 whitespace-nowrap ${
-          isOpening ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 animate-pulse'
+        className={`absolute -top-12 sm:-top-14 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#CDB59E] shadow-md text-xs font-sans font-semibold text-[#2B190E] whitespace-nowrap transition-all duration-[1200ms] ease-out ${
+          isOpening
+            ? 'opacity-0 -translate-y-3 blur-md scale-95 pointer-events-none'
+            : 'animate-watercolor-badge hover:scale-105 active:scale-95'
         }`}
       >
-        <span>Toca el sobre para abrir</span>
+        <div className="flex items-center gap-1.5 animate-watercolor-breathe">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#B8864E] animate-ping" />
+          <span>Toca el sobre para abrir</span>
+        </div>
       </div>
 
-      {/* Envelope Body Container */}
+      {/* Envelope Body Container: Emerges with Blur-to-Focus watercolor bloom */}
       <div
-        className={`relative w-full aspect-[16/10.5] rounded-2xl transition-all duration-700 ${
-          isOpening ? 'scale-105' : 'hover:scale-[1.015]'
+        className={`relative w-full aspect-[16/10.5] rounded-2xl transition-all duration-[1800ms] cubic-bezier(0.16, 1, 0.3, 1) animate-watercolor-envelope ${
+          isOpening ? 'scale-[1.03]' : 'hover:scale-[1.015]'
         }`}
         style={{ perspective: '1600px' }}
       >
-        {/* Ambient luxury drop shadow */}
-        <div className="absolute inset-0 -bottom-6 bg-[#684832]/25 blur-2xl rounded-2xl transform scale-95" />
+        {/* Ambient luxury drop shadow with watercolor diffusion */}
+        <div className="absolute inset-0 -bottom-6 bg-[#684832]/25 blur-2xl rounded-2xl transform scale-95 transition-opacity duration-1000" />
 
         {/* Back Plate / Base Paper Layer */}
         <div className="absolute inset-0 bg-[#F5ECE1] rounded-2xl border border-[#DFCDBC] overflow-hidden shadow-2xl">
@@ -44,22 +58,30 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({ isOpening, onOpen 
           <div className="absolute inset-3 border border-[#D4AF37]/50 rounded-xl pointer-events-none" />
         </div>
 
-        {/* INVITACIÓN DENTRO DEL SOBRE (DESLIZA HACIA ARRIBA) */}
+        {/* INVITACIÓN DENTRO DEL SOBRE (DESLIZA HACIA ARRIBA CON TIEMPO CINEMATOGRÁFICO Y BLUR-TO-FOCUS) */}
         <div
-          className={`absolute inset-x-4 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 flex flex-col items-center justify-between text-center transition-all duration-1000 ease-out ${
+          className={`absolute inset-x-4 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 flex flex-col items-center justify-between text-center transition-all duration-[2000ms] ${
             isOpening
-              ? '-translate-y-[64%] opacity-100 scale-100 shadow-2xl'
-              : 'translate-y-0 opacity-0 pointer-events-none'
+              ? '-translate-y-[66%] opacity-100 scale-100 shadow-2xl rotate-[-0.8deg] blur-0'
+              : 'translate-y-0 opacity-0 pointer-events-none rotate-0 blur-sm'
           }`}
           style={{
             zIndex: isOpening ? 15 : 5,
+            transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
           <div className="absolute inset-2 border border-[#D4AF37]/60 rounded-lg pointer-events-none" />
           <div className="absolute inset-3 border border-[#D4AF37]/35 rounded-md pointer-events-none" />
 
-          {/* Top Monogram Crest */}
-          <div className="relative pt-1 flex flex-col items-center">
+          {/* Top Monogram Crest: Blur-to-Focus Reveal */}
+          <div
+            className={`relative pt-1 flex flex-col items-center transition-all duration-[1400ms] ${
+              isOpening
+                ? 'opacity-100 blur-0 translate-y-0 delay-300'
+                : 'opacity-0 blur-[10px] translate-y-3'
+            }`}
+            style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
+          >
             <div className="px-3.5 py-0.5 rounded-full border border-[#B8864E] flex items-center justify-center bg-[#FBF4EC] text-[#5A3414] shadow-sm mb-1 whitespace-nowrap">
               <span className="font-serif text-xs font-bold tracking-[0.25em] whitespace-nowrap">
                 V &amp; S
@@ -70,8 +92,15 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({ isOpening, onOpen 
             </div>
           </div>
 
-          {/* Couple Names & Title */}
-          <div className="my-auto py-1 flex flex-col items-center">
+          {/* Couple Names & Title: Blur-to-Focus Watercolor Transition */}
+          <div
+            className={`my-auto py-1 flex flex-col items-center transition-all duration-[1600ms] ${
+              isOpening
+                ? 'opacity-100 blur-0 translate-y-0 delay-500'
+                : 'opacity-0 blur-[12px] translate-y-4'
+            }`}
+            style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
+          >
             <h3 className="font-serif text-2xl text-[#1E130D] font-medium italic leading-tight">
               Valentina &amp; Sebastián
             </h3>
@@ -146,8 +175,8 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({ isOpening, onOpen 
           </div>
         </div>
 
-        {/* STICKER / SELLO POSTAL INFERIOR DERECHO */}
-        <div className="absolute bottom-3 right-3 pointer-events-none z-30 flex items-center gap-1.5">
+        {/* STICKER / SELLO POSTAL INFERIOR DERECHO (Blur-to-Focus con micro-rotación) */}
+        <div className="absolute bottom-3 right-3 pointer-events-none z-30 flex items-center gap-1.5 animate-watercolor-stamps">
           <div className="w-10 h-12 border-2 border-dashed border-[#8E5A2B] bg-[#FFFBF7] rounded p-1 flex flex-col items-center justify-between text-center shadow-xs">
             <Heart className="w-3 h-3 text-[#8E5A2B] fill-[#8E5A2B]" />
             <span className="text-[8px] uppercase tracking-wider font-serif font-extrabold text-[#321B0B]">
@@ -163,12 +192,13 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({ isOpening, onOpen 
           </div>
         </div>
 
-        {/* TOP TRIANGULAR FLAP */}
+        {/* TOP TRIANGULAR FLAP (Apertura ceremonial en eje 3D de 1.8s) */}
         <div
-          className="absolute top-0 left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-800 ease-in-out"
+          className="absolute top-0 left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-[1800ms]"
           style={{
             transformStyle: 'preserve-3d',
             transformOrigin: 'top center',
+            transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
             transform: isOpening
               ? 'rotateX(180deg) translateZ(-8px)'
               : 'rotateX(0deg) translateZ(0px)',
@@ -205,24 +235,62 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({ isOpening, onOpen 
               />
             </svg>
 
-            {/* Valentina & Sebastián escrito directamente en el sobre */}
+            {/* Valentina & Sebastián escrito directamente en el sobre: Efecto Acuarela Blur-to-Focus desglosado */}
             <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-3">
-              <span
-                className="font-script text-2xl sm:text-3xl text-[#2A1204] leading-tight font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)]"
+              <h2
+                className="font-script text-2xl sm:text-3xl text-[#2A1204] leading-tight font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)] flex items-center justify-center gap-1.5 flex-wrap"
                 style={{
                   fontFamily: "'Great Vibes', cursive",
                 }}
               >
-                Valentina <span className="text-[#8E5A2B]">&amp;</span> Sebastián
-              </span>
+                <span
+                  className="inline-block animate-watercolor-text"
+                  style={
+                    {
+                      '--watercolor-duration': '2.2s',
+                      '--watercolor-delay': '0.35s',
+                      '--rot-start': '-2deg',
+                    } as React.CSSProperties
+                  }
+                >
+                  Valentina
+                </span>
+                <span
+                  className="inline-block text-[#8E5A2B] animate-watercolor-text"
+                  style={
+                    {
+                      '--watercolor-duration': '2.0s',
+                      '--watercolor-delay': '0.52s',
+                      '--rot-start': '0deg',
+                      '--scale-start': '0.85',
+                    } as React.CSSProperties
+                  }
+                >
+                  &amp;
+                </span>
+                <span
+                  className="inline-block animate-watercolor-text"
+                  style={
+                    {
+                      '--watercolor-duration': '2.2s',
+                      '--watercolor-delay': '0.70s',
+                      '--rot-start': '1.8deg',
+                    } as React.CSSProperties
+                  }
+                >
+                  Sebastián
+                </span>
+              </h2>
             </div>
           </div>
         </div>
 
-        {/* SELLO DE CERA REALISTA */}
+        {/* SELLO DE CERA REALISTA (Blur-to-focus en carga, disolución acuarela cinematográfica en apertura) */}
         <div
-          className={`absolute left-1/2 top-[58%] w-[22%] max-w-[96px] -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-500 pointer-events-none select-none ${
-            isOpening ? 'scale-125 opacity-0 -translate-y-10' : 'scale-100 opacity-100'
+          className={`absolute left-1/2 top-[58%] w-[22%] max-w-[96px] -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none select-none ${
+            isOpening
+              ? 'transition-all duration-[1600ms] cubic-bezier(0.16, 1, 0.3, 1) scale-125 opacity-0 -translate-y-10 blur-md rotate-6'
+              : 'animate-watercolor-seal'
           }`}
         >
           <div className="relative w-full aspect-square flex items-center justify-center">
