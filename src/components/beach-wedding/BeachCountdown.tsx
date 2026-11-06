@@ -11,7 +11,7 @@ export const BeachCountdown: React.FC<BeachCountdownProps> = ({ timeLeft }) => {
     <div className="relative z-20 w-full -mt-12 sm:-mt-14">
       {/* Main handmade torn paper sheet in warm cream (Edge-to-Edge) */}
       <div
-        className="bg-[#F5ECE0] relative w-full px-4 pt-12 pb-11 text-center"
+        className="bg-[#F5ECE0] relative w-full px-4 pt-12 pb-7 sm:pb-8 text-center"
         style={{
           clipPath: TORN_PAPER_CLIP,
         }}

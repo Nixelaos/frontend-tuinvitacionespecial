@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { FloatingWhatsApp } from '../components/FloatingWhatsApp';
+import { ParchmentLogo } from '../components/ParchmentLogo';
+import { BRAND_NAME, WHATSAPP_NUMBER } from '../data/weddingData';
+import { Home, Compass, ArrowLeft } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
+
+const whatsappHelpUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  `¡Hola ${BRAND_NAME}! Estaba navegando en su sitio web y no pude encontrar la página que buscaba.`
+)}`;
+---
+
+<Layout
+  title={`Página No Encontrada — ${BRAND_NAME}`}
+  description="La página que buscas no existe o ha cambiado de lugar. Descubre nuestras invitaciones digitales de boda personalizadas."
+>
+  <Navbar client:load />
+
+  <main class="min-h-[82vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-ivory-100 via-ivory to-ivory-200">
+    <!-- Ambient delicate background lighting -->
+    <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_40%,rgba(212,175,55,0.08),transparent_70%)]" />
+
+    <div class="max-w-2xl w-full mx-auto relative z-10 text-center">
+      <!-- Decorative Wax Seal & Crest -->
+      <div class="flex justify-center mb-6">
+        <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+          <div class="absolute inset-0 rounded-full bg-gold/15 blur-xl animate-pulse" />
+          <img
+            src="/images/sello-cera.webp"
+            alt="Sello de cera Tu Invitación Especial"
+            class="w-full h-full object-contain relative z-10 drop-shadow-[0_8px_16px_rgba(40,16,6,0.25)]"
+          />
+        </div>
+      </div>
+
+      <!-- Main Card with editorial borders -->
+      <div class="bg-ivory-50/90 backdrop-blur-sm border border-gold/40 shadow-editorial-lg p-8 sm:p-12 relative overflow-hidden">
+        <!-- Delicate inner border -->
+        <div class="absolute inset-2 sm:inset-3 border border-gold/25 pointer-events-none" />
+
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 bg-champagne border border-gold/30 text-[11px] uppercase tracking-[0.25em] text-gold-dark font-medium mb-4">
+          <Compass className="w-3.5 h-3.5" />
+          <span>Error 404 · Enlace extraviado</span>
+        </span>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-charcoal font-normal leading-tight mt-2">
+          Un camino que no <br />
+          <span class="italic font-serif text-gold-dark font-medium">pudimos encontrar</span>
+        </h1>
+
+        <p class="mt-4 text-sm sm:text-base text-charcoal-muted max-w-lg mx-auto font-light leading-relaxed">
+          Parece que la dirección web que ingresaste no existe, fue movida o cambió de enlace. 
+          Pero no te preocupes, el camino hacia la invitación de tus sueños sigue intacto.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a
+            href="/"
+            class="w-full sm:w-auto px-7 py-3.5 bg-charcoal hover:bg-gold-dark text-ivory-50 text-xs uppercase tracking-[0.18em] font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-sm rounded-xs"
+          >
+            <Home className="w-4 h-4" />
+            <span>Volver al Inicio</span>
+          </a>
+
+          <a
+            href="/#catalogo"
+            class="w-full sm:w-auto px-7 py-3.5 bg-champagne hover:bg-gold hover:text-ivory-50 text-charcoal text-xs uppercase tracking-[0.18em] font-medium transition-all duration-300 flex items-center justify-center gap-2 border border-gold/40 rounded-xs"
+          >
+            <ParchmentLogo className="w-4 h-4" />
+            <span>Ver Catálogo de Diseños</span>
+          </a>
+        </div>
+
+        <!-- WhatsApp Help Link -->
+        <div class="mt-8 pt-6 border-t border-ivory-300 flex items-center justify-center">
+          <a
+            href={whatsappHelpUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-xs text-charcoal-muted hover:text-gold-dark transition"
+          >
+            <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
+            <span>¿Buscabas una invitación específica? Consúltanos por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <FloatingWhatsApp />
+  <Footer />
+</Layout>

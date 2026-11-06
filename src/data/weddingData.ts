@@ -2,9 +2,34 @@ import type {
   InvitationTemplate,
   FaqItem,
 } from '../types/wedding';
+import type { MenuOption, RsvpEventConfig } from '../types/rsvp';
 
 export const WHATSAPP_NUMBER = '56950781737'; // Número WhatsApp (+56 9 5078 1737)
 export const BRAND_NAME = 'Tu Invitación Especial';
+
+export const DEFAULT_MENU_OPTIONS: MenuOption[] = [
+  { id: 'standard', label: 'Estándar' },
+  { id: 'vegetarian', label: 'Vegetariano' },
+  { id: 'vegan', label: 'Vegano' },
+  { id: 'celiac', label: 'Celíaco / Sin Gluten' },
+  { id: 'kids', label: 'Menú Infantil' },
+];
+
+export const BEACH_WEDDING_RSVP_CONFIG: RsvpEventConfig = {
+  eventTitle: 'Boda Valentina & Sebastián',
+  coupleNames: 'Valentina & Sebastián',
+  uid: 'boda-valentina-sebastian-20261114@tuinvitacionespecial.cl',
+  icsFileName: 'Boda-Valentina-y-Sebastian.ics',
+  startDateIcs: '20261114T123000',
+  endDateIcs: '20261114T230000',
+  calendarDescription:
+    'Celebración de Boda de Valentina & Sebastián frente al mar. ¡Nos vemos en la playa!',
+  location: 'Explanada Frente al Mar · Playa Blanca, Bahía Serena',
+  rsvpDeadlineDisplay: '25 de Octubre de 2026',
+  rsvpDeadlineShort: '25 de Octubre',
+  eventDateShort: '14 de Noviembre',
+  whatsappNumber: WHATSAPP_NUMBER,
+};
 
 export const INVITATION_TEMPLATES: InvitationTemplate[] = [
   {

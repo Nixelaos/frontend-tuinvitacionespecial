@@ -19,7 +19,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
   return (
     <div
       onClick={onOpen}
-      className={`relative w-full max-w-[390px] flex items-center justify-center my-auto px-1 cursor-pointer select-none transition-all duration-[1600ms] ease-out ${isFadingOut
+      className={`relative w-full max-w-[390px] flex items-center justify-center my-auto px-1 cursor-pointer select-none transition-all duration-[800ms] ease-out ${isFadingOut
         ? 'opacity-0 -translate-y-10 blur-md pointer-events-none'
         : 'opacity-100'
         }`}
@@ -60,7 +60,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
 
         {/* INVITACIÓN DENTRO DEL SOBRE: Siempre presente (overlap), se ve apenas abre el sobre y sube al terminar de abrir */}
         <div
-          className={`absolute inset-x-4 top-4 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 flex flex-col items-center justify-between text-center pointer-events-none transition-all duration-[1200ms] ${isPaperRising
+          className={`absolute inset-x-4 top-4 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 flex flex-col items-center justify-between text-center pointer-events-none transition-all duration-[1000ms] ${isPaperRising
             ? '-translate-y-[66%] scale-100 shadow-2xl rotate-[-0.8deg]'
             : 'translate-y-0 scale-[0.98] rotate-0 shadow-md'
             }`}
@@ -171,11 +171,11 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
 
         {/* TOP TRIANGULAR FLAP (Conectada estructuralmente al sobre, manteniendo el color original) */}
         <div
-          className="absolute -top-[1px] left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-[900ms]"
+          className="absolute -top-[1px] left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-[700ms]"
           style={{
             transformStyle: 'preserve-3d',
             transformOrigin: 'top center',
-            transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            transitionTimingFunction: 'cubic-bezier(0.25, 1, 0.5, 1)',
             transform: isOpening
               ? 'rotateX(180deg)'
               : 'rotateX(0deg)',

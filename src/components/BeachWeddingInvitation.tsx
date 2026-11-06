@@ -48,17 +48,17 @@ export const BeachWeddingInvitation: React.FC = () => {
     // Momento 1 (450ms): La solapa supera los 90° y pasa detrás del bolsillo y tarjeta
     const t1 = setTimeout(() => {
       setIsFlapOpen(true);
-    }, 450);
+    }, 320);
 
     // Momento 2 (950ms): El sobre terminó de abrirse completamente -> El papel interior sube
     const t2 = setTimeout(() => {
       setIsPaperRising(true);
-    }, 950);
+    }, 700);
 
     // Momento 3 (3700ms): Tras apreciarse la tarjeta abierta, comienza el desvanecimiento del sobre
     const t3 = setTimeout(() => {
       setIsFadingOut(true);
-    }, 3700);
+    }, 3200);
 
     // Momento 4 (4400ms): Transición continua hacia la invitación completa
     const t4 = setTimeout(() => {
@@ -70,9 +70,9 @@ export const BeachWeddingInvitation: React.FC = () => {
       // Spray airbrush reveal right upon landing
       const t5 = setTimeout(() => {
         setIsSprayed(true);
-      }, 250);
+      }, 150);
       timeoutsRef.current.push(t5);
-    }, 4400);
+    }, 3800);
 
     timeoutsRef.current.push(t1, t2, t3, t4);
   };
@@ -117,7 +117,7 @@ export const BeachWeddingInvitation: React.FC = () => {
 
         {/* 2. LANDING PAGE INVITACIÓN ABIERTA */}
         {isOpen && (
-          <div className="w-full animate-watercolor-envelope transition-opacity duration-1000 pb-20 flex flex-col">
+          <div className="w-full transition-opacity duration-700 pb-20 flex flex-col">
             {/* Top Floating Control Bar */}
             <div className="absolute top-3 right-3 z-30 pointer-events-auto">
               <button

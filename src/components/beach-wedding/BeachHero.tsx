@@ -49,16 +49,11 @@ export const BeachHero: React.FC<BeachHeroProps> = ({ isSprayed }) => {
         <img
           src="/images/comprometidos.webp"
           alt="Valentina & Sebastián — Pareja de novios comprometidos"
-          className={`w-full h-full object-cover object-center transition-all duration-[1400ms] ease-out ${
+          className={`w-full h-full object-cover object-center transition-[filter,opacity] duration-[1400ms] ease-out ${
             isSprayed
-              ? 'opacity-100 scale-100 blur-0 contrast-100'
-              : 'opacity-0 scale-95 blur-md contrast-150'
+              ? 'blur-0 opacity-100 contrast-100'
+              : 'blur-md opacity-100 contrast-105'
           }`}
-          style={{
-            clipPath: isSprayed ? 'circle(100% at 50% 50%)' : 'circle(8% at 50% 50%)',
-            transition:
-              'clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.4s ease-out, opacity 1s ease-out, transform 1.4s ease-out',
-          }}
         />
 
         {/* Video Overlay: Miles de Partículas Doradas (Reproducción única con desvanecimiento lento) */}
@@ -88,8 +83,8 @@ export const BeachHero: React.FC<BeachHeroProps> = ({ isSprayed }) => {
 
         {/* Names Overlay over Photo: ONLY 'Valentina & Sebastián' in cursive */}
         <div
-          className={`absolute inset-0 z-20 flex flex-col items-center justify-end px-5 pb-16 sm:pb-20 text-center text-white transition-all duration-1000 delay-300 pointer-events-none ${
-            isSprayed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          className={`absolute inset-0 z-20 flex flex-col items-center justify-end px-5 pb-16 sm:pb-20 text-center text-white transition-opacity duration-1000 delay-200 pointer-events-none ${
+            isSprayed ? 'opacity-100' : 'opacity-0'
           }`}
         >
           <h1
