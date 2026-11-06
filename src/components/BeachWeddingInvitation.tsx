@@ -16,36 +16,63 @@ const TARGET_WEDDING_DATE = '2026-11-14T12:30:00';
 export const BeachWeddingInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
+  const [isPaperRising, setIsPaperRising] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isSprayed, setIsSprayed] = useState(false);
 
   const timeLeft = useCountdown(TARGET_WEDDING_DATE);
+  const timeoutsRef = React.useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  // Trigger envelope opening with cinematic watercolor cadence (1.8s - 2.5s)
+  const clearAllTimeouts = () => {
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+  };
+
+  React.useEffect(() => {
+    return () => clearAllTimeouts();
+  }, []);
+
+  // Secuencia de apertura del sobre:
+  // 1. Abre el sobre completo en 3D (0 - 950ms)
+  // 2. Recién allí empieza a subir el papel interior y a mostrarse (950ms - 2150ms)
+  // 3. Pausa para apreciar la invitación dentro del sobre (2150ms - 3600ms)
+  // 4. Disolución suave y transición a la invitación completa (3600ms - 4300ms)
   const handleOpenEnvelope = () => {
-    if (isOpen || isOpening) return;
+    if (isOpen || isOpening || isPaperRising) return;
+    clearAllTimeouts();
     setIsOpening(true);
 
-    // Momento 1.9s: El sobre comienza a elevarse y disolverse suavemente con inercia
-    setTimeout(() => {
-      setIsFadingOut(true);
-    }, 1900);
+    // Momento 1: A los 950ms el sobre terminó de abrirse -> El papel interior empieza a subir y mostrarse
+    const t1 = setTimeout(() => {
+      setIsPaperRising(true);
+    }, 950);
 
-    // Momento 2.45s: Transición continua hacia la invitación sin cortes abruptos
-    setTimeout(() => {
+    // Momento 2: A los 3600ms -> El sobre empieza a disolverse suavemente
+    const t2 = setTimeout(() => {
+      setIsFadingOut(true);
+    }, 3600);
+
+    // Momento 3: A los 4300ms -> Transición a la página completa
+    const t3 = setTimeout(() => {
       setIsOpen(true);
       setIsOpening(false);
+      setIsPaperRising(false);
       setIsFadingOut(false);
       // Spray airbrush reveal right upon landing
-      setTimeout(() => {
+      const t4 = setTimeout(() => {
         setIsSprayed(true);
       }, 250);
-    }, 2450);
+      timeoutsRef.current.push(t4);
+    }, 4300);
+
+    timeoutsRef.current.push(t1, t2, t3);
   };
 
   const handleReset = (e: React.MouseEvent) => {
     e.stopPropagation();
+    clearAllTimeouts();
     setIsOpening(false);
+    setIsPaperRising(false);
     setIsFadingOut(false);
     setIsOpen(false);
     setIsSprayed(false);
@@ -70,6 +97,7 @@ export const BeachWeddingInvitation: React.FC = () => {
 
             <BeachEnvelope
               isOpening={isOpening}
+              isPaperRising={isPaperRising}
               isFadingOut={isFadingOut}
               onOpen={handleOpenEnvelope}
             />

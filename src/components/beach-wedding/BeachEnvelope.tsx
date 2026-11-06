@@ -3,12 +3,14 @@ import { Heart } from 'lucide-react';
 
 interface BeachEnvelopeProps {
   isOpening: boolean;
+  isPaperRising?: boolean;
   onOpen: () => void;
   isFadingOut?: boolean;
 }
 
 export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
   isOpening,
+  isPaperRising = false,
   onOpen,
   isFadingOut = false,
 }) => {
@@ -54,14 +56,14 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
           <div className="absolute inset-3 border border-[#D4AF37]/50 rounded-xl pointer-events-none" />
         </div>
 
-        {/* INVITACIÓN DENTRO DEL SOBRE (DESLIZA HACIA ARRIBA CON MOVIMIENTO NATURAL SIN BLUR NI ESCALONADO) */}
+        {/* INVITACIÓN DENTRO DEL SOBRE: Desliza hacia arriba RECIÉN cuando el sobre ya está abierto (isPaperRising) */}
         <div
-          className={`absolute inset-x-4 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 flex flex-col items-center justify-between text-center transition-all duration-[1800ms] ${isOpening
+          className={`absolute inset-x-4 top-3 bottom-3 bg-gradient-to-b from-[#FFFDF9] via-[#FCF8F2] to-[#F8F2E8] rounded-xl shadow-lg border border-[#E5D5C3] p-4 flex flex-col items-center justify-between text-center transition-all duration-[1200ms] ${isPaperRising
             ? '-translate-y-[66%] opacity-100 scale-100 shadow-2xl rotate-[-0.8deg]'
             : 'translate-y-0 opacity-0 pointer-events-none rotate-0'
             }`}
           style={{
-            zIndex: isOpening ? 15 : 5,
+            zIndex: 15,
             transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
@@ -173,9 +175,9 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
           </div>
         </div>
 
-        {/* TOP TRIANGULAR FLAP (Apertura ceremonial en eje 3D de 1.8s) */}
+        {/* TOP TRIANGULAR FLAP (Apertura ceremonial en eje 3D de 900ms) */}
         <div
-          className="absolute top-0 left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-[1800ms]"
+          className="absolute top-0 left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-[900ms]"
           style={{
             transformStyle: 'preserve-3d',
             transformOrigin: 'top center',
@@ -183,7 +185,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
             transform: isOpening
               ? 'rotateX(180deg) translateZ(-8px)'
               : 'rotateX(0deg) translateZ(0px)',
-            zIndex: isOpening ? 2 : 40,
+            zIndex: isPaperRising ? 2 : 40,
             filter: isOpening ? 'none' : 'drop-shadow(0 10px 16px rgba(65, 38, 20, 0.2))',
           }}
         >
@@ -216,8 +218,8 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
               />
             </svg>
 
-            {/* Valentina & Sebastián escrito directamente en el sobre: Efecto Acuarela Blur-to-Focus desglosado */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-3">
+            {/* Valentina & Sebastián escrito directamente en el sobre: Se desvanece al abrir la solapa */}
+            <div className={`absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-center pointer-events-none select-none z-10 w-full px-3 transition-opacity duration-300 ${isOpening ? 'opacity-0' : 'opacity-100'}`}>
               <h2
                 className="font-script text-2xl sm:text-3xl text-[#2A1204] leading-tight font-normal tracking-wide drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)] flex items-center justify-center gap-1.5 flex-wrap"
                 style={{
@@ -269,7 +271,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
         {/* SELLO DE CERA REALISTA (Blur-to-focus en carga, disolución acuarela cinematográfica en apertura) */}
         <div
           className={`absolute left-1/2 top-[58%] w-[22%] max-w-[96px] -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none select-none ${isOpening
-            ? 'transition-all duration-[1600ms] cubic-bezier(0.16, 1, 0.3, 1) scale-125 opacity-0 -translate-y-10 blur-md rotate-6'
+            ? 'transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) scale-110 opacity-0 -translate-y-6 blur-sm rotate-6'
             : 'animate-watercolor-seal'
             }`}
         >
