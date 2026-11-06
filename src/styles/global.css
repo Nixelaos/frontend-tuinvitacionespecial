@@ -1,3 +1,5 @@
+@import './watercolor.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -29,7 +31,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4, .font-editorial {
+  h1, h2, h3, h4 {
     font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif;
     text-rendering: optimizeLegibility;
   }
@@ -41,10 +43,6 @@
 }
 
 @layer components {
-  .editorial-border {
-    border: 1px solid rgba(181, 148, 91, 0.25);
-  }
-
   .editorial-card {
     background: rgba(253, 252, 251, 0.9);
     border: 1px solid rgba(230, 218, 200, 0.8);
@@ -67,133 +65,8 @@
   }
 }
 
-/* Custom subtle pattern overlay */
-.bg-linen-pattern {
-  background-image: none;
-}
-
-/* Artistic animations for Botanical & Celestial Invitation */
-@keyframes petalDrift {
-  0% {
-    transform: translateY(-10vh) translateX(0px) rotate(0deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.75;
-  }
-  85% {
-    opacity: 0.75;
-  }
-  100% {
-    transform: translateY(105vh) translateX(45px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-@keyframes spinVinyl {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes shimmerGlow {
-  0%, 100% {
-    opacity: 0.35;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.08);
-  }
-}
-
-.animate-petal {
-  animation: petalDrift linear infinite;
-}
-
-.animate-spin-vinyl {
-  animation: spinVinyl 9s linear infinite;
-}
-
-.animate-shimmer-glow {
-  animation: shimmerGlow 4s ease-in-out infinite;
-}
-
-.arch-portrait {
-  border-radius: 260px 260px 16px 16px;
-}
-
-.arch-card {
-  border-radius: 180px 180px 12px 12px;
-}
-
-/* 3rd Invitation: Handmade Torn Paper (Deckle Edge) & Organic Shapes */
-.deckle-card {
-  position: relative;
-  background: #FCF9F2;
-  border-radius: 28px 18px 32px 22px / 22px 30px 18px 28px;
-  box-shadow:
-    0 22px 48px -14px rgba(58, 43, 32, 0.10),
-    0 2px 6px rgba(58, 43, 32, 0.05);
-  clip-path: polygon(
-    0% 1.5%, 3% 0.4%, 7% 1.8%, 12% 0.2%, 18% 1.4%, 24% 0.5%, 31% 1.6%, 38% 0.3%,
-    45% 1.5%, 52% 0.4%, 60% 1.7%, 67% 0.3%, 74% 1.4%, 81% 0.5%, 88% 1.6%, 94% 0.4%, 98% 1.5%, 100% 0.8%,
-    99.3% 8%, 99.8% 16%, 99.1% 25%, 99.7% 34%, 99.2% 43%, 99.8% 52%, 99.1% 61%, 99.7% 70%, 99.2% 79%, 99.8% 88%, 99.3% 95%, 100% 98.8%,
-    96% 99.6%, 90% 98.5%, 83% 99.7%, 76% 98.6%, 69% 99.5%, 61% 98.4%, 54% 99.6%, 46% 98.5%,
-    39% 99.7%, 31% 98.6%, 24% 99.5%, 17% 98.4%, 10% 99.6%, 4% 98.7%, 0% 99.2%,
-    0.7% 91%, 0.2% 82%, 0.9% 73%, 0.3% 64%, 0.8% 55%, 0.2% 46%, 0.9% 37%, 0.3% 28%, 0.8% 19%, 0.2% 10%
-  );
-}
-
-.deckle-pill {
-  border-radius: 42px 28px 46px 30px / 30px 44px 28px 40px;
-}
-
-.organic-photo-mask {
-  border-radius: 58% 42% 48% 52% / 46% 54% 46% 54%;
-}
-
-@keyframes floatGentle {
-  0%, 100% {
-    transform: translateY(0px) rotate(-0.5deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(0.8deg);
-  }
-}
-
-.animate-float-gentle {
-  animation: floatGentle 6s ease-in-out infinite;
-}
-
-/* Floating Rain of Transparent Hearts */
-@keyframes heartRainFall {
-  0% {
-    transform: translateY(-10vh) translateX(0) scale(0.8) rotate(-10deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.38;
-  }
-  80% {
-    opacity: 0.28;
-  }
-  100% {
-    transform: translateY(108vh) translateX(35px) scale(1.15) rotate(20deg);
-    opacity: 0;
-  }
-}
-
-.animate-heart-rain {
-  animation: heartRainFall linear infinite;
-}
-
 /* =========================================================
-   Delicate Entrance & Scroll-Reveal System (Crisp, High-DPI Fonts)
-   Clean opacity + translateY with zero blur to preserve razor-sharp text
+   Delicate Entrance & Scroll-Reveal System
    ========================================================= */
 @keyframes delicateFadeIn {
   0% {
@@ -250,120 +123,6 @@ html.js-ready .scroll-reveal.reveal-delicate {
 .delay-2 { --reveal-delay: 0.20s; animation-delay: 0.20s; }
 .delay-3 { --reveal-delay: 0.34s; animation-delay: 0.34s; }
 .delay-4 { --reveal-delay: 0.48s; animation-delay: 0.48s; }
-.delay-5 { --reveal-delay: 0.62s; animation-delay: 0.62s; }
-.delay-6 { --reveal-delay: 0.76s; animation-delay: 0.76s; }
-
-/* =========================================================
-   A. Filosofía Estética: Del "Pop-in" al "Efecto Acuarela"
-   Transición Blur-to-Focus (blur(12px) -> blur(0px))
-   Tiempos Cinematográficos (1.2s - 2.5s) con Micro-rotaciones
-   ========================================================= */
-
-@keyframes watercolorBlurFocusIn {
-  0% {
-    opacity: 0;
-    filter: blur(12px);
-    transform: translateY(16px) rotate(var(--rot-start, -1.2deg)) scale(var(--scale-start, 0.96));
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateY(0px) rotate(var(--rot-end, 0deg)) scale(1);
-  }
-}
-
-@keyframes watercolorEnvelopeIn {
-  0% {
-    opacity: 0;
-    filter: blur(14px);
-    transform: scale(0.95) rotate(-0.8deg);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-@keyframes watercolorSealIn {
-  0% {
-    opacity: 0;
-    filter: blur(12px);
-    transform: translate(-50%, -50%) scale(0.82) rotate(-6deg);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
-  }
-}
-
-@keyframes watercolorStampsIn {
-  0% {
-    opacity: 0;
-    filter: blur(10px);
-    transform: scale(0.88) rotate(18deg);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: scale(1) rotate(12deg);
-  }
-}
-
-@keyframes watercolorBadgeIn {
-  0% {
-    opacity: 0;
-    filter: blur(12px);
-    transform: translate(-50%, 12px) rotate(1.8deg) scale(0.94);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translate(-50%, 0px) rotate(0deg) scale(1);
-  }
-}
-
-@keyframes watercolorBreathe {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: scale(1.03);
-    opacity: 1;
-  }
-}
-
-.animate-watercolor-envelope {
-  animation: watercolorEnvelopeIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) both;
-  will-change: transform, opacity, filter;
-}
-
-.animate-watercolor-seal {
-  animation: watercolorSealIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
-  will-change: transform, opacity, filter;
-}
-
-.animate-watercolor-stamps {
-  animation: watercolorStampsIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
-  will-change: transform, opacity, filter;
-}
-
-.animate-watercolor-badge {
-  animation: watercolorBadgeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
-  will-change: transform, opacity, filter;
-}
-
-.animate-watercolor-breathe {
-  animation: watercolorBreathe 4.2s ease-in-out infinite;
-  will-change: transform, box-shadow;
-}
-
-.animate-watercolor-text {
-  animation: watercolorBlurFocusIn var(--watercolor-duration, 2.0s) cubic-bezier(0.16, 1, 0.3, 1) var(--watercolor-delay, 0s) both;
-  will-change: transform, opacity, filter;
-}
 
 .animate-lightbounce {
   animation: lightBounce 4.2s ease-in-out infinite;
@@ -381,35 +140,7 @@ html.js-ready .scroll-reveal.reveal-delicate {
     animation: none !important;
   }
 
-  .animate-watercolor-envelope,
-  .animate-watercolor-seal,
-  .animate-watercolor-stamps,
-  .animate-watercolor-badge,
-  .animate-watercolor-text {
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    animation: none !important;
-  }
-
-  .animate-watercolor-breathe,
   .animate-lightbounce {
     animation: none !important;
   }
-}
-
-/* Hide scrollbar utility for clean iframe device mockups */
-.no-scrollbar::-webkit-scrollbar,
-html.hero-preview::-webkit-scrollbar,
-body.hero-preview::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
-
-.no-scrollbar,
-html.hero-preview,
-body.hero-preview {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }

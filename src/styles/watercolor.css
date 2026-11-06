@@ -1,0 +1,127 @@
+/* =========================================================
+   Acuarela & Sobre de Boda Playera (Beach Wedding Effects)
+   Transición Blur-to-Focus con micro-rotaciones y tiempos cinematográficos
+   ========================================================= */
+
+@keyframes watercolorBlurFocusIn {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(16px) rotate(var(--rot-start, -1.2deg)) scale(var(--scale-start, 0.96));
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px) rotate(var(--rot-end, 0deg)) scale(1);
+  }
+}
+
+@keyframes watercolorEnvelopeIn {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: scale(0.95) rotate(-0.8deg);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes watercolorSealIn {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate(-50%, -50%) scale(0.82) rotate(-6deg);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes watercolorStampsIn {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.88) rotate(18deg);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1) rotate(12deg);
+  }
+}
+
+@keyframes watercolorBadgeIn {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate(-50%, 12px) rotate(1.8deg) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translate(-50%, 0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes watercolorBreathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+.animate-watercolor-envelope {
+  animation: watercolorEnvelopeIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-watercolor-seal {
+  animation: watercolorSealIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-watercolor-stamps {
+  animation: watercolorStampsIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-watercolor-badge {
+  animation: watercolorBadgeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-watercolor-breathe {
+  animation: watercolorBreathe 4.2s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+.animate-watercolor-text {
+  animation: watercolorBlurFocusIn var(--watercolor-duration, 2.0s) cubic-bezier(0.16, 1, 0.3, 1) var(--watercolor-delay, 0s) both;
+  will-change: transform, opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-watercolor-envelope,
+  .animate-watercolor-seal,
+  .animate-watercolor-stamps,
+  .animate-watercolor-badge,
+  .animate-watercolor-text {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  .animate-watercolor-breathe {
+    animation: none !important;
+  }
+}
