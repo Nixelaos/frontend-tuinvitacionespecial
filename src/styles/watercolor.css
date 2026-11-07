@@ -42,6 +42,19 @@
   }
 }
 
+@keyframes watercolorSealOut {
+  0% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate(-50%, calc(-50% - 16px)) scale(1.1) rotate(6deg);
+  }
+}
+
 @keyframes watercolorStampsIn {
   0% {
     opacity: 0;
@@ -89,6 +102,11 @@
   will-change: transform, opacity, filter;
 }
 
+.animate-watercolor-seal-out {
+  animation: watercolorSealOut 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+
 .animate-watercolor-stamps {
   animation: watercolorStampsIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
   will-change: transform, opacity, filter;
@@ -117,6 +135,13 @@
   .animate-watercolor-text {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  .animate-watercolor-seal-out {
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) !important;
     filter: none !important;
     animation: none !important;
   }

@@ -171,7 +171,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
 
         {/* TOP TRIANGULAR FLAP (Conectada estructuralmente al sobre, manteniendo el color original) */}
         <div
-          className="absolute -top-[1px] left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-[700ms]"
+          className="absolute -top-[1px] left-0 right-0 h-[64%] pointer-events-none origin-top transition-all duration-1000"
           style={{
             transformStyle: 'preserve-3d',
             transformOrigin: 'top center',
@@ -266,7 +266,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
         {/* SELLO DE CERA REALISTA (Blur-to-focus en carga, disolución acuarela cinematográfica en apertura) */}
         <div
           className={`absolute left-1/2 top-[58%] w-[22%] max-w-[96px] -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none select-none ${isOpening
-            ? 'transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) scale-110 opacity-0 -translate-y-6 blur-sm rotate-6'
+            ? 'animate-watercolor-seal-out'
             : 'animate-watercolor-seal'
             }`}
         >

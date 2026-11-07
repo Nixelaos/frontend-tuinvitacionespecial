@@ -48,17 +48,17 @@ export const BeachWeddingInvitation: React.FC = () => {
     // Momento 1 (450ms): La solapa supera los 90° y pasa detrás del bolsillo y tarjeta
     const t1 = setTimeout(() => {
       setIsFlapOpen(true);
-    }, 320);
+    }, 480);
 
-    // Momento 2 (950ms): El sobre terminó de abrirse completamente -> El papel interior sube
+    // Momento 2 (1000ms): El sello termina de desaparecer en 1s y el sobre está completamente abierto -> El papel interior sube
     const t2 = setTimeout(() => {
       setIsPaperRising(true);
-    }, 700);
+    }, 1000);
 
     // Momento 3 (3700ms): Tras apreciarse la tarjeta abierta, comienza el desvanecimiento del sobre
     const t3 = setTimeout(() => {
       setIsFadingOut(true);
-    }, 3200);
+    }, 3500);
 
     // Momento 4 (4400ms): Transición continua hacia la invitación completa
     const t4 = setTimeout(() => {
@@ -72,7 +72,7 @@ export const BeachWeddingInvitation: React.FC = () => {
         setIsSprayed(true);
       }, 150);
       timeoutsRef.current.push(t5);
-    }, 3800);
+    }, 4200);
 
     timeoutsRef.current.push(t1, t2, t3, t4);
   };
