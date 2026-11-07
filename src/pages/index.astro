@@ -1,12 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Navbar } from '../components/Navbar';
-import { CatalogExplorer } from '../components/CatalogExplorer';
-import { FaqAccordion } from '../components/FaqAccordion';
-import { FloatingWhatsApp } from '../components/FloatingWhatsApp';
-import { Footer } from '../components/Footer';
-import { BRAND_NAME, WHATSAPP_NUMBER } from '../data/weddingData';
-import { ParchmentLogo } from '../components/ParchmentLogo';
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { CatalogExplorer } from "../components/CatalogExplorer";
+import { FaqAccordion } from "../components/FaqAccordion";
+import { FloatingWhatsApp } from "../components/FloatingWhatsApp";
+import { Footer } from "../components/Footer";
+import { BRAND_NAME, WHATSAPP_NUMBER } from "../data/weddingData";
+import { ParchmentLogo } from "../components/ParchmentLogo";
 import {
   Heart,
   Mail,
@@ -15,18 +15,18 @@ import {
   Clock,
   HelpCircle,
   CheckCircle2,
-} from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa6';
+} from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const whatsappHeroUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  `¡Hola ${BRAND_NAME}! Quiero recibir información para crear la invitación digital de nuestra boda.`
+  `¡Hola ${BRAND_NAME}! Quiero recibir información para crear la invitación digital de nuestra boda.`,
 )}`;
 
 const heartPath800 =
-  'M 400 156 C 440 72, 512 40, 592 40 C 696 40, 768 128, 768 252 C 768 456, 576 624, 400 748 C 224 624, 32 456, 32 252 C 32 128, 104 40, 208 40 C 288 40, 360 72, 400 156 Z';
+  "M 400 156 C 440 72, 512 40, 592 40 C 696 40, 768 128, 768 252 C 768 456, 576 624, 400 748 C 224 624, 32 456, 32 252 C 32 128, 104 40, 208 40 C 288 40, 360 72, 400 156 Z";
 
 const heartPathNormalized =
-  'M 0.5 0.195 C 0.55 0.09, 0.64 0.05, 0.74 0.05 C 0.87 0.05, 0.96 0.16, 0.96 0.315 C 0.96 0.57, 0.72 0.78, 0.5 0.935 C 0.28 0.78, 0.04 0.57, 0.04 0.315 C 0.04 0.16, 0.13 0.05, 0.26 0.05 C 0.36 0.05, 0.45 0.09, 0.5 0.195 Z';
+  "M 0.5 0.195 C 0.55 0.09, 0.64 0.05, 0.74 0.05 C 0.87 0.05, 0.96 0.16, 0.96 0.315 C 0.96 0.57, 0.72 0.78, 0.5 0.935 C 0.28 0.78, 0.04 0.57, 0.04 0.315 C 0.04 0.16, 0.13 0.05, 0.26 0.05 C 0.36 0.05, 0.45 0.09, 0.5 0.195 Z";
 ---
 
 <Layout preloadHeroImage="/images/hero-corazon.webp">
@@ -37,21 +37,38 @@ const heartPathNormalized =
     <!-- ========================================== -->
     <!-- HERO SECTION -->
     <!-- ========================================== -->
-    <section class="relative py-12 sm:py-16 lg:py-20 bg-ivory-100/90 border-b border-ivory-300">
+    <section
+      class="relative py-12 sm:py-16 lg:py-20 bg-ivory-100/90 border-b border-ivory-300"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center"
+        >
           <!-- Left Editorial Copy -->
-          <div id="hero-editorial-copy" class="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <h1 class="font-serif text-4xl sm:text-6xl lg:text-[66px] text-charcoal leading-[1.06] font-normal tracking-tight reveal-delicate delay-1">
-              Invitaciones digitales de boda <span class="italic text-gold-dark font-medium">hermosas e inolvidables</span>
+          <div
+            id="hero-editorial-copy"
+            class="lg:col-span-7 space-y-6 text-center lg:text-left"
+          >
+            <h1
+              class="font-serif text-4xl sm:text-6xl lg:text-[66px] text-charcoal leading-[1.06] font-normal tracking-tight reveal-delicate delay-1"
+            >
+              Invitaciones<span class="italic text-gold-dark font-medium">
+                digitales de boda</span
+              >
             </h1>
 
-            <p class="text-sm sm:text-base text-charcoal-muted leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light reveal-delicate delay-2">
-              "Sorprende a tus invitados desde el primer instante con un hermoso sobre interactivo que se abre al tocarlo..."
+            <p
+              class="text-sm sm:text-base text-charcoal-muted leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light reveal-delicate delay-2"
+            >
+              "Sorprende a tus invitados desde el primer instante con una
+              hermosa invitación digital. Envíenla y recibiran un 'sobre' que al
+              tocarlo abrirá una hermosa invitación..."
             </p>
 
             <!-- Hero CTAs: Botones principales y Asesoría en WhatsApp -->
-            <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 reveal-delicate delay-3">
+            <div
+              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 reveal-delicate delay-3"
+            >
               <a
                 href={whatsappHeroUrl}
                 target="_blank"
@@ -62,15 +79,22 @@ const heartPathNormalized =
                 <span>Asesoría en WhatsApp</span>
               </a>
 
-              <a href="#catalogo" class="btn-outline-editorial w-full sm:w-auto">
+              <a
+                href="#catalogo"
+                class="btn-outline-editorial w-full sm:w-auto"
+              >
                 <ParchmentLogo className="w-4 h-4" />
                 <span>Explorar Catálogo</span>
               </a>
             </div>
 
             <!-- Botones del Navbar en el Hero (Especialmente visible y optimizado para celular) -->
-            <div class="pt-5 border-t border-ivory-300/80 mt-4 reveal-delicate delay-4">
-              <p class="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-charcoal-muted font-semibold mb-2.5 text-center lg:text-left">
+            <div
+              class="pt-5 border-t border-ivory-300/80 mt-4 reveal-delicate delay-4"
+            >
+              <p
+                class="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-charcoal-muted font-semibold mb-2.5 text-center lg:text-left"
+              >
                 Accesos directos del menú:
               </p>
               <div class="grid grid-cols-3 gap-2 max-w-lg mx-auto lg:mx-0">
@@ -85,7 +109,9 @@ const heartPathNormalized =
                   href="#funciones"
                   class="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-ivory-50/95 border border-ivory-300 hover:border-gold hover:bg-champagne/40 transition-colors text-[11px] uppercase tracking-wider text-charcoal font-medium shadow-xs"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-sage-dark shrink-0" />
+                  <CheckCircle2
+                    className="w-3.5 h-3.5 text-sage-dark shrink-0"
+                  />
                   <span>Funciones</span>
                 </a>
                 <a
@@ -100,16 +126,24 @@ const heartPathNormalized =
           </div>
 
           <!-- Right Editorial Heart Portrait -->
-          <div class="lg:col-span-5 flex items-center justify-center reveal-delicate delay-4" id="hero-corazon">
-            <div class="relative w-full max-w-[310px] sm:max-w-[370px] lg:max-w-[420px] aspect-square animate-lightbounce group drop-shadow-[0_24px_38px_rgba(34,31,29,0.13)]">
+          <div
+            class="lg:col-span-5 flex items-center justify-center reveal-delicate delay-4"
+            id="hero-corazon"
+          >
+            <div
+              class="relative w-full max-w-[310px] sm:max-w-[370px] lg:max-w-[420px] aspect-square animate-lightbounce group drop-shadow-[0_24px_38px_rgba(34,31,29,0.13)]"
+            >
               <div
                 class="w-full h-full overflow-hidden"
                 style="-webkit-clip-path: url(#hero-heart-clip); clip-path: url(#hero-heart-clip);"
               >
                 <picture class="block w-full h-full">
-                  <source srcset="/images/hero-corazon.webp" type="image/webp" />
+                  <source
+                    srcset="/images/hero-corazon.webp"
+                    type="image/webp"
+                  />
                   <img
-                    src="/images/hero-corazon.jpg"
+                    src="/images/hero-corazon.webp"
                     alt="Manos entrelazadas con anillo de compromiso"
                     width="900"
                     height="900"
@@ -126,25 +160,35 @@ const heartPathNormalized =
                 aria-hidden="true"
               >
                 <defs>
-                  <clipPath id="hero-heart-clip" clipPathUnits="objectBoundingBox">
-                    <path d={heartPathNormalized} />
+                  <clipPath
+                    id="hero-heart-clip"
+                    clipPathUnits="objectBoundingBox"
+                  >
+                    <path d={heartPathNormalized}></path>
                   </clipPath>
-                  <linearGradient id="hero-heart-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#D4BC91" />
-                    <stop offset="50%" stop-color="#B5945B" />
-                    <stop offset="100%" stop-color="#DFD2BE" />
+                  <linearGradient
+                    id="hero-heart-gold"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stop-color="#D4BC91"></stop>
+                    <stop offset="50%" stop-color="#B5945B"></stop>
+                    <stop offset="100%" stop-color="#DFD2BE"></stop>
                   </linearGradient>
                 </defs>
 
                 <!-- Sutil halo exterior estilo alta costura -->
-                <g transform="translate(400, 394) scale(1.038) translate(-400, -394)">
+                <g
+                  transform="translate(400, 394) scale(1.038) translate(-400, -394)"
+                >
                   <path
                     d={heartPath800}
                     fill="none"
                     stroke="#C8B289"
                     stroke-opacity="0.55"
-                    stroke-width="2"
-                  />
+                    stroke-width="2"></path>
                 </g>
 
                 <!-- Contorno dorado champán que envuelve el corazón -->
@@ -153,8 +197,7 @@ const heartPathNormalized =
                   fill="none"
                   stroke="url(#hero-heart-gold)"
                   stroke-width="4.5"
-                  stroke-linejoin="round"
-                />
+                  stroke-linejoin="round"></path>
               </svg>
             </div>
           </div>
@@ -165,34 +208,34 @@ const heartPathNormalized =
     <!-- ========================================== -->
     <!-- CATÁLOGO DE DISEÑOS -->
     <!-- ========================================== -->
-    <section id="catalogo" class="relative py-20 sm:py-32 bg-[#FCFAF7] border-b border-ivory-300">
+    <section
+      id="catalogo"
+      class="relative py-20 sm:py-32 bg-[#FCFAF7] border-b border-ivory-300"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 space-y-3.5">
-          <div
-            class="scroll-reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-champagne/80 border border-gold/40 text-[11px] uppercase tracking-[0.28em] text-gold-dark font-semibold shadow-xs"
-            style="--reveal-delay: 0.05s"
-          >
-            <ParchmentLogo className="w-3.5 h-3.5" />
-            <span>Catálogo de Diseños Exclusivos</span>
-          </div>
-
           <h2
             class="scroll-reveal font-serif text-4xl sm:text-5xl lg:text-[56px] text-charcoal font-normal tracking-tight leading-[1.12]"
             style="--reveal-delay: 0.14s"
           >
-            Elige el escenario digital <span class="italic text-gold-dark font-normal">de tu historia</span>
+            Elige el escenario digital <span
+              class="italic text-gold-dark font-normal">de tu historia</span
+            >
           </h2>
 
           <div
             class="scroll-reveal w-12 h-[2px] bg-gold/50 mx-auto rounded-full my-1"
             style="--reveal-delay: 0.20s"
-          ></div>
+          >
+          </div>
 
           <p
             class="scroll-reveal text-sm sm:text-base text-charcoal-muted leading-relaxed font-light max-w-3xl mx-auto"
             style="--reveal-delay: 0.26s"
           >
-            Cada diseño es 100% personalizable y completamente modificable: adaptamos las fotografías, paleta de colores, música, secciones y detalles según el gusto y estilo de cada pareja. Toda idea e imaginación es bienvenida y realizable mientras sea técnicamente posible en código. Explora los modelos para vivir la experiencia interactiva en tiempo real.
+            Cada diseño es 100% personalizable. Toda idea e imaginación es
+            bienvenida y realizable mientras sea técnicamente posible en el
+            código.
           </p>
         </div>
 
@@ -203,52 +246,66 @@ const heartPathNormalized =
     <!-- ========================================== -->
     <!-- EXPERIENCIA DIGITAL & FUNCIONES -->
     <!-- ========================================== -->
-    <section id="funciones" class="py-20 sm:py-28 bg-[#F4EDE2] border-y border-ivory-300 relative shadow-inner">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-10">
+    <section
+      id="funciones"
+      class="py-20 sm:py-28 bg-[#F4EDE2] border-y border-ivory-300 relative shadow-inner"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-10"
+      >
         <div class="space-y-3.5 max-w-3xl mx-auto">
-          <div
-            class="scroll-reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-ivory-50 border border-sage/40 text-[11px] uppercase tracking-[0.28em] text-sage-dark font-semibold shadow-xs"
-            style="--reveal-delay: 0.05s"
-          >
-            <span>Experiencia Digital Personalizada</span>
-          </div>
-
           <h2
             class="scroll-reveal font-serif text-3xl sm:text-5xl lg:text-[52px] text-charcoal font-normal tracking-tight leading-[1.14]"
             style="--reveal-delay: 0.14s"
           >
-            Todo lo que tus invitados necesitan, <span class="italic text-gold-dark font-normal">en un solo enlace</span>
+            Recibe funciones especiales <span
+              class="italic text-gold-dark font-normal">en una sola página</span
+            >
           </h2>
 
           <div
             class="scroll-reveal w-12 h-[2px] bg-sage/40 mx-auto rounded-full my-1"
             style="--reveal-delay: 0.20s"
-          ></div>
-
-          <p
-            class="scroll-reveal text-xs sm:text-sm uppercase tracking-[0.18em] text-charcoal-muted font-medium"
-            style="--reveal-delay: 0.24s"
           >
-            Sin descargar aplicaciones ni registros: directo desde WhatsApp
-          </p>
+          </div>
 
           <p
             class="scroll-reveal text-sm sm:text-base text-charcoal-muted leading-relaxed font-light max-w-2xl mx-auto"
             style="--reveal-delay: 0.30s"
           >
-            Tus seres queridos solo tocan el enlace y tienen toda la información de la boda a mano, con navegación fluida y pensada para todas las edades.
+            Tus seres queridos solo tocan el enlace y tienen toda la información
+            de la boda a mano, con navegación fluida y pensada para todas las
+            edades.
           </p>
         </div>
 
-        <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
+        <ul
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4"
+        >
           {
             [
-              { icon: Mail, label: 'Sobre animado', desc: 'Apertura con música' },
-              { icon: Music, label: 'Su canción', desc: 'Melodía de fondo' },
-              { icon: MapPin, label: 'Ubicación', desc: 'Google Maps y Waze' },
-              { icon: Clock, label: 'Cuenta regresiva', desc: 'Tiempo en vivo' },
-              { icon: FaWhatsapp, label: 'Confirmación', desc: 'Directa a WhatsApp' },
-              { icon: Heart, label: 'Diseño a Medida', desc: 'Atención artesanal' },
+              {
+                icon: Mail,
+                label: "Sobre animado",
+                desc: "Apertura con música",
+              },
+              { icon: Music, label: "Su canción", desc: "Melodía de fondo" },
+              { icon: MapPin, label: "Ubicación", desc: "Google Maps y Waze" },
+              {
+                icon: Clock,
+                label: "Cuenta regresiva",
+                desc: "Tiempo en vivo",
+              },
+              {
+                icon: FaWhatsapp,
+                label: "Confirmación",
+                desc: "Directa a WhatsApp",
+              },
+              {
+                icon: Heart,
+                label: "Diseño a Medida",
+                desc: "Atención artesanal",
+              },
             ].map(({ icon: Icon, label, desc }, idx) => (
               <li
                 class="scroll-reveal flex flex-col items-center gap-2 p-4 sm:p-5 bg-ivory-50 border border-ivory-300/80 shadow-xs hover:border-gold/60 hover:shadow-editorial transition-[border-color,box-shadow] duration-300 group"
@@ -257,8 +314,12 @@ const heartPathNormalized =
                 <span class="w-11 h-11 rounded-full bg-champagne group-hover:bg-gold group-hover:text-ivory-50 transition-colors flex items-center justify-center text-gold-dark shrink-0">
                   <Icon className="w-5 h-5" />
                 </span>
-                <span class="text-xs uppercase tracking-wider text-charcoal font-semibold">{label}</span>
-                <span class="text-[11px] text-charcoal-muted font-light">{desc}</span>
+                <span class="text-xs uppercase tracking-wider text-charcoal font-semibold">
+                  {label}
+                </span>
+                <span class="text-[11px] text-charcoal-muted font-light">
+                  {desc}
+                </span>
               </li>
             ))
           }
@@ -269,7 +330,10 @@ const heartPathNormalized =
     <!-- ========================================== -->
     <!-- PREGUNTAS FRECUENTES -->
     <!-- ========================================== -->
-    <section id="preguntas" class="py-20 sm:py-32 bg-ivory-100/70 border-b border-ivory-300 relative">
+    <section
+      id="preguntas"
+      class="py-20 sm:py-32 bg-ivory-100/70 border-b border-ivory-300 relative"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 space-y-3.5">
           <div
@@ -284,13 +348,16 @@ const heartPathNormalized =
             class="scroll-reveal font-serif text-4xl sm:text-5xl lg:text-[54px] text-charcoal font-normal tracking-tight leading-[1.12]"
             style="--reveal-delay: 0.14s"
           >
-            Preguntas <span class="italic text-gold-dark font-normal">Frecuentes</span>
+            Preguntas <span class="italic text-gold-dark font-normal"
+              >Frecuentes</span
+            >
           </h2>
 
           <div
             class="scroll-reveal w-12 h-[2px] bg-gold/50 mx-auto rounded-full my-1"
             style="--reveal-delay: 0.20s"
-          ></div>
+          >
+          </div>
 
           <p
             class="scroll-reveal text-xs sm:text-sm uppercase tracking-[0.18em] text-gold-dark font-medium"
@@ -303,7 +370,9 @@ const heartPathNormalized =
             class="scroll-reveal text-sm sm:text-base text-charcoal-muted leading-relaxed font-light max-w-2xl mx-auto"
             style="--reveal-delay: 0.30s"
           >
-            Todo lo que necesitas saber sobre tiempos de entrega, personalización de canciones y fotografías, y confirmaciones automáticas vía WhatsApp.
+            Todo lo que necesitas saber sobre tiempos de entrega,
+            personalización de canciones y fotografías, y confirmaciones
+            automáticas vía WhatsApp.
           </p>
         </div>
 

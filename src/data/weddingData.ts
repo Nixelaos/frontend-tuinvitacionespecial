@@ -72,7 +72,7 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
       secondaryHex: '#8C6947',
     },
     coverImage: '/images/comprometidos.webp',
-    secondaryImage: '/images/pareja-playa-casual.jpg',
+    secondaryImage: '/images/pareja-playa-casual.webp',
     includedFeatures: [
       'Sobre de papel pastel con sello de lacre realista V & S en relieve y estampillas postales',
       'Efecto visual Supernova y revelado fotográfico suave al abrir la invitación',

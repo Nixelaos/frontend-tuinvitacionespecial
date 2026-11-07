@@ -22,11 +22,12 @@ export const BeachQuote: React.FC = () => {
           className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal relative z-20"
           style={{ fontFamily: "'Great Vibes', cursive" }}
         >
-          «A orillas del mar, donde cada ola nos recuerda la inmensidad del camino que elegimos recorrer juntos, decidimos dar el paso más importante de nuestras vidas.»
+          «A orillas del mar, decidimos dar el paso más importante de nuestras vidas.»
         </p>
 
         {/* Animación CSS integrada para movimiento suave de la flor desde la izquierda centro */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           @keyframes flowerSwayLeftKeyframes {
             0%, 100% {
               transform: translateY(-50%) rotate(38deg) scale(1);
