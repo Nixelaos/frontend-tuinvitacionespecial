@@ -1,10 +1,13 @@
 import React from 'react';
 import {
   Clock,
+  Users,
   Heart,
+  Camera,
   Wine,
   UtensilsCrossed,
   Music,
+  PartyPopper,
   Moon,
   MapPin,
   Sparkles,
@@ -15,71 +18,91 @@ export interface ItineraryItem {
   id: string;
   time: string;
   title: string;
-  subtitle: string;
-  location: string;
-  description: string;
+  subtitle?: string;
+  location?: string;
+  description?: string;
   icon: React.ComponentType<{ className?: string }>;
 }
 
 const ITINERARY_EVENTS: ItineraryItem[] = [
   {
-    id: 'ceremony',
-    time: '17:00 hrs',
-    title: 'Matrimonio Religioso',
-    subtitle: 'El Inicio de Nuestra Historia',
-    location: 'Explanada de los Álamos · Jardín Central',
+    id: 'arrival',
+    time: '5:00 PM',
+    title: 'Llegada de invitados',
+    subtitle: 'Bienvenida & Recepción',
+    location: 'Acceso Principal & Jardines',
     description:
-      '',
+      'Recepción y bienvenida de nuestros queridos invitados para dar inicio a este día inolvidable.',
+    icon: Users,
+  },
+  {
+    id: 'ceremony',
+    time: '5:30 PM',
+    title: 'Ceremonia',
+    subtitle: 'Nuestros Votos de Amor',
+    location: 'Explanada del Parque · Los Álamos',
+    description:
+      'Nuestra promesa de amor eterno y el intercambio de alianzas frente a todos ustedes.',
     icon: Heart,
   },
   {
     id: 'cocktail',
-    time: '17:45 hrs',
-    title: 'Cóctel & Brindis',
-    subtitle: 'Brindis de Bienvenida',
+    time: '6:15 PM',
+    title: 'Cóctel y fotos con invitados',
+    subtitle: 'Brindis al Atardecer & Recuerdos',
     location: 'Terraza del Parque',
     description:
-      '',
+      'Música acústica en vivo, espumantes, degustación de autor y sesión de fotos junto a quienes más amamos.',
+    icon: Camera,
+  },
+  {
+    id: 'toast',
+    time: '7:15 PM',
+    title: 'Entrada de novios y Brindis',
+    subtitle: 'Brindis de Honor',
+    location: 'Gran Salón',
+    description:
+      'Gran bienvenida a los recién casados y alzamos las copas por nuestro amor y esta nueva etapa juntos.',
     icon: Wine,
   },
   {
-    id: 'vals',
-    time: '19:00 hrs',
-    title: 'Banquete & Cena de Gala',
-    subtitle: 'Celebración a la Mesa',
-    location: 'Gran Salón Majadas',
-    description:
-      'Una cena gastronómica diseñada con dedicación, brindis de honor de la familia y hermosas sorpresas preparadas para ustedes.',
-    icon: UtensilsCrossed,
-  },
-  {
     id: 'dinner',
-    time: '20:00 hrs',
-    title: 'Banquete & Cena de Gala',
-    subtitle: 'Celebración a la Mesa',
+    time: '7:30 PM',
+    title: 'Cena',
+    subtitle: 'Banquete a la Mesa',
     location: 'Gran Salón Majadas',
     description:
-      'Una cena gastronómica diseñada con dedicación, brindis de honor de la familia y hermosas sorpresas preparadas para ustedes.',
+      'Una exquisita experiencia gastronómica diseñada con amor para celebrar y compartir en familia.',
     icon: UtensilsCrossed,
   },
   {
-    id: 'party',
-    time: '22:00 hrs',
-    title: 'El Gran Baile & Apertura de Fiesta',
-    subtitle: '¡A Celebrar Sin Parar!',
-    location: 'Pista Central & Cúpula',
+    id: 'vals',
+    time: '8:45 PM',
+    title: 'Vals',
+    subtitle: 'Primer Baile de Esposos',
+    location: 'Pista Central',
     description:
-      'Primer vals de los recién casados, barra libre, pista encendida, cotillón especial y baile sin descanso hasta la madrugada.',
+      'Nuestro primer vals como matrimonio, seguido del emotivo baile tradicional con nuestros padres.',
     icon: Music,
   },
   {
+    id: 'party',
+    time: '9:00 PM',
+    title: 'Fiesta',
+    subtitle: '¡Pista Abierta & Celebración!',
+    location: 'Pista Central & Cúpula',
+    description:
+      '¡Pista encendida, barra libre, sorpresas, cotillón especial y mucha fiesta para celebrar sin parar!',
+    icon: PartyPopper,
+  },
+  {
     id: 'closing',
-    time: '03:00 hrs',
-    title: 'Cierre Mágico & Despedida',
+    time: '1:00 AM',
+    title: 'Cierre y despedida',
     subtitle: 'El Broche de Oro',
     location: 'Jardines Iluminados',
     description:
-      'Agradecimiento final bajo las estrellas y el abrazo cálido para despedir una noche que vivirá por siempre en nuestra memoria.',
+      'Agradecimiento final bajo las estrellas y el abrazo cálido para despedir una noche mágica e inolvidable.',
     icon: Moon,
   },
 ];
@@ -102,13 +125,19 @@ export const BeachItinerary: React.FC = () => {
             Itinerario
           </h2>
 
+          <p
+            className="text-sm sm:text-base text-[#8A6749] font-medium mt-1 text-center max-w-xs"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+          >
+            Acompáñanos a vivir cada instante especial de nuestro gran día
+          </p>
 
           {/* Separador ornamental delicado */}
           <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#DFCBB5] to-transparent my-2" />
         </div>
 
         {/* LÍNEA DE TIEMPO DEL ITINERARIO */}
-        <div className="relative w-full flex flex-col space-y-5">
+        <div className="relative w-full flex flex-col space-y-4 sm:space-y-5">
           {/* Guía vertical dorada continua */}
           <div className="absolute left-[20px] sm:left-[22px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#DFCBB5] via-[#C29F68]/70 to-[#DFCBB5] pointer-events-none" />
 
@@ -150,20 +179,26 @@ export const BeachItinerary: React.FC = () => {
                       {event.title}
                     </h3>
 
-                    <span className="text-[11px] sm:text-xs text-[#8A6749] font-medium block mt-0.5 mb-2">
-                      {event.subtitle}
-                    </span>
+                    {event.subtitle && (
+                      <span className="text-[11px] sm:text-xs text-[#8A6749] font-medium block mt-0.5 mb-2">
+                        {event.subtitle}
+                      </span>
+                    )}
 
                     {/* Ubicación del Momento */}
-                    <div className="flex items-center gap-1.5 text-xs text-[#6B513E] mb-2.5">
-                      <MapPin className="w-3.5 h-3.5 text-[#B87A4A] shrink-0" />
-                      <span className="font-medium">{event.location}</span>
-                    </div>
+                    {event.location && (
+                      <div className="flex items-center gap-1.5 text-xs text-[#6B513E] mb-2.5">
+                        <MapPin className="w-3.5 h-3.5 text-[#B87A4A] shrink-0" />
+                        <span className="font-medium">{event.location}</span>
+                      </div>
+                    )}
 
                     {/* Descripción con tipografía cuidada */}
-                    <p className="text-xs sm:text-[13px] text-[#6B513E] leading-relaxed">
-                      {event.description}
-                    </p>
+                    {event.description && (
+                      <p className="text-xs sm:text-[13px] text-[#6B513E] leading-relaxed">
+                        {event.description}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -174,7 +209,7 @@ export const BeachItinerary: React.FC = () => {
         {/* Nota final del itinerario */}
         <div className="mt-8 flex items-center justify-center gap-2 text-xs text-[#8A6749] text-center">
           <Sparkles className="w-3.5 h-3.5 text-[#B87A4A]" />
-          <span>Los horarios son aproximados para disfrutar cada instante</span>
+          <span>Los horarios son estimados para disfrutar cada momento</span>
           <Sparkles className="w-3.5 h-3.5 text-[#B87A4A]" />
         </div>
       </ScrollReveal>
