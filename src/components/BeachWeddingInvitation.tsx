@@ -14,7 +14,7 @@ import {
   useCountdown,
 } from './beach-wedding';
 
-const TARGET_WEDDING_DATE = '2026-11-14T12:30:00';
+const TARGET_WEDDING_DATE = '2026-11-14T17:00:00';
 
 export const BeachWeddingInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

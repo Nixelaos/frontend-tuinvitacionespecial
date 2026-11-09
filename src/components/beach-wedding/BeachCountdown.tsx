@@ -38,11 +38,17 @@ export const BeachCountdown: React.FC<BeachCountdownProps> = ({ timeLeft }) => {
 
           {/* Fecha en Letras Manuscritas (Great Vibes) */}
           <h2
-            className="font-script text-2xl sm:text-3xl md:text-4xl text-[#2F2420] font-normal tracking-wide mb-6 leading-tight"
+            className="font-script text-2xl sm:text-3xl md:text-4xl text-[#2F2420] font-normal tracking-wide mb-1 leading-tight"
             style={{ fontFamily: "'Great Vibes', cursive" }}
           >
             Sábado, 14 de Noviembre de 2026
           </h2>
+          <span
+            className="font-script text-xl sm:text-2xl md:text-3xl text-[#916E49] font-normal tracking-wide mb-6 block"
+            style={{ fontFamily: "'Great Vibes', cursive" }}
+          >
+            a las 17:00 hrs
+          </span>
 
           {/* Cuenta Regresiva con números manuscritos en tono crema */}
           <div className="w-full">
