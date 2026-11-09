@@ -4,7 +4,6 @@ import {
   BeachEnvelope,
   BeachHero,
   BeachCountdown,
-  TornPaperDivider,
   BeachTornDivider,
   ArtisanTornDivider,
   BeachQuote,
@@ -139,14 +138,8 @@ export const BeachWeddingInvitation: React.FC = () => {
             {/* SECCIÓN 1: PAPEL ROTO CON FLOR DE CONTRASTE Y COUNTDOWN */}
             <BeachCountdown timeLeft={timeLeft} />
 
-            {/* DIVISOR SUPERIOR DE PAPEL RASGADO */}
-            <TornPaperDivider type="top" />
-
-            {/* SECCIÓN 2: FRASE ROMÁNTICA CON FLOR LATERAL EN VAIVÉN */}
-            <BeachQuote />
-
-            {/* DIVISOR INFERIOR DE PAPEL RASGADO */}
-            <TornPaperDivider type="bottom" />
+            {/* SECCIÓN 2: FRASE ROMÁNTICA / MENSAJE EN BANDA DE PAPEL RASGADO ARTESANAL */}
+            <BeachQuote upperColor="#F5ECE0" lowerColor="#EBDDCE" />
 
             {/* SECCIÓN 3: GALERÍA DE FOTOS EN MARCO ARTESANAL CON TINTA LÍQUIDA */}
             <BeachGallery />
