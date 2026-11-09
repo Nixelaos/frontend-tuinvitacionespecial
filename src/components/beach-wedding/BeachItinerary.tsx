@@ -9,7 +9,6 @@ import {
   Music,
   PartyPopper,
   Moon,
-  Sparkles,
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -101,36 +100,36 @@ export const BeachItinerary: React.FC = () => {
         </div>
 
         {/* LÍNEA DE TIEMPO DEL ITINERARIO */}
-        <div className="relative w-full flex flex-col space-y-3.5 sm:space-y-4">
-          {/* Guía vertical dorada continua */}
-          <div className="absolute left-[20px] sm:left-[22px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#DFCBB5] via-[#C29F68]/70 to-[#DFCBB5] pointer-events-none" />
+        <div className="relative w-full flex flex-col space-y-6 sm:space-y-7 items-center">
+          {/* Guía vertical dorada continua central */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-[#DFCBB5] via-[#C29F68]/60 to-[#DFCBB5] pointer-events-none" />
 
           {ITINERARY_EVENTS.map((event) => {
             const IconComponent = event.icon;
             return (
               <div
                 key={event.id}
-                className="relative pl-12 sm:pl-14 w-full flex flex-col"
+                className="relative w-full flex flex-col items-center"
               >
-                {/* Marcador circular en la línea de tiempo */}
-                <div className="absolute left-0 top-2.5 w-10 sm:w-11 h-10 sm:h-11 rounded-full bg-[#FCF9F3] border-2 border-[#C29F68] shadow-sm flex items-center justify-center text-[#B87A4A] z-10 transition-transform duration-300 hover:scale-110">
-                  <IconComponent className="w-4 sm:w-5 h-4 sm:h-5 text-[#B87A4A]" />
-                </div>
-
-                {/* Tarjetón artesanal de cada hito */}
-                <div className="relative bg-[#FCF9F3] border border-[#DFCBB5] rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 shadow-[0_4px_18px_rgba(70,45,25,0.06)] text-left flex flex-col">
+                {/* Tarjetón artesanal de cada hito: menos ancho y centrado */}
+                <div className="relative bg-[#FCF9F3] border border-[#DFCBB5] rounded-2xl pt-6 pb-3.5 px-4 sm:px-5 shadow-[0_4px_18px_rgba(70,45,25,0.06)] text-center flex flex-col items-center w-full max-w-[270px] sm:max-w-[290px] z-10 transition-transform duration-300 hover:scale-[1.02]">
                   {/* Filete interior sutil de papelería artesanal */}
                   <div className="absolute inset-1.5 sm:inset-2 border border-[#E8DCCF] rounded-xl pointer-events-none" />
 
-                  {/* Fila superior: Hora */}
-                  <div className="relative z-10 flex items-center mb-1.5">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#F5ECE0] text-[#B87A4A] border border-[#DFCBB5] text-[11px] sm:text-xs font-semibold tracking-wider">
+                  {/* Medallón circular del hito en el borde superior centrado */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#FCF9F3] border-2 border-[#C29F68] shadow-sm flex items-center justify-center text-[#B87A4A] z-20">
+                    <IconComponent className="w-4 h-4 text-[#B87A4A]" />
+                  </div>
+
+                  {/* Fila superior: Hora centrada */}
+                  <div className="relative z-10 flex items-center justify-center mb-1.5">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#F5ECE0] text-[#B87A4A] border border-[#DFCBB5] text-[11px] sm:text-xs font-semibold tracking-wider shadow-2xs">
                       <Clock className="w-3 h-3 text-[#B87A4A]" />
                       <span>{event.time}</span>
                     </span>
                   </div>
 
-                  {/* Título del Hito */}
+                  {/* Título del Hito centrado */}
                   <div className="relative z-10">
                     <h3
                       className="text-lg sm:text-xl text-[#2F2420] font-medium leading-snug tracking-tight"
@@ -143,13 +142,6 @@ export const BeachItinerary: React.FC = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Nota final del itinerario */}
-        <div className="mt-8 flex items-center justify-center gap-2 text-xs text-[#8A6749] text-center">
-          <Sparkles className="w-3.5 h-3.5 text-[#B87A4A]" />
-          <span>Los horarios son estimados para disfrutar cada momento</span>
-          <Sparkles className="w-3.5 h-3.5 text-[#B87A4A]" />
         </div>
       </ScrollReveal>
     </div>
