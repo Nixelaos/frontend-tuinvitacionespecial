@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollReveal } from './ScrollReveal';
 import { TORN_QUOTE_PAPER_BAND } from './constants/tornPaperPaths';
+import { BeachFlower } from './BeachFlower';
 
 interface BeachQuoteProps {
   upperColor?: string;
@@ -13,6 +14,7 @@ interface BeachQuoteProps {
  * Replica los bordes y el cuerpo del papel rasgado artesanal de forma 100% visual y vectorial con React y tornPaperPaths.ts.
  * Ambos bordes (superior e inferior) ascienden en diagonal con textura deshilachada orgánica uniforme,
  * eliminando cualquier corte horizontal o recto.
+ * Utiliza el componente BeachFlower para el vaivén botánico.
  */
 export const BeachQuote: React.FC<BeachQuoteProps> = ({
   upperColor = '#F5ECE0',
@@ -62,14 +64,16 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
           </svg>
 
           {/* Flor botánica de contraste en el lateral izquierdo con animación de vaivén */}
-          <div className="absolute top-[50%] -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 pointer-events-none opacity-70 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)] animate-flower-sway-left">
-            <img
-              src="/images/flor-contraste.webp"
-              alt="Flor de contraste"
-              className="w-full h-auto object-contain select-none transform rotate-45"
-              loading="lazy"
-            />
-          </div>
+          <BeachFlower
+            variant="left"
+            className="absolute top-[50%] -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 opacity-70 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]"
+          />
+
+          {/* Flor botánica de contraste en la esquina superior derecha */}
+          <BeachFlower
+            variant="right"
+            className="absolute top-6 sm:top-8 right-2 sm:right-4 w-16 sm:w-20 md:w-24 z-30 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
+          />
 
           {/* Texto del mensaje / frase romántica perfectamente centrado de manera equidistante arriba y abajo */}
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-8 sm:px-12 pl-12 sm:pl-16 text-center pointer-events-none">
@@ -85,23 +89,6 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
               </p>
             </div>
           </div>
-
-          {/* Animación CSS integrada para movimiento suave de la flor */}
-          <style dangerouslySetInnerHTML={{
-            __html: `
-            @keyframes flowerSwayLeftKeyframes {
-              0%, 100% {
-                transform: translateY(-62%) rotate(38deg) scale(1);
-              }
-              50% {
-                transform: translateY(calc(-62% - 4px)) rotate(46deg) scale(1.04);
-              }
-            }
-            .animate-flower-sway-left {
-              animation: flowerSwayLeftKeyframes 4.5s ease-in-out infinite;
-              transform-origin: center left;
-            }
-          ` }} />
         </div>
       </ScrollReveal>
     </div>

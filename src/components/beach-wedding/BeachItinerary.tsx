@@ -7,6 +7,7 @@ import {
   UtensilsCrossed,
   PartyPopper,
 } from 'lucide-react';
+import { BeachFlower } from './BeachFlower';
 
 export interface ItineraryItem {
   id: string;
@@ -77,6 +78,13 @@ export const BeachItinerary: React.FC = () => {
       ref={sectionRef}
       className="w-full bg-[#F5ECE0] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 overflow-hidden"
     >
+      {/* Flor botánica de contraste junto al encabezado del itinerario */}
+      <BeachFlower
+        variant="gentle"
+        imageRotateClass="transform -rotate-12"
+        className="absolute top-4 sm:top-6 right-3 sm:right-5 w-16 sm:w-20 md:w-24 z-20 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
+      />
+
       <div className="w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center">
         {/* ENCABEZADO DE LA SECCIÓN */}
         <div

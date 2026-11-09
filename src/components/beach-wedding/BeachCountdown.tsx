@@ -1,6 +1,7 @@
 import React from 'react';
 import { TORN_PAPER_CLIP } from './constants/tornPaperPaths';
 import type { TimeLeft } from './hooks/useCountdown';
+import { BeachFlower } from './BeachFlower';
 
 interface BeachCountdownProps {
   timeLeft: TimeLeft;
@@ -8,7 +9,15 @@ interface BeachCountdownProps {
 
 export const BeachCountdown: React.FC<BeachCountdownProps> = ({ timeLeft }) => {
   return (
-    <div className="relative z-20 w-full -mt-12 sm:-mt-14">
+    <div className="relative z-40 w-full -mt-12 sm:-mt-14">
+      {/* Flor botánica de contraste entre Hero y Countdown, fuera del clipPath para que
+          no se recorte y quede por encima de todo (hero, papel y secciones siguientes) */}
+      <BeachFlower
+        variant="right"
+        className="absolute -top-8 sm:-top-11 right-2 sm:right-4 w-20 sm:w-24 md:w-28 z-50 drop-shadow-[0_6px_12px_rgba(60,25,12,0.25)]"
+        loading="eager"
+      />
+
       {/* Main handmade torn paper sheet in warm cream (Edge-to-Edge) */}
       <div
         className="bg-[#F5ECE0] relative w-full px-4 pt-12 pb-7 sm:pb-8 text-center"
@@ -16,16 +25,6 @@ export const BeachCountdown: React.FC<BeachCountdownProps> = ({ timeLeft }) => {
           clipPath: TORN_PAPER_CLIP,
         }}
       >
-        {/* Flor botánica de contraste en el borde de papel rasgado */}
-        <div className="absolute -top-8 sm:-top-11 right-2 sm:right-4 w-20 sm:w-24 md:w-28 z-30 pointer-events-none transform rotate-12 drop-shadow-[0_6px_12px_rgba(60,25,12,0.25)]">
-          <img
-            src="/images/flor-contraste.webp"
-            alt="Flor de contraste"
-            className="w-full h-auto object-contain select-none"
-            loading="eager"
-          />
-        </div>
-
         {/* Content Container */}
         <div className="relative z-10 flex flex-col items-center">
           {/* ¡Nos casamos! en letra manuscrita */}

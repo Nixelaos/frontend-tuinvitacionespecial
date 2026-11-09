@@ -1,6 +1,7 @@
 export { BeachEnvelope } from './BeachEnvelope';
 export { BeachHero } from './BeachHero';
 export { BeachCountdown } from './BeachCountdown';
+export { BeachFlower } from './BeachFlower';
 export { TornPaperDivider } from './TornPaperDivider';
 export { BeachTornDivider } from './BeachTornDivider';
 export { ArtisanTornDivider } from './ArtisanTornDivider';
