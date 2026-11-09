@@ -169,6 +169,8 @@ export const BeachWeddingInvitation: React.FC = () => {
               type="bottom"
               upperColor="#F5ECE0"
               lowerColor="#EBDDCE"
+              fiberColor="#FCF8F2"
+              prominent
             />
 
             {/* SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) AL FINAL DE LA INVITACIÓN */}
