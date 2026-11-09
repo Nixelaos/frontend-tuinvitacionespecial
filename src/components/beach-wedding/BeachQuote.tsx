@@ -73,7 +73,7 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
 
           {/* Texto del mensaje / frase romántica perfectamente centrado de manera equidistante arriba y abajo */}
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-8 sm:px-12 pl-12 sm:pl-16 text-center pointer-events-none">
-            <div className="-translate-y-5 sm:-translate-y-6 w-full">
+            <div className="translate-y-4 sm:translate-y-[18px] w-full">
               <p
                 className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal"
                 style={{
