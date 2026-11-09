@@ -21,7 +21,7 @@ export const TornPaperDivider: React.FC<TornPaperDividerProps> = ({
 }) => {
   if (type === 'top') {
     return (
-      <div className="w-full overflow-hidden leading-none select-none pointer-events-none -my-1 relative z-10">
+      <div className="w-full overflow-hidden leading-none select-none pointer-events-none -my-1 relative z-30">
         <svg
           viewBox="0 0 1000 230"
           preserveAspectRatio="none"
