@@ -98,29 +98,14 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
         iconType: 'cocktail',
       },
       {
-        time: '7:15 PM',
-        title: 'Entrada de novios y Brindis',
-        iconType: 'toast',
-      },
-      {
         time: '7:30 PM',
         title: 'Cena',
         iconType: 'dinner',
       },
       {
-        time: '8:45 PM',
-        title: 'Vals',
-        iconType: 'vals',
-      },
-      {
         time: '9:00 PM',
         title: 'Fiesta',
         iconType: 'party',
-      },
-      {
-        time: '1:00 AM',
-        title: 'Cierre y despedida',
-        iconType: 'farewell',
       },
     ],
   },
