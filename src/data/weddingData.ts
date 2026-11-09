@@ -23,8 +23,8 @@ export const BEACH_WEDDING_RSVP_CONFIG: RsvpEventConfig = {
   startDateIcs: '20261114T123000',
   endDateIcs: '20261114T230000',
   calendarDescription:
-    'Celebración de Boda de Valentina & Sebastián en el Templo de Salt Lake City.',
-  location: 'Templo de Salt Lake City · 50 N W Temple St, Salt Lake City, Utah',
+    'Celebración de Boda de Valentina & Sebastián en Palacio Las Majadas de Pirque, Chile.',
+  location: 'Palacio Las Majadas de Pirque · José Julio Nieto s/n, Pirque, Chile',
   rsvpDeadlineDisplay: '25 de Octubre de 2026',
   rsvpDeadlineShort: '25 de Octubre',
   eventDateShort: '14 de Noviembre',

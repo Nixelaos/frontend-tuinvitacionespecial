@@ -149,30 +149,25 @@ export const BeachWeddingInvitation: React.FC = () => {
             {/* SECCIÓN 3: GALERÍA DE FOTOS EN MARCO ARTESANAL CON TINTA LÍQUIDA */}
             <BeachGallery />
 
-            {/* NUEVA SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN A UBICACIÓN CON FIBRAS Y SOMBRA 3D) */}
+            {/* NUEVA SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN LIMPIA A UBICACIÓN, SIN SOMBRAS NI BORDE BLANCO) */}
             <BeachTornDivider
               type="top"
               upperColor="#EBDDCE"
               lowerColor="#FAF4EC"
-              fiberColor="#FFFDF7"
             />
 
             {/* NUEVA SECCIÓN 4: UBICACIÓN DEL EVENTO + BOTÓN GOOGLE MAPS */}
             <BeachLocation />
 
-            {/* NUEVA SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN DE UBICACIÓN A SECCIÓN RSVP) */}
+            {/* NUEVA SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN LIMPIA HACIA SECCIÓN RSVP EN CONTRASTE) */}
             <BeachTornDivider
               type="bottom"
               upperColor="#FAF4EC"
-              lowerColor="#FCF9F3"
-              fiberColor="#FFFDF7"
+              lowerColor="#EBDDCE"
             />
 
-            {/* SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) */}
+            {/* SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) CON FONDO EN CONTRASTE */}
             <BeachRsvp />
-
-            {/* DIVISOR INFERIOR DE PAPEL RASGADO PARA SECCIÓN RSVP */}
-            <TornPaperDivider type="bottom" lowerColor="#EBDDCE" fiberColor="#FCF9F3" />
 
             {/* FIRMA FINAL DE LOS NOVIOS */}
             <BeachSignature />

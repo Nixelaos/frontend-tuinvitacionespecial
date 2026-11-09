@@ -11,14 +11,14 @@ import { ScrollReveal } from './ScrollReveal';
 export const BeachLocation: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
-  const venueName = 'Templo de Salt Lake City';
-  const venueArea = 'Salt Lake City, Utah, EE. UU.';
-  const venueAddress = '50 N W Temple St, Salt Lake City, UT 84150';
+  const venueName = 'Palacio Las Majadas de Pirque';
+  const venueArea = 'Pirque, Región Metropolitana, Chile';
+  const venueAddress = 'José Julio Nieto s/n, Lote 4, Pirque';
   const fullAddress = `${venueName}, ${venueAddress}, ${venueArea}`;
 
-  // Enlace directo a Google Maps con búsqueda exacta del Templo de Salt Lake City
+  // Enlace directo a Google Maps al centro de eventos en Chile
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    'Salt Lake Temple, 50 N W Temple St, Salt Lake City, UT 84150'
+    'Las Majadas de Pirque, Pirque, Región Metropolitana, Chile'
   )}`;
 
   const handleCopyAddress = async (e: React.MouseEvent) => {
@@ -80,17 +80,17 @@ export const BeachLocation: React.FC = () => {
             {/* Separador ornamental delicado */}
             <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#DFCBB5] to-transparent my-1 mb-4" />
 
-            {/* FOTO DEL TEMPLO DE SALT LAKE CITY CON ACCESO DIRECTO A GOOGLE MAPS */}
+            {/* FOTO DEL SALÓN DE EVENTOS EN CHILE CON ACCESO DIRECTO A GOOGLE MAPS */}
             <a
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="relative w-full aspect-[16/11] rounded-xl overflow-hidden border border-[#D9C4AD] shadow-sm group cursor-pointer mb-5 block bg-[#EAE0D2]"
-              title="Ver Templo de Salt Lake City en Google Maps"
+              title="Ver Palacio Las Majadas de Pirque en Google Maps"
             >
               <img
-                src="/images/templo-salt-lake.jpg"
-                alt="Templo de Salt Lake City, Utah"
+                src="/images/salon-boda-chile.jpg"
+                alt="Palacio Las Majadas de Pirque — Centro de eventos de boda en Chile"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
               />
@@ -102,7 +102,7 @@ export const BeachLocation: React.FC = () => {
               <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
                 <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-xs text-[11px] font-semibold text-[#3D2C22] shadow-xs border border-[#DFCBB5] flex items-center gap-1">
                   <MapPin className="w-3 h-3 text-[#B87A4A]" />
-                  Salt Lake Temple · Utah
+                  Las Majadas · Pirque, Chile
                 </span>
                 <span className="px-2 py-0.5 rounded-full bg-stone-900/70 backdrop-blur-xs text-[10px] text-white/90 font-medium group-hover:bg-[#B87A4A] transition-colors flex items-center gap-1">
                   <span>Ver mapa</span>

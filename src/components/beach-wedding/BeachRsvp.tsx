@@ -45,7 +45,7 @@ export const BeachRsvp: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#FCF9F3] px-4 py-10 sm:py-14 text-[#2F2420] relative z-10 transition-colors duration-500">
+    <div className="w-full bg-[#EBDDCE] px-4 py-10 sm:py-14 text-[#2F2420] relative z-10 transition-colors duration-500">
       <ScrollReveal className="w-full max-w-sm sm:max-w-md mx-auto">
         {/* TARJETA DE RESPUESTA ARTESANAL (RESPONSE CARD) */}
         <div className="relative bg-[#FCF9F3] border border-[#DFCBB5] rounded-xl p-5 sm:p-7 shadow-[0_8px_30px_rgba(70,45,25,0.08)]">
