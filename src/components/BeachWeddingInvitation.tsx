@@ -144,21 +144,23 @@ export const BeachWeddingInvitation: React.FC = () => {
             {/* SECCIÓN 3: GALERÍA DE FOTOS EN MARCO ARTESANAL CON TINTA LÍQUIDA */}
             <BeachGallery />
 
-            {/* SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN A UBICACIÓN) */}
+            {/* 1. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (GALERÍA -> UBICACIÓN) */}
             <BeachTornDivider
               type="top"
               upperColor="#EBDDCE"
               lowerColor="#FAF4EC"
+              fiberColor="#FCF8F2"
             />
 
             {/* SECCIÓN 4: UBICACIÓN DEL EVENTO + BOTÓN GOOGLE MAPS */}
             <BeachLocation />
 
-            {/* NUEVA SEPARACIÓN DE PAPEL RASGADO (ENTRADA AL ITINERARIO CON MICROFIBRAS 3D) */}
+            {/* 2. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (UBICACIÓN -> ITINERARIO) */}
             <ArtisanTornDivider
               type="top"
               upperColor="#FAF4EC"
               lowerColor="#F5ECE0"
+              fiberColor="#FCF8F2"
             />
 
             {/* NUEVA SECCIÓN: ITINERARIO DEL EVENTO */}
