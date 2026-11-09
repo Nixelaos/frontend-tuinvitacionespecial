@@ -22,30 +22,30 @@ export const FaqAccordion: React.FC = () => {
               aria-expanded={isOpen}
             >
               <div>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-gold-dark font-medium block mb-1">
+                <span className="text-[11px] uppercase tracking-[0.2em] text-gold-dark font-semibold block mb-1">
                   {item.category}
                 </span>
-                <span className="font-serif text-xl sm:text-2xl text-charcoal font-medium group-hover:text-gold-dark transition-colors tracking-tight">
+                <span className="font-serif text-xl sm:text-2xl text-charcoal font-semibold group-hover:text-gold-dark transition-colors tracking-tight">
                   {item.question}
                 </span>
               </div>
-              <span className="w-8 h-8 rounded-full border border-ivory-300 bg-ivory-50 flex items-center justify-center text-charcoal shrink-0 mt-1 group-hover:border-gold transition">
+              <span className="w-8 h-8 rounded-full border border-ivory-300 bg-white flex items-center justify-center text-charcoal shrink-0 mt-1 group-hover:border-gold transition shadow-2xs">
                 {isOpen ? (
                   <Minus className="w-4 h-4 text-gold-dark" />
                 ) : (
-                  <Plus className="w-4 h-4 text-charcoal-muted" />
+                  <Plus className="w-4 h-4 text-charcoal" />
                 )}
               </span>
             </button>
 
             {isOpen && (
-              <div className="mt-3.5 pr-10 text-sm sm:text-base text-charcoal-muted leading-relaxed font-light space-y-3">
+              <div className="mt-3.5 pr-10 text-sm sm:text-base text-charcoal-light leading-relaxed font-normal space-y-3">
                 <p>{item.answer}</p>
                 {item.linkHref && (
                   <div className="pt-1">
                     <a
                       href={item.linkHref}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-charcoal hover:bg-gold-dark text-ivory-50 text-xs uppercase tracking-[0.16em] font-medium transition shadow-xs"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-charcoal hover:bg-gold-dark text-ivory-50 text-xs uppercase tracking-[0.16em] font-semibold transition shadow-xs"
                     >
                       <span>{item.linkText || 'Ver más información'}</span>
                       <ArrowRight className="w-3.5 h-3.5 text-gold-light" />

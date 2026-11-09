@@ -50,8 +50,8 @@ export const CatalogExplorer: React.FC = () => {
               onClick={() => handleSelectCategory(category)}
               className={`px-4 sm:px-5 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-300 ${
                 active
-                  ? 'bg-charcoal text-ivory-50 shadow-sm'
-                  : 'bg-ivory-50 text-charcoal-light border border-ivory-300 hover:border-gold/60'
+                  ? 'bg-charcoal text-ivory-50 shadow-sm font-semibold'
+                  : 'bg-white text-charcoal border border-ivory-300 hover:border-gold/60 font-medium'
               }`}
             >
               {category}
@@ -89,17 +89,17 @@ export const CatalogExplorer: React.FC = () => {
 
                 {/* Plaqueta Inferior Simulada sobre la Foto */}
                 <div className="absolute bottom-3 left-2.5 right-2.5 text-center p-2.5 backdrop-blur-md shadow-editorial z-10 bg-ivory-50/95 rounded-lg border border-gold/35">
-                  <span className="text-[8px] uppercase tracking-[0.22em] font-medium block text-gold-dark">
+                  <span className="text-[9px] uppercase tracking-[0.22em] font-semibold block text-gold-dark">
                     {tpl.coupleDemo.displayDate}
                   </span>
-                  <p className="font-serif text-base sm:text-lg text-charcoal mt-0.5 font-normal leading-snug">
+                  <p className="font-serif text-base sm:text-lg text-charcoal mt-0.5 font-medium leading-snug">
                     {couple.bride}{' '}
-                    <span className="italic font-serif text-gold-dark">
+                    <span className="italic font-serif text-gold-dark font-medium">
                       &amp;
                     </span>{' '}
                     {couple.groom}
                   </p>
-                  <p className="text-[9px] text-charcoal-muted truncate mt-0.5 font-light">
+                  <p className="text-[10px] text-charcoal truncate mt-0.5 font-normal">
                     {tpl.coupleDemo.city}
                   </p>
                 </div>
@@ -107,14 +107,14 @@ export const CatalogExplorer: React.FC = () => {
 
               {/* Título: Del mismo ancho que la invitación, altura fija para alineación perfecta */}
               <div className="w-full h-[52px] sm:h-[56px] mt-3.5 mb-2.5 flex items-center justify-center text-center px-0.5">
-                <h3 className="font-serif text-lg sm:text-[19px] text-charcoal group-hover:text-gold-dark transition-colors font-normal leading-tight line-clamp-2">
+                <h3 className="font-serif text-lg sm:text-[19px] text-charcoal group-hover:text-gold-dark transition-colors font-medium leading-tight line-clamp-2">
                   {tpl.name}
                 </h3>
               </div>
 
               {/* Botón Ver Invitación: Exactamente del mismo ancho que la invitación */}
               <div
-                className="w-full py-2.5 bg-charcoal group-hover:bg-gold-dark text-ivory-50 text-[11px] uppercase tracking-[0.16em] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm rounded-lg group-hover:shadow-md"
+                className="w-full py-2.5 bg-charcoal group-hover:bg-gold-dark text-ivory-50 text-[11px] uppercase tracking-[0.16em] font-semibold transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm rounded-lg group-hover:shadow-md"
               >
                 <ParchmentLogo className="w-3.5 h-3.5" />
                 <span>Ver Invitación</span>

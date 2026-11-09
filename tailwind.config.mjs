@@ -19,19 +19,19 @@ export default {
         gold: {
           DEFAULT: '#B5945B',
           light: '#D4BC91',
-          dark: '#8F713E',
+          dark: '#755829',
           muted: '#C8B289',
         },
         sage: {
           DEFAULT: '#6B7B65',
           light: '#EAEEE8',
           muted: '#94A38E',
-          dark: '#4A5745',
+          dark: '#3D4A38',
         },
         charcoal: {
-          DEFAULT: '#221F1D',
-          light: '#45403B',
-          muted: '#6E675F',
+          DEFAULT: '#1E1B18',
+          light: '#2E2925',
+          muted: '#453E38',
         },
       },
       fontFamily: {

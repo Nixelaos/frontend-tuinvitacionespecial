@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-sm text-ivory-200/75 leading-relaxed max-w-sm">
+            <p className="text-sm text-ivory-100/90 leading-relaxed max-w-sm">
               Diseñamos invitaciones web interactivas para parejas que cuidan cada detalle.
               Estética editorial, confirmación directa y fácil a WhatsApp y atención artesanal
               para bodas a lo largo de todo Chile.
@@ -38,28 +38,28 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="w-9 h-9 rounded-full border border-ivory-200/20 flex items-center justify-center text-ivory-200 hover:border-gold-light hover:text-gold-light transition"
+                className="w-9 h-9 rounded-full border border-ivory-200/30 flex items-center justify-center text-ivory-100 hover:border-gold-light hover:text-gold-light transition"
               >
                 <FaWhatsapp className="w-4 h-4" />
               </a>
               <a
                 href="#catalogo"
                 aria-label="Instagram"
-                className="w-9 h-9 rounded-full border border-ivory-200/20 flex items-center justify-center text-ivory-200 hover:border-gold-light hover:text-gold-light transition"
+                className="w-9 h-9 rounded-full border border-ivory-200/30 flex items-center justify-center text-ivory-100 hover:border-gold-light hover:text-gold-light transition"
               >
                 <FaInstagram className="w-4 h-4" />
               </a>
               <a
                 href="#catalogo"
                 aria-label="Pinterest"
-                className="w-9 h-9 rounded-full border border-ivory-200/20 flex items-center justify-center text-ivory-200 hover:border-gold-light hover:text-gold-light transition"
+                className="w-9 h-9 rounded-full border border-ivory-200/30 flex items-center justify-center text-ivory-100 hover:border-gold-light hover:text-gold-light transition"
               >
                 <FaPinterestP className="w-4 h-4" />
               </a>
               <a
                 href="#catalogo"
                 aria-label="TikTok"
-                className="w-9 h-9 rounded-full border border-ivory-200/20 flex items-center justify-center text-ivory-200 hover:border-gold-light hover:text-gold-light transition"
+                className="w-9 h-9 rounded-full border border-ivory-200/30 flex items-center justify-center text-ivory-100 hover:border-gold-light hover:text-gold-light transition"
               >
                 <FaTiktok className="w-4 h-4" />
               </a>
@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs uppercase tracking-[0.22em] text-gold-light font-semibold">
               Diseños de Colección
             </h4>
-            <ul className="space-y-2.5 text-sm text-ivory-200/80">
+            <ul className="space-y-2.5 text-sm text-ivory-100/90">
               {INVITATION_TEMPLATES.map((tpl) => (
                 <li key={tpl.id}>
                   <a
@@ -79,7 +79,7 @@ export const Footer: React.FC = () => {
                     className="hover:text-gold-light transition flex items-center gap-1.5"
                   >
                     <span>Modelo {tpl.name}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-60" />
+                    <ArrowUpRight className="w-3 h-3 opacity-75" />
                   </a>
                 </li>
               ))}
@@ -91,7 +91,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs uppercase tracking-[0.22em] text-gold-light font-semibold">
               Navegación
             </h4>
-            <ul className="space-y-2.5 text-sm text-ivory-200/80">
+            <ul className="space-y-2.5 text-sm text-ivory-100/90">
               <li>
                 <a href="/#catalogo" className="hover:text-gold-light transition">
                   Catálogo de Diseños
@@ -115,7 +115,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs uppercase tracking-[0.22em] text-gold-light font-semibold">
               Atención &amp; Atelier
             </h4>
-            <ul className="space-y-3 text-xs text-ivory-200/80">
+            <ul className="space-y-3 text-xs text-ivory-100/90">
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-gold-light shrink-0 mt-0.5" />
                 <span>Lunes a Sábado · 9:00 a 20:00 hrs (Atención personalizada por WhatsApp)</span>
@@ -132,7 +132,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ivory-200/60">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ivory-200/80">
           <p>
             © {new Date().getFullYear()} {BRAND_NAME}. Todos los derechos reservados.
           </p>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Heart, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
 import { BRAND_NAME, WHATSAPP_NUMBER } from '../data/weddingData';
 import { ParchmentLogo } from './ParchmentLogo';
@@ -53,12 +53,12 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-7 2xl:gap-8 shrink-0" aria-label="Navegación principal">
+          <nav className="hidden md:flex items-center gap-5 lg:gap-8 shrink-0" aria-label="Navegación principal">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-charcoal-light hover:text-gold-dark transition-colors tracking-wide font-normal whitespace-nowrap py-1"
+                className="text-xs lg:text-sm text-charcoal hover:text-gold-dark transition-colors tracking-wide font-medium whitespace-nowrap py-1"
               >
                 {link.label}
               </a>
@@ -69,7 +69,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden sm:flex items-center gap-2.5 shrink-0">
             <a
               href="/#catalogo"
-              className="hidden 2xl:flex text-xs uppercase tracking-[0.16em] text-charcoal px-3.5 py-2.5 border border-charcoal/20 hover:border-gold hover:bg-champagne/40 transition-all items-center gap-1.5 whitespace-nowrap"
+              className="hidden 2xl:flex text-xs uppercase tracking-[0.16em] text-charcoal px-3.5 py-2.5 border border-charcoal/30 hover:border-gold hover:bg-champagne/40 transition-all items-center gap-1.5 whitespace-nowrap font-medium"
             >
               <ParchmentLogo className="w-3.5 h-3.5" />
               <span>Ver Diseños</span>
@@ -78,7 +78,7 @@ export const Navbar: React.FC = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-charcoal hover:bg-gold-dark text-ivory-50 text-xs uppercase tracking-[0.16em] px-4 sm:px-5 py-2.5 transition-all duration-300 flex items-center gap-2 shadow-sm whitespace-nowrap"
+              className="bg-charcoal hover:bg-gold-dark text-ivory-50 text-xs uppercase tracking-[0.16em] px-4 sm:px-5 py-2.5 transition-all duration-300 flex items-center gap-2 shadow-sm whitespace-nowrap font-semibold"
             >
               <FaWhatsapp className="w-4 h-4 text-[#A7D7B8]" />
               <span>Asesoría en WhatsApp</span>
@@ -90,7 +90,7 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2.5 text-charcoal hover:text-gold-dark border border-ivory-300 bg-ivory-50/80 focus:outline-none shrink-0"
+            className="md:hidden p-2.5 text-charcoal hover:text-gold-dark border border-ivory-300 bg-ivory-50/80 focus:outline-none shrink-0"
             aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -100,14 +100,14 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-ivory-50 border-b border-ivory-300 px-6 pt-4 pb-6 space-y-4 shadow-editorial">
+        <div className="md:hidden bg-ivory-50 border-b border-ivory-300 px-6 pt-4 pb-6 space-y-4 shadow-editorial">
           <nav className="flex flex-col space-y-3">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-serif text-xl text-charcoal hover:text-gold-dark py-1.5 border-b border-ivory-200"
+                className="text-base font-serif text-xl text-charcoal hover:text-gold-dark py-1.5 border-b border-ivory-200 font-medium"
               >
                 {link.label}
               </a>
@@ -117,7 +117,7 @@ export const Navbar: React.FC = () => {
             <a
               href="/#catalogo"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full justify-center py-3 border border-charcoal/25 text-center text-xs uppercase tracking-[0.18em] text-charcoal flex items-center gap-2"
+              className="w-full justify-center py-3 border border-charcoal/30 text-center text-xs uppercase tracking-[0.18em] text-charcoal flex items-center gap-2 font-medium"
             >
               <ParchmentLogo className="w-4 h-4" />
               <span>Explorar Catálogo</span>
@@ -126,7 +126,7 @@ export const Navbar: React.FC = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full justify-center py-3 bg-charcoal text-ivory-50 text-center text-xs uppercase tracking-[0.18em] flex items-center gap-2"
+              className="w-full justify-center py-3 bg-charcoal text-ivory-50 text-center text-xs uppercase tracking-[0.18em] flex items-center gap-2 font-semibold"
             >
               <FaWhatsapp className="w-4 h-4 text-[#A7D7B8]" />
               <span>Escribir por WhatsApp</span>
