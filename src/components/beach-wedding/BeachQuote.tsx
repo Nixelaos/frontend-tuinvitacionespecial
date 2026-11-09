@@ -1,6 +1,9 @@
 import React from 'react';
 import { ScrollReveal } from './ScrollReveal';
-import { TORN_QUOTE_PAPER_BAND } from './constants/tornPaperPaths';
+import {
+  TORN_QUOTE_PAPER_BAND,
+  TORN_QUOTE_FIBER_BAND,
+} from './constants/tornPaperPaths';
 import { BeachFlower } from './BeachFlower';
 
 interface BeachQuoteProps {
@@ -11,9 +14,8 @@ interface BeachQuoteProps {
 
 /**
  * Sección de Mensaje / Frase Romántica:
- * Replica los bordes y el cuerpo del papel rasgado artesanal de forma 100% visual y vectorial con React y tornPaperPaths.ts.
- * Ambos bordes (superior e inferior) ascienden en diagonal con textura deshilachada orgánica uniforme,
- * eliminando cualquier corte horizontal o recto.
+ * Tira de papel rasgado artesanal con borde de fibra crema de bajo contraste (#FCF8F2 a #F6EFE5)
+ * tanto en el borde superior como en el inferior, y sombra suave y realista.
  * Utiliza el componente BeachFlower para el vaivén botánico.
  */
 export const BeachQuote: React.FC<BeachQuoteProps> = ({
@@ -37,29 +39,38 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
             viewBox="0 -120 1000 540"
             preserveAspectRatio="none"
             className="w-full h-80 sm:h-96 md:h-[390px] block relative z-10"
-            style={{
-              filter: 'drop-shadow(0px 8px 20px rgba(60, 35, 18, 0.18))',
-            }}
             aria-hidden="true"
           >
             <defs>
+              {/* Sombra suave y realista del papel rasgado de la cita */}
+              <filter id="quoteTornShadow" x="-5%" y="-10%" width="110%" height="130%">
+                <feDropShadow dx="0" dy="6" stdDeviation="7" floodColor="#3A200E" floodOpacity="0.18" />
+                <feDropShadow dx="0" dy="2" stdDeviation="2.5" floodColor="#261408" floodOpacity="0.10" />
+              </filter>
+              {/* Degradado crema cálido de bajo contraste para la fibra de borde */}
+              <linearGradient id="quoteFiberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#FCF8F2" />
+                <stop offset="100%" stopColor="#F6EFE5" />
+              </linearGradient>
               {/* Degradado cálido suave de papel artesanal */}
               <linearGradient id="quotePaperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#FFFFFF" />
                 <stop offset="55%" stopColor="#FFFDF9" />
                 <stop offset="100%" stopColor="#FAF5EE" />
               </linearGradient>
-              {/* Relieve sutil para las microfibras del borde desgarrado */}
-              <filter id="deckleFiberGlow" x="-5%" y="-5%" width="110%" height="110%">
-                <feDropShadow dx="0" dy="1" stdDeviation="0.8" floodColor="#5A3A1A" floodOpacity="0.12" />
-              </filter>
             </defs>
 
-            {/* Hoja de papel rasgado continuo con ambos bordes diagonales deshilachados */}
+            {/* 1. Capa de fibra crema expuesta que enmarca ambos bordes (superior e inferior) con sombra */}
+            <path
+              d={TORN_QUOTE_FIBER_BAND}
+              fill="url(#quoteFiberGrad)"
+              filter="url(#quoteTornShadow)"
+            />
+
+            {/* 2. Hoja de papel artesanal continua de la frase */}
             <path
               d={TORN_QUOTE_PAPER_BAND}
               fill="url(#quotePaperGrad)"
-              filter="url(#deckleFiberGlow)"
             />
           </svg>
 

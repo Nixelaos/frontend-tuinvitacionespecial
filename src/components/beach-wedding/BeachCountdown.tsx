@@ -1,5 +1,8 @@
 import React from 'react';
-import { TORN_PAPER_CLIP } from './constants/tornPaperPaths';
+import {
+  COUNTDOWN_TORN_PAPER_PATH,
+  COUNTDOWN_TORN_FIBER_PATH,
+} from './constants/tornPaperPaths';
 import type { TimeLeft } from './hooks/useCountdown';
 import { BeachFlower } from './BeachFlower';
 
@@ -10,21 +13,43 @@ interface BeachCountdownProps {
 export const BeachCountdown: React.FC<BeachCountdownProps> = ({ timeLeft }) => {
   return (
     <div className="relative z-40 w-full -mt-12 sm:-mt-14">
-      {/* Flor botánica de contraste entre Hero y Countdown, fuera del clipPath para que
-          no se recorte y quede por encima de todo (hero, papel y secciones siguientes) */}
+      {/* Flor botánica de contraste entre Hero y Countdown */}
       <BeachFlower
         variant="right"
-        className="absolute -top-8 sm:-top-11 right-2 sm:right-4 w-20 sm:w-24 md:w-28 z-50 drop-shadow-[0_6px_12px_rgba(60,25,12,0.25)]"
+        className="absolute -top-7 sm:-top-10 right-2 sm:right-4 w-20 sm:w-24 md:w-28 z-50 drop-shadow-[0_6px_12px_rgba(60,25,12,0.25)]"
         loading="eager"
       />
 
-      {/* Main handmade torn paper sheet in warm cream (Edge-to-Edge) */}
-      <div
-        className="bg-[#F5ECE0] relative w-full px-4 pt-12 pb-7 sm:pb-8 text-center"
-        style={{
-          clipPath: TORN_PAPER_CLIP,
-        }}
+      {/* Encabezado vectorial de papel rasgado artesanal sobre la foto HERO:
+          cuenta con franja de fibra crema de bajo contraste (#FCF8F2 a #F6EFE5) y sombra realista sobre la foto */}
+      <svg
+        viewBox="0 0 1000 80"
+        preserveAspectRatio="none"
+        className="w-full h-11 sm:h-14 block -mb-[1px] relative z-20 pointer-events-none select-none"
+        aria-hidden="true"
       >
+        <defs>
+          <filter id="countdownTornShadow" x="-5%" y="-15%" width="110%" height="150%">
+            <feDropShadow dx="0" dy="3.5" stdDeviation="4" floodColor="#2A1608" floodOpacity="0.25" />
+            <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#180C04" floodOpacity="0.12" />
+          </filter>
+          <linearGradient id="countdownFiberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#FCF8F2" />
+            <stop offset="100%" stopColor="#F6EFE5" />
+          </linearGradient>
+        </defs>
+        {/* Franja de fibra crema de papel expuesta sobre la foto */}
+        <path
+          d={COUNTDOWN_TORN_FIBER_PATH}
+          fill="url(#countdownFiberGrad)"
+          filter="url(#countdownTornShadow)"
+        />
+        {/* Hoja de papel crema (#F5ECE0) que solapa la fibra y cubre hacia abajo */}
+        <path d={COUNTDOWN_TORN_PAPER_PATH} fill="#F5ECE0" />
+      </svg>
+
+      {/* Main handmade paper sheet in warm cream (#F5ECE0) */}
+      <div className="bg-[#F5ECE0] relative w-full px-4 pt-1 pb-7 sm:pb-8 text-center">
         {/* Content Container */}
         <div className="relative z-10 flex flex-col items-center">
           {/* ¡Nos casamos! en letra manuscrita */}
