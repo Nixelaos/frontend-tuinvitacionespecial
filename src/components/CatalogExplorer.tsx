@@ -13,9 +13,9 @@ export const CatalogExplorer: React.FC = () => {
   };
 
   return (
-    <div>
-      {/* Templates Grid - Sin contenedor crema, flotando directamente en la página */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center max-w-5xl mx-auto">
+    <div className="flex justify-center">
+      {/* Templates Container - Centrado */}
+      <div className="flex flex-wrap justify-center gap-8 lg:gap-10 max-w-5xl w-full">
         {INVITATION_TEMPLATES.map((tpl, idx) => {
           const couple = getDisplayCouple(tpl);
           const staggerDelay = `${(idx * 0.1).toFixed(2)}s`;
@@ -25,7 +25,7 @@ export const CatalogExplorer: React.FC = () => {
               key={tpl.id}
               href={`/disenos/${tpl.slug}`}
               style={{ '--reveal-delay': staggerDelay } as React.CSSProperties}
-              className="scroll-reveal group flex flex-col items-center w-full max-w-[215px] sm:max-w-[225px] cursor-pointer block no-underline text-inherit"
+              className="scroll-reveal group flex flex-col items-center w-full max-w-[215px] sm:max-w-[225px] cursor-pointer no-underline text-inherit"
               aria-label={`Ver invitación de ${tpl.name}`}
             >
               {/* Marco de Previsualización de la Invitación (La Invi) */}
