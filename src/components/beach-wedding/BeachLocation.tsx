@@ -3,26 +3,22 @@ import {
   MapPin,
   Compass,
   ExternalLink,
-  Clock,
-  Sparkles,
   Copy,
   Check,
-  Footprints,
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-import { BEACH_WEDDING_RSVP_CONFIG } from '../../data/weddingData';
 
 export const BeachLocation: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
-  const venueName = 'Explanada Frente al Mar';
-  const venueArea = 'Playa Blanca, Bahía Serena';
-  const venueAddress = 'Av. Costanera del Mar 1420';
+  const venueName = 'Templo de Salt Lake City';
+  const venueArea = 'Salt Lake City, Utah, EE. UU.';
+  const venueAddress = '50 N W Temple St, Salt Lake City, UT 84150';
   const fullAddress = `${venueName}, ${venueAddress}, ${venueArea}`;
 
-  // Enlace directo a Google Maps con búsqueda exacta del lugar
+  // Enlace directo a Google Maps con búsqueda exacta del Templo de Salt Lake City
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    'Explanada Frente al Mar, Playa Blanca, Bahía Serena'
+    'Salt Lake Temple, 50 N W Temple St, Salt Lake City, UT 84150'
   )}`;
 
   const handleCopyAddress = async (e: React.MouseEvent) => {
@@ -56,7 +52,6 @@ export const BeachLocation: React.FC = () => {
           >
             Ubicación
           </h2>
-
         </div>
 
         {/* TARJETÓN ARTESANAL DE LA UBICACIÓN */}
@@ -83,56 +78,35 @@ export const BeachLocation: React.FC = () => {
             </div>
 
             {/* Separador ornamental delicado */}
-            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#DFCBB5] to-transparent my-1" />
+            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#DFCBB5] to-transparent my-1 mb-4" />
 
-
-
-            {/* VISTA PREVIA ESTILIZADA DEL MAPA */}
+            {/* FOTO DEL TEMPLO DE SALT LAKE CITY CON ACCESO DIRECTO A GOOGLE MAPS */}
             <a
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-[#D9C4AD] shadow-xs group cursor-pointer mb-5 block"
-              title="Abrir mapa en Google Maps"
+              className="relative w-full aspect-[16/11] rounded-xl overflow-hidden border border-[#D9C4AD] shadow-sm group cursor-pointer mb-5 block bg-[#EAE0D2]"
+              title="Ver Templo de Salt Lake City en Google Maps"
             >
-              {/* Fondo ilustrado de playa y mapa suave */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#EAE0D2] via-[#F4ECE1] to-[#D5C2AF] flex items-center justify-center">
-                {/* Patrón estilizado de curvas costeras */}
-                <svg
-                  className="absolute inset-0 w-full h-full opacity-35"
-                  viewBox="0 0 300 170"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M0,80 C60,40 120,110 180,70 C240,30 280,90 300,60 L300,170 L0,170 Z"
-                    fill="#D9C7B2"
-                  />
-                  <path
-                    d="M0,110 C70,90 140,130 210,105 C260,85 290,120 300,110 L300,170 L0,170 Z"
-                    fill="#C9B39A"
-                  />
-                </svg>
+              <img
+                src="/images/templo-salt-lake.jpg"
+                alt="Templo de Salt Lake City, Utah"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="lazy"
+              />
 
-                {/* Marcador de mapa flotante con onda de pulso */}
-                <div className="relative z-10 flex flex-col items-center">
-                  <span className="absolute -inset-3 rounded-full bg-[#B87A4A]/25 animate-ping" />
-                  <div className="relative w-11 h-11 rounded-full bg-gradient-to-br from-[#B87A4A] to-[#8C5A32] text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="w-5 h-5 drop-shadow-xs" />
-                  </div>
-                  <span className="mt-1.5 px-2.5 py-0.5 rounded-full bg-white/95 backdrop-blur-xs text-[10px] font-semibold text-[#3D2C22] shadow-xs border border-[#DFCBB5]">
-                    Playa Blanca
-                  </span>
-                </div>
+              {/* Degradado inferior para resaltar insignia y nombre */}
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-black/10 pointer-events-none" />
 
-                {/* Coordenadas GPS decorativas */}
-
-              </div>
-
-              {/* Overlay hover */}
-              <div className="absolute inset-0 bg-[#3D2C22]/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="px-3 py-1 rounded-full bg-white/95 text-xs font-medium text-[#2F2420] shadow-md flex items-center gap-1.5">
-                  <ExternalLink className="w-3.5 h-3.5 text-[#B87A4A]" />
-                  Ver mapa completo
+              {/* Chip flotante con nombre del lugar */}
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
+                <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-xs text-[11px] font-semibold text-[#3D2C22] shadow-xs border border-[#DFCBB5] flex items-center gap-1">
+                  <MapPin className="w-3 h-3 text-[#B87A4A]" />
+                  Salt Lake Temple · Utah
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-stone-900/70 backdrop-blur-xs text-[10px] text-white/90 font-medium group-hover:bg-[#B87A4A] transition-colors flex items-center gap-1">
+                  <span>Ver mapa</span>
+                  <ExternalLink className="w-3 h-3" />
                 </span>
               </div>
             </a>
@@ -170,16 +144,6 @@ export const BeachLocation: React.FC = () => {
                   </>
                 )}
               </button>
-            </div>
-
-            {/* RECOMENDACIÓN PARA LOS INVITADOS */}
-            <div className="w-full mt-4 pt-3.5 border-t border-[#EADBCC] flex items-start gap-2.5 text-left text-xs text-[#7A604D]">
-              <div className="w-5 h-5 rounded-full bg-[#F3E5D4] flex items-center justify-center text-[#B87A4A] shrink-0 mt-0.5">
-                <Footprints className="w-3 h-3" />
-              </div>
-              <p className="leading-relaxed">
-                <span className="font-semibold text-[#3D2C22]">Tip para invitados:</span> Te sugerimos calzado cómodo o sandalias para caminar cómodamente en la arena y disfrutar la brisa marina.
-              </p>
             </div>
           </div>
         </div>
