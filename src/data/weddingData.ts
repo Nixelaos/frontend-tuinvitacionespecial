@@ -37,7 +37,6 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
     slug: 'papel-rasgado',
     name: 'Papel Rasgado & Partículas de Luz',
     collection: 'Colección Costa & Luz de Mediodía',
-    category: 'Editorial Clásico',
     price: 109990,
     originalPrice: 139990,
     badge: 'Sello de Lacre & Supernova',

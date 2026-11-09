@@ -1,10 +1,3 @@
-export type StyleCategory =
-  | 'Todos'
-  | 'Editorial Clásico'
-  | 'Botánico & Salvia'
-  | 'Minimalista Lujo'
-  | 'Hacienda & Romántico';
-
 export interface ItineraryEvent {
   time: string;
   title: string;
@@ -17,7 +10,6 @@ export interface InvitationTemplate {
   slug: string;
   name: string;
   collection: string;
-  category: Exclude<StyleCategory, 'Todos'>;
   price: number;
   originalPrice?: number;
   badge?: string;

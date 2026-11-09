@@ -105,7 +105,7 @@ export const BeachItinerary: React.FC = () => {
           {/* Guía vertical dorada continua */}
           <div className="absolute left-[20px] sm:left-[22px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#DFCBB5] via-[#C29F68]/70 to-[#DFCBB5] pointer-events-none" />
 
-          {ITINERARY_EVENTS.map((event, idx) => {
+          {ITINERARY_EVENTS.map((event) => {
             const IconComponent = event.icon;
             return (
               <div
@@ -122,15 +122,11 @@ export const BeachItinerary: React.FC = () => {
                   {/* Filete interior sutil de papelería artesanal */}
                   <div className="absolute inset-1.5 sm:inset-2 border border-[#E8DCCF] rounded-xl pointer-events-none" />
 
-                  {/* Fila superior: Hora e Insignia */}
-                  <div className="relative z-10 flex items-center justify-between gap-2 mb-1.5">
+                  {/* Fila superior: Hora */}
+                  <div className="relative z-10 flex items-center mb-1.5">
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#F5ECE0] text-[#B87A4A] border border-[#DFCBB5] text-[11px] sm:text-xs font-semibold tracking-wider">
                       <Clock className="w-3 h-3 text-[#B87A4A]" />
                       <span>{event.time}</span>
-                    </span>
-
-                    <span className="text-[10px] uppercase tracking-widest text-[#916E49] font-medium opacity-80">
-                      Paso {idx + 1}
                     </span>
                   </div>
 
@@ -149,6 +145,12 @@ export const BeachItinerary: React.FC = () => {
           })}
         </div>
 
+        {/* Nota final del itinerario */}
+        <div className="mt-8 flex items-center justify-center gap-2 text-xs text-[#8A6749] text-center">
+          <Sparkles className="w-3.5 h-3.5 text-[#B87A4A]" />
+          <span>Los horarios son estimados para disfrutar cada momento</span>
+          <Sparkles className="w-3.5 h-3.5 text-[#B87A4A]" />
+        </div>
       </ScrollReveal>
     </div>
   );
