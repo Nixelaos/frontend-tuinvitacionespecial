@@ -71,17 +71,19 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
             />
           </div>
 
-          {/* Texto del mensaje / frase romántica perfectamente centrado dentro de la banda */}
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-8 sm:px-12 pl-12 sm:pl-16 py-6 text-center pointer-events-none">
-            <p
-              className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal"
-              style={{
-                fontFamily: "'Great Vibes', cursive",
-                textShadow: '0 1px 1px rgba(255, 255, 255, 0.8)',
-              }}
-            >
-              «A orillas del mar, decidimos dar el paso más importante de nuestras vidas.»
-            </p>
+          {/* Texto del mensaje / frase romántica perfectamente centrado de manera equidistante arriba y abajo */}
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-8 sm:px-12 pl-12 sm:pl-16 text-center pointer-events-none">
+            <div className="-translate-y-5 sm:-translate-y-6 w-full">
+              <p
+                className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal"
+                style={{
+                  fontFamily: "'Great Vibes', cursive",
+                  textShadow: '0 1px 1px rgba(255, 255, 255, 0.8)',
+                }}
+              >
+                «A orillas del mar, decidimos dar el paso más importante de nuestras vidas.»
+              </p>
+            </div>
           </div>
 
           {/* Animación CSS integrada para movimiento suave de la flor */}
