@@ -5,8 +5,10 @@ import {
   BeachHero,
   BeachCountdown,
   TornPaperDivider,
+  BeachTornDivider,
   BeachQuote,
   BeachGallery,
+  BeachLocation,
   BeachRsvp,
   BeachSignature,
   useCountdown,
@@ -147,10 +149,26 @@ export const BeachWeddingInvitation: React.FC = () => {
             {/* SECCIÓN 3: GALERÍA DE FOTOS EN MARCO ARTESANAL CON TINTA LÍQUIDA */}
             <BeachGallery />
 
-            {/* DIVISOR SUPERIOR DE PAPEL RASGADO PARA SECCIÓN RSVP */}
-            <TornPaperDivider type="top" upperColor="#EBDDCE" fiberColor="#FCF9F3" />
+            {/* NUEVA SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN A UBICACIÓN CON FIBRAS Y SOMBRA 3D) */}
+            <BeachTornDivider
+              type="top"
+              upperColor="#EBDDCE"
+              lowerColor="#FAF4EC"
+              fiberColor="#FFFDF7"
+            />
 
-            {/* SECCIÓN 4: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) */}
+            {/* NUEVA SECCIÓN 4: UBICACIÓN DEL EVENTO + BOTÓN GOOGLE MAPS */}
+            <BeachLocation />
+
+            {/* NUEVA SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN DE UBICACIÓN A SECCIÓN RSVP) */}
+            <BeachTornDivider
+              type="bottom"
+              upperColor="#FAF4EC"
+              lowerColor="#FCF9F3"
+              fiberColor="#FFFDF7"
+            />
+
+            {/* SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) */}
             <BeachRsvp />
 
             {/* DIVISOR INFERIOR DE PAPEL RASGADO PARA SECCIÓN RSVP */}
