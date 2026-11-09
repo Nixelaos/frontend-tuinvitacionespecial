@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollReveal } from './ScrollReveal';
-import { TORN_BOT_FIBER_PATH } from './constants/tornPaperPaths';
+import { TORN_QUOTE_PAPER_BAND } from './constants/tornPaperPaths';
 
 interface BeachQuoteProps {
   upperColor?: string;
@@ -10,8 +10,9 @@ interface BeachQuoteProps {
 
 /**
  * Sección de Mensaje / Frase Romántica:
- * Replica los bordes y el cuerpo del papel rasgado de forma 100% visual y vectorial con React y tornPaperPaths.ts,
- * eliminando por completo la necesidad de imágenes de fondo estáticas.
+ * Replica los bordes y el cuerpo del papel rasgado artesanal de forma 100% visual y vectorial con React y tornPaperPaths.ts.
+ * Ambos bordes (superior e inferior) ascienden en diagonal con textura deshilachada orgánica uniforme,
+ * eliminando cualquier corte horizontal o recto.
  */
 export const BeachQuote: React.FC<BeachQuoteProps> = ({
   upperColor = '#F5ECE0',
@@ -22,20 +23,20 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
     <div className={`relative w-full overflow-hidden select-none -my-1 z-20 ${className}`}>
       {/* Fondo de continuidad natural: une Countdown (arriba) con Galería (abajo) */}
       <div className="absolute inset-0 flex flex-col pointer-events-none" aria-hidden="true">
-        <div className="h-1/2 w-full" style={{ backgroundColor: upperColor }} />
-        <div className="h-1/2 w-full" style={{ backgroundColor: lowerColor }} />
+        <div className="h-[48%] w-full" style={{ backgroundColor: upperColor }} />
+        <div className="h-[52%] w-full" style={{ backgroundColor: lowerColor }} />
       </div>
 
       <ScrollReveal className="relative z-10 w-full flex flex-col items-center">
         {/* Contenedor de la banda de papel rasgado artesanal */}
         <div className="relative w-full">
-          {/* Gráfico vectorial SVG de la tira de papel rasgado continuo */}
+          {/* Gráfico vectorial SVG de la tira de papel rasgado continuo con ambos bordes ascendiendo */}
           <svg
-            viewBox="0 -130 1000 360"
+            viewBox="0 -120 1000 540"
             preserveAspectRatio="none"
-            className="w-full h-56 sm:h-64 block relative z-10"
+            className="w-full h-80 sm:h-96 md:h-[390px] block relative z-10"
             style={{
-              filter: 'drop-shadow(0px 8px 18px rgba(60, 35, 18, 0.16))',
+              filter: 'drop-shadow(0px 8px 20px rgba(60, 35, 18, 0.18))',
             }}
             aria-hidden="true"
           >
@@ -52,16 +53,16 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
               </filter>
             </defs>
 
-            {/* Hoja de papel rasgado continuo de algodón */}
+            {/* Hoja de papel rasgado continuo con ambos bordes diagonales deshilachados */}
             <path
-              d={TORN_BOT_FIBER_PATH}
+              d={TORN_QUOTE_PAPER_BAND}
               fill="url(#quotePaperGrad)"
               filter="url(#deckleFiberGlow)"
             />
           </svg>
 
           {/* Flor botánica de contraste en el lateral izquierdo con animación de vaivén */}
-          <div className="absolute top-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-26 z-30 pointer-events-none opacity-70 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)] animate-flower-sway-left">
+          <div className="absolute top-[50%] -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 pointer-events-none opacity-70 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)] animate-flower-sway-left">
             <img
               src="/images/flor-contraste.webp"
               alt="Flor de contraste"
@@ -70,8 +71,8 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
             />
           </div>
 
-          {/* Texto del mensaje / frase romántica centrado con Great Vibes */}
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-8 sm:px-12 pl-12 sm:pl-16 text-center pointer-events-none">
+          {/* Texto del mensaje / frase romántica perfectamente centrado dentro de la banda */}
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-8 sm:px-12 pl-12 sm:pl-16 py-6 text-center pointer-events-none">
             <p
               className="font-script text-2xl sm:text-3xl text-[#2F2420] leading-relaxed max-w-sm mx-auto font-normal"
               style={{
