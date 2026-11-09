@@ -8,8 +8,8 @@ export type StyleCategory =
 export interface ItineraryEvent {
   time: string;
   title: string;
-  location: string;
-  iconType: 'ceremony' | 'cocktail' | 'dinner' | 'party';
+  location?: string;
+  iconType: string;
 }
 
 export interface InvitationTemplate {
