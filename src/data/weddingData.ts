@@ -33,9 +33,9 @@ export const BEACH_WEDDING_RSVP_CONFIG: RsvpEventConfig = {
 
 export const INVITATION_TEMPLATES: InvitationTemplate[] = [
   {
-    id: 'invi-playa',
-    slug: 'invi-playa',
-    name: 'Papel Trozado & Partículas de Luz',
+    id: 'papel-rasgado',
+    slug: 'papel-rasgado',
+    name: 'Papel Rasgado & Partículas de Luz',
     collection: 'Colección Costa & Luz de Mediodía',
     category: 'Editorial Clásico',
     price: 109990,
@@ -45,7 +45,7 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
     shortDescription:
       'Sobre de papel pastel con sello de lacre realista en relieve, revelado fotográfico en spray frente al mar con destello supernova y tarjeta de papel rasgado.',
     description:
-      'Invitación digital interactiva de boda en la playa con apertura de sobre de papel pastel y sello de lacre realista, revelación fotográfica con efecto aerógrafo, destello supernova al abrir y tarjeta artesanal con bordes rasgados y cuenta regresiva en vivo.',
+      'Invitación digital interactiva de boda en la playa con apertura de sobre de papel pastel y sello de lacre realista, revelación fotográfica con efecto aerógrafo, destello supernova al abrir, tarjeta artesanal con bordes rasgados, cronograma completo de la celebración y cuenta regresiva en vivo.',
     coupleDemo: {
       bride: 'Valentina',
       groom: 'Sebastián',
@@ -78,20 +78,40 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
       'Efecto visual Supernova y revelado fotográfico suave al abrir la invitación',
       'Tarjeta de papel artesanal rasgado con textura orgánica y aparición progresiva al deslizar',
       'Cuenta regresiva en tiempo real integrada en hoja de papel de algodón',
+      'Nueva sección de itinerario dividida con bordes de papel rasgado artesanal',
+      'Confirmación de asistencia R.S.V.P. directa a WhatsApp y calendario',
       'Diseño 100% adaptable a celular, tablet y computador',
     ],
     itinerary: [
       {
-        time: '12:30 hrs',
-        title: 'Ceremonia Frente al Mar',
-        location: 'Playa Blanca, Bahía Serena',
+        time: '17:00 hrs',
+        title: 'Ceremonia Religiosa & Votos',
+        location: 'Explanada de los Álamos · Jardín Central',
         iconType: 'ceremony',
       },
       {
-        time: '14:00 hrs',
-        title: 'Recepción & Almuerzo Costero',
-        location: 'Terraza Bahía Serena',
+        time: '18:15 hrs',
+        title: 'Cóctel al Atardecer & Música en Vivo',
+        location: 'Terraza del Parque',
+        iconType: 'cocktail',
+      },
+      {
+        time: '20:00 hrs',
+        title: 'Banquete & Cena de Gala',
+        location: 'Gran Salón Majadas',
         iconType: 'dinner',
+      },
+      {
+        time: '22:00 hrs',
+        title: 'El Gran Baile & Apertura de Fiesta',
+        location: 'Pista Central & Cúpula',
+        iconType: 'party',
+      },
+      {
+        time: '03:00 hrs',
+        title: 'Cierre Mágico & Despedida',
+        location: 'Jardines Iluminados',
+        iconType: 'farewell',
       },
     ],
   },

@@ -6,9 +6,11 @@ import {
   BeachCountdown,
   TornPaperDivider,
   BeachTornDivider,
+  ArtisanTornDivider,
   BeachQuote,
   BeachGallery,
   BeachLocation,
+  BeachItinerary,
   BeachRsvp,
   BeachSignature,
   useCountdown,
@@ -149,24 +151,34 @@ export const BeachWeddingInvitation: React.FC = () => {
             {/* SECCIÓN 3: GALERÍA DE FOTOS EN MARCO ARTESANAL CON TINTA LÍQUIDA */}
             <BeachGallery />
 
-            {/* NUEVA SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN LIMPIA A UBICACIÓN, SIN SOMBRAS NI BORDE BLANCO) */}
+            {/* SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN A UBICACIÓN) */}
             <BeachTornDivider
               type="top"
               upperColor="#EBDDCE"
               lowerColor="#FAF4EC"
             />
 
-            {/* NUEVA SECCIÓN 4: UBICACIÓN DEL EVENTO + BOTÓN GOOGLE MAPS */}
+            {/* SECCIÓN 4: UBICACIÓN DEL EVENTO + BOTÓN GOOGLE MAPS */}
             <BeachLocation />
 
-            {/* NUEVA SEPARACIÓN DE PAPEL ROTO (TRANSICIÓN LIMPIA HACIA SECCIÓN RSVP EN CONTRASTE) */}
-            <BeachTornDivider
-              type="bottom"
+            {/* NUEVA SEPARACIÓN DE PAPEL RASGADO (ENTRADA AL ITINERARIO CON MICROFIBRAS 3D) */}
+            <ArtisanTornDivider
+              type="top"
               upperColor="#FAF4EC"
+              lowerColor="#F5ECE0"
+            />
+
+            {/* NUEVA SECCIÓN: ITINERARIO DEL EVENTO */}
+            <BeachItinerary />
+
+            {/* NUEVA SEPARACIÓN DE PAPEL RASGADO (TRANSICIÓN HACIA SECCIÓN RSVP EN CONTRASTE) */}
+            <ArtisanTornDivider
+              type="bottom"
+              upperColor="#F5ECE0"
               lowerColor="#EBDDCE"
             />
 
-            {/* SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) CON FONDO EN CONTRASTE */}
+            {/* SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) AL FINAL DE LA INVITACIÓN */}
             <BeachRsvp />
 
             {/* FIRMA FINAL DE LOS NOVIOS */}
