@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Gift, Copy, Check, X, Sparkles } from 'lucide-react';
+import { Gift, Copy, Check, X } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { BeachFlower } from './BeachFlower';
 
@@ -92,7 +92,7 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
 
   return (
     <div
-      className={`w-full bg-[#F5ECE0] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 overflow-hidden ${className}`}
+      className={`w-full bg-[#F5ECE0] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 ${className}`}
     >
       {/* Animación fluida lenta de flotación de arriba a abajo */}
       <style>{`
@@ -110,10 +110,10 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
         }
       `}</style>
 
-      {/* Flor botánica de contraste en el lateral superior izquierdo */}
+      {/* Flor botánica de contraste en el lateral superior izquierdo (subida para no tapar el título) */}
       <BeachFlower
         variant="left"
-        className="absolute top-3 sm:top-5 -left-3 sm:-left-4 w-16 sm:w-20 md:w-24 z-20 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
+        className="absolute -top-5 sm:-top-7 -left-3 sm:-left-4 w-16 sm:w-20 md:w-24 z-20 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
         delayMs={150}
       />
 
@@ -174,12 +174,9 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
                 </div>
 
                 {/* Frase animada para que clickeen, moviéndose junto al regalo */}
-                <div className="mt-3 flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FCF9F3]/90 border border-[#DFCBB5] shadow-xs group-hover:border-[#B87A4A] group-hover:bg-white transition-colors duration-300">
-                  <Sparkles className="w-3.5 h-3.5 text-[#B87A4A] shrink-0 animate-pulse" />
-                  <span className="text-xs sm:text-[13px] font-medium text-[#8C5E35] group-hover:text-[#6D421F]">
-                    {clickPhrase}
-                  </span>
-                </div>
+                <p className="mt-2.5 text-xs sm:text-[13px] font-medium text-[#8C5E35] group-hover:text-[#6D421F] transition-colors duration-300 tracking-wide text-center">
+                  {clickPhrase}
+                </p>
               </div>
             </div>
           </div>
