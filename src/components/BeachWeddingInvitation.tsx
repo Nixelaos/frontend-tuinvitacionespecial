@@ -12,6 +12,7 @@ import {
   BeachItinerary,
   BeachDressCode,
   BeachGift,
+  BeachPhotoAlbum,
   BeachRsvp,
   BeachSignature,
   useCountdown,
@@ -187,19 +188,30 @@ export const BeachWeddingInvitation: React.FC = () => {
               fiberColor="#FCF8F2"
             />
 
-            {/* NUEVA SECCIÓN: REGALO PARA LOS NOVIOS */}
+            {/* SECCIÓN: REGALO PARA LOS NOVIOS */}
             <BeachGift />
 
-            {/* 5. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (REGALO -> RSVP) */}
+            {/* 5. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (REGALO -> ÁLBUM DE FOTOS QR) */}
             <ArtisanTornDivider
               type="bottom"
               upperColor="#F5ECE0"
+              lowerColor="#FAF4EC"
+              fiberColor="#FCF8F2"
+            />
+
+            {/* NUEVA SECCIÓN: QR PARA LAS FOTOS DEL MATRIMONIO CON ALBUM.PNG */}
+            <BeachPhotoAlbum />
+
+            {/* 6. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (ÁLBUM DE FOTOS QR -> RSVP) */}
+            <ArtisanTornDivider
+              type="top"
+              upperColor="#FAF4EC"
               lowerColor="#EBDDCE"
               fiberColor="#FCF8F2"
               prominent
             />
 
-            {/* SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) AL FINAL DE LA INVITACIÓN */}
+            {/* SECCIÓN: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) AL FINAL DE LA INVITACIÓN */}
             <BeachRsvp />
 
             {/* FIRMA FINAL DE LOS NOVIOS */}

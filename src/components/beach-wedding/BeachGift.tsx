@@ -131,50 +131,45 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
           <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#DFCBB5] to-transparent mt-2" />
         </div>
 
-        {/* TARJETA ARTESANAL PRINCIPAL (SIN BORDES) */}
-        <div className="relative w-full bg-[#FAF3EB] rounded-2xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(70,45,25,0.08)] flex flex-col items-center text-center">
-          <div className="relative z-10 flex flex-col items-center w-full">
-            {/* Mensaje breve */}
-            <p className="text-xs sm:text-sm text-[#7D5F48] leading-relaxed max-w-xs sm:max-w-sm mb-5">
-              {message}
-            </p>
+        {/* CONTENIDO DE LA SECCIÓN (DIRECTO SOBRE EL FONDO) */}
+        <div className="relative w-full flex flex-col items-center text-center">
+          {/* Mensaje breve */}
+          <p className="text-xs sm:text-sm text-[#7D5F48] leading-relaxed max-w-xs sm:max-w-sm mb-5">
+            {message}
+          </p>
 
-            {/* ZONA INTERACTIVA DEL REGALO:
-                Al clickear en el regalo o cerca de este, se abre el recuadro desplegable con los datos.
-                El bloque entero (imagen y frase) flota lentamente de arriba a abajo. */}
-            <div
-              onClick={openModal}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  openModal();
-                }
-              }}
-              className="group cursor-pointer select-none w-full max-w-[280px] sm:max-w-[300px] flex flex-col items-center p-3 sm:p-4 rounded-2xl transition-all duration-300 hover:bg-[#F2E5D5]/60 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#B87A4A]/40"
-              title={clickPhrase}
-            >
-              {/* Contenedor animado que se mueve lentamente de arriba a abajo */}
-              <div className="animate-float-slow-gift flex flex-col items-center">
-                {/* Imagen del regalo */}
-                <div className="relative flex justify-center items-center">
-                  {/* Halo sutil iluminado detrás del regalo */}
-                  <div className="absolute inset-0 bg-[#E8DACB]/50 rounded-full blur-md transform scale-90 group-hover:scale-110 transition-transform duration-300" />
-
-                  <img
-                    src={imageSrc}
-                    alt={imageAlt}
-                    className="relative z-10 w-24 sm:w-28 md:w-32 h-auto object-contain drop-shadow-[0_6px_16px_rgba(70,45,25,0.18)] transition-transform duration-300 group-hover:scale-105 pointer-events-none"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Frase animada para que clickeen, moviéndose junto al regalo */}
-                <p className="mt-2.5 text-xs sm:text-[13px] font-medium text-[#8C5E35] group-hover:text-[#6D421F] transition-colors duration-300 tracking-wide text-center">
-                  {clickPhrase}
-                </p>
+          {/* ZONA INTERACTIVA DEL REGALO:
+              Al clickear en el regalo o cerca de este, se abre el recuadro desplegable con los datos.
+              El bloque entero (imagen y frase) flota lentamente de arriba a abajo directamente sobre el fondo. */}
+          <div
+            onClick={openModal}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openModal();
+              }
+            }}
+            className="group cursor-pointer select-none w-full max-w-[280px] sm:max-w-[300px] flex flex-col items-center p-2 rounded-2xl transition-transform duration-300 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#B87A4A]/40"
+            title={clickPhrase}
+          >
+            {/* Contenedor animado que se mueve lentamente de arriba a abajo */}
+            <div className="animate-float-slow-gift flex flex-col items-center">
+              {/* Imagen del regalo directamente sobre el fondo de la sección */}
+              <div className="relative flex justify-center items-center">
+                <img
+                  src={imageSrc}
+                  alt={imageAlt}
+                  className="relative z-10 w-24 sm:w-28 md:w-32 h-auto object-contain drop-shadow-[0_6px_16px_rgba(70,45,25,0.18)] transition-transform duration-300 group-hover:scale-105 pointer-events-none"
+                  loading="lazy"
+                />
               </div>
+
+              {/* Frase animada para que clickeen, moviéndose junto al regalo */}
+              <p className="mt-2.5 text-xs sm:text-[13px] font-medium text-[#8C5E35] group-hover:text-[#6D421F] transition-colors duration-300 tracking-wide text-center">
+                {clickPhrase}
+              </p>
             </div>
           </div>
         </div>

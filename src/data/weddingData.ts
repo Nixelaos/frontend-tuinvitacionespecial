@@ -15,6 +15,17 @@ export const DEFAULT_MENU_OPTIONS: MenuOption[] = [
   { id: 'kids', label: 'Menú Infantil' },
 ];
 
+export const BEACH_WEDDING_ALBUM_CONFIG = {
+  title: 'Álbum de Fotos',
+  badge: 'Comparte tus Recuerdos',
+  subtitle: '¡Queremos ver la boda a través de tus ojos!',
+  description:
+    'Los momentos más especiales se viven desde muchos ángulos. Ayúdanos a capturar cada instante compartiendo las fotos y videos que tomes durante nuestro gran día.',
+  albumUrl: 'https://photos.app.goo.gl/valentina-y-sebastian-2026',
+  imageSrc: '/images/album.png',
+  imageAlt: 'Álbum de fotos del matrimonio Valentina & Sebastián',
+};
+
 export const BEACH_WEDDING_RSVP_CONFIG: RsvpEventConfig = {
   eventTitle: 'Boda Valentina & Sebastián',
   coupleNames: 'Valentina & Sebastián',
@@ -80,6 +91,7 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
       'Nueva sección de itinerario dividida con bordes de papel rasgado artesanal',
       'Sección de código de vestimenta (dress code) con reserva de color para la novia',
       'Sección de regalo para los novios con mensaje emotivo y datos bancarios protegidos',
+      'Sección de álbum colaborativo con código QR para compartir las fotos del matrimonio',
       'Confirmación de asistencia R.S.V.P. directa a WhatsApp y calendario',
       'Diseño 100% adaptable a celular, tablet y computador',
     ],
