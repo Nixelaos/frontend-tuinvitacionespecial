@@ -74,10 +74,10 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
             />
           </svg>
 
-          {/* Flor botánica de contraste en el lateral izquierdo con animación de crecimiento */}
+          {/* Flor botánica de contraste en el lateral izquierdo con animación de crecimiento al 100% */}
           <BeachFlower
             variant="left"
-            className="absolute top-[50%] -translate-y-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 opacity-70 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]"
+            className="absolute top-[50%] -translate-y-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]"
             delayMs={100}
           />
 

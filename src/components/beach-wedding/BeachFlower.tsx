@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 export interface BeachFlowerProps {
   /**
    * Clases adicionales para posicionamiento absoluto, tamaño, sombras, etc.
-   * (ej. 'absolute top-[50%] -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 opacity-70 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]')
+   * (ej. 'absolute top-[50%] -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]')
    */
   className?: string;
   /**
@@ -36,32 +36,10 @@ export interface BeachFlowerProps {
   delayMs?: number;
 }
 
-const FLOWER_ANIMATION_STYLES = `
-@keyframes flowerGentleFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-.animate-flower-float {
-  animation: flowerGentleFloat 4.2s ease-in-out infinite 1s;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-flower-float {
-    animation: none !important;
-  }
-}
-`;
-
 /**
  * Componente modular con la flor de contraste botánica (/images/hibisco-izq.png y /images/hibisco-der.png).
- * Aparece con un elegante efecto de crecimiento orgánico (bloom) hasta su tamaño original,
- * conservando su rotación original de diseño sin ninguna alteración ni forzado de ángulo.
+ * Aparece con una suave transición de opacidad (0 a 100%) y crecimiento orgánico hasta su tamaño original en 2 segundos,
+ * quedando totalmente estática y conservando su ángulo original sin movimiento flotante.
  */
 export const BeachFlower: React.FC<BeachFlowerProps> = ({
   className = '',
@@ -106,9 +84,9 @@ export const BeachFlower: React.FC<BeachFlowerProps> = ({
       style={style}
       aria-hidden="true"
     >
-      {/* Contenedor con efecto de crecimiento hasta su tamaño original */}
+      {/* Contenedor con efecto de crecimiento y transición de opacidad en 2 segundos hasta tamaño original (queda fijo/estático) */}
       <div
-        className={`w-full h-full transform transition-all duration-1000 ease-out origin-center ${
+        className={`w-full h-full transform transition-all duration-[2000ms] ease-out origin-center ${
           isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
         }`}
         style={{
@@ -116,17 +94,13 @@ export const BeachFlower: React.FC<BeachFlowerProps> = ({
           transitionDelay: `${delayMs}ms`,
         }}
       >
-        {/* Capa de flotación suave ambiental (sin alterar la rotación original) */}
-        <div className={isVisible ? 'animate-flower-float' : ''}>
-          <img
-            src={flowerSrc}
-            alt={alt}
-            className={`w-full h-auto object-contain select-none pointer-events-none ${imageRotateClass}`}
-            loading={loading}
-          />
-        </div>
+        <img
+          src={flowerSrc}
+          alt={alt}
+          className={`w-full h-auto object-contain select-none pointer-events-none ${imageRotateClass}`}
+          loading={loading}
+        />
       </div>
-      <style dangerouslySetInnerHTML={{ __html: FLOWER_ANIMATION_STYLES }} />
     </div>
   );
 };

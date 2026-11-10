@@ -17,9 +17,7 @@ export const BeachLocation: React.FC = () => {
   const fullAddress = `${venueName}, ${venueAddress}, ${venueArea}`;
 
   // Enlace directo a Google Maps al centro de eventos en Chile
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    'Las Majadas de Pirque, Pirque, Región Metropolitana, Chile'
-  )}`;
+  const googleMapsUrl = 'https://maps.app.goo.gl/UN6X8K2XGdvjNiSi6';
 
   const handleCopyAddress = async (e: React.MouseEvent) => {
     e.preventDefault();
