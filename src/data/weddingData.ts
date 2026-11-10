@@ -78,6 +78,7 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
       'Tarjeta de papel artesanal rasgado con textura orgánica y aparición progresiva al deslizar',
       'Cuenta regresiva en tiempo real integrada en hoja de papel de algodón',
       'Nueva sección de itinerario dividida con bordes de papel rasgado artesanal',
+      'Sección de código de vestimenta (dress code) con reserva de color para la novia',
       'Confirmación de asistencia R.S.V.P. directa a WhatsApp y calendario',
       'Diseño 100% adaptable a celular, tablet y computador',
     ],

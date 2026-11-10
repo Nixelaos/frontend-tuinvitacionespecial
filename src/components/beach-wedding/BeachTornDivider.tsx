@@ -24,6 +24,11 @@ export const BeachTornDivider: React.FC<BeachTornDividerProps> = ({
   heightClassName = '',
   className = '',
 }) => {
+  const reactId = React.useId().replace(/:/g, '');
+  const tornShadowId = `beachTornShadow-${reactId}`;
+  const sheetEdgeShadowId = `beachSheetEdgeShadow-${reactId}`;
+  const fiberGradId = `beachTornFiberGrad-${reactId}`;
+
   return (
     <div
       className={`w-full overflow-hidden leading-none select-none pointer-events-none -my-1 relative z-20 ${className}`}
@@ -36,16 +41,16 @@ export const BeachTornDivider: React.FC<BeachTornDividerProps> = ({
       >
         <defs>
           {/* Sombra suave y realista del papel rasgado proyectada sobre la sección inferior */}
-          <filter id="beachTornShadow" x="-5%" y="-10%" width="110%" height="150%">
+          <filter id={tornShadowId} x="-5%" y="-10%" width="110%" height="150%">
             <feDropShadow dx="0" dy="3.5" stdDeviation="4" floodColor="#462C16" floodOpacity="0.14" />
             <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#261408" floodOpacity="0.08" />
           </filter>
           {/* Sombra sutil del corte de la capa superior sobre la franja de fibra crema */}
-          <filter id="beachSheetEdgeShadow" x="-5%" y="-10%" width="110%" height="150%">
+          <filter id={sheetEdgeShadowId} x="-5%" y="-10%" width="110%" height="150%">
             <feDropShadow dx="0" dy="1.2" stdDeviation="1" floodColor="#462C16" floodOpacity="0.09" />
           </filter>
           {/* Degradado crema cálido de bajo contraste que armoniza con los fondos */}
-          <linearGradient id="beachTornFiberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <linearGradient id={fiberGradId} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor={fiberColor} />
             <stop offset="100%" stopColor="#F6EFE5" />
           </linearGradient>
@@ -57,15 +62,15 @@ export const BeachTornDivider: React.FC<BeachTornDividerProps> = ({
         {/* 2. Capa de fibra crema de papel rasgado (núcleo expuesto armonizado) */}
         <path
           d={BEACH_TORN_TOP_FIBER_PATH}
-          fill="url(#beachTornFiberGrad)"
-          filter="url(#beachTornShadow)"
+          fill={`url(#${fiberGradId})`}
+          filter={`url(#${tornShadowId})`}
         />
 
         {/* 3. Hoja de papel superior que rasga sobre la franja crema */}
         <path
           d={BEACH_TORN_TOP_UPPER_PATH}
           fill={upperColor}
-          filter="url(#beachSheetEdgeShadow)"
+          filter={`url(#${sheetEdgeShadowId})`}
         />
       </svg>
     </div>

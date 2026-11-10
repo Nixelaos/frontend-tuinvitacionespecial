@@ -32,6 +32,11 @@ export const ArtisanTornDivider: React.FC<ArtisanTornDividerProps> = ({
   heightClassName = '',
   className = '',
 }) => {
+  const reactId = React.useId().replace(/:/g, '');
+  const tornShadowId = `artisanTornShadow-${type}-${reactId}`;
+  const sheetEdgeShadowId = `artisanSheetEdgeShadow-${type}-${reactId}`;
+  const fiberGradId = `artisanFiberGrad-${type}-${reactId}`;
+
   // División Ubicación -> Itinerario (type === 'top')
   if (type === 'top') {
     return (
@@ -45,37 +50,37 @@ export const ArtisanTornDivider: React.FC<ArtisanTornDividerProps> = ({
           className={`w-full block ${heightClassName || 'h-24 sm:h-32 md:h-36'}`}
         >
           <defs>
-            {/* Sombra suave y cálida proyectada sobre la sección inferior (Itinerario #F5ECE0) */}
-            <filter id="artisanTopTornShadow" x="-5%" y="-10%" width="110%" height="150%">
+            {/* Sombra suave y cálida proyectada sobre la sección inferior */}
+            <filter id={tornShadowId} x="-5%" y="-10%" width="110%" height="150%">
               <feDropShadow dx="0" dy="3.5" stdDeviation="4" floodColor="#462C16" floodOpacity="0.14" />
               <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#261408" floodOpacity="0.08" />
             </filter>
             {/* Sombra sutil del corte de la capa superior sobre la franja de fibra crema */}
-            <filter id="artisanTopSheetEdgeShadow" x="-5%" y="-10%" width="110%" height="150%">
+            <filter id={sheetEdgeShadowId} x="-5%" y="-10%" width="110%" height="150%">
               <feDropShadow dx="0" dy="1.2" stdDeviation="1" floodColor="#462C16" floodOpacity="0.09" />
             </filter>
             {/* Degradado crema cálido de bajo contraste que armoniza con los fondos crema */}
-            <linearGradient id="artisanTopTornFiberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id={fiberGradId} x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor={fiberColor} />
               <stop offset="100%" stopColor="#F6EFE5" />
             </linearGradient>
           </defs>
 
-          {/* 1. Fondo inferior continuo con el color de la sección que inicia (Itinerario #F5ECE0) */}
+          {/* 1. Fondo inferior continuo con el color de la sección que inicia */}
           <rect x="0" y="0" width="1000" height="200" fill={lowerColor} />
 
           {/* 2. Capa de fibra crema de papel rasgado (núcleo expuesto armonizado) con sombra suave */}
           <path
             d={PROMINENT_TORN_TOP_FIBER_PATH}
-            fill="url(#artisanTopTornFiberGrad)"
-            filter="url(#artisanTopTornShadow)"
+            fill={`url(#${fiberGradId})`}
+            filter={`url(#${tornShadowId})`}
           />
 
-          {/* 3. Hoja de papel superior (Ubicación #FAF4EC) que rasga sobre la franja crema */}
+          {/* 3. Hoja de papel superior que rasga sobre la franja crema */}
           <path
             d={PROMINENT_TORN_TOP_UPPER_PATH}
             fill={upperColor}
-            filter="url(#artisanTopSheetEdgeShadow)"
+            filter={`url(#${sheetEdgeShadowId})`}
           />
         </svg>
       </div>
@@ -94,37 +99,37 @@ export const ArtisanTornDivider: React.FC<ArtisanTornDividerProps> = ({
         className={`w-full block ${heightClassName || 'h-24 sm:h-32 md:h-36'}`}
       >
         <defs>
-          {/* Sombra suave y cálida proyectada sobre la sección inferior (RSVP #EBDDCE) */}
-          <filter id="artisanBotTornShadow" x="-5%" y="-10%" width="110%" height="150%">
+          {/* Sombra suave y cálida proyectada sobre la sección inferior */}
+          <filter id={tornShadowId} x="-5%" y="-10%" width="110%" height="150%">
             <feDropShadow dx="0" dy="3.5" stdDeviation="4" floodColor="#462C16" floodOpacity="0.14" />
             <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#261408" floodOpacity="0.08" />
           </filter>
           {/* Sombra sutil del corte de la capa superior sobre la franja de fibra crema */}
-          <filter id="artisanBotSheetEdgeShadow" x="-5%" y="-10%" width="110%" height="150%">
+          <filter id={sheetEdgeShadowId} x="-5%" y="-10%" width="110%" height="150%">
             <feDropShadow dx="0" dy="1.2" stdDeviation="1" floodColor="#462C16" floodOpacity="0.09" />
           </filter>
           {/* Degradado crema cálido de bajo contraste que armoniza con los fondos crema */}
-          <linearGradient id="artisanBotTornFiberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <linearGradient id={fiberGradId} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor={fiberColor} />
             <stop offset="100%" stopColor="#F6EFE5" />
           </linearGradient>
         </defs>
 
-        {/* 1. Fondo inferior continuo con el color de la sección que inicia (RSVP #EBDDCE) */}
+        {/* 1. Fondo inferior continuo con el color de la sección que inicia */}
         <rect x="0" y="0" width="1000" height="200" fill={lowerColor} />
 
         {/* 2. Capa de fibra crema de papel rasgado (núcleo expuesto armonizado) con sombra suave */}
         <path
           d={PROMINENT_TORN_BOT_FIBER_PATH}
-          fill="url(#artisanBotTornFiberGrad)"
-          filter="url(#artisanBotTornShadow)"
+          fill={`url(#${fiberGradId})`}
+          filter={`url(#${tornShadowId})`}
         />
 
-        {/* 3. Hoja de papel superior (Itinerario #F5ECE0) que rasga sobre la franja crema */}
+        {/* 3. Hoja de papel superior que rasga sobre la franja crema */}
         <path
           d={PROMINENT_TORN_BOT_UPPER_PATH}
           fill={upperColor}
-          filter="url(#artisanBotSheetEdgeShadow)"
+          filter={`url(#${sheetEdgeShadowId})`}
         />
       </svg>
     </div>
