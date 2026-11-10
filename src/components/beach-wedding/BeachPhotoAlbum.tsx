@@ -147,11 +147,8 @@ export const BeachPhotoAlbum: React.FC<BeachPhotoAlbumProps> = ({
           <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#DFCBB5] to-transparent mt-2" />
         </div>
 
-        {/* TARJETA ARTESANAL PRINCIPAL */}
-        <div className="relative w-full bg-[#FAF3EB] border border-[#DFCBB5] rounded-2xl p-5 sm:p-7 shadow-[0_10px_35px_rgba(70,45,25,0.08)] flex flex-col items-center text-center">
-          {/* Filete interior sutil tipo papelería de alta gama */}
-          <div className="absolute inset-2 sm:inset-2.5 border border-[#E8DCCF] rounded-xl pointer-events-none" />
-
+        {/* CONTENIDO DEL ÁLBUM (DIRECTO SOBRE EL FONDO) */}
+        <div className="relative w-full flex flex-col items-center text-center">
           <div className="relative z-10 flex flex-col items-center w-full">
             {/* Badge con ícono */}
             <div className="flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-[#A26D3E] mb-2">
@@ -174,9 +171,6 @@ export const BeachPhotoAlbum: React.FC<BeachPhotoAlbumProps> = ({
 
             {/* FOTO DE ALBUM.PNG (desde images public) */}
             <div className="relative flex justify-center items-center mb-5 group">
-              {/* Halo sutil iluminado detrás del álbum */}
-              <div className="absolute inset-0 bg-[#E8DACB]/60 rounded-full blur-xl transform scale-95 group-hover:scale-110 transition-transform duration-500 pointer-events-none" />
-
               <img
                 src={imageSrc}
                 alt={imageAlt}
