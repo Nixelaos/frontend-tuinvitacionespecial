@@ -10,6 +10,7 @@ export { BeachGallery } from './BeachGallery';
 export { BeachLocation } from './BeachLocation';
 export { BeachItinerary } from './BeachItinerary';
 export { BeachDressCode } from './BeachDressCode';
+export { BeachGift } from './BeachGift';
 export { BeachRsvp } from './BeachRsvp';
 export { BeachSignature } from './BeachSignature';
 export { ScrollReveal } from './ScrollReveal';

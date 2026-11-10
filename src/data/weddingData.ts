@@ -79,6 +79,7 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
       'Cuenta regresiva en tiempo real integrada en hoja de papel de algodón',
       'Nueva sección de itinerario dividida con bordes de papel rasgado artesanal',
       'Sección de código de vestimenta (dress code) con reserva de color para la novia',
+      'Sección de regalo para los novios con mensaje emotivo y datos bancarios protegidos',
       'Confirmación de asistencia R.S.V.P. directa a WhatsApp y calendario',
       'Diseño 100% adaptable a celular, tablet y computador',
     ],

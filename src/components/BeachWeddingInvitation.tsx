@@ -11,6 +11,7 @@ import {
   BeachLocation,
   BeachItinerary,
   BeachDressCode,
+  BeachGift,
   BeachRsvp,
   BeachSignature,
   useCountdown,
@@ -178,10 +179,21 @@ export const BeachWeddingInvitation: React.FC = () => {
             {/* SECCIÓN NUEVA: CÓDIGO DE VESTIMENTA (DRESS CODE) */}
             <BeachDressCode />
 
-            {/* 4. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (DRESS CODE -> RSVP) */}
+            {/* 4. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (DRESS CODE -> REGALO) */}
             <ArtisanTornDivider
               type="top"
               upperColor="#FAF4EC"
+              lowerColor="#F5ECE0"
+              fiberColor="#FCF8F2"
+            />
+
+            {/* NUEVA SECCIÓN: REGALO PARA LOS NOVIOS */}
+            <BeachGift />
+
+            {/* 5. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (REGALO -> RSVP) */}
+            <ArtisanTornDivider
+              type="bottom"
+              upperColor="#F5ECE0"
               lowerColor="#EBDDCE"
               fiberColor="#FCF8F2"
               prominent
