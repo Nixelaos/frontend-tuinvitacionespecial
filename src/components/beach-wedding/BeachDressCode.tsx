@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -9,6 +9,7 @@ export interface BeachDressCodeProps {
   reservedSubtext?: string;
   imageSrc?: string;
   imageAlt?: string;
+  peoniaSrc?: string;
 }
 
 export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
@@ -18,7 +19,28 @@ export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
   reservedSubtext = 'Agradecemos con cariño reservar el blanco y sus tonalidades afines exclusivamente para la novia en este día tan especial.',
   imageSrc = '/images/dress-code.png',
   imageAlt = 'Dress Code',
+  peoniaSrc = '/images/peonia.png',
 }) => {
+  const [flowerVisible, setFlowerVisible] = useState(false);
+  const flowerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = flowerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setFlowerVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       className={`w-full bg-[#FAF4EC] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 overflow-hidden ${className}`}
@@ -38,6 +60,26 @@ export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
         <div className="relative w-full bg-[#FAF3EB] border border-[#DFCBB5] rounded-2xl pt-5 px-5 pb-5 sm:pt-6 sm:px-7 sm:pb-6 shadow-[0_10px_35px_rgba(70,45,25,0.08)] flex flex-col items-center text-center">
           {/* Filete interior sutil tipo papelería de alta gama */}
           <div className="absolute inset-2 sm:inset-2.5 border border-[#E8DCCF] rounded-xl pointer-events-none" />
+
+          {/* Flor de peonía botánica en la esquina superior del recuadro */}
+          {peoniaSrc && (
+            <div
+              ref={flowerRef}
+              className={`absolute -top-7 sm:-top-8 -right-3 sm:-right-4 w-20 sm:w-24 md:w-28 z-20 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${
+                flowerVisible
+                  ? 'opacity-100 scale-100 rotate-12'
+                  : 'opacity-0 scale-75 rotate-0'
+              }`}
+              aria-hidden="true"
+            >
+              <img
+                src={peoniaSrc}
+                alt="Flor de peonía decorativa"
+                className="w-full h-auto object-contain"
+                loading="lazy"
+              />
+            </div>
+          )}
 
           <div className="relative z-10 flex flex-col items-center w-full">
             <div className="flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-[#A26D3E] mb-2">

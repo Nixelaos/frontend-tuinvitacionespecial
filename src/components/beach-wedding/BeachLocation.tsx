@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   MapPin,
   Compass,
@@ -10,6 +10,25 @@ import { ScrollReveal } from './ScrollReveal';
 
 export const BeachLocation: React.FC = () => {
   const [copied, setCopied] = useState(false);
+  const [flowerVisible, setFlowerVisible] = useState(false);
+  const flowerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = flowerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setFlowerVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const venueName = 'Palacio Las Majadas de Pirque';
   const venueArea = 'Pirque, Región Metropolitana, Chile';
@@ -56,6 +75,24 @@ export const BeachLocation: React.FC = () => {
         <div className="relative w-full bg-[#FCF9F3] border border-[#DFCBB5] rounded-2xl p-5 sm:p-7 shadow-[0_10px_35px_rgba(70,45,25,0.08)] flex flex-col items-center text-center">
           {/* Filete interior sutil tipo papelería de alta gama */}
           <div className="absolute inset-2 sm:inset-2.5 border border-[#E8DCCF] rounded-xl pointer-events-none" />
+
+          {/* Flor de peonía botánica en la esquina superior del tarjetón de ubicación */}
+          <div
+            ref={flowerRef}
+            className={`absolute -top-7 sm:-top-8 -right-3 sm:-right-4 w-20 sm:w-24 md:w-28 z-20 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${
+              flowerVisible
+                ? 'opacity-100 scale-100 rotate-12'
+                : 'opacity-0 scale-75 rotate-0'
+            }`}
+            aria-hidden="true"
+          >
+            <img
+              src="/images/peonia.png"
+              alt="Flor de peonía decorativa"
+              className="w-full h-auto object-contain"
+              loading="lazy"
+            />
+          </div>
 
           {/* Nombre del Lugar y Destino */}
           <div className="relative z-10 flex flex-col items-center w-full">
