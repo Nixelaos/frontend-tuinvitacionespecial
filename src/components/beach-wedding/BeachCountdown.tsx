@@ -26,7 +26,7 @@ export const BeachCountdown: React.FC<BeachCountdownProps> = ({ timeLeft }) => {
       <svg
         viewBox="0 0 1000 80"
         preserveAspectRatio="none"
-        className="w-full h-11 sm:h-14 block -mb-[1px] relative z-20 pointer-events-none select-none"
+        className="w-full h-11 sm:h-14 block -mb-1 relative z-20 pointer-events-none select-none"
         aria-hidden="true"
       >
         <defs>
@@ -49,8 +49,8 @@ export const BeachCountdown: React.FC<BeachCountdownProps> = ({ timeLeft }) => {
         <path d={COUNTDOWN_TORN_PAPER_PATH} fill="#F5ECE0" />
       </svg>
 
-      {/* Main handmade paper sheet in warm cream (#F5ECE0) */}
-      <div className="bg-[#F5ECE0] relative w-full px-4 pt-1 pb-7 sm:pb-8 text-center">
+      {/* Main handmade paper sheet in warm cream (#F5ECE0) con solapamiento z-30 para sellar la costura de renderizado */}
+      <div className="bg-[#F5ECE0] relative z-30 -mt-0.5 w-full px-4 pt-1 pb-7 sm:pb-8 text-center">
         {/* Content Container */}
         <div className="relative z-10 flex flex-col items-center">
           {/* ¡Nos casamos! en letra manuscrita */}
