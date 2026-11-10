@@ -92,7 +92,7 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
 
   return (
     <div
-      className={`w-full bg-[#F5ECE0] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 ${className}`}
+      className={`w-full bg-[#F5ECE0] px-4 py-8 sm:py-12 text-[#2F2420] relative z-30 transition-colors duration-500 ${className}`}
     >
       {/* Animación fluida lenta de flotación de arriba a abajo */}
       <style>{`
@@ -110,10 +110,10 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
         }
       `}</style>
 
-      {/* Flor botánica de contraste en el lateral superior izquierdo (subida para no tapar el título) */}
+      {/* Flor botánica de contraste colocada sobre todo (z-30) y subida para despejar la R */}
       <BeachFlower
         variant="left"
-        className="absolute -top-5 sm:-top-7 -left-3 sm:-left-4 w-16 sm:w-20 md:w-24 z-20 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
+        className="absolute -top-9 sm:-top-12 -left-3 sm:-left-4 w-16 sm:w-20 md:w-24 z-30 drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)]"
         delayMs={150}
       />
 
@@ -131,11 +131,8 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
           <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#DFCBB5] to-transparent mt-2" />
         </div>
 
-        {/* TARJETA ARTESANAL PRINCIPAL */}
-        <div className="relative w-full bg-[#FAF3EB] border border-[#DFCBB5] rounded-2xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(70,45,25,0.08)] flex flex-col items-center text-center">
-          {/* Filete interior sutil tipo papelería de alta gama */}
-          <div className="absolute inset-2 sm:inset-2.5 border border-[#E8DCCF] rounded-xl pointer-events-none" />
-
+        {/* TARJETA ARTESANAL PRINCIPAL (SIN BORDES) */}
+        <div className="relative w-full bg-[#FAF3EB] rounded-2xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(70,45,25,0.08)] flex flex-col items-center text-center">
           <div className="relative z-10 flex flex-col items-center w-full">
             {/* Mensaje breve */}
             <p className="text-xs sm:text-sm text-[#7D5F48] leading-relaxed max-w-xs sm:max-w-sm mb-5">
