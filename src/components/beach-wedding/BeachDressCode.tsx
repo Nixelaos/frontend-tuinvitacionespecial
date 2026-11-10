@@ -62,11 +62,10 @@ export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
           {peoniaSrc && (
             <div
               ref={flowerRef}
-              className={`absolute -top-14 sm:-top-16 -right-2 sm:-right-4 w-20 sm:w-24 md:w-28 z-20 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${
-                flowerVisible
+              className={`absolute -top-14 sm:-top-16 -right-2 sm:-right-4 w-20 sm:w-24 md:w-28 z-20 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${flowerVisible
                   ? 'opacity-100 scale-100 rotate-12'
                   : 'opacity-0 scale-75 rotate-0'
-              }`}
+                }`}
               aria-hidden="true"
             >
               <img
@@ -79,10 +78,7 @@ export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
           )}
 
           <div className="relative z-10 flex flex-col items-center w-full">
-            <div className="flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-[#A26D3E] mb-2">
-              <Heart className="w-3.5 h-3.5 fill-[#B87A4A] text-[#B87A4A]" />
-              <span>Detalle Especial</span>
-            </div>
+
 
             <h3
               className="text-xl sm:text-2xl text-[#2F2420] font-medium leading-snug mb-1.5"
