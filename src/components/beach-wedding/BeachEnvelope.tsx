@@ -272,7 +272,7 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
         >
           <div className="relative w-full aspect-square flex items-center justify-center">
             <img
-              src="/images/sello-cera.webp"
+              src="/images/sello-cera.png"
               alt="Sello de cera V & S"
               className="w-full h-full object-contain"
               style={{

@@ -89,7 +89,7 @@ export const BeachLocation: React.FC = () => {
               title="Ver Palacio Las Majadas de Pirque en Google Maps"
             >
               <img
-                src="/images/salon-boda-chile.webp"
+                src="/images/casona-la-majada.jpg"
                 alt="Palacio Las Majadas de Pirque — Centro de eventos de boda en Chile"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"

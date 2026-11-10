@@ -18,11 +18,11 @@ export interface GalleryPhoto {
 // Two framed photos for the beach wedding gallery slider
 export const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
-    src: '/images/recuerdo-1.webp',
+    src: '/images/recuerdo-1.jpg',
     alt: 'Valentina & Sebastián — Pic-nic al atardecer',
   },
   {
-    src: '/images/recuerdo-2.webp',
+    src: '/images/recuerdo-2.jpg',
     alt: 'Valentina & Sebastián — Paseo en el bosque',
   },
 ];

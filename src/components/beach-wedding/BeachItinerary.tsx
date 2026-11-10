@@ -81,8 +81,8 @@ export const BeachItinerary: React.FC = () => {
       {/* Flor botánica de contraste junto al encabezado del itinerario */}
       <BeachFlower
         variant="gentle"
-        imageRotateClass="transform -rotate-12"
         className="absolute top-4 sm:top-6 right-3 sm:right-5 w-16 sm:w-20 md:w-24 z-20 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
+        delayMs={150}
       />
 
       <div className="w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center">

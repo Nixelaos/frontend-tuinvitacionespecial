@@ -47,7 +47,7 @@ export const BeachHero: React.FC<BeachHeroProps> = ({ isSprayed }) => {
       <div className="relative w-full aspect-[9/13.5] overflow-hidden bg-[#F4E9DC]">
         {/* Foto de Pareja de Novios Comprometidos */}
         <img
-          src="/images/comprometidos.webp"
+          src="/images/comprometidos.jpg"
           alt="Valentina & Sebastián — Pareja de novios comprometidos"
           className={`w-full h-full object-cover object-center transition-[filter,opacity] duration-[1400ms] ease-out ${
             isSprayed

@@ -74,16 +74,18 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
             />
           </svg>
 
-          {/* Flor botánica de contraste en el lateral izquierdo con animación de vaivén */}
+          {/* Flor botánica de contraste en el lateral izquierdo con animación de crecimiento */}
           <BeachFlower
             variant="left"
-            className="absolute top-[50%] -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 opacity-70 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]"
+            className="absolute top-[50%] -translate-y-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 opacity-70 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]"
+            delayMs={100}
           />
 
           {/* Flor botánica de contraste en la esquina superior derecha */}
           <BeachFlower
             variant="right"
             className="absolute top-6 sm:top-8 right-2 sm:right-4 w-16 sm:w-20 md:w-24 z-30 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
+            delayMs={250}
           />
 
           {/* Texto del mensaje / frase romántica perfectamente centrado de manera equidistante arriba y abajo */}

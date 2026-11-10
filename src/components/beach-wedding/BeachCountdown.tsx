@@ -18,6 +18,7 @@ export const BeachCountdown: React.FC<BeachCountdownProps> = ({ timeLeft }) => {
         variant="right"
         className="absolute -top-7 sm:-top-10 right-2 sm:right-4 w-20 sm:w-24 md:w-28 z-50 drop-shadow-[0_6px_12px_rgba(60,25,12,0.25)]"
         loading="eager"
+        delayMs={200}
       />
 
       {/* Encabezado vectorial de papel rasgado artesanal sobre la foto HERO:

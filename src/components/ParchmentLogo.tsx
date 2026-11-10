@@ -17,7 +17,7 @@ export const ParchmentLogo: React.FC<ParchmentLogoProps> = ({
 }) => {
   return (
     <img
-      src="/images/logo-anillos.webp"
+      src="/images/logo-anillos.png"
       alt={alt}
       width={size || 32}
       height={size || 32}

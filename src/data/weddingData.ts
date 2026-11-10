@@ -70,7 +70,7 @@ export const INVITATION_TEMPLATES: InvitationTemplate[] = [
       textHex: '#2F2420',
       secondaryHex: '#8C6947',
     },
-    coverImage: '/images/comprometidos.webp',
+    coverImage: '/images/comprometidos.jpg',
     secondaryImage: '/images/pareja-playa-casual.webp',
     includedFeatures: [
       'Sobre de papel pastel con sello de lacre realista V & S en relieve y estampillas postales',
