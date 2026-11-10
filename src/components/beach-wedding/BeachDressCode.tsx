@@ -7,13 +7,17 @@ export interface BeachDressCodeProps {
   title?: string;
   reservedMessage?: string;
   reservedSubtext?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
   className = '',
-  title = 'Código de Vestimenta',
+  title = 'Dress Code',
   reservedMessage = 'El color blanco se reserva para la novia',
   reservedSubtext = 'Agradecemos con cariño reservar el blanco y sus tonalidades afines exclusivamente para la novia en este día tan especial.',
+  imageSrc = '/images/dress-code.png',
+  imageAlt = 'Dress Code',
 }) => {
   return (
     <div
@@ -53,6 +57,18 @@ export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
             </p>
           </div>
         </div>
+
+        {/* FOTO DE DRESS CODE: ABAJO DEL RECUADRO DE DETALLE ESPECIAL */}
+        {imageSrc && (
+          <div className="mt-6 sm:mt-7 flex justify-center items-center">
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              className="w-28 sm:w-36 h-auto object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(70,45,25,0.08)] transition-transform duration-300 hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+        )}
       </ScrollReveal>
     </div>
   );
