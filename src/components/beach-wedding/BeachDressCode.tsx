@@ -52,23 +52,23 @@ export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
               {reservedMessage}
             </h3>
 
-            <p className="text-xs sm:text-sm text-[#7D5F48] leading-relaxed max-w-xs">
+            <p className="text-xs sm:text-sm text-[#7D5F48] leading-relaxed max-w-xs mb-5">
               {reservedSubtext}
             </p>
+
+            {/* FOTO DE DRESS CODE DENTRO DEL RECUADRO */}
+            {imageSrc && (
+              <div className="flex justify-center items-center">
+                <img
+                  src={imageSrc}
+                  alt={imageAlt}
+                  className="w-28 sm:w-36 h-auto object-contain select-none pointer-events-none drop-shadow-xs transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            )}
           </div>
         </div>
-
-        {/* FOTO DE DRESS CODE: ABAJO DEL RECUADRO DE DETALLE ESPECIAL */}
-        {imageSrc && (
-          <div className="mt-6 sm:mt-7 flex justify-center items-center">
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              className="w-28 sm:w-36 h-auto object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(70,45,25,0.08)] transition-transform duration-300 hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-        )}
       </ScrollReveal>
     </div>
   );
