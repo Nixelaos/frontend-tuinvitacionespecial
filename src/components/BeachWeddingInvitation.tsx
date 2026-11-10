@@ -164,6 +164,7 @@ export const BeachWeddingInvitation: React.FC = () => {
               upperColor="#FAF4EC"
               lowerColor="#F5ECE0"
               fiberColor="#FCF8F2"
+              className="relative z-30"
             />
 
             {/* NUEVA SECCIÓN: ITINERARIO DEL EVENTO */}
@@ -209,6 +210,7 @@ export const BeachWeddingInvitation: React.FC = () => {
               lowerColor="#EBDDCE"
               fiberColor="#FCF8F2"
               prominent
+              className="relative z-30"
             />
 
             {/* SECCIÓN: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) AL FINAL DE LA INVITACIÓN */}

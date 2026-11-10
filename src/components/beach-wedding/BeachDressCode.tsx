@@ -58,11 +58,11 @@ export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
 
         {/* DETALLE ESPECIAL (DIRECTO SOBRE EL FONDO) */}
         <div className="relative w-full flex flex-col items-center text-center">
-          {/* Flor de peonía botánica en la esquina superior */}
+          {/* Flor de peonía botánica en la esquina superior subida para no tapar texto */}
           {peoniaSrc && (
             <div
               ref={flowerRef}
-              className={`absolute -top-7 sm:-top-8 -right-3 sm:-right-4 w-20 sm:w-24 md:w-28 z-20 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${
+              className={`absolute -top-14 sm:-top-16 -right-2 sm:-right-4 w-20 sm:w-24 md:w-28 z-20 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${
                 flowerVisible
                   ? 'opacity-100 scale-100 rotate-12'
                   : 'opacity-0 scale-75 rotate-0'

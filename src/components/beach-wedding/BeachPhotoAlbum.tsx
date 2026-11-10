@@ -122,13 +122,13 @@ export const BeachPhotoAlbum: React.FC<BeachPhotoAlbumProps> = ({
 
   return (
     <div
-      className={`w-full bg-[#FAF4EC] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 overflow-hidden ${className}`}
+      className={`w-full bg-[#FAF4EC] px-4 py-8 sm:py-12 text-[#2F2420] relative z-30 transition-colors duration-500 ${className}`}
     >
-      {/* Flor botánica de contraste en el lateral derecho superior para balancear el diseño */}
+      {/* Flor botánica de contraste en el lateral derecho superior colocada sobre todo */}
       {showFlower && (
         <BeachFlower
           variant={flowerVariant}
-          className="absolute -top-5 sm:-top-7 -right-3 sm:-right-4 w-16 sm:w-20 md:w-24 z-20 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
+          className="absolute -top-5 sm:-top-7 -right-3 sm:-right-4 w-16 sm:w-20 md:w-24 z-40 drop-shadow-[0_6px_14px_rgba(60,25,12,0.25)]"
           delayMs={150}
         />
       )}

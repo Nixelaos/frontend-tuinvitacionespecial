@@ -52,25 +52,15 @@ export const BeachLocation: React.FC = () => {
 
   return (
     <div
-      className="w-full bg-[#FAF4EC] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 overflow-hidden"
+      className="w-full bg-[#FAF4EC] px-4 pt-6 pb-8 sm:pt-8 sm:pb-12 text-[#2F2420] relative z-30 transition-colors duration-500"
     >
       <ScrollReveal className="w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center">
         {/* ENCABEZADO DE LA SECCIÓN */}
         <div className="flex flex-col items-center text-center mb-6">
-          <h2
-            className="font-script text-4xl sm:text-5xl text-[#B87A4A] font-normal leading-tight tracking-wide"
-            style={{ fontFamily: "'Great Vibes', cursive" }}
-          >
-            Ubicación
-          </h2>
-        </div>
-
-        {/* CONTENIDO DE LA UBICACIÓN (DIRECTO SOBRE EL FONDO) */}
-        <div className="relative w-full flex flex-col items-center text-center">
-          {/* Flor de peonía botánica en la esquina superior */}
+          {/* Flor de peonía botánica colocada arriba de la palabra Ubicación sin taparla */}
           <div
             ref={flowerRef}
-            className={`absolute -top-7 sm:-top-8 -right-3 sm:-right-4 w-20 sm:w-24 md:w-28 z-20 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${
+            className={`w-20 sm:w-24 md:w-28 mb-1 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${
               flowerVisible
                 ? 'opacity-100 scale-100 rotate-12'
                 : 'opacity-0 scale-75 rotate-0'
@@ -85,6 +75,16 @@ export const BeachLocation: React.FC = () => {
             />
           </div>
 
+          <h2
+            className="font-script text-4xl sm:text-5xl text-[#B87A4A] font-normal leading-tight tracking-wide"
+            style={{ fontFamily: "'Great Vibes', cursive" }}
+          >
+            Ubicación
+          </h2>
+        </div>
+
+        {/* CONTENIDO DE LA UBICACIÓN (DIRECTO SOBRE EL FONDO) */}
+        <div className="relative w-full flex flex-col items-center text-center">
           {/* Nombre del Lugar y Destino */}
           <div className="relative z-10 flex flex-col items-center w-full">
             <h3
