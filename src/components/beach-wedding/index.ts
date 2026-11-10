@@ -12,7 +12,7 @@ export { BeachItinerary } from './BeachItinerary';
 export { BeachDressCode } from './BeachDressCode';
 export { BeachGift } from './BeachGift';
 export { BeachPhotoAlbum, BeachPhotoQr } from './BeachPhotoAlbum';
-export { BeachRsvp } from './BeachRsvp';
+export { BeachRsvp, type BeachRsvpProps } from './BeachRsvp';
 export { BeachSignature } from './BeachSignature';
 export { ScrollReveal } from './ScrollReveal';
 export { useCountdown } from './hooks/useCountdown';

@@ -44,6 +44,7 @@ export const BeachRsvpSuccess: React.FC<BeachRsvpSuccessProps> = ({
         </span>
 
         <h3
+          id="rsvp-modal-title"
           className="font-serif text-2xl sm:text-3xl text-[#2F2420] font-normal leading-tight"
           style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
         >

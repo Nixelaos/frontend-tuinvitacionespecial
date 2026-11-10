@@ -8,9 +8,12 @@
 
 ## 🎨 1. Concepto y Enfoque Editorial
 
-Para mantener la armonía estética y sensorial de la plataforma (animación del sobre, sello de lacre, papeles rasgados y estética editorial de boda), la sección de RSVP **no debe lucir como un formulario web tradicional ni una encuesta genérica**.
+Para mantener la armonía estética y sensorial de la plataforma (animación del sobre, sello de lacre, papeles rasgados y estética editorial de boda), la sección de RSVP **no abarrota la página con un formulario largo visible de inmediato**.
 
-Debe concebirse como una **"Tarjeta de Respuesta Artesanal"** (*Response Card*), simulando una hoja de papel de algodón insertada entre los divisores de papel rasgado (`TornPaperDivider`), con tipografía con serifa, tonos marfil/arena y transiciones sutiles.
+Al igual que en la **sección de Regalo**, la interacción se encuentra **escondida detrás de la imagen flotante de `sobre.png`**:
+1. En la página principal se visualiza el título caligráfico, el mensaje de bienvenida y el sobre artesanal (`sobre.png`) con animación de levitación suave (`animate-float-slow-rsvp`).
+2. Al pulsar sobre el sobre (`sobre.png`), se despliega un **modal interactivo** (*Response Card Popover*) mediante Portal a pantalla completa con fondo desenfocado (*backdrop blur*), marco doble de papelería artesanal y botón de cierre `X`.
+3. Dentro del desplegable se aloja el formulario de respuesta artesanal con tipografía con serifa, tonos marfil/arena y transiciones dinámicas.
 
 ---
 

@@ -60,6 +60,7 @@ export const BeachRsvpForm: React.FC<BeachRsvpFormProps> = ({
         </span>
 
         <h2
+          id="rsvp-modal-title"
           className="font-serif text-2xl sm:text-3xl text-[#2F2420] font-normal tracking-wide leading-tight"
           style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
         >
