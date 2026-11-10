@@ -92,11 +92,6 @@ export const BeachItinerary: React.FC = () => {
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
           }`}
         >
-          {/* Insignia dorada artesanal con ícono de reloj */}
-          <div className="w-11 h-11 rounded-full bg-[#FCF9F3] border border-[#DFCBB5] shadow-xs flex items-center justify-center text-[#B87A4A] mb-3">
-            <Clock className="w-5 h-5" />
-          </div>
-
           <h2
             className="font-script text-4xl sm:text-5xl text-[#B87A4A] font-normal leading-tight tracking-wide"
             style={{ fontFamily: "'Great Vibes', cursive" }}

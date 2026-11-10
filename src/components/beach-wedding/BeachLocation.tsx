@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   MapPin,
-  Compass,
   ExternalLink,
   Copy,
   Check,
@@ -58,11 +57,6 @@ export const BeachLocation: React.FC = () => {
       <ScrollReveal className="w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center">
         {/* ENCABEZADO DE LA SECCIÓN */}
         <div className="flex flex-col items-center text-center mb-6">
-          {/* Insignia dorada artesanal con ícono de brújula/ubicación */}
-          <div className="w-11 h-11 rounded-full bg-[#F5ECE0] border border-[#DFCBB5] shadow-xs flex items-center justify-center text-[#B87A4A] mb-3">
-            <Compass className="w-5 h-5 animate-[spin_20s_linear_infinite]" />
-          </div>
-
           <h2
             className="font-script text-4xl sm:text-5xl text-[#B87A4A] font-normal leading-tight tracking-wide"
             style={{ fontFamily: "'Great Vibes', cursive" }}
