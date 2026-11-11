@@ -16,7 +16,7 @@ import {
   BeachRsvp,
   BeachSignature,
   useCountdown,
-} from './beach-wedding';
+} from './papel-rasgado';
 import { PAPEL_RASGADO_EVENT_DATE } from '../data/templates/papelRasgadoData';
 
 export const BeachWeddingInvitation: React.FC = () => {
@@ -223,3 +223,6 @@ export const BeachWeddingInvitation: React.FC = () => {
     </div>
   );
 };
+
+export const PapelRasgadoInvitation = BeachWeddingInvitation;
+export default BeachWeddingInvitation;

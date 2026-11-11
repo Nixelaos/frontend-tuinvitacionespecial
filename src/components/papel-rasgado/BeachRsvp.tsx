@@ -14,7 +14,7 @@ import {
 } from '../../utils/calendarUtils';
 import { buildRsvpWhatsAppUrl } from '../../utils/whatsappUtils';
 import {
-  BEACH_WEDDING_RSVP_CONFIG,
+  PAPEL_RASGADO_RSVP_CONFIG,
   DEFAULT_MENU_OPTIONS,
 } from '../../data/templates/papelRasgadoData';
 
@@ -60,16 +60,16 @@ export const BeachRsvp: React.FC<BeachRsvpProps> = ({
   } = useRsvpForm({ maxPasses });
 
   const salutationText = buildRsvpSalutation(guestName, maxPasses);
-  const googleCalendarUrl = buildGoogleCalendarUrl(BEACH_WEDDING_RSVP_CONFIG);
+  const googleCalendarUrl = buildGoogleCalendarUrl(PAPEL_RASGADO_RSVP_CONFIG);
   const whatsAppUrl = buildRsvpWhatsAppUrl({
     guestName,
     maxPasses,
     formValues,
-    config: BEACH_WEDDING_RSVP_CONFIG,
+    config: PAPEL_RASGADO_RSVP_CONFIG,
   });
 
   const handleDownloadIcs = () => {
-    downloadIcsFile(BEACH_WEDDING_RSVP_CONFIG);
+    downloadIcsFile(PAPEL_RASGADO_RSVP_CONFIG);
   };
 
   useEffect(() => {
@@ -239,7 +239,7 @@ export const BeachRsvp: React.FC<BeachRsvpProps> = ({
                       salutationText={salutationText}
                       maxPasses={maxPasses}
                       menuOptions={DEFAULT_MENU_OPTIONS}
-                      rsvpDeadlineDisplay={BEACH_WEDDING_RSVP_CONFIG.rsvpDeadlineDisplay}
+                      rsvpDeadlineDisplay={PAPEL_RASGADO_RSVP_CONFIG.rsvpDeadlineDisplay}
                       formValues={formValues}
                       isSubmitting={isSubmitting}
                       onSetAttendance={setAttendance}
@@ -253,7 +253,7 @@ export const BeachRsvp: React.FC<BeachRsvpProps> = ({
                     <BeachRsvpSuccess
                       guestName={guestName}
                       formValues={formValues}
-                      eventConfig={BEACH_WEDDING_RSVP_CONFIG}
+                      eventConfig={PAPEL_RASGADO_RSVP_CONFIG}
                       googleCalendarUrl={googleCalendarUrl}
                       whatsAppUrl={whatsAppUrl}
                       onDownloadIcs={handleDownloadIcs}
