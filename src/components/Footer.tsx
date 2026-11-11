@@ -1,7 +1,8 @@
 import React from 'react';
 import { Heart, Mail, MapPin, Clock, ArrowUpRight } from 'lucide-react';
 import { FaWhatsapp, FaInstagram, FaPinterestP, FaTiktok } from 'react-icons/fa6';
-import { BRAND_NAME, WHATSAPP_NUMBER, INVITATION_TEMPLATES } from '../data/weddingData';
+import { BRAND_NAME, WHATSAPP_NUMBER } from '../data/siteConfig';
+import { INVITATION_TEMPLATES } from '../data/catalogData';
 import { ParchmentLogo } from './ParchmentLogo';
 
 export const Footer: React.FC = () => {

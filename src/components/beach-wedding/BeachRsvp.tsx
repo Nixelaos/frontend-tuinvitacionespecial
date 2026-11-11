@@ -16,7 +16,7 @@ import { buildRsvpWhatsAppUrl } from '../../utils/whatsappUtils';
 import {
   BEACH_WEDDING_RSVP_CONFIG,
   DEFAULT_MENU_OPTIONS,
-} from '../../data/weddingData';
+} from '../../data/templates/papelRasgadoData';
 
 export interface BeachRsvpProps {
   className?: string;

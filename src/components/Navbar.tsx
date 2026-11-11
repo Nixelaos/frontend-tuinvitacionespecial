@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
-import { BRAND_NAME, WHATSAPP_NUMBER } from '../data/weddingData';
+import { BRAND_NAME, WHATSAPP_NUMBER } from '../data/siteConfig';
 import { ParchmentLogo } from './ParchmentLogo';
 
 export const Navbar: React.FC = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
-import { FAQ_ITEMS } from '../data/weddingData';
+import { FAQ_ITEMS } from '../data/faqData';
 
 export const FaqAccordion: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0].id);

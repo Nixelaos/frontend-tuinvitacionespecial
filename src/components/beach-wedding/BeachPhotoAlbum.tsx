@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { BeachFlower } from './BeachFlower';
+import { PAPEL_RASGADO_ALBUM_CONFIG } from '../../data/templates/papelRasgadoData';
 
 export interface BeachPhotoAlbumProps {
   className?: string;
@@ -30,13 +31,13 @@ export interface BeachPhotoAlbumProps {
 
 export const BeachPhotoAlbum: React.FC<BeachPhotoAlbumProps> = ({
   className = '',
-  title = 'Álbum de Fotos',
-  badgeText = 'Comparte tus Recuerdos',
-  subtitle = '¡Queremos ver la boda con tus ojos!',
-  description = 'Los momentos más especiales se viven desde muchos ángulos. Ayúdanos a capturar cada instante compartiendo las fotos y videos que tomes durante nuestro gran día.',
-  albumUrl = 'https://photos.app.goo.gl/valentina-y-sebastian-2026',
-  imageSrc = '/images/album.png',
-  imageAlt = 'Álbum de fotos del matrimonio',
+  title = PAPEL_RASGADO_ALBUM_CONFIG.title,
+  badgeText = PAPEL_RASGADO_ALBUM_CONFIG.badge,
+  subtitle = PAPEL_RASGADO_ALBUM_CONFIG.subtitle,
+  description = PAPEL_RASGADO_ALBUM_CONFIG.description,
+  albumUrl = PAPEL_RASGADO_ALBUM_CONFIG.albumUrl,
+  imageSrc = PAPEL_RASGADO_ALBUM_CONFIG.imageSrc,
+  imageAlt = PAPEL_RASGADO_ALBUM_CONFIG.imageAlt,
   showFlower = true,
   flowerVariant = 'right',
 }) => {

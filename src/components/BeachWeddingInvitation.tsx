@@ -17,8 +17,7 @@ import {
   BeachSignature,
   useCountdown,
 } from './beach-wedding';
-
-const TARGET_WEDDING_DATE = '2027-11-14T17:00:00';
+import { PAPEL_RASGADO_EVENT_DATE } from '../data/templates/papelRasgadoData';
 
 export const BeachWeddingInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +27,7 @@ export const BeachWeddingInvitation: React.FC = () => {
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isSprayed, setIsSprayed] = useState(false);
 
-  const timeLeft = useCountdown(TARGET_WEDDING_DATE);
+  const timeLeft = useCountdown(PAPEL_RASGADO_EVENT_DATE);
   const timeoutsRef = React.useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const clearAllTimeouts = () => {

@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa6';
-import { WHATSAPP_NUMBER, BRAND_NAME } from '../data/weddingData';
+import { WHATSAPP_NUMBER, BRAND_NAME } from '../data/siteConfig';
 
 export const FloatingWhatsApp: React.FC = () => {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(

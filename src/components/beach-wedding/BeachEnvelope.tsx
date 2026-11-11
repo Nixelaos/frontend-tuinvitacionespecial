@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
+import { PAPEL_RASGADO_DATE_FORMATS } from '../../data/templates/papelRasgadoData';
 
 interface BeachEnvelopeProps {
   isOpening: boolean;
@@ -7,6 +8,8 @@ interface BeachEnvelopeProps {
   isPaperRising?: boolean;
   onOpen: () => void;
   isFadingOut?: boolean;
+  stampYear?: string;
+  stampDate?: string;
 }
 
 export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
@@ -15,6 +18,8 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
   isPaperRising = false,
   onOpen,
   isFadingOut = false,
+  stampYear = PAPEL_RASGADO_DATE_FORMATS.stampYear,
+  stampDate = PAPEL_RASGADO_DATE_FORMATS.stampDate,
 }) => {
   return (
     <div
@@ -160,12 +165,12 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
               Amor
             </span>
             <span className="text-[7px] tracking-widest font-mono font-bold text-[#4E2E16]">
-              2026
+              {stampYear}
             </span>
           </div>
           <div className="w-9 h-9 rounded-full border-2 border-[#8E5A2B] bg-[#FFFBF7]/95 flex flex-col items-center justify-center text-[7px] text-[#321B0B] font-mono font-bold rotate-12 shadow-xs leading-tight">
             <span>PLAYA</span>
-            <span>14.NOV</span>
+            <span>{stampDate}</span>
           </div>
         </div>
 

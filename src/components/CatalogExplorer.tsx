@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import type { InvitationTemplate } from '../types/wedding';
-import { INVITATION_TEMPLATES } from '../data/weddingData';
+import { INVITATION_TEMPLATES } from '../data/catalogData';
 import { ParchmentLogo } from './ParchmentLogo';
 
 export const CatalogExplorer: React.FC = () => {
