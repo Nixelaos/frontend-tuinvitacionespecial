@@ -1,5 +1,6 @@
 export {
-  BeachWeddingInvitation,
+  PapelRasgadoWeddingInvitation,
   PapelRasgadoInvitation,
+  BeachWeddingInvitation,
   default,
-} from './BeachWeddingInvitation';
+} from './PapelRasgadoWeddingInvitation';

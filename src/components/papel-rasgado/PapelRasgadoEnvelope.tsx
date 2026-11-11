@@ -2,7 +2,7 @@ import React from 'react';
 import { Heart } from 'lucide-react';
 import { PAPEL_RASGADO_DATE_FORMATS } from '../../data/templates/papelRasgadoData';
 
-interface BeachEnvelopeProps {
+interface PapelRasgadoEnvelopeProps {
   isOpening: boolean;
   isFlapOpen?: boolean;
   isPaperRising?: boolean;
@@ -12,7 +12,7 @@ interface BeachEnvelopeProps {
   stampDate?: string;
 }
 
-export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
+export const PapelRasgadoEnvelope: React.FC<PapelRasgadoEnvelopeProps> = ({
   isOpening,
   isFlapOpen = false,
   isPaperRising = false,
@@ -293,3 +293,6 @@ export const BeachEnvelope: React.FC<BeachEnvelopeProps> = ({
     </div>
   );
 };
+
+export const BeachEnvelope = PapelRasgadoEnvelope;
+export type { PapelRasgadoEnvelopeProps as BeachEnvelopeProps };

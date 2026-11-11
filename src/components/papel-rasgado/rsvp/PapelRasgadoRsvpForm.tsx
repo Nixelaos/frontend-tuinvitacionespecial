@@ -16,7 +16,7 @@ import type {
   RsvpFormValues,
 } from '../../../types/rsvp';
 
-interface BeachRsvpFormProps {
+interface PapelRasgadoRsvpFormProps {
   salutationText: string;
   maxPasses: number;
   menuOptions: MenuOption[];
@@ -34,7 +34,7 @@ interface BeachRsvpFormProps {
   onSubmit: (e: React.FormEvent) => void;
 }
 
-export const BeachRsvpForm: React.FC<BeachRsvpFormProps> = ({
+export const PapelRasgadoRsvpForm: React.FC<PapelRasgadoRsvpFormProps> = ({
   salutationText,
   maxPasses,
   menuOptions,
@@ -323,3 +323,6 @@ export const BeachRsvpForm: React.FC<BeachRsvpFormProps> = ({
     </form>
   );
 };
+
+export const BeachRsvpForm = PapelRasgadoRsvpForm;
+export type { PapelRasgadoRsvpFormProps as BeachRsvpFormProps };

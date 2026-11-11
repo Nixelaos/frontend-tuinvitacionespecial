@@ -4,9 +4,9 @@ import {
   TORN_QUOTE_PAPER_BAND,
   TORN_QUOTE_FIBER_BAND,
 } from './constants/tornPaperPaths';
-import { BeachFlower } from './BeachFlower';
+import { PapelRasgadoFlower } from './PapelRasgadoFlower';
 
-interface BeachQuoteProps {
+interface PapelRasgadoQuoteProps {
   upperColor?: string;
   lowerColor?: string;
   className?: string;
@@ -16,9 +16,9 @@ interface BeachQuoteProps {
  * Sección de Mensaje / Frase Romántica:
  * Tira de papel rasgado artesanal con borde de fibra crema de bajo contraste (#FCF8F2 a #F6EFE5)
  * tanto en el borde superior como en el inferior, y sombra suave y realista.
- * Utiliza el componente BeachFlower para el vaivén botánico.
+ * Utiliza el componente PapelRasgadoFlower para el vaivén botánico.
  */
-export const BeachQuote: React.FC<BeachQuoteProps> = ({
+export const PapelRasgadoQuote: React.FC<PapelRasgadoQuoteProps> = ({
   upperColor = '#F5ECE0',
   lowerColor = '#EBDDCE',
   className = '',
@@ -75,14 +75,14 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
           </svg>
 
           {/* Flor botánica de contraste en el lateral izquierdo con animación de crecimiento al 100% */}
-          <BeachFlower
+          <PapelRasgadoFlower
             variant="left"
             className="absolute top-[50%] -translate-y-1/2 -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]"
             delayMs={100}
           />
 
           {/* Flor botánica de contraste en la esquina superior derecha */}
-          <BeachFlower
+          <PapelRasgadoFlower
             variant="right"
             className="absolute top-6 sm:top-8 right-2 sm:right-4 w-16 sm:w-20 md:w-24 z-30 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
             delayMs={250}
@@ -107,3 +107,6 @@ export const BeachQuote: React.FC<BeachQuoteProps> = ({
     </div>
   );
 };
+
+export const BeachQuote = PapelRasgadoQuote;
+export type { PapelRasgadoQuoteProps as BeachQuoteProps };

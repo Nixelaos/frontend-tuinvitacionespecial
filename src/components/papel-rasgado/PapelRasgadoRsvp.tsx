@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Check } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-import { BeachFlower } from './BeachFlower';
-import { BeachRsvpForm } from './rsvp/BeachRsvpForm';
-import { BeachRsvpSuccess } from './rsvp/BeachRsvpSuccess';
+import { PapelRasgadoFlower } from './PapelRasgadoFlower';
+import { PapelRasgadoRsvpForm } from './rsvp/PapelRasgadoRsvpForm';
+import { PapelRasgadoRsvpSuccess } from './rsvp/PapelRasgadoRsvpSuccess';
 import { useInvitationParams } from '../../hooks/useInvitationParams';
 import { useRsvpForm } from '../../hooks/useRsvpForm';
 import { buildRsvpSalutation } from '../../utils/greetingUtils';
@@ -18,7 +18,7 @@ import {
   DEFAULT_MENU_OPTIONS,
 } from '../../data/templates/papelRasgadoData';
 
-export interface BeachRsvpProps {
+export interface PapelRasgadoRsvpProps {
   className?: string;
   title?: string;
   subtitle?: string;
@@ -30,7 +30,7 @@ export interface BeachRsvpProps {
   flowerVariant?: 'left' | 'right' | 'gentle';
 }
 
-export const BeachRsvp: React.FC<BeachRsvpProps> = ({
+export const PapelRasgadoRsvp: React.FC<PapelRasgadoRsvpProps> = ({
   className = '',
   title = 'Confirmación de Asistencia',
   subtitle = 'R. S. V. P.',
@@ -121,7 +121,7 @@ export const BeachRsvp: React.FC<BeachRsvpProps> = ({
 
       {/* Flor botánica de contraste colocada en el lateral superior */}
       {showFlower && (
-        <BeachFlower
+        <PapelRasgadoFlower
           variant={flowerVariant}
           className="absolute -top-7 sm:-top-9 -left-3 sm:-left-4 w-16 sm:w-20 md:w-24 z-30 drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)]"
           delayMs={150}
@@ -235,7 +235,7 @@ export const BeachRsvp: React.FC<BeachRsvpProps> = ({
                 {/* Formulario RSVP o Pantalla de Éxito */}
                 <div className="relative z-10 w-full pt-1">
                   {!isSubmitted ? (
-                    <BeachRsvpForm
+                    <PapelRasgadoRsvpForm
                       salutationText={salutationText}
                       maxPasses={maxPasses}
                       menuOptions={DEFAULT_MENU_OPTIONS}
@@ -250,7 +250,7 @@ export const BeachRsvp: React.FC<BeachRsvpProps> = ({
                       onSubmit={handleSubmit}
                     />
                   ) : (
-                    <BeachRsvpSuccess
+                    <PapelRasgadoRsvpSuccess
                       guestName={guestName}
                       formValues={formValues}
                       eventConfig={PAPEL_RASGADO_RSVP_CONFIG}
@@ -278,3 +278,6 @@ export const BeachRsvp: React.FC<BeachRsvpProps> = ({
     </div>
   );
 };
+
+export const BeachRsvp = PapelRasgadoRsvp;
+export type { PapelRasgadoRsvpProps as BeachRsvpProps };

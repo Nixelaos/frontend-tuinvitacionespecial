@@ -160,8 +160,8 @@ El build optimizado estático se generará en la carpeta `dist/`.
 │   ├── src/
 │   │   ├── components/            # Islas interactivas en React
 │   │   │   ├── papel-rasgado/         # Módulos y secciones de Papel Rasgado
-│   │   │   ├── PapelRasgadoInvitation.tsx         # Modelo Papel Rasgado con efecto supernova
-│   │   │   ├── BeachWeddingInvitation.tsx         # Alias de compatibilidad para Papel Rasgado
+│   │   │   ├── PapelRasgadoWeddingInvitation.tsx  # Componente principal de Papel Rasgado
+│   │   │   ├── PapelRasgadoInvitation.tsx         # Punto de entrada / re-exportación Papel Rasgado
 │   │   │   ├── MintHeartsWeddingInvitation.tsx    # Modelo Marfil & Menta con 5 paletas
 │   │   │   ├── FrayedHandmadePaperInvitation.tsx  # Modelo Papel Rasgado Deshilachado SVG
 │   │   │   ├── TornPaperWeddingInvitation.tsx     # Modelo Cinta de Seda & Papel Rasgado

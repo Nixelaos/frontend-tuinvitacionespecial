@@ -7,7 +7,7 @@ import {
   UtensilsCrossed,
   PartyPopper,
 } from 'lucide-react';
-import { BeachFlower } from './BeachFlower';
+import { PapelRasgadoFlower } from './PapelRasgadoFlower';
 
 export interface ItineraryItem {
   id: string;
@@ -49,7 +49,7 @@ const ITINERARY_EVENTS: ItineraryItem[] = [
   },
 ];
 
-export const BeachItinerary: React.FC = () => {
+export const PapelRasgadoItinerary: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -79,7 +79,7 @@ export const BeachItinerary: React.FC = () => {
       className="w-full bg-[#F5ECE0] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 overflow-hidden"
     >
       {/* Flor botánica de contraste junto al encabezado del itinerario */}
-      <BeachFlower
+      <PapelRasgadoFlower
         variant="gentle"
         className="absolute top-4 sm:top-6 right-3 sm:right-5 w-16 sm:w-20 md:w-24 z-20 drop-shadow-[0_6px_12px_rgba(60,25,12,0.22)]"
         delayMs={150}
@@ -189,3 +189,5 @@ export const BeachItinerary: React.FC = () => {
     </div>
   );
 };
+
+export const BeachItinerary = PapelRasgadoItinerary;

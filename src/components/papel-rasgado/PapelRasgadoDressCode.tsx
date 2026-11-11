@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
-export interface BeachDressCodeProps {
+export interface PapelRasgadoDressCodeProps {
   className?: string;
   title?: string;
   reservedMessage?: string;
@@ -12,7 +12,7 @@ export interface BeachDressCodeProps {
   peoniaSrc?: string;
 }
 
-export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
+export const PapelRasgadoDressCode: React.FC<PapelRasgadoDressCodeProps> = ({
   className = '',
   title = 'Dress Code',
   reservedMessage = 'El color blanco se reserva para la novia',
@@ -108,3 +108,6 @@ export const BeachDressCode: React.FC<BeachDressCodeProps> = ({
     </div>
   );
 };
+
+export const BeachDressCode = PapelRasgadoDressCode;
+export type { PapelRasgadoDressCodeProps as BeachDressCodeProps };

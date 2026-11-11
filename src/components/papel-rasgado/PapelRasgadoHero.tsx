@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-interface BeachHeroProps {
+interface PapelRasgadoHeroProps {
   isSprayed: boolean;
 }
 
-export const BeachHero: React.FC<BeachHeroProps> = ({ isSprayed }) => {
+export const PapelRasgadoHero: React.FC<PapelRasgadoHeroProps> = ({ isSprayed }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isEffectFading, setIsEffectFading] = useState(false);
   const [isEffectEnded, setIsEffectEnded] = useState(false);
@@ -98,3 +98,6 @@ export const BeachHero: React.FC<BeachHeroProps> = ({ isSprayed }) => {
     </section>
   );
 };
+
+export const BeachHero = PapelRasgadoHero;
+export type { PapelRasgadoHeroProps as BeachHeroProps };

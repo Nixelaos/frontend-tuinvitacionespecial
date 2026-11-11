@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Gift, Copy, Check, X } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-import { BeachFlower } from './BeachFlower';
+import { PapelRasgadoFlower } from './PapelRasgadoFlower';
 
-export interface BeachGiftProps {
+export interface PapelRasgadoGiftProps {
   className?: string;
   title?: string;
   message?: string;
@@ -19,7 +19,7 @@ export interface BeachGiftProps {
   holderEmail?: string;
 }
 
-export const BeachGift: React.FC<BeachGiftProps> = ({
+export const PapelRasgadoGift: React.FC<PapelRasgadoGiftProps> = ({
   className = '',
   title = 'Regalo para los Novios',
   message = 'Tu presencia es nuestro mejor regalo. Si deseas tener un detalle con nosotros, te dejamos nuestros datos bancarios:',
@@ -111,7 +111,7 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
       `}</style>
 
       {/* Flor botánica de contraste colocada sobre todo (z-30) y subida para despejar la R */}
-      <BeachFlower
+      <PapelRasgadoFlower
         variant="left"
         className="absolute -top-9 sm:-top-12 -left-3 sm:-left-4 w-16 sm:w-20 md:w-24 z-30 drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)]"
         delayMs={150}
@@ -297,3 +297,6 @@ export const BeachGift: React.FC<BeachGiftProps> = ({
     </div>
   );
 };
+
+export const BeachGift = PapelRasgadoGift;
+export type { PapelRasgadoGiftProps as BeachGiftProps };

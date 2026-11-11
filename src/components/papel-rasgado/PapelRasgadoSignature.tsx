@@ -2,7 +2,7 @@ import React from 'react';
 import { Heart } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
-export const BeachSignature: React.FC = () => {
+export const PapelRasgadoSignature: React.FC = () => {
   return (
     <ScrollReveal className="w-full bg-[#EBDDCE] pt-4 pb-12 text-center flex flex-col items-center">
       <span
@@ -19,3 +19,5 @@ export const BeachSignature: React.FC = () => {
     </ScrollReveal>
   );
 };
+
+export const BeachSignature = PapelRasgadoSignature;

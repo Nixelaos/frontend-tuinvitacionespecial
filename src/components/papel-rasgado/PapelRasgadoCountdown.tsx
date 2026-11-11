@@ -4,16 +4,16 @@ import {
   COUNTDOWN_TORN_FIBER_PATH,
 } from './constants/tornPaperPaths';
 import type { TimeLeft } from './hooks/useCountdown';
-import { BeachFlower } from './BeachFlower';
+import { PapelRasgadoFlower } from './PapelRasgadoFlower';
 import { PAPEL_RASGADO_DATE_FORMATS } from '../../data/templates/papelRasgadoData';
 
-interface BeachCountdownProps {
+interface PapelRasgadoCountdownProps {
   timeLeft: TimeLeft;
   displayDate?: string;
   displayTime?: string;
 }
 
-export const BeachCountdown: React.FC<BeachCountdownProps> = ({
+export const PapelRasgadoCountdown: React.FC<PapelRasgadoCountdownProps> = ({
   timeLeft,
   displayDate = PAPEL_RASGADO_DATE_FORMATS.displayDateLong,
   displayTime = PAPEL_RASGADO_DATE_FORMATS.displayTime,
@@ -21,7 +21,7 @@ export const BeachCountdown: React.FC<BeachCountdownProps> = ({
   return (
     <div className="relative z-40 w-full -mt-12 sm:-mt-14">
       {/* Flor botánica de contraste entre Hero y Countdown */}
-      <BeachFlower
+      <PapelRasgadoFlower
         variant="right"
         className="absolute -top-7 sm:-top-10 right-2 sm:right-4 w-20 sm:w-24 md:w-28 z-50 drop-shadow-[0_6px_12px_rgba(60,25,12,0.25)]"
         loading="eager"
@@ -143,3 +143,6 @@ export const BeachCountdown: React.FC<BeachCountdownProps> = ({
     </div>
   );
 };
+
+export const BeachCountdown = PapelRasgadoCountdown;
+export type { PapelRasgadoCountdownProps as BeachCountdownProps };

@@ -13,10 +13,10 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-import { BeachFlower } from './BeachFlower';
+import { PapelRasgadoFlower } from './PapelRasgadoFlower';
 import { PAPEL_RASGADO_ALBUM_CONFIG } from '../../data/templates/papelRasgadoData';
 
-export interface BeachPhotoAlbumProps {
+export interface PapelRasgadoPhotoAlbumProps {
   className?: string;
   title?: string;
   badgeText?: string;
@@ -29,7 +29,7 @@ export interface BeachPhotoAlbumProps {
   flowerVariant?: 'left' | 'right' | 'gentle';
 }
 
-export const BeachPhotoAlbum: React.FC<BeachPhotoAlbumProps> = ({
+export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
   className = '',
   title = PAPEL_RASGADO_ALBUM_CONFIG.title,
   badgeText = PAPEL_RASGADO_ALBUM_CONFIG.badge,
@@ -127,7 +127,7 @@ export const BeachPhotoAlbum: React.FC<BeachPhotoAlbumProps> = ({
     >
       {/* Flor botánica de contraste en el lateral derecho superior colocada sobre todo */}
       {showFlower && (
-        <BeachFlower
+        <PapelRasgadoFlower
           variant={flowerVariant}
           className="absolute -top-5 sm:-top-7 -right-3 sm:-right-4 w-16 sm:w-20 md:w-24 z-40 drop-shadow-[0_6px_14px_rgba(60,25,12,0.25)]"
           delayMs={150}
@@ -383,4 +383,7 @@ export const BeachPhotoAlbum: React.FC<BeachPhotoAlbumProps> = ({
   );
 };
 
-export const BeachPhotoQr = BeachPhotoAlbum;
+export const PapelRasgadoPhotoQr = PapelRasgadoPhotoAlbum;
+export const BeachPhotoAlbum = PapelRasgadoPhotoAlbum;
+export const BeachPhotoQr = PapelRasgadoPhotoAlbum;
+export type { PapelRasgadoPhotoAlbumProps as BeachPhotoAlbumProps };

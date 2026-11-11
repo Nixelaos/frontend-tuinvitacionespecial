@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export interface BeachFlowerProps {
+export interface PapelRasgadoFlowerProps {
   /**
    * Clases adicionales para posicionamiento absoluto, tamaño, sombras, etc.
    * (ej. 'absolute top-[50%] -left-6 sm:-left-7 w-20 sm:w-24 md:w-28 z-30 drop-shadow-[0_6px_14px_rgba(60,25,12,0.18)]')
@@ -41,7 +41,7 @@ export interface BeachFlowerProps {
  * Aparece con una suave transición de opacidad (0 a 100%) y crecimiento orgánico hasta su tamaño original en 2 segundos,
  * quedando totalmente estática y conservando su ángulo original sin movimiento flotante.
  */
-export const BeachFlower: React.FC<BeachFlowerProps> = ({
+export const PapelRasgadoFlower: React.FC<PapelRasgadoFlowerProps> = ({
   className = '',
   variant = 'left',
   imageRotateClass = '',
@@ -104,3 +104,6 @@ export const BeachFlower: React.FC<BeachFlowerProps> = ({
     </div>
   );
 };
+
+export const BeachFlower = PapelRasgadoFlower;
+export type { PapelRasgadoFlowerProps as BeachFlowerProps };

@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  BEACH_TORN_TOP_UPPER_PATH,
-  BEACH_TORN_TOP_FIBER_PATH,
+  PAPEL_RASGADO_TORN_TOP_UPPER_PATH,
+  PAPEL_RASGADO_TORN_TOP_FIBER_PATH,
 } from './constants/tornPaperPaths';
 
-interface BeachTornDividerProps {
+interface PapelRasgadoTornDividerProps {
   type?: 'top' | 'bottom';
   upperColor?: string;
   lowerColor?: string;
@@ -17,7 +17,7 @@ interface BeachTornDividerProps {
  * Separación artesanal con borde de papel rasgado y franja de fibra crema expuesta,
  * conectando de forma orgánica y uniforme las secciones de Galería y Ubicación.
  */
-export const BeachTornDivider: React.FC<BeachTornDividerProps> = ({
+export const PapelRasgadoTornDivider: React.FC<PapelRasgadoTornDividerProps> = ({
   upperColor = '#EBDDCE',
   lowerColor = '#FAF4EC',
   fiberColor = '#FCF8F2',
@@ -25,9 +25,9 @@ export const BeachTornDivider: React.FC<BeachTornDividerProps> = ({
   className = '',
 }) => {
   const reactId = React.useId().replace(/:/g, '');
-  const tornShadowId = `beachTornShadow-${reactId}`;
-  const sheetEdgeShadowId = `beachSheetEdgeShadow-${reactId}`;
-  const fiberGradId = `beachTornFiberGrad-${reactId}`;
+  const tornShadowId = `papelRasgadoTornShadow-${reactId}`;
+  const sheetEdgeShadowId = `papelRasgadoSheetEdgeShadow-${reactId}`;
+  const fiberGradId = `papelRasgadoTornFiberGrad-${reactId}`;
 
   return (
     <div
@@ -61,14 +61,14 @@ export const BeachTornDivider: React.FC<BeachTornDividerProps> = ({
 
         {/* 2. Capa de fibra crema de papel rasgado (núcleo expuesto armonizado) */}
         <path
-          d={BEACH_TORN_TOP_FIBER_PATH}
+          d={PAPEL_RASGADO_TORN_TOP_FIBER_PATH}
           fill={`url(#${fiberGradId})`}
           filter={`url(#${tornShadowId})`}
         />
 
         {/* 3. Hoja de papel superior que rasga sobre la franja crema */}
         <path
-          d={BEACH_TORN_TOP_UPPER_PATH}
+          d={PAPEL_RASGADO_TORN_TOP_UPPER_PATH}
           fill={upperColor}
           filter={`url(#${sheetEdgeShadowId})`}
         />
@@ -76,3 +76,6 @@ export const BeachTornDivider: React.FC<BeachTornDividerProps> = ({
     </div>
   );
 };
+
+export const BeachTornDivider = PapelRasgadoTornDivider;
+export type { PapelRasgadoTornDividerProps as BeachTornDividerProps };

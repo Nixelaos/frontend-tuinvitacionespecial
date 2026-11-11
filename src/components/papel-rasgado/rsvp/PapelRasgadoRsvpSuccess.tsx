@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import type { RsvpEventConfig, RsvpFormValues } from '../../../types/rsvp';
 
-interface BeachRsvpSuccessProps {
+interface PapelRasgadoRsvpSuccessProps {
   guestName: string;
   formValues: RsvpFormValues;
   eventConfig: RsvpEventConfig;
@@ -18,7 +18,7 @@ interface BeachRsvpSuccessProps {
   onReset: () => void;
 }
 
-export const BeachRsvpSuccess: React.FC<BeachRsvpSuccessProps> = ({
+export const PapelRasgadoRsvpSuccess: React.FC<PapelRasgadoRsvpSuccessProps> = ({
   guestName,
   formValues,
   eventConfig,
@@ -158,3 +158,6 @@ export const BeachRsvpSuccess: React.FC<BeachRsvpSuccessProps> = ({
     </div>
   );
 };
+
+export const BeachRsvpSuccess = PapelRasgadoRsvpSuccess;
+export type { PapelRasgadoRsvpSuccessProps as BeachRsvpSuccessProps };

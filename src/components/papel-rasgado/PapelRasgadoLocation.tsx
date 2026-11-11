@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
-export const BeachLocation: React.FC = () => {
+export const PapelRasgadoLocation: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [flowerVisible, setFlowerVisible] = useState(false);
   const flowerRef = useRef<HTMLDivElement>(null);
@@ -177,3 +177,5 @@ export const BeachLocation: React.FC = () => {
     </div>
   );
 };
+
+export const BeachLocation = PapelRasgadoLocation;

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import { GALLERY_PHOTOS } from './constants/tornPaperPaths';
 
-export const BeachGallery: React.FC = () => {
+export const PapelRasgadoGallery: React.FC = () => {
   const [activePhoto, setActivePhoto] = useState(0);
 
   const handlePrevPhoto = () => {
@@ -171,3 +171,5 @@ export const BeachGallery: React.FC = () => {
     </div>
   );
 };
+
+export const BeachGallery = PapelRasgadoGallery;

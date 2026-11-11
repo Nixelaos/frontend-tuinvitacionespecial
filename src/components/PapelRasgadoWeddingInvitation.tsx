@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 import {
-  BeachEnvelope,
-  BeachHero,
-  BeachCountdown,
-  BeachTornDivider,
+  PapelRasgadoEnvelope,
+  PapelRasgadoHero,
+  PapelRasgadoCountdown,
+  PapelRasgadoTornDivider,
   ArtisanTornDivider,
-  BeachQuote,
-  BeachGallery,
-  BeachLocation,
-  BeachItinerary,
-  BeachDressCode,
-  BeachGift,
-  BeachPhotoAlbum,
-  BeachRsvp,
-  BeachSignature,
+  PapelRasgadoQuote,
+  PapelRasgadoGallery,
+  PapelRasgadoLocation,
+  PapelRasgadoItinerary,
+  PapelRasgadoDressCode,
+  PapelRasgadoGift,
+  PapelRasgadoPhotoAlbum,
+  PapelRasgadoRsvp,
+  PapelRasgadoSignature,
   useCountdown,
 } from './papel-rasgado';
 import { PAPEL_RASGADO_EVENT_DATE } from '../data/templates/papelRasgadoData';
 
-export const BeachWeddingInvitation: React.FC = () => {
+export const PapelRasgadoWeddingInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
   const [isFlapOpen, setIsFlapOpen] = useState(false);
@@ -109,7 +109,7 @@ export const BeachWeddingInvitation: React.FC = () => {
             {/* Ambient artisanal paper glow */}
             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_45%,rgba(212,175,55,0.12),transparent_70%)]" />
 
-            <BeachEnvelope
+            <PapelRasgadoEnvelope
               isOpening={isOpening}
               isFlapOpen={isFlapOpen}
               isPaperRising={isPaperRising}
@@ -135,19 +135,19 @@ export const BeachWeddingInvitation: React.FC = () => {
             </div>
 
             {/* SECCIÓN HERO: FOTO A SANGRE + EFECTO SPRAY + PARTÍCULAS DORADAS */}
-            <BeachHero isSprayed={isSprayed} />
+            <PapelRasgadoHero isSprayed={isSprayed} />
 
             {/* SECCIÓN 1: PAPEL ROTO CON FLOR DE CONTRASTE Y COUNTDOWN */}
-            <BeachCountdown timeLeft={timeLeft} />
+            <PapelRasgadoCountdown timeLeft={timeLeft} />
 
             {/* SECCIÓN 2: FRASE ROMÁNTICA / MENSAJE EN BANDA DE PAPEL RASGADO ARTESANAL */}
-            <BeachQuote upperColor="#F5ECE0" lowerColor="#EBDDCE" />
+            <PapelRasgadoQuote upperColor="#F5ECE0" lowerColor="#EBDDCE" />
 
             {/* SECCIÓN 3: GALERÍA DE FOTOS EN MARCO ARTESANAL CON TINTA LÍQUIDA */}
-            <BeachGallery />
+            <PapelRasgadoGallery />
 
             {/* 1. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (GALERÍA -> UBICACIÓN) */}
-            <BeachTornDivider
+            <PapelRasgadoTornDivider
               type="top"
               upperColor="#EBDDCE"
               lowerColor="#FAF4EC"
@@ -155,7 +155,7 @@ export const BeachWeddingInvitation: React.FC = () => {
             />
 
             {/* SECCIÓN 4: UBICACIÓN DEL EVENTO + BOTÓN GOOGLE MAPS */}
-            <BeachLocation />
+            <PapelRasgadoLocation />
 
             {/* 2. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (UBICACIÓN -> ITINERARIO) */}
             <ArtisanTornDivider
@@ -167,7 +167,7 @@ export const BeachWeddingInvitation: React.FC = () => {
             />
 
             {/* NUEVA SECCIÓN: ITINERARIO DEL EVENTO */}
-            <BeachItinerary />
+            <PapelRasgadoItinerary />
 
             {/* 3. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (ITINERARIO -> DRESS CODE) */}
             <ArtisanTornDivider
@@ -178,7 +178,7 @@ export const BeachWeddingInvitation: React.FC = () => {
             />
 
             {/* SECCIÓN NUEVA: CÓDIGO DE VESTIMENTA (DRESS CODE) */}
-            <BeachDressCode />
+            <PapelRasgadoDressCode />
 
             {/* 4. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (DRESS CODE -> REGALO) */}
             <ArtisanTornDivider
@@ -189,7 +189,7 @@ export const BeachWeddingInvitation: React.FC = () => {
             />
 
             {/* SECCIÓN: REGALO PARA LOS NOVIOS */}
-            <BeachGift />
+            <PapelRasgadoGift />
 
             {/* 5. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (REGALO -> ÁLBUM DE FOTOS QR) */}
             <ArtisanTornDivider
@@ -200,7 +200,7 @@ export const BeachWeddingInvitation: React.FC = () => {
             />
 
             {/* NUEVA SECCIÓN: QR PARA LAS FOTOS DEL MATRIMONIO CON ALBUM.PNG */}
-            <BeachPhotoAlbum />
+            <PapelRasgadoPhotoAlbum />
 
             {/* 6. SEPARACIÓN DE PAPEL RASGADO CON BORDE ARTESANAL (ÁLBUM DE FOTOS QR -> RSVP) */}
             <ArtisanTornDivider
@@ -213,10 +213,10 @@ export const BeachWeddingInvitation: React.FC = () => {
             />
 
             {/* SECCIÓN: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) AL FINAL DE LA INVITACIÓN */}
-            <BeachRsvp />
+            <PapelRasgadoRsvp />
 
             {/* FIRMA FINAL DE LOS NOVIOS */}
-            <BeachSignature />
+            <PapelRasgadoSignature />
           </div>
         )}
       </div>
@@ -224,5 +224,6 @@ export const BeachWeddingInvitation: React.FC = () => {
   );
 };
 
-export const PapelRasgadoInvitation = BeachWeddingInvitation;
-export default BeachWeddingInvitation;
+export const BeachWeddingInvitation = PapelRasgadoWeddingInvitation;
+export const PapelRasgadoInvitation = PapelRasgadoWeddingInvitation;
+export default PapelRasgadoWeddingInvitation;
