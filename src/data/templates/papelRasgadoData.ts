@@ -9,7 +9,7 @@ import { generateEventDateFormats } from '../../utils/dateUtils';
  * sellos y textos de la invitación se actualizarán automáticamente.
  * ============================================================================
  */
-export const PAPEL_RASGADO_EVENT_DATE = '2027-10-22T17:00:00';
+export const PAPEL_RASGADO_EVENT_DATE = '2027-11-27T17:00:00';
 
 /**
  * Formatos de fecha autocalculados (ICS, display español, sellos, deadlines)
