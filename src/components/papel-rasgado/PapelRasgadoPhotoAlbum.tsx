@@ -3,10 +3,6 @@ import { createPortal } from 'react-dom';
 import QRCode from 'qrcode';
 import {
   Camera,
-  Copy,
-  Check,
-  Maximize2,
-  UploadCloud,
   Download,
   ExternalLink,
   X,
@@ -43,7 +39,6 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
 }) => {
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -97,30 +92,6 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
     };
   }, [isModalOpen]);
 
-  const handleCopyLink = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(albumUrl);
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = albumUrl;
-        textArea.style.position = 'fixed';
-        textArea.style.opacity = '0';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-      }
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    } catch {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    }
-  };
-
   return (
     <div
       className={`w-full bg-[#FAF4EC] px-4 py-8 sm:py-12 text-[#2F2420] relative z-30 transition-colors duration-500 ${className}`}
@@ -164,99 +135,43 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
               {description}
             </p>
 
-            {/* FOTO DE ALBUM.PNG (desde images public) */}
-            <div className="relative flex justify-center items-center mb-5 group">
+            {/* FOTO DE ALBUM.PNG EN SU TAMAÑO REAL */}
+            <div className="relative flex justify-center items-center mb-4 group">
               <img
                 src={imageSrc}
                 alt={imageAlt}
-                className="relative z-10 w-24 sm:w-28 md:w-32 h-auto object-contain drop-shadow-[0_8px_20px_rgba(70,45,25,0.18)] select-none pointer-events-none transition-transform duration-500 group-hover:scale-105"
+                className="relative z-10 w-auto h-auto max-w-[200px] object-contain drop-shadow-[0_8px_20px_rgba(70,45,25,0.18)] select-none pointer-events-none transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
 
-            {/* RECUADRO CON EL CÓDIGO QR ESCANEABLE (TAMAÑO PETITE Y ELEGANTE) */}
-            <div className="relative w-full max-w-[160px] sm:max-w-[170px] bg-[#FCF9F3] border-2 border-[#DFCBB5] rounded-2xl p-2.5 shadow-sm flex flex-col items-center">
-              {/* Esquinas decorativas de escaneo estilo visor de cámara */}
-              <div className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t-2 border-l-2 border-[#B87A4A] rounded-tl-xs pointer-events-none" />
-              <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t-2 border-r-2 border-[#B87A4A] rounded-tr-xs pointer-events-none" />
-              <div className="absolute bottom-1.5 left-1.5 w-2.5 h-2.5 border-b-2 border-l-2 border-[#B87A4A] rounded-bl-xs pointer-events-none" />
-              <div className="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 border-b-2 border-r-2 border-[#B87A4A] rounded-br-xs pointer-events-none" />
-
-              {/* Botón táctil para ampliar el código QR */}
-              <div
-                onClick={() => setIsModalOpen(true)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setIsModalOpen(true);
-                  }
-                }}
-                className="group relative cursor-pointer bg-white p-1.5 rounded-xl border border-[#E5D7C7] shadow-inner transition-transform duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#B87A4A]/40"
-                title="Toca para ampliar el código QR"
-              >
-                {qrDataUrl ? (
-                  <img
-                    src={qrDataUrl}
-                    alt="Código QR para subir fotos del matrimonio"
-                    className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-lg"
-                  />
-                ) : (
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 flex flex-col items-center justify-center bg-stone-100 rounded-lg text-stone-400 gap-1">
-                    <Sparkles className="w-5 h-5 text-[#B87A4A] animate-pulse" />
-                    <span className="text-[9px]">Generando QR...</span>
-                  </div>
-                )}
-
-                {/* Overlay hover con indicación visual */}
-                <div className="absolute inset-0 bg-stone-900/15 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
-                  <span className="bg-white/95 text-[#7A4920] text-[10px] font-semibold px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
-                    <Maximize2 className="w-2.5 h-2.5" />
-                    Ampliar
-                  </span>
-                </div>
-              </div>
-
-              {/* Instrucción visual */}
-              <p className="mt-1.5 text-[10px] font-medium text-[#8C5E35] tracking-wide text-center">
-                Escanea con tu cámara
-              </p>
-            </div>
-
-            {/* BOTÓN PRINCIPAL DE LLAMADO A LA ACCIÓN (SUBIR FOTOS AL ÁLBUM) */}
-            <a
-              href={albumUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full max-w-[190px] sm:max-w-[200px] mt-3 inline-flex items-center justify-center gap-2 py-2 px-4 rounded-full bg-gradient-to-r from-[#B87A4A] via-[#A86A3A] to-[#965A2E] text-white text-xs font-medium tracking-wide shadow-[0_4px_16px_rgba(184,122,74,0.30)] hover:shadow-[0_6px_22px_rgba(184,122,74,0.40)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer"
-              title="Abrir álbum para subir fotos"
+            {/* CÓDIGO QR DIRECTO SOBRE EL FONDO (LIMPIO, SIN RECUADRO NI TEXTO NI BOTONES) */}
+            <div
+              onClick={() => setIsModalOpen(true)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setIsModalOpen(true);
+                }
+              }}
+              className="group cursor-pointer bg-white p-2 rounded-xl border border-[#DFCBB5] shadow-xs transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#B87A4A]/40"
+              title="Toca para ampliar el código QR"
             >
-              <UploadCloud className="w-3.5 h-3.5 stroke-[2]" />
-              <span>Subir fotos al álbum</span>
-            </a>
-
-            {/* ENLACE SECUNDARIO ELEGANTE Y DISCRETO PARA COPIAR ENLACE */}
-            <button
-              type="button"
-              onClick={handleCopyLink}
-              className="mt-2.5 inline-flex items-center gap-1.5 text-xs text-[#8C6947] hover:text-[#5A3E26] transition-colors cursor-pointer group py-1"
-              title="Copiar enlace del álbum compartido"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
-                  <span className="text-emerald-700 font-medium">¡Enlace copiado al portapapeles!</span>
-                </>
+              {qrDataUrl ? (
+                <img
+                  src={qrDataUrl}
+                  alt="Código QR para subir fotos del matrimonio"
+                  className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-lg"
+                />
               ) : (
-                <>
-                  <Copy className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
-                  <span className="underline underline-offset-4 decoration-[#DFCBB5] group-hover:decoration-[#8C6947]">
-                    o copia el enlace del álbum
-                  </span>
-                </>
+                <div className="w-20 h-20 sm:w-24 sm:h-24 flex flex-col items-center justify-center bg-stone-100 rounded-lg text-stone-400 gap-1">
+                  <Sparkles className="w-5 h-5 text-[#B87A4A] animate-pulse" />
+                  <span className="text-[9px]">Generando QR...</span>
+                </div>
               )}
-            </button>
+            </div>
           </div>
         </div>
       </ScrollReveal>
