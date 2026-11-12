@@ -35,7 +35,7 @@ export const PapelRasgadoRsvp: React.FC<PapelRasgadoRsvpProps> = ({
   title = 'Confirmación de Asistencia',
   subtitle = 'R. S. V. P.',
   message = 'Será un verdadero honor contar con tu presencia. Por favor, confírmanos tu asistencia antes del 25 de Octubre:',
-  clickPhrase = 'Toca el sobre para confirmar tu asistencia',
+  clickPhrase = '(Toca el sobre para confirmar tu asistencia)',
   imageSrc = '/images/sobre.png',
   imageAlt = 'Sobre de confirmación de asistencia (R.S.V.P.)',
   showFlower = true,
@@ -192,7 +192,7 @@ export const PapelRasgadoRsvp: React.FC<PapelRasgadoRsvpProps> = ({
 
               {/* Frase animada para que clickeen, moviéndose junto al sobre */}
               <p className="mt-2.5 text-xs sm:text-[13px] font-medium text-[#8C5E35] group-hover:text-[#6D421F] transition-colors duration-300 tracking-wide text-center">
-                {isSubmitted ? '¡Respuesta enviada! Toca para verla' : clickPhrase}
+                {isSubmitted ? '(¡Respuesta enviada! Toca para verla)' : clickPhrase}
               </p>
             </div>
           </div>

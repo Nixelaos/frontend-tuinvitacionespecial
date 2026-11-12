@@ -191,7 +191,7 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
 
             {/* FRASE INDICATIVA FLOTANTE CON ESPACIO CÓMODO RESPECTO AL QR */}
             <p className="mt-5 sm:mt-6 text-xs sm:text-[13px] font-medium text-[#8C5E35] tracking-wide text-center animate-float-slow-album">
-              ¡Scanéame!
+              (¡Scanéame!)
             </p>
           </div>
         </div>

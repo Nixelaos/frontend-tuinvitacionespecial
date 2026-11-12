@@ -37,7 +37,7 @@ export const PapelRasgadoEnvelope: React.FC<PapelRasgadoEnvelopeProps> = ({
           }`}
       >
         <span className="text-xs sm:text-sm font-sans font-medium tracking-wider text-[#5A3825] drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)] animate-watercolor-breathe">
-          Toca el sobre para abrir
+          (Toca el sobre para abrir)
         </span>
       </div>
 
