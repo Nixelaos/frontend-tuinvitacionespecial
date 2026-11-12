@@ -209,7 +209,7 @@ export const PapelRasgadoWeddingInvitation: React.FC = () => {
               lowerColor="#EBDDCE"
               fiberColor="#FCF8F2"
               prominent
-              className="relative z-30"
+              className="relative z-10"
             />
 
             {/* SECCIÓN: CONFIRMACIÓN DE ASISTENCIA (R.S.V.P.) AL FINAL DE LA INVITACIÓN */}

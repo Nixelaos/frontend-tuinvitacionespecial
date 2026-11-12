@@ -101,7 +101,7 @@ export const PapelRasgadoRsvp: React.FC<PapelRasgadoRsvpProps> = ({
 
   return (
     <div
-      className={`w-full bg-[#EBDDCE] px-4 py-8 sm:py-12 text-[#2F2420] relative z-20 transition-colors duration-500 ${className}`}
+      className={`w-full bg-[#EBDDCE] px-4 py-8 sm:py-12 text-[#2F2420] relative z-30 transition-colors duration-500 ${className}`}
     >
       {/* Animación fluida lenta de flotación de arriba a abajo idéntica a la sección regalo */}
       <style>{`
@@ -119,11 +119,11 @@ export const PapelRasgadoRsvp: React.FC<PapelRasgadoRsvpProps> = ({
         }
       `}</style>
 
-      {/* Flor botánica de contraste colocada en el lateral superior */}
+      {/* Flor botánica de contraste colocada sobre todo el divisor y encabezado */}
       {showFlower && (
         <PapelRasgadoFlower
           variant={flowerVariant}
-          className="absolute -top-7 sm:-top-9 -left-3 sm:-left-4 w-16 sm:w-20 md:w-24 z-30 drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)]"
+          className="absolute -top-8 sm:-top-11 left-1 sm:left-2 w-18 sm:w-22 md:w-26 z-40 drop-shadow-[0_8px_18px_rgba(60,25,12,0.25)]"
           delayMs={150}
         />
       )}

@@ -129,7 +129,7 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
       {showFlower && (
         <PapelRasgadoFlower
           variant={flowerVariant}
-          className="absolute -top-5 sm:-top-7 -right-3 sm:-right-4 w-16 sm:w-20 md:w-24 z-40 drop-shadow-[0_6px_14px_rgba(60,25,12,0.25)]"
+          className="absolute -top-5 sm:-top-7 right-1 sm:right-2 w-16 sm:w-20 md:w-24 z-40 drop-shadow-[0_6px_14px_rgba(60,25,12,0.25)]"
           delayMs={150}
         />
       )}
@@ -151,12 +151,6 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
         {/* CONTENIDO DEL ÁLBUM (DIRECTO SOBRE EL FONDO) */}
         <div className="relative w-full flex flex-col items-center text-center">
           <div className="relative z-10 flex flex-col items-center w-full">
-            {/* Badge con ícono */}
-            <div className="flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-[#A26D3E] mb-2">
-              <Camera className="w-3.5 h-3.5 text-[#B87A4A]" />
-              <span>{badgeText}</span>
-            </div>
-
             {/* Subtítulo emotivo */}
             <h3
               className="text-xl sm:text-2xl text-[#2F2420] font-medium leading-snug mb-1.5"
@@ -180,13 +174,13 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
               />
             </div>
 
-            {/* RECUADRO CON EL CÓDIGO QR ESCANEABLE */}
-            <div className="relative w-full max-w-[270px] bg-[#FCF9F3] border-2 border-[#DFCBB5] rounded-2xl p-4 shadow-sm flex flex-col items-center">
+            {/* RECUADRO CON EL CÓDIGO QR ESCANEABLE (TAMAÑO COMPACTO Y DELICADO) */}
+            <div className="relative w-full max-w-[210px] sm:max-w-[220px] bg-[#FCF9F3] border-2 border-[#DFCBB5] rounded-2xl p-3 shadow-sm flex flex-col items-center">
               {/* Esquinas decorativas de escaneo estilo visor de cámara */}
-              <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 border-[#B87A4A] rounded-tl-xs pointer-events-none" />
-              <div className="absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 border-[#B87A4A] rounded-tr-xs pointer-events-none" />
-              <div className="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 border-[#B87A4A] rounded-bl-xs pointer-events-none" />
-              <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 border-[#B87A4A] rounded-br-xs pointer-events-none" />
+              <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-[#B87A4A] rounded-tl-xs pointer-events-none" />
+              <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-[#B87A4A] rounded-tr-xs pointer-events-none" />
+              <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-[#B87A4A] rounded-bl-xs pointer-events-none" />
+              <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-[#B87A4A] rounded-br-xs pointer-events-none" />
 
               {/* Botón táctil para ampliar el código QR */}
               <div
@@ -199,34 +193,34 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
                     setIsModalOpen(true);
                   }
                 }}
-                className="group relative cursor-pointer bg-white p-2.5 rounded-xl border border-[#E5D7C7] shadow-inner transition-transform duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#B87A4A]/40"
+                className="group relative cursor-pointer bg-white p-2 rounded-xl border border-[#E5D7C7] shadow-inner transition-transform duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#B87A4A]/40"
                 title="Toca para ampliar el código QR"
               >
                 {qrDataUrl ? (
                   <img
                     src={qrDataUrl}
                     alt="Código QR para subir fotos del matrimonio"
-                    className="w-40 h-40 sm:w-44 sm:h-44 object-contain rounded-lg"
+                    className="w-28 h-28 sm:w-32 sm:h-32 object-contain rounded-lg"
                   />
                 ) : (
-                  <div className="w-40 h-40 sm:w-44 sm:h-44 flex flex-col items-center justify-center bg-stone-100 rounded-lg text-stone-400 gap-2">
-                    <Sparkles className="w-8 h-8 text-[#B87A4A] animate-pulse" />
-                    <span className="text-[11px]">Generando QR...</span>
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 flex flex-col items-center justify-center bg-stone-100 rounded-lg text-stone-400 gap-1.5">
+                    <Sparkles className="w-6 h-6 text-[#B87A4A] animate-pulse" />
+                    <span className="text-[10px]">Generando QR...</span>
                   </div>
                 )}
 
                 {/* Overlay hover con indicación visual */}
                 <div className="absolute inset-0 bg-stone-900/15 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
-                  <span className="bg-white/95 text-[#7A4920] text-xs font-semibold px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1.5">
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    Ampliar QR
+                  <span className="bg-white/95 text-[#7A4920] text-[11px] font-semibold px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
+                    <Maximize2 className="w-3 h-3" />
+                    Ampliar
                   </span>
                 </div>
               </div>
 
               {/* Instrucción visual */}
-              <p className="mt-2.5 text-xs font-medium text-[#8C5E35] tracking-wide text-center">
-                Escanea con la cámara de tu celular
+              <p className="mt-2 text-[11px] font-medium text-[#8C5E35] tracking-wide text-center">
+                Escanea con tu cámara
               </p>
             </div>
 
@@ -235,52 +229,34 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
               href={albumUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full max-w-[270px] mt-4 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#B87A4A] to-[#A06437] text-white text-xs sm:text-sm font-bold shadow-md hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer"
+              className="w-full max-w-[220px] sm:max-w-[230px] mt-3.5 inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-full bg-gradient-to-r from-[#B87A4A] via-[#A86A3A] to-[#965A2E] text-white text-xs sm:text-sm font-medium tracking-wide shadow-[0_4px_16px_rgba(184,122,74,0.30)] hover:shadow-[0_6px_22px_rgba(184,122,74,0.40)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer"
               title="Abrir álbum para subir fotos"
             >
-              <UploadCloud className="w-4 h-4 stroke-[2.5]" />
-              <span>Subir Fotos al Álbum</span>
-              <ExternalLink className="w-3.5 h-3.5 stroke-[2] opacity-80" />
+              <UploadCloud className="w-4 h-4 stroke-[2]" />
+              <span>Subir fotos al álbum</span>
             </a>
 
-            {/* ACCIONES SECUNDARIAS (COPIAR ENLACE Y AMPLIAR QR) */}
-            <div className="flex items-center gap-2 mt-2 w-full max-w-[270px]">
-              {/* Botón copiar enlace */}
-              <button
-                type="button"
-                onClick={handleCopyLink}
-                className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl bg-[#FCF9F3] hover:bg-[#F2E5D5] border border-[#DFCBB5] text-[#7D5F48] hover:text-[#2F2420] text-xs font-semibold transition-all shadow-2xs active:scale-95 cursor-pointer"
-                title="Copiar enlace del álbum compartido"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
-                    <span className="text-emerald-700">¡Copiado!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>Copiar enlace</span>
-                  </>
-                )}
-              </button>
-
-              {/* Botón ampliar */}
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(true)}
-                className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl bg-[#FCF9F3] hover:bg-[#F2E5D5] border border-[#DFCBB5] text-[#7D5F48] hover:text-[#2F2420] text-xs font-semibold transition-all shadow-2xs active:scale-95 cursor-pointer"
-                title="Ver código QR en pantalla completa"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>Ampliar QR</span>
-              </button>
-            </div>
-
-            {/* Tip amigable para móviles */}
-            <p className="mt-3 text-[11px] text-[#A0816C] italic leading-tight max-w-[260px]">
-              Tip: Si estás leyendo esta invitación desde tu celular, pulsa «Subir Fotos al Álbum» para ingresar directamente.
-            </p>
+            {/* ENLACE SECUNDARIO ELEGANTE Y DISCRETO PARA COPIAR ENLACE */}
+            <button
+              type="button"
+              onClick={handleCopyLink}
+              className="mt-2.5 inline-flex items-center gap-1.5 text-xs text-[#8C6947] hover:text-[#5A3E26] transition-colors cursor-pointer group py-1"
+              title="Copiar enlace del álbum compartido"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                  <span className="text-emerald-700 font-medium">¡Enlace copiado al portapapeles!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <span className="underline underline-offset-4 decoration-[#DFCBB5] group-hover:decoration-[#8C6947]">
+                    o copia el enlace del álbum
+                  </span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </ScrollReveal>

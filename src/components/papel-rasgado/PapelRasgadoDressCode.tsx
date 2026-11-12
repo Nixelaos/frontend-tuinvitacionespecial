@@ -43,8 +43,27 @@ export const PapelRasgadoDressCode: React.FC<PapelRasgadoDressCodeProps> = ({
 
   return (
     <div
-      className={`w-full bg-[#FAF4EC] px-4 py-8 sm:py-12 text-[#2F2420] relative z-10 transition-colors duration-500 overflow-hidden ${className}`}
+      className={`w-full bg-[#FAF4EC] px-4 py-8 sm:py-12 text-[#2F2420] relative z-20 transition-colors duration-500 ${className}`}
     >
+      {/* Flor de peonía botánica en la esquina superior derecha sobre el divisor, despejada de todo texto */}
+      {peoniaSrc && (
+        <div
+          ref={flowerRef}
+          className={`absolute -top-6 sm:-top-8 right-2 sm:right-4 w-20 sm:w-24 md:w-28 z-30 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${flowerVisible
+              ? 'opacity-100 scale-100 rotate-12'
+              : 'opacity-0 scale-75 rotate-0'
+            }`}
+          aria-hidden="true"
+        >
+          <img
+            src={peoniaSrc}
+            alt="Flor de peonía decorativa"
+            className="w-full h-auto object-contain"
+            loading="lazy"
+          />
+        </div>
+      )}
+
       <ScrollReveal className="w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center">
         {/* ENCABEZADO DE LA SECCIÓN */}
         <div className="flex flex-col items-center text-center mb-6">
@@ -58,25 +77,6 @@ export const PapelRasgadoDressCode: React.FC<PapelRasgadoDressCodeProps> = ({
 
         {/* DETALLE ESPECIAL (DIRECTO SOBRE EL FONDO) */}
         <div className="relative w-full flex flex-col items-center text-center">
-          {/* Flor de peonía botánica en la esquina superior subida para no tapar texto */}
-          {peoniaSrc && (
-            <div
-              ref={flowerRef}
-              className={`absolute -top-14 sm:-top-16 -right-2 sm:-right-4 w-20 sm:w-24 md:w-28 z-20 pointer-events-none select-none drop-shadow-[0_6px_14px_rgba(60,25,12,0.22)] transition-all duration-1000 ease-out transform ${flowerVisible
-                  ? 'opacity-100 scale-100 rotate-12'
-                  : 'opacity-0 scale-75 rotate-0'
-                }`}
-              aria-hidden="true"
-            >
-              <img
-                src={peoniaSrc}
-                alt="Flor de peonía decorativa"
-                className="w-full h-auto object-contain"
-                loading="lazy"
-              />
-            </div>
-          )}
-
           <div className="relative z-10 flex flex-col items-center w-full">
 
 
