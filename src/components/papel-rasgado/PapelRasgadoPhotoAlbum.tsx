@@ -151,12 +151,12 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
               {description}
             </p>
 
-            {/* FOTO DE ALBUM.PNG EN SU TAMAÑO REAL (SIN HOVER ZOOM) */}
+            {/* FOTO DE ALBUM.PNG EN SU TAMAÑO REAL DE 150PX (SIN HOVER ZOOM) */}
             <div className="relative flex justify-center items-center mb-4">
               <img
                 src={imageSrc}
                 alt={imageAlt}
-                className="relative z-10 w-auto h-auto max-w-[200px] object-contain drop-shadow-[0_8px_20px_rgba(70,45,25,0.18)] select-none pointer-events-none"
+                className="relative z-10 w-[150px] h-[150px] object-contain drop-shadow-[0_8px_20px_rgba(70,45,25,0.18)] select-none pointer-events-none"
                 loading="lazy"
               />
             </div>
