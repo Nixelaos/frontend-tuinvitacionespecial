@@ -126,7 +126,7 @@ export const PapelRasgadoWeddingInvitation: React.FC = () => {
             <div className="absolute top-3 right-3 z-30 pointer-events-auto">
               <button
                 onClick={handleReset}
-                className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 hover:bg-white backdrop-blur-md border border-[#E2D2C2] shadow-sm text-stone-700 text-xs font-medium transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 hover:bg-white backdrop-blur-md border border-[#E2D2C2] shadow-sm text-stone-700 text-xs font-medium transition-all active:scale-95 cursor-pointer"
                 title="Volver a cerrar el sobre"
               >
                 <RotateCcw className="w-3.5 h-3.5 text-[#B88960] group-hover:-rotate-90 transition-transform duration-300" />

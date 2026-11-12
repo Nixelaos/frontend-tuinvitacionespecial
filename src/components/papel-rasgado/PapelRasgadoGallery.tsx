@@ -68,7 +68,7 @@ export const PapelRasgadoGallery: React.FC = () => {
           type="button"
           onClick={handlePrevPhoto}
           aria-label="Foto anterior"
-          className="absolute -left-2 sm:-left-3 z-30 w-10 h-10 rounded-full bg-[#F5ECE0]/95 hover:bg-[#FAF3E8] border border-[#C8AD90] shadow-md flex items-center justify-center text-[#5A3E28] transition-all hover:scale-110 active:scale-95 cursor-pointer"
+          className="absolute -left-2 sm:-left-3 z-30 w-10 h-10 rounded-full bg-[#F5ECE0]/95 hover:bg-[#FAF3E8] border border-[#C8AD90] shadow-md flex items-center justify-center text-[#5A3E28] transition-all active:scale-95 cursor-pointer"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -103,7 +103,7 @@ export const PapelRasgadoGallery: React.FC = () => {
                       <img
                         src={photo.src}
                         alt={photo.alt}
-                        className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                        className="w-full h-full object-cover object-center"
                         loading="lazy"
                       />
                       {index === 0 && (
@@ -146,7 +146,7 @@ export const PapelRasgadoGallery: React.FC = () => {
           type="button"
           onClick={handleNextPhoto}
           aria-label="Foto siguiente"
-          className="absolute -right-2 sm:-right-3 z-30 w-10 h-10 rounded-full bg-[#F5ECE0]/95 hover:bg-[#FAF3E8] border border-[#C8AD90] shadow-md flex items-center justify-center text-[#5A3E28] transition-all hover:scale-110 active:scale-95 cursor-pointer"
+          className="absolute -right-2 sm:-right-3 z-30 w-10 h-10 rounded-full bg-[#F5ECE0]/95 hover:bg-[#FAF3E8] border border-[#C8AD90] shadow-md flex items-center justify-center text-[#5A3E28] transition-all active:scale-95 cursor-pointer"
         >
           <ChevronRight className="w-5 h-5" />
         </button>

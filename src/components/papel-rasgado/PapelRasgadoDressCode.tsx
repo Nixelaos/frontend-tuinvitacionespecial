@@ -97,7 +97,7 @@ export const PapelRasgadoDressCode: React.FC<PapelRasgadoDressCodeProps> = ({
                 <img
                   src={imageSrc}
                   alt={imageAlt}
-                  className="w-28 sm:w-32 h-auto object-contain select-none pointer-events-none drop-shadow-xs transition-transform duration-300 hover:scale-105"
+                  className="w-28 sm:w-32 h-auto object-contain select-none pointer-events-none drop-shadow-xs"
                   loading="lazy"
                 />
               </div>

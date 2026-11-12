@@ -175,7 +175,7 @@ export const PapelRasgadoRsvp: React.FC<PapelRasgadoRsvpProps> = ({
                 <img
                   src={imageSrc}
                   alt={imageAlt}
-                  className="relative z-10 w-auto h-auto max-w-[220px] object-contain drop-shadow-[0_6px_16px_rgba(70,45,25,0.18)] transition-transform duration-300 group-hover:scale-105 pointer-events-none"
+                  className="relative z-10 w-auto h-auto max-w-[220px] object-contain drop-shadow-[0_6px_16px_rgba(70,45,25,0.18)] pointer-events-none"
                   loading="lazy"
                 />
 

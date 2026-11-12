@@ -110,7 +110,7 @@ export const PapelRasgadoRsvpSuccess: React.FC<PapelRasgadoRsvpSuccessProps> = (
               href={googleCalendarUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-2.5 px-3 rounded-lg bg-white hover:bg-[#FAF3E8] border border-[#DFCBB5] text-stone-800 text-xs font-medium flex items-center justify-center gap-1.5 shadow-2xs transition-all hover:scale-[1.02] cursor-pointer"
+              className="py-2.5 px-3 rounded-lg bg-white hover:bg-[#FAF3E8] border border-[#DFCBB5] text-stone-800 text-xs font-medium flex items-center justify-center gap-1.5 shadow-2xs transition-all cursor-pointer"
             >
               <Calendar className="w-3.5 h-3.5 text-[#B8864E]" />
               <span>Google Cal</span>
@@ -121,7 +121,7 @@ export const PapelRasgadoRsvpSuccess: React.FC<PapelRasgadoRsvpSuccessProps> = (
             <button
               type="button"
               onClick={onDownloadIcs}
-              className="py-2.5 px-3 rounded-lg bg-white hover:bg-[#FAF3E8] border border-[#DFCBB5] text-stone-800 text-xs font-medium flex items-center justify-center gap-1.5 shadow-2xs transition-all hover:scale-[1.02] cursor-pointer"
+              className="py-2.5 px-3 rounded-lg bg-white hover:bg-[#FAF3E8] border border-[#DFCBB5] text-stone-800 text-xs font-medium flex items-center justify-center gap-1.5 shadow-2xs transition-all cursor-pointer"
             >
               <Calendar className="w-3.5 h-3.5 text-[#B8864E]" />
               <span>Apple / iCal</span>

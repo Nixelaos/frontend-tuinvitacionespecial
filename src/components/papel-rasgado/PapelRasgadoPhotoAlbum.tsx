@@ -96,6 +96,22 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
     <div
       className={`w-full bg-[#FAF4EC] px-4 py-8 sm:py-12 text-[#2F2420] relative z-30 transition-colors duration-500 ${className}`}
     >
+      {/* Animación fluida lenta para la frase ¡Scanéame! */}
+      <style>{`
+        @keyframes floatAlbumSlow {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-5px);
+          }
+        }
+        .animate-float-slow-album {
+          animation: floatAlbumSlow 3s ease-in-out infinite;
+          will-change: transform;
+        }
+      `}</style>
+
       {/* Flor botánica de contraste en el lateral derecho superior colocada sobre todo */}
       {showFlower && (
         <PapelRasgadoFlower
@@ -135,17 +151,17 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
               {description}
             </p>
 
-            {/* FOTO DE ALBUM.PNG EN SU TAMAÑO REAL */}
-            <div className="relative flex justify-center items-center mb-4 group">
+            {/* FOTO DE ALBUM.PNG EN SU TAMAÑO REAL (SIN HOVER ZOOM) */}
+            <div className="relative flex justify-center items-center mb-4">
               <img
                 src={imageSrc}
                 alt={imageAlt}
-                className="relative z-10 w-auto h-auto max-w-[200px] object-contain drop-shadow-[0_8px_20px_rgba(70,45,25,0.18)] select-none pointer-events-none transition-transform duration-500 group-hover:scale-105"
+                className="relative z-10 w-auto h-auto max-w-[200px] object-contain drop-shadow-[0_8px_20px_rgba(70,45,25,0.18)] select-none pointer-events-none"
                 loading="lazy"
               />
             </div>
 
-            {/* CÓDIGO QR DIRECTO SOBRE EL FONDO (LIMPIO, SIN RECUADRO NI TEXTO NI BOTONES) */}
+            {/* CÓDIGO QR DIRECTO SOBRE EL FONDO (SIN HOVER ZOOM) */}
             <div
               onClick={() => setIsModalOpen(true)}
               role="button"
@@ -156,7 +172,7 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
                   setIsModalOpen(true);
                 }
               }}
-              className="group cursor-pointer bg-white p-2 rounded-xl border border-[#DFCBB5] shadow-xs transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#B87A4A]/40"
+              className="cursor-pointer bg-white p-2 rounded-xl border border-[#DFCBB5] shadow-xs focus:outline-none focus:ring-2 focus:ring-[#B87A4A]/40"
               title="Toca para ampliar el código QR"
             >
               {qrDataUrl ? (
@@ -172,6 +188,11 @@ export const PapelRasgadoPhotoAlbum: React.FC<PapelRasgadoPhotoAlbumProps> = ({
                 </div>
               )}
             </div>
+
+            {/* FRASE INDICATIVA FLOTANTE (SUBIENDO Y BAJANDO) */}
+            <p className="mt-2.5 text-xs sm:text-[13px] font-medium text-[#8C5E35] tracking-wide text-center animate-float-slow-album">
+              ¡Scanéame!
+            </p>
           </div>
         </div>
       </ScrollReveal>

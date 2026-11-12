@@ -156,7 +156,7 @@ export const PapelRasgadoItinerary: React.FC = () => {
                   }}
                 >
                   {/* Recuadro artesanal con hora y título a la derecha */}
-                  <div className="relative bg-[#FCF9F3] border border-[#DFCBB5] rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 shadow-[0_4px_18px_rgba(70,45,25,0.06)] text-left flex flex-col w-full transition-transform duration-300 hover:scale-[1.02]">
+                  <div className="relative bg-[#FCF9F3] border border-[#DFCBB5] rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 shadow-[0_4px_18px_rgba(70,45,25,0.06)] text-left flex flex-col w-full">
                     {/* Filete interior sutil de papelería artesanal */}
                     <div className="absolute inset-1.5 border border-[#E8DCCF] rounded-xl pointer-events-none" />
 

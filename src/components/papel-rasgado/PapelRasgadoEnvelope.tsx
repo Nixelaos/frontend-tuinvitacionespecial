@@ -43,7 +43,7 @@ export const PapelRasgadoEnvelope: React.FC<PapelRasgadoEnvelopeProps> = ({
 
       {/* Envelope Body Container: Emerges with Blur-to-Focus watercolor bloom */}
       <div
-        className={`relative w-full aspect-[16/10.5] rounded-b-2xl rounded-t-sm transition-all duration-[1800ms] cubic-bezier(0.16, 1, 0.3, 1) animate-watercolor-envelope ${isOpening ? 'scale-[1.03]' : 'hover:scale-[1.015]'
+        className={`relative w-full aspect-[16/10.5] rounded-b-2xl rounded-t-sm transition-all duration-[1800ms] cubic-bezier(0.16, 1, 0.3, 1) animate-watercolor-envelope ${isOpening ? 'scale-[1.03]' : ''
           }`}
         style={{ perspective: '1600px' }}
       >
