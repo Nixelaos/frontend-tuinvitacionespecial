@@ -119,11 +119,11 @@ export const PapelRasgadoRsvp: React.FC<PapelRasgadoRsvpProps> = ({
         }
       `}</style>
 
-      {/* Flor botánica de contraste colocada sobre todo el divisor y encabezado */}
+      {/* Flor botánica de contraste colocada sobre todo el divisor, subida para no tapar ninguna letra */}
       {showFlower && (
         <PapelRasgadoFlower
           variant={flowerVariant}
-          className="absolute -top-8 sm:-top-11 left-1 sm:left-2 w-18 sm:w-22 md:w-26 z-40 drop-shadow-[0_8px_18px_rgba(60,25,12,0.25)]"
+          className="absolute -top-14 sm:-top-18 left-1 sm:left-2 w-16 sm:w-20 md:w-22 z-40 drop-shadow-[0_8px_18px_rgba(60,25,12,0.25)]"
           delayMs={150}
         />
       )}
@@ -131,12 +131,6 @@ export const PapelRasgadoRsvp: React.FC<PapelRasgadoRsvpProps> = ({
       <ScrollReveal className="w-full max-w-sm sm:max-w-md mx-auto flex flex-col items-center">
         {/* ENCABEZADO DE LA SECCIÓN */}
         <div className="flex flex-col items-center text-center mb-6">
-          {subtitle && (
-            <span className="text-[11px] font-semibold tracking-[0.25em] text-[#916E49] uppercase mb-1">
-              {subtitle}
-            </span>
-          )}
-
           <h2
             className="font-script text-4xl sm:text-5xl text-[#B87A4A] font-normal leading-tight tracking-wide"
             style={{ fontFamily: "'Great Vibes', cursive" }}
