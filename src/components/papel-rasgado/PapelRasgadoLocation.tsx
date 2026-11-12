@@ -110,8 +110,8 @@ export const PapelRasgadoLocation: React.FC = () => {
               />
             </a>
 
-            {/* FRASE INDICATIVA FLOTANTE (SUBIENDO Y BAJANDO) */}
-            <p className="mt-3 text-xs sm:text-[13px] font-medium text-[#8C5E35] tracking-wide text-center animate-float-slow-location">
+            {/* FRASE INDICATIVA FLOTANTE CON ESPACIO CÓMODO RESPECTO A LA FOTO */}
+            <p className="mt-5 sm:mt-6 text-xs sm:text-[13px] font-medium text-[#8C5E35] tracking-wide text-center animate-float-slow-location">
               Haz clic en la foto para ver en Google Maps
             </p>
           </div>

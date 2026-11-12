@@ -1,23 +1,15 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import type { InvitationTemplate } from '../types/wedding';
 import { INVITATION_TEMPLATES } from '../data/catalogData';
 import { ParchmentLogo } from './ParchmentLogo';
 
 export const CatalogExplorer: React.FC = () => {
-  const getDisplayCouple = (tpl: InvitationTemplate) => {
-    const bride = tpl.coupleDemo.bride;
-    const groom = tpl.coupleDemo.groom;
-    const initials = `${bride.charAt(0).toUpperCase()} & ${groom.charAt(0).toUpperCase()}`;
-    return { bride, groom, initials };
-  };
-
   return (
     <div className="flex justify-center">
       {/* Templates Container - Centrado */}
       <div className="flex flex-wrap justify-center gap-8 lg:gap-10 max-w-5xl w-full">
         {INVITATION_TEMPLATES.map((tpl, idx) => {
-          const couple = getDisplayCouple(tpl);
+          const { bride, groom } = tpl.coupleDemo;
           const staggerDelay = `${(idx * 0.1).toFixed(2)}s`;
 
           return (
@@ -41,19 +33,23 @@ export const CatalogExplorer: React.FC = () => {
 
                 {/* Plaqueta Inferior Simulada sobre la Foto */}
                 <div className="absolute bottom-3 left-2.5 right-2.5 text-center p-2.5 backdrop-blur-md shadow-editorial z-10 bg-ivory-50/95 rounded-lg border border-gold/35">
-                  <span className="text-[9px] uppercase tracking-[0.22em] font-semibold block text-gold-dark">
-                    {tpl.coupleDemo.displayDate}
-                  </span>
+                  {tpl.coupleDemo.displayDate && (
+                    <span className="text-[9px] uppercase tracking-[0.22em] font-semibold block text-gold-dark">
+                      {tpl.coupleDemo.displayDate}
+                    </span>
+                  )}
                   <p className="font-serif text-base sm:text-lg text-charcoal mt-0.5 font-medium leading-snug">
-                    {couple.bride}{' '}
+                    {bride}{' '}
                     <span className="italic font-serif text-gold-dark font-medium">
                       &amp;
                     </span>{' '}
-                    {couple.groom}
+                    {groom}
                   </p>
-                  <p className="text-[10px] text-charcoal truncate mt-0.5 font-normal">
-                    {tpl.coupleDemo.city}
-                  </p>
+                  {tpl.coupleDemo.city && (
+                    <p className="text-[10px] text-charcoal truncate mt-0.5 font-normal">
+                      {tpl.coupleDemo.city}
+                    </p>
+                  )}
                 </div>
               </div>
 
